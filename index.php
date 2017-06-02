@@ -61,12 +61,11 @@ else
 			<!--PAGES-->
             <?php
                 switch ($p) {
-                    case 'tintrongloai':    require 'pages/tintrongloai.php'; 
+                    case 'tintrongloai':        require 'pages/tintrongloai.php'; 
                         break;
-                     case 'chitiettin':    require 'pages/chitiettin.php'; 
-                        break;     require 'pages/chitiettin.php';                 
-                    default:
-                        # code...
+                     case 'chitiettin':         require 'pages/chitiettin.php'; 
+                        break;             
+                    default:                    require 'pages/trangchu.php'; 
                         break;
                 }
             ?>

@@ -88,4 +88,26 @@ function LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL)
 	return mysqli_query($connect, $qr);
 }
 
+function TinMoiNhat_TheoTheLoai_MotTin($connect, $idTL)
+{
+	$qr = "
+			select * from Tin
+			where idTL=$idTL
+			order by idTin desc
+			limit 0,1
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function TinMoiNhat_TheoTheLoai_HaiTin($connect, $idTL)
+{
+	$qr = "
+			select * from Tin
+			where idLT=$idTL
+			order by idTin desc
+			limit 1,2
+	";
+	return mysqli_query($connect, $qr);
+}
+
 ?>
