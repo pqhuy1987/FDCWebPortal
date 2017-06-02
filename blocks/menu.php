@@ -41,7 +41,7 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1" class="ddsmoothmenu">
 <ul>
-<li><a href="http://www.dynamicdrive.com">Trang Chủ</a></li>
+<li><a href="./">Trang Chủ</a></li>
 <?php 
 	$danhsachtheloai = DanhSachTheLoai($connect);
 	while ($row_danhsachtheloai = mysqli_fetch_array($danhsachtheloai)) {
@@ -53,7 +53,7 @@ ddsmoothmenu.init({
 		$danhsachtheloaitin = LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL);
 		while ($row_danhsachtheloaitin = mysqli_fetch_array($danhsachtheloaitin)) {
 	?>
-  		<li><a href="#"><?php echo $row_danhsachtheloaitin['Ten']?></a></li>
+  		<li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['Ten'] ?>"><?php echo $row_danhsachtheloaitin['Ten']?></a></li>
   	<?php 
 		}
 	?>
