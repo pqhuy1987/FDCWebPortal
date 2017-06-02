@@ -22,7 +22,7 @@ else
     	<div id="logo"><img src="images/logo.gif" /></div>
     </div>
     
-    <div id="menu-vp">
+    <div>
     	<!--block/menu.php-->
         <?php require "blocks/menu.php"; ?>
     </div>
