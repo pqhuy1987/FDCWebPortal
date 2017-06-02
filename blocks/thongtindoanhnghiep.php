@@ -87,21 +87,15 @@
 
         <!-- Slides Container -->
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 1000px; height: 150px; overflow: hidden;">
-            <div><img u="image" src="images/1.png" /></div>
-            <div><img u="image" src="images/2.png" /></div>
-            <div><img u="image" src="images/3.png" /></div>
-            <div><img u="image" src="images/1.png" /></div>
-            <div><img u="image" src="images/2.png" /></div>
-            <div><img u="image" src="images/3.png" /></div>
-            <div><img u="image" src="images/1.png" /></div>
-            <div><img u="image" src="images/2.png" /></div>
-            <div><img u="image" src="images/3.png" /></div>
-            <div><img u="image" src="images/1.png" /></div>
-            <div><img u="image" src="images/2.png" /></div>
-            <div><img u="image" src="images/3.png" /></div>
-            <div><img u="image" src="images/1.png" /></div>
-            <div><img u="image" src="images/2.png" /></div>
-            <div><img u="image" src="images/3.png" /></div>
+            <?php
+                $HienThiQuangCaoChay = HienThiQuangCao($connect,2);
+                while ($raw_HienThiQuangCaoChay = mysqli_fetch_array($HienThiQuangCaoChay))
+                {
+            ?>
+                  <div><img u="image" src="upload/quangcao/<?php echo $raw_HienThiQuangCaoChay['urlHinh']?>" /></div>
+            <?php
+                 }
+            ?>
         </div>
         
         <!-- Bullet Navigator Skin Begin -->
