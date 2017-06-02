@@ -71,4 +71,21 @@ function HienThiQuangCao($connect, $vitri)
 	return mysqli_query($connect, $qr);
 }
 
+function DanhSachTheLoai($connect)
+{
+	$qr = "
+			select * from theloai
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL)
+{
+	$qr = "
+			select * from loaitin
+			where idTL=$idTL
+	";
+	return mysqli_query($connect, $qr);
+}
+
 ?>
