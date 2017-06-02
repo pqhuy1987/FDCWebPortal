@@ -1,7 +1,6 @@
 <div id="slide-left">
           <?php
-              $sql="select * from Tin order by idTin desc limit 0,1";
-              $tinmoinhat_mottin=mysqli_query($connect,$sql);
+              $tinmoinhat_mottin = TinMoiNhat_MotTin($connect);
               $row_tinmoinhatmottin = mysqli_fetch_array($tinmoinhat_mottin);
           ?>
         	<div id="slideleft-main">
@@ -18,8 +17,7 @@
               <div class="content_scoller width_common">
             <ul>
             <?php
-              $sql="select * from Tin order by idTin desc limit 1,4";
-              $tinmoinhat_bontin=mysqli_query($connect,$sql);
+              $tinmoinhat_bontin=TinMoiNhat_BonTin($connect);
               while ($row_tinmoinhatbontin = mysqli_fetch_array($tinmoinhat_bontin)) {
               # code...
             ?>

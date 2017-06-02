@@ -7,8 +7,7 @@
         <div class="clear"></div>
         <div class="cat-content">
         	<?php 
-                $sql="select * from Tin order by SoLanXem desc limit 0,6";
-                $xemnhieunhat=mysqli_query($connect,$sql);
+                $xemnhieunhat=TinXemNhieuNhat($connect);
                 while($row_xemnhieunhat = mysqli_fetch_array($xemnhieunhat))
                 {
             ?>
