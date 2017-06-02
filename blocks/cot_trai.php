@@ -6,84 +6,23 @@
        
         <div class="clear"></div>
         <div class="cat-content">
-        	
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-            <div class="col1">
-            	<div class="news">
-                  <img class="images_news" src="upload/tintuc/ekaterinaparkhome2987311b-1406341819_1406341842_180x108.jpg"  />
-                    <h3 class="title" ><a href="#">Cô gái Ukraine 'gây bão' vì dùng mascara của nạn nhân MH17</a><span class="hit">20</span></h3>
-                    <div class="clear"></div>
-				</div>
-            </div>
-            
-            
-
-
-            
+        	<?php 
+                $sql="select * from Tin order by SoLanXem desc limit 0,6";
+                $xemnhieunhat=mysqli_query($connect,$sql);
+                while($row_xemnhieunhat = mysqli_fetch_array($xemnhieunhat))
+                {
+            ?>
+                <div class="col1">
+                	<div class="news">
+                      <img class="images_news" src="upload/tintuc/<?php echo $row_xemnhieunhat['urlHinh']?>" />
+                        <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_xemnhieunhat['idTin'] ?>"><?php echo $row_xemnhieunhat['TieuDe']?></a><span class="hit"><?php echo $row_xemnhieunhat['SoLanXem']?></span></h3>
+                        <div class="clear"></div>
+    				</div>
+                </div>                   
+            <?php 
+                }
+            ?>
         </div>
     </div>
 </div>
 <div class="clear"></div>
-
