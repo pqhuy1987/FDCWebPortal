@@ -13,7 +13,7 @@
             $danhsachtheloaitin = LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL);
             while ($row_danhsachtheloaitin = mysqli_fetch_array($danhsachtheloaitin)) {
         ?>
-        	<a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['Ten'] ?>"><?php echo $row_danhsachtheloaitin['Ten']?></a>
+        	<a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>"><?php echo $row_danhsachtheloaitin['Ten']?></a>
         <?php 
             }
         ?>

@@ -25,7 +25,7 @@
       ?>
       <li class="liFollow">
             <h2>
-                <a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['Ten'] ?>"><?php echo $row_danhsachtheloaitin['Ten']?></a>
+                <a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>"><?php echo $row_danhsachtheloaitin['Ten']?></a>
             </h2>
       </li>
       <?php 

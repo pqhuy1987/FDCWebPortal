@@ -110,4 +110,15 @@ function TinMoiNhat_TheoTheLoai_HaiTin($connect, $idTL)
 	return mysqli_query($connect, $qr);
 }
 
+function ChonTin_Theo_TenLoanTin($connect, $idLT)
+{
+	$qr = "
+			select * from tin
+			where idLT=$idLT
+			order by idTin desc
+			limit 0,25
+	";
+	return mysqli_query($connect, $qr);
+}
+
 ?>
