@@ -116,7 +116,7 @@ function ChonTin_Theo_TenLoanTin($connect, $idLT)
 			select * from tin
 			where idLT=$idLT
 			order by idTin desc
-			limit 0,25
+			limit 0,100000
 	";
 	return mysqli_query($connect, $qr);
 }
@@ -132,4 +132,14 @@ function breadCrumb($connect, $idLT)
 	return mysqli_query($connect, $qr);
 }
 
+function ChonTin_Theo_TenLoanTin_PhanTrang($connect, $idLT, $from, $sotin1trang)
+{
+	$qr = "
+			select * from tin
+			where idLT=$idLT
+			order by idTin desc
+			limit $from, $sotin1trang
+	";
+	return mysqli_query($connect, $qr);
+}
 ?>
