@@ -121,4 +121,15 @@ function ChonTin_Theo_TenLoanTin($connect, $idLT)
 	return mysqli_query($connect, $qr);
 }
 
+function breadCrumb($connect, $idLT)
+{
+	$qr = "
+			select TenTL, Ten
+			from theloai, loaitin
+			where theloai.idTL = loaitin.idTL
+			and idLT = $idLT
+	";
+	return mysqli_query($connect, $qr);
+}
+
 ?>

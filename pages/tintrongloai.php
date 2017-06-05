@@ -1,6 +1,15 @@
 <?php
     $idLT = $_GET["idLT"];
     settype($idLT, "int");
+?>
+
+<?php
+    $bc = breadCrumb($connect, $idLT);
+    $row_bc = mysqli_fetch_array($bc);
+?>
+
+<div> Trang chủ >> <?php echo $row_bc["TenTL"]?> >> <?php echo $row_bc["Ten"]?> </div>
+<?php
     $ChonTin_Theo_TenLoanTin = ChonTin_Theo_TenLoanTin($connect, $idLT);
     while ($row_ChonTin_Theo_TenLoanTin = mysqli_fetch_array($ChonTin_Theo_TenLoanTin)) {
 ?>
