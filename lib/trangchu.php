@@ -165,4 +165,14 @@ function TinCungLoaiTin($connect, $idTin, $idLT)
 	return mysqli_query($connect, $qr);
 }
 
+function CapNhatSoLanXemTin($connect, $idTin)
+{
+	$qr = "
+			UPDATE tin
+			SET SoLanXem = SoLanXem + 1
+			WHERE idTin = $idTin
+	";
+	mysqli_query($connect, $qr);
+}
+
 ?>
