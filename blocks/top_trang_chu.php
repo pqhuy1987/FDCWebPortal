@@ -33,7 +33,7 @@
             </div>			
             
 			<div id="gocnhin">
-                <img alt="" src="http://khoapham.vn/images/logoKhoaPham.png" width="100%"></a>
+                <img alt="" src="http://khoapham.vn/public/images/logo-370.png" width="100%"></a>
                 <div class="title_news"></div>
             </div>
                 

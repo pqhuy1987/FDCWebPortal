@@ -142,4 +142,27 @@ function ChonTin_Theo_TenLoanTin_PhanTrang($connect, $idLT, $from, $sotin1trang)
 	";
 	return mysqli_query($connect, $qr);
 }
+
+function ChonNoiDungTin($connect, $idTin)
+{
+	$qr = "
+			select * from Tin
+			where idTin=$idTin
+			limit 0,100000
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function TinCungLoaiTin($connect, $idTin, $idLT)
+{
+	$qr = "
+			select * from Tin
+			where idTin <> $idTin
+			and idLT = $idLT
+			order by rand()
+			limit 0,3
+	";
+	return mysqli_query($connect, $qr);
+}
+
 ?>
