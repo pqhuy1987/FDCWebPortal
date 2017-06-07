@@ -168,11 +168,21 @@ function TinCungLoaiTin($connect, $idTin, $idLT)
 function CapNhatSoLanXemTin($connect, $idTin)
 {
 	$qr = "
-			UPDATE tin
-			SET SoLanXem = SoLanXem + 1
-			WHERE idTin = $idTin
+			update tin
+			set SoLanXem = SoLanXem + 1
+			where idTin = $idTin
 	";
 	mysqli_query($connect, $qr);
+}
+
+function TimKiem($connect, $tukhoa)
+{
+	$qr = "
+			select * from tin
+			where TieuDe regexp '$tukhoa'
+			order by idTin desc
+	";
+	return mysqli_query($connect, $qr);
 }
 
 ?>

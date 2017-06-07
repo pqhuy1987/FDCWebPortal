@@ -2,10 +2,27 @@
 require "lib/dbCon.php";
 require "lib/trangchu.php";
 
+session_start();
+
+if (!isset($_SESSION['idUser']))
+{
+    header('Location: login/login.php');
+    exit();
+}
+
+
 if (isset($_GET["p"]))
     $p = $_GET["p"];
 else
     $p = "";
+?>
+
+<?php 
+   if (isset($_POST["btnThoat"])){
+        session_destroy();
+        header('Location: login/login.php');
+        //exit();
+    }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -19,7 +36,7 @@ else
 <body>
 <div id="wrap-vp">
 	<div id="header-vp">
-    	<div id="logo"><img src="images/logo.gif" /></div>
+    	<div id="logo"><img src="images/logo.png" /></div>
     </div>
     
     <div>
@@ -65,6 +82,8 @@ else
                         break;
                      case 'chitiettin':         require 'pages/chitiettin.php'; 
                         break;             
+                     case 'timkiem':            require 'pages/timkiem.php'; 
+                        break;   
                     default:                    require 'pages/trangchu.php'; 
                         break;
                 }
@@ -72,6 +91,10 @@ else
             
         </div>
         <div id="content-right">
+        <?php if (isset($_SESSION['idUser']))
+        {
+            require "blocks/LoginForm.php";
+        }?>      
 		<!--blocks/cot_phai.php-->
         <?php require "blocks/cot_phai.php"; ?>
         </div>
