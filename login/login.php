@@ -24,7 +24,7 @@
          header('Location: ../index.php');
          exit();
       } else {
-         echo fail;
+		  ;
       }       
 
    }
@@ -48,7 +48,8 @@
 <body>
 
   <div class="wrap">
-        <form action = "" method = "post">
+      <div><img width="250" height="140" src="../images/logo1.png" />
+      <form action = "" method = "post">
 			<input name = "username" type="text" placeholder="username" required>
 			<div class="bar">
 				<i></i>

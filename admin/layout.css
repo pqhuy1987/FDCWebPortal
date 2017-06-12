@@ -1,4 +1,6 @@
 /* CSS Document */
-#hangTieuDe{min-width: 1200px; background-color:#09F; color:white; font-size:24px; padding:10px; text-align:center}
-#hang2 a{min-width: 18%; width:auto; padding:10px; background-color:#39F; color:#fff; font-weight:bold; display:block; float:left; margin-right:1px; text-align:center}
+#hangTieuDe{min-width: 1200px; background-color:#09F; color:white; font-size:36px; padding:0px; text-align:center}
+#hang2 a{min-width: 20%; width:auto; padding:0px; background-color:#39F; color:#fff; font-size:auto; font-weight:bold; display:block; float:left; margin-right:0px; text-align:center}
 #hang2 a:hover{background-color:#CCF}
+#hang3 {background-color:#8E44AD; color:white; text-align: center}
+
