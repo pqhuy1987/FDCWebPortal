@@ -48,7 +48,7 @@
     <td height="140"><form id="form1" name="form1" method="post" action="">
       <table width="1200" border="1">
         <tr>
-          <td height="24" colspan="2">SỬA THỂ LOẠI</td>
+          <td height="24" colspan="2">THÊM THỂ LOẠI</td>
         </tr>
         <tr>
           <td width="492">Tên TL</td>
