@@ -36,7 +36,7 @@ else
 <body>
 <div id="wrap-vp">
 	<div id="header-vp">
-    	<div id="logo"><img src="images/logo.png" /></div>
+    	<div id="logo"><img src="images/logo2.png" width="1000" height="64" /></div>
     </div>
     
     <div>
