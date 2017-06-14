@@ -22,7 +22,12 @@ else
         session_destroy();
         header('Location: login/login.php');
         //exit();
-    }
+   }
+   
+   if (isset($_POST["Admin"])){
+        header('Location: admin/index.php');
+        //exit();
+   }
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

@@ -18,6 +18,25 @@ function ChiTietTheLoai($connect, $idTL){
 	return mysqli_fetch_array($row);
 }
 
+function DanhSachLoaiTin($connect){
+
+	$qr = " select * from loaitin, theloai
+			where theloai.idTL = loaitin.idTL
+			order by loaitin.idTL asc
+			limit 0,1000
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function ChiTietLoaiTin($connect, $idLT){
+
+	$qr = " select * from loaitin
+			where idLT='$idLT'
+	";
+	$row = mysqli_query($connect, $qr);
+	return mysqli_fetch_array($row);
+}
+
 
 function stripUnicode($str){
   if(!$str) return false;
