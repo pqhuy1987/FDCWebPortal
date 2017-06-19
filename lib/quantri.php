@@ -18,6 +18,7 @@ function ChiTietTheLoai($connect, $idTL){
 	return mysqli_fetch_array($row);
 }
 
+//Quan Li LoaiTin
 function DanhSachLoaiTin($connect){
 
 	$qr = " select * from loaitin, theloai
@@ -37,6 +38,17 @@ function ChiTietLoaiTin($connect, $idLT){
 	return mysqli_fetch_array($row);
 }
 
+//Quan Li Tin
+function DanhSachTin($connect){
+	$qr = "
+			select tin.*, TenTL, Ten
+			from tin, theloai, loaitin
+			where tin.idTL = theloai.idTL
+			and tin.idLT = loaitin.idLT
+			order by idTin desc
+			limit 0,20";
+	return mysqli_query($connect, $qr);
+}
 
 function stripUnicode($str){
   if(!$str) return false;

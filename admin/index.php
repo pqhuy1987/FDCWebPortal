@@ -22,9 +22,9 @@
 </head>
 
 <body>
-<table width="auto" border="1">
+<table width="1200" border="1">
   <tr>
-    <td id="hangTieuDe">TRANG QUẢN TRỊ</td>
+    <td width="1323" id="hangTieuDe">TRANG QUẢN TRỊ</td>
   </tr>
   <tr>
     <td id="hang2"><?php require "menu.php"; ?></td>
