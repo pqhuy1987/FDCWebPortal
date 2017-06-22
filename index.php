@@ -4,7 +4,7 @@ require "lib/trangchu.php";
 
 session_start();
 
-if (!isset($_SESSION['idUser']))
+if (!isset($_SESSION['ldap_dn']))
 {
     header('Location: login/login.php');
     exit();
@@ -96,7 +96,7 @@ else
             
         </div>
         <div id="content-right">
-        <?php if (isset($_SESSION['idUser']))
+        <?php if (isset($_SESSION['ldap_dn']))
         {
             require "blocks/LoginForm.php";
         }?>      

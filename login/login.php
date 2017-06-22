@@ -1,15 +1,13 @@
 <?php
-	$domain = 'FDC.LOCAL';
+   $domain = 'FDC.LOCAL';
+   $admin_group = 'CN=FDC HCNS,CN=Users,DC=FDC,DC=LOCAL';
+   
    if (isset($_POST["btnSubmit"]))
    {
 		$ldap_dn = $_POST["username"];
 		$ldap_password = $_POST["password"];
 		
 		$ldap_con = ldap_connect("SRBDC-02.FDC.LOCAL", 389) or die('Could not connect to LDAP server.');
-		
-		//$ldap_dn = "quanghuy.pham@FDC.LOCAL";
-		//$ldap_password = "fdc@2017";
-									
 		
 		if (!ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3)) 
 		{
@@ -18,9 +16,34 @@
 		
 	
 		if(@ldap_bind($ldap_con, $ldap_dn.'@'.$domain, $ldap_password))
-			echo "Authenticated";
+		{
+			session_start();
+        	$_SESSION['ldap_dn'] = $ldap_dn;
+			
+			$samaccountname = $ldap_dn;
+			$filter = "(samaccountname=$samaccountname)";
+			$dn = "OU=FDC Department,DC=FDC,DC=LOCAL";
+			$attributes = array("memberof");
+
+			$res = ldap_search($ldap_con, $dn, $filter, $attributes);
+			$first = ldap_get_entries($ldap_con, $res);
+			
+			for ($i=0; $i < $first[0]["memberof"]["count"]; $i++)
+    		{
+				if ($first[0]["memberof"][$i]==$admin_group)
+				{
+					$_SESSION['admin'] = $samaccountname;
+				}
+    		}
+			//print "<pre>";
+			//print_r ($first);
+			//print "</pre>";
+         	header('Location: ../index.php');
+		}
 		else
-			echo "Invalid Credential";
+		{
+			echo "Log In Fail";
+		}
    }
 
 ?>

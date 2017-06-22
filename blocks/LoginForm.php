@@ -1,5 +1,5 @@
 <h3>
-<p>Chào bạn <?php echo $_SESSION["idUser"];?>
+<p>Chào bạn <?php echo $_SESSION['ldap_dn'];?>
 <p>
 </h3>
 <form action = "" method = "post">

@@ -2,7 +2,7 @@
 	ob_start();
     session_start();
     
-    if (isset($_SESSION["idUser"]) && ($_SESSION["idGroup"] == 1) )
+    if (isset($_SESSION['admin']))
     {
     	;
     } else {
