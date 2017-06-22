@@ -12,7 +12,8 @@ function DanhSachTheLoai($connect){
 function ChiTietTheLoai($connect, $idTL){
 
 	$qr = " select * from TheLoai
-			where idTL='$idTL'
+			where idTL='$idTL
+			'
 	";
 	$row = mysqli_query($connect, $qr);
 	return mysqli_fetch_array($row);
@@ -47,6 +48,15 @@ function DanhSachTin($connect){
 			and tin.idLT = loaitin.idLT
 			order by idTin desc
 			limit 0,20";
+	return mysqli_query($connect, $qr);
+}
+
+function LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL)
+{
+	$qr = "
+			select * from loaitin
+			where idTL=$idTL
+	";
 	return mysqli_query($connect, $qr);
 }
 

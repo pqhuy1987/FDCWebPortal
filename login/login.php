@@ -1,33 +1,28 @@
 <?php
-   require "../lib/dbCon.php";
-   require "../lib/trangchu.php";
-
-   session_start();
-
-   if (isset($_POST["btnSubmit"])){
-      $un = $_POST["username"];
-      $pa = $_POST["password"];
-      $pa = md5($pa);
-      $qr = "
-            select * from users
-            where Username = '$un'
-            and Password = '$pa'
-      ";
-      $user = mysqli_query($connect, $qr);
-      if (mysqli_num_rows($user) == 1) {
-         // đăng nhập đúng
-         $row = mysqli_fetch_array($user);
-         $_SESSION["idUser"] = $row['idUser'];
-         $_SESSION["Username"] = $row['Username'];
-         $_SESSION["idUser"] = $row['HoTen'];
-         $_SESSION["idGroup"] = $row['idGroup'];
-         header('Location: ../index.php');
-         exit();
-      } else {
-		  ;
-      }       
-
+	$domain = 'FDC.LOCAL';
+   if (isset($_POST["btnSubmit"]))
+   {
+		$ldap_dn = $_POST["username"];
+		$ldap_password = $_POST["password"];
+		
+		$ldap_con = ldap_connect("SRBDC-02.FDC.LOCAL", 389) or die('Could not connect to LDAP server.');
+		
+		//$ldap_dn = "quanghuy.pham@FDC.LOCAL";
+		//$ldap_password = "fdc@2017";
+									
+		
+		if (!ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3)) 
+		{
+			fatal_error("Failed to set LDAP Protocol version to 3, TLS not supported.");
+		}
+		
+	
+		if(@ldap_bind($ldap_con, $ldap_dn.'@'.$domain, $ldap_password))
+			echo "Authenticated";
+		else
+			echo "Invalid Credential";
    }
+
 ?>
 
 <!DOCTYPE html>

@@ -13,6 +13,53 @@
     require "../lib/quantri.php";
 ?>
 
+<?php 
+
+	if (isset($_POST["btnThem"])){
+		if (($_POST["idLT"] == null) || ($_POST["idTL"] == null))
+		{
+			echo '<script language="javascript">';
+			echo 'alert("Bạn chưa chọn Loại Tin và Thể Loại")';
+			echo '</script>';	
+		} else { 
+			$TieuDe = $_POST["TieuDe"];
+			$TieuDe_KhongDau = changeTitle($TieuDe);
+			$TomTat = $_POST["TomTat"];	
+			$urlHinh = $_POST["urlHinh"];
+			$Ngay = date("Y-m-d");
+			$idUser = $_SESSION["idUser"];
+			$Content = $_POST["Content"];
+			$idLT = $_POST["idLT"];
+			$idTL = $_POST["idTL"];	
+			$SoLanXem = 0;	
+			$TinNoiBat = $_POST["TinNoiBat"];
+			$AnHien = $_POST["AnHien"];
+			$urlFile = $_POST["urlFile"];
+			
+			$qr = "
+				insert into tin values (
+				null,
+				'$TieuDe',
+				'$TieuDe_KhongDau',
+				'$TomTat',
+				'$urlHinh',
+				'$Ngay',
+				'$idUser',
+				'$Content',
+				'$idLT',
+				'$idTL',
+				'$SoLanXem',
+				'$TinNoiBat',
+				'$AnHien',
+				'$urlFile'
+				)
+				";
+			mysqli_query($connect, $qr);
+			header("location: listTin.php");
+		}
+	}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -62,21 +109,25 @@ function ShowThumbnails( fileUrl, data ){
     <td id="hang2"><?php require "menu.php"; ?></td>
   </tr>
   <tr>
-    <td height="133"><table width="1200" border="1">
+    <td height="133"><form action="" method="post"><table width="1200" border="1">
       <tr>
         <td colspan="2">THÊM TIN</td>
         </tr>
       <tr>
         <td width="146">Tiêu Đề</td>
-        <td width="1038"><label for="TieuDe"></label>          <input type="text" name="TieuDe" id="TieuDe" />        </td>
+        <td width="1038"><label for="TieuDe"></label>          <input type="text" name="TieuDe" maxlength="50" id="TieuDe" />        </td>
       </tr>
       <tr>
         <td>Tóm Tắt</td>
-        <td><label for="TomTat"></label>          <textarea name="TomTat" id="TomTat" cols="45" rows="5"></textarea>        </td>
+        <td><label for="TomTat"></label>          <textarea name="TomTat" id="TomTat" cols="45" rows="5" maxlength="100"></textarea>        </td>
       </tr>
       <tr>
         <td>URL Hình</td>
-        <td><label for="urlHinh"></label>          <input type="text" name="urlHinh" id="urlHinh" /><input onclick="BrowseServer('Files:/','urlHinh')" type="button" name="btnChonFile" id="btnChonFile" value="Chọn Hình" />          </td>
+        <td><label for="urlHinh"></label>          <input type="text" name="urlHinh" id="urlHinh" /><input onclick="BrowseServer('Images:/','urlHinh')" type="button" name="btnChonFile" id="btnChonFile" value="Chọn Hình" />          </td>
+      </tr>
+      <tr>
+        <td>URL File</td>
+        <td><label for="urlFile"></label>          <input type="text" name="urlFile" id="urlFile" /><input onclick="BrowseServer('Files:/','urlFile')" type="button" name="btnChonFile2" id="btnChonFile2" value="Chọn File" />          </td>
       </tr>
       <tr>
         <td height="23">Content</td>
@@ -112,6 +163,7 @@ var editor = CKEDITOR.replace( 'Content',{
         <td height="23">ID Thể Loại</td>
         <td><label for="idTL"></label> 
             <select name="idTL" id="idTL">
+            <option  value="">--Chọn--</option>
         <?php 
 			$theloai = DanhSachTheLoai($connect);
 			while ($row_theloai = mysqli_fetch_array($theloai))
@@ -122,18 +174,20 @@ var editor = CKEDITOR.replace( 'Content',{
         <?php 
 			}
 		?>
-         </select>        </td>
+         </select></td>
       </tr>
       <tr>
         <td height="23">ID Loại Tin</td>
         <td><label for="idLT"></label> 
             <select name="idLT" id="idLT">
+            <option  value="">--Chọn--</option>
         <?php 
+
 			$loaitin = DanhSachLoaiTin($connect);
 			while ($row_loaitin = mysqli_fetch_array($loaitin))
 			{
 		?>
-            <option value="<?php echo $row_loaitin["idLT"]?>"><?php echo $row_loaitin["Ten"]?></option>
+            <option  value="<?php echo $row_loaitin["idLT"]?>"><?php echo $row_loaitin["Ten"]?></option>
 
         <?php 
 			}
@@ -144,11 +198,11 @@ var editor = CKEDITOR.replace( 'Content',{
         <td height="23">Tin Nổi Bật</td>
         <td><p>
           <label>
-            <input type="radio" name="RadioGroup1" value="1" id="RadioGroup1_0" />
+            <input type="radio" name="TinNoiBat" value="1" id="TinNoiBat_0" />
             Nổi bật</label>
           <br />
           <label>
-            <input type="radio" name="RadioGroup1" value="0" id="RadioGroup1_1" />
+            <input type="radio" name="TinNoiBat" value="0" id="TinNoiBat_1" />
             Thường</label>
           <br />
         </p>        </td>
@@ -157,11 +211,11 @@ var editor = CKEDITOR.replace( 'Content',{
         <td height="23">Ẩn Hiện</td>
         <td><p>
           <label>
-            <input type="radio" name="RadioGroup2" value="1" id="RadioGroup2_0" />
+            <input type="radio" name="AnHien" value="1" id="AnHien_0" />
             Hiện</label>
           <br />
           <label>
-            <input type="radio" name="RadioGroup2" value="0" id="RadioGroup2_1" />
+            <input type="radio" name="AnHien" value="0" id="AnHien_1" />
             Ẩn</label>
           <br />
         </p>        </td>
@@ -170,7 +224,7 @@ var editor = CKEDITOR.replace( 'Content',{
         <td height="23">&nbsp;</td>
         <td><input type="submit" name="btnThem" id="btnThem" value="Thêm" />        </td>
       </tr>
-    </table></td>
+    </table></form></td>
   </tr>
 </table>
 </body>
