@@ -97,6 +97,14 @@ function ShowThumbnails( fileUrl, data ){
 	return false; // nếu là true thì ckfinder sẽ tự đóng lại khi 1 file thumnail được chọn
 }
 </script>
+<script type="text/javascript" src="../jquery-slider-master/js/jquery-2.1.0.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	alert(1);
+})
+</script>
+
 
 </head>
 
