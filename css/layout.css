@@ -39,15 +39,6 @@ ul{ list-style:none}
 	#midheader-vp #right .txt_input{background: none repeat scroll 0 0 #FFFFFF; float: left;height: 18px;padding: 0 5px 0 4px;width: 165px;border-bottom: 1px solid #C0C0C0;border-left: 1px solid #C0C0C0;border-top: 1px solid #C0C0C0; float:left}
 	#midheader-vp #right .txt_24h{ background:#CCC; color:#333; font-size:12px; height:18px; padding :2px 3px 0 3px}
 	
-#slide-vp{ margin-top:7px; border-bottom:1px solid #CCC; min-height:425px}
-	#slide-left{ width:70%; float:left}
-	#slideleft-main{ width:71%; float:left}
-	#slideleft-main .title a{ color:#900}
-	#slideleft-main .title a:hover{ color:#069}
-	#slideleft-scroll{ width:25%; float:left; border-left:solid 1px #E2E2E3; border-right:solid 1px #E2E2E3; padding : 2px 5px 2px 5px}
-	#slideleft-scroll ul li{ padding: 5px; border-bottom:1px solid #E2E2E3; float:left}
-	#slideleft-scroll a{ color:#666}
-	
 #content-vp{}
 	#content-vp #content-left{border-right:solid 1px #E2E2E3; width:16%; float:left; padding: 5px; min-height:500px;}
 	#content-vp #content-main{border-right:solid 1px #E2E2E3; width:60%; float:left; padding: 5px; min-height:500px; margin: 0 0 0 5px; }

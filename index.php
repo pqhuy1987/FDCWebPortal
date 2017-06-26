@@ -74,16 +74,6 @@ else
     </div>
     <div class="clear"></div>
 
-    <div id="slide-vp">
-    	<!--blocks/top_trang_chu.php-->
-        <?php require "blocks/top_trang_chu.php"; ?>
-
-        <div id="slide-right">
-        <!--blocks/quangcao_top_phai.php-->
-        <?php require "blocks/quangcao_top_phai.php"; ?>
-        </div>
-    </div>
-
   	<div id="content-vp">
     	<div id="content-left">
 		<!--blocks/cot_trai.php-->
