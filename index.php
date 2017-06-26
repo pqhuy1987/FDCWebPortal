@@ -52,9 +52,19 @@ else
     	<div id="left">
         	<ul class="list_arrow_breakumb">
             	<li class="start">
-                <a href="javascript:;">Trang nhất</a>
-                <span class="arrow_breakumb">&nbsp;</span></li>
+                <a href="javascript:;">CHÀO BẠN <?php echo $_SESSION['ldap_dn'];?></a>
            </ul>
+           <ul class="list_arrow_breakumb">
+           <li class="start">
+                <a href="./admin/index.php" target="_blank">TRANG QUẢN TRỊ</a>
+           </ul>
+           <ul class="list_arrow_breakumb">
+           <li class="start">
+                <a href="#" onClick="MyWindow=window.open('../pqhuy1987_3/test/','MyWindow',width=1000,height=100); return false;">FILES/TÀI LIỆU</a>
+           </ul>
+            <form action = "" method = "post">
+            <input style="width: 100px; height: 25px; padding: 5px; cursor: pointer; box-shadow: 6px 6px 5px; #999; font-weight: bold; background: #ECEEED; color: #990000; border-radius: 10px; border: 2px solid #990000; font-size: 100%;" type = "submit" name="btnThoat" value="THOÁT"/>
+            </form>
         </div>
         <div id="right">
 			<!--blocks/thongtinchung.php-->
@@ -95,11 +105,7 @@ else
             ?>
             
         </div>
-        <div id="content-right">
-        <?php if (isset($_SESSION['ldap_dn']))
-        {
-            require "blocks/LoginForm.php";
-        }?>      
+        <div id="content-right">    
 		<!--blocks/cot_phai.php-->
         <?php require "blocks/cot_phai.php"; ?>
         </div>
