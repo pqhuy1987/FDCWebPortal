@@ -7,8 +7,17 @@
     $bc = breadCrumb($connect, $idLT);
     $row_bc = mysqli_fetch_array($bc);
 ?>
+<div class="box-cat">
+    <div class="cat">
+        <div class="main-cat">
+			<a href="./"> Trang chủ>></a>
+        </div>
+        <div class="child-cat">
+			<a href="#"><?php echo $row_bc["TenTL"]?> >></a> <a href="#"> <?php echo $row_bc["Ten"]?> </a>
+        </div>                
+    </div>
+</div>
 
-<div> Trang chủ >> <?php echo $row_bc["TenTL"]?> >> <?php echo $row_bc["Ten"]?> </div>
 
 <?php
 
