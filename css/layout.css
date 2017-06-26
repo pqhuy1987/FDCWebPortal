@@ -91,27 +91,6 @@ ul{ list-style:none}
 	
 	#content-vp #content-right img{ margin:0 5px 5 0}
 	
-#thongtin{}
-	.thongtin-title{ background:#F4F4F4; height:30px; color:#900; padding:6px 10px 0 10px; border-top:1px solid #DEDEDE; border-bottom:1px solid #DEDEDE}	
-	#thongtin .thongtin-title{ font-weight:bold; font-size:14px}
-	.thongtin-content { background:#F4F4F4; min-height:100px; padding:5px 10px}
-	
-#footer{ margin-top: 10px;}	
-	#footer .SetHomePage{ background:url(../images/icon_resonesive.gif) no-repeat; width:20px; height:20px; background-position:0 0; display:inline-block; margin:0 5px 0 5px;}
-	#footer .top {background:url(../images/icon_resonesive.gif) no-repeat; width:20px; height:20px; background-position:-20px 0; display:inline-block; margin:0 5px 0 5px}
-	.thongtin-title .right a{ color:#666; font-weight:bold; margin:3px 5px 0 0px; display:block; float:left; border-right:solid 1px #E2E2E3; padding:0 5px }
-	#footer .ulBlockMenu{ width:160px; float:left}
-	#footer .ulBlockMenu a{ color:#333; font-size:12px; font-weight:normal}
-	#footer .ulBlockMenu a:hover{ color:#900;}
-	#footer .ulBlockMenu li{ margin-bottom:5px}
-	#footer .thongtin-content{ height:220px; padding:20px}
-	#footer .lineFmenu{ height:140px}
-	#footer .liFirst a{ font-weight:bold}
-	#footer .ft-bot{ margin:10px 0 10px 0}
-	#footer .bot1, #footer .bot2, #footer .bot3{ float:left}
-	#footer .bot1{ width:23%}
-	#footer .bot2{ width:30%}
-	#footer .bot3{ width:47%; float:right; text-align:right}
 	
 	
 	

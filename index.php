@@ -115,30 +115,6 @@ else
     	
     </div>
     
-     <div id="thongtin">
-    	<!--blocks/thongtindoanhnghiep.php-->
-        <?php require "blocks/thongtindoanhnghiep.php"; ?>
-    </div>
-    <div class="clear"></div>
-    <div id="footer">
-    	<!--blocks/footer.php-->
-        <?php require "blocks/footer.php"; ?>
-        
-        <div class="ft-bot">
-            <div class="bot1"><img src="images/logo.gif" /></div>
-            <div class="bot2">
-                     <p>© <span>Copyright 1997 VnExpress.net,</span>  All rights reserved</p>
-                     <p>® VnExpress giữ bản quyền nội dung trên website này.</p>
-            </div>
-            <div class="bot3">
-                
-                     <p><a href="http://fptad.net/qc/V/vnexpress/2014/07/">VnExpress tuyển dụng</a>   <a href="http://polyad.net/Polyad/Lien-he.htm">Liên hệ quảng cáo</a> / <a href="/contactus">Liên hệ Tòa soạn</a></p>
-                     <p><a href="http://vnexpress.net/contact.htm" target="_blank" style="color: #686E7A;font: 11px arial;padding: 0 4px;text-decoration: none;">Thông tin Tòa soạn: </a><span>0123.888.0123</span> (HN) - <span>0129.233.3555</span> (TP HCM)</p>
-                  
-            </div>
-        </div>
-    </div>
-    
 </div>
 
 </body>
