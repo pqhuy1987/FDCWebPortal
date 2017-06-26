@@ -30,9 +30,9 @@ ul{ list-style:none}
 	#menu-vp ul li:last-child{ border-right:none}	
 	#menu-vp ul li a:hover{ color:#900}
 	
-#midheader-vp{ margin-top:7px}	
+#midheader-vp{ margin-top:3px}	
 	#midheader-vp #left{ width:50%; float:left; height:20px}	
-	#midheader-vp #left ul li a{ background-color:#ECEEED; border-left:4px solid #900; color:#900; font-weight:bold; padding:4px 4px 4px 4px; height:17px; display:block; float:left;}	
+	#midheader-vp #left ul li a{ background-color:#135194; border-left:4px solid #EC2229; color:#FFF; font-weight:bold; padding:4px 4px 4px 4px; height:17px; display:block; float:left;}	
 	#midheader-vp #left ul li span{background: url("../images/bg_arrow_breakumb_web.gif") no-repeat scroll left top transparent; height:25px; width:13px; float:left}
 	#midheader-vp #right{ width:50%; float:right}
 	#midheader-vp #right .icon_search_web{border:none;background: url("../images/icon_search_web.gif") no-repeat scroll left top transparent;border-bottom: 1px solid #C0C0C0;border-right: 1px solid #C0C0C0;border-top: 1px solid #C0C0C0;cursor: pointer;float: left;height: 20px;width: 20px; margin-left:-2px}

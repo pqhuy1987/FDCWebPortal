@@ -63,7 +63,8 @@ else
                 <a href="#" onClick="MyWindow=window.open('../pqhuy1987_3/test/','MyWindow',width=1000,height=100); return false;">FILES/TÀI LIỆU</a>
            </ul>
             <form action = "" method = "post">
-            <input style="width: 100px; height: 25px; padding: 5px; cursor: pointer; box-shadow: 6px 6px 5px; #999; font-weight: bold; background: #ECEEED; color: #990000; border-radius: 10px; border: 2px solid #990000; font-size: 100%;" type = "submit" name="btnThoat" value="THOÁT"/>
+            
+            <input style="width: 100px; height: 25px; padding: 5px; cursor: pointer; box-shadow: 6px 6px 5px; #999; font-weight: bold; background: #135194; color: #FFF; border-radius: 5px; border: 2px solid #EC2229; font-size: 100% " type = "submit" name="btnThoat" value="THOÁT"/>
             </form>
         </div>
         <div id="right">
