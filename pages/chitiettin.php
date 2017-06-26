@@ -30,27 +30,7 @@
 <div class="left"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"></div></div>
 
 <div class="clear"></div>
-<div id="tincungloai">
-<div class="clear"></div>
-	<ul>
-    	<?php
-          $tincungloaitin = TinCungLoaiTin($connect, $idTin, $row_ChiTietTin_NoiDungTin['idLT']);
 
-          while ($row_tincungloaitin = mysqli_fetch_array($tincungloaitin)){
-
-       ?>
-        <li>       
-             <a href="index.php?p=chitiettin&idTin=<?php echo $row_tincungloaitin['idTin'] ?>"><img src="upload/tintuc/<?php echo $row_tincungloaitin['urlHinh']?>" alt="<?php echo $row_tincungloaitin['TieuDe']?>"></a> <br />
- 			 <a class="title" href="index.php?p=chitiettin&idTin=<?php echo $row_tincungloaitin['idTin'] ?>"><?php echo $row_tincungloaitin['TieuDe']?></a>
-             <span class="no_wrap">   
-        </li>
-      <?php
-          }
-       ?>
-              
-    </ul>
-</div>
-<div class="clear"></div> 
 
 
 
