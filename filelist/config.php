@@ -67,7 +67,7 @@ $_gFL['Config.FileSizeDigitsGB'] = 2;
 //   'S' for file size (ascending)
 //   'T' for the modification time (descending)
 //   'C' for the comment (ascending)
-$_gFL['Config.DefaultSort'] = 'N';
+$_gFL['Config.DefaultSort'] = 'T';
 
 // Sort order for the default column.
 // Possible values are:
@@ -76,7 +76,7 @@ $_gFL['Config.DefaultSort'] = 'N';
 $_gFL['Config.DefaultOrder'] = 'A';
 
 // Compare files and directories case sensitive (for file sorting, Permissions or file excluding).
-$_gFL['Config.CaseSensitiveFileNames'] = FALSE;
+$_gFL['Config.CaseSensitiveFileNames'] = TRUE;
 
 // Enable direct file download.
 $_gFL['Config.DownloadDirect'] = TRUE;

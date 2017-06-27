@@ -41,7 +41,7 @@ ul{ list-style:none}
 	
 #content-vp{}
 	#content-vp #content-main{border-right:solid 1px #E2E2E3; width:50%; float:left; padding: 5px; min-height:500px; margin: 0 0 0 5px; }
-	#content-vp #content-right{width:46%; float:left; padding: 5px; min-height:300px;}
+	#content-vp #content-right{width:46%; float:left; padding: 5px; min-height:300px; max-height:1000px; overflow:auto}
 	
 	#content-vp #content-main .chitiet{ line-height:150%; margin:0 0 40px 0}
 	#content-vp #content-main .btn_quantam{ background:url(../images/btn_quantam.gif) no-repeat; width:75px; height:20px; float:left}

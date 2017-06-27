@@ -42,7 +42,6 @@ require_once('filelist/filelist.php');
 <meta name="author" content="Gaijin.at (http://www.gaijin.at/)" />
 <meta name="copyright" content="Gaijin.at (http://www.gaijin.at/)" />
 <link rel="stylesheet" type="text/css" href="filelist/filelist.css" />
-<link rel="stylesheet" type="text/css" href="filebrowser.css" />
 </head>
 <body>
 <br>
