@@ -31,7 +31,7 @@ function CheckAuthentication()
 	// user logs in your system. To be able to use session variables don't
 	// forget to add session_start() at the top of this file.
 
-	return isset($_SESSION['idUser']) && $_SESSION['idGroup']==1;
+	return isset($_SESSION['admin']);
 }
 
 // LicenseKey : Paste your license key here. If left blank, CKFinder will be
