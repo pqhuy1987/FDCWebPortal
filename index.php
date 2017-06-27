@@ -94,6 +94,10 @@ else
         </div>
         <div id="content-right">    
 		<!--blocks/cot_phai.php-->
+        <?php require "filebrowser.php"; ?>
+        </div>
+        <div id="content-right">    
+		<!--blocks/cot_phai.php-->
         <?php require "blocks/cot_phai.php"; ?>
         </div>
 

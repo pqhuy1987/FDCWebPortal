@@ -1,0 +1,91 @@
+
+.FileListTable {
+  border-collapse:collapse;
+  border-spacing:0px;
+  border-width:1px;
+  border-style:solid;
+  border-color:#aaaaaa;
+  background:#f0f0f0;
+}
+
+.FileListCell {
+  font-family:tahoma,sans-serif;
+  font-size:8pt;
+  border-width:1px;
+  border-style:solid;
+  border-color:#aaaaaa;
+  background:#fcfcfc;
+  padding:3px 6px 3px 6px;
+}
+
+.FileListCellName {
+	white-space:nowrap;
+}
+
+.FileListIcon {
+	border:0;
+	height:16px;
+	width:16px;
+	vertical-align:bottom;
+	margin-right:5px;
+}
+
+.FileListCellSize {
+	text-align:right;
+	background:#f6f6f6;
+	white-space:nowrap;
+}
+
+.FileListCellSizeDir {
+	text-align:center;
+	color:#606060;
+	background:#f6f6f6;
+}
+
+.FileListCellTime {
+	background:#f6f6f6;
+	white-space:nowrap;
+}
+
+.FileListCellComment {
+	background:#f9f9f9;
+}
+
+.FileListCellTitle {
+  font-weight:bold;
+  background:#eaeaea;
+}
+
+.FileListCellInfo {
+  color:#606060;
+  background:#eaeaea;
+}
+
+.FileListCellInfoCenter {
+  text-align:center;
+}
+
+.FileListNavBar {
+  font-family:tahoma,sans-serif;
+  font-size:8pt;
+  margin:6px 0px 6px 0px;
+  color:#606060;
+}
+
+.FileListNavBarCurrent {
+  font-weight:bold;
+  color:#000000;
+}
+
+.FileListNavBarLink {
+  font-weight:bold;
+}
+
+.FileListSortChar {
+	color:#909090;
+}
+
+.FileListErrorMessage {
+	color:#c00000;
+	font-weight:bold;
+}
