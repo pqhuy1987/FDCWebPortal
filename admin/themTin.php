@@ -76,7 +76,7 @@ function BrowseServer( startupPath, functionData ){
 	finder.startupPath = startupPath; //Đường path hiện sẵn cho user chọn file
 	finder.selectActionFunction = SetFileField; // hàm sẽ được gọi khi 1 file được chọn
 	finder.selectActionData = functionData; //id của text field cần hiện địa chỉ hình
-	//finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn	
+	finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn	
 	finder.popup(); // Bật cửa sổ CKFinder
 } //BrowseServer
 
@@ -131,11 +131,11 @@ $(document).ready(function(){
       </tr>
       <tr>
         <td>URL Hình</td>
-        <td><label for="urlHinh"></label>          <input type="text" name="urlHinh" id="urlHinh" /><input onclick="BrowseServer('Images:/','urlHinh')" type="button" name="btnChonFile" id="btnChonFile" value="Chọn Hình" />          </td>
+        <td><label for="urlHinh"></label>          <input type="text" name="urlHinh" id="urlHinh" /><input onclick="BrowseServer('','urlHinh')" type="button" name="btnChonFile" id="btnChonFile" value="Chọn Hình" />          </td>
       </tr>
       <tr>
         <td>URL File</td>
-        <td><label for="urlFile"></label>          <input type="text" name="urlFile" id="urlFile" /><input onclick="BrowseServer('Files:/','urlFile')" type="button" name="btnChonFile2" id="btnChonFile2" value="Chọn File" />          </td>
+        <td><label for="urlFile"></label>          <input type="text" name="urlFile" id="urlFile" /><input onclick="BrowseServer('','urlFile')" type="button" name="btnChonFile2" id="btnChonFile2" value="Chọn File" />          </td>
       </tr>
       <tr>
         <td height="23">Content</td>

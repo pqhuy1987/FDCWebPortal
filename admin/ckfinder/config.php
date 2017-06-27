@@ -93,7 +93,7 @@ directory, no matter the resource type.
 $config['Thumbnails'] = Array(
 		'url' => $baseUrl . '_thumbs',
 		'directory' => $baseDir . '_thumbs',
-		'enabled' => true,
+		'enabled' => false,
 		'directAccess' => false,
 		'maxWidth' => 100,
 		'maxHeight' => 100,
@@ -189,27 +189,12 @@ $config['DefaultResourceTypes'] = '';
 
 $config['ResourceType'][] = Array(
 		'name' => 'Files',				// Single quotes not allowed
-		'url' => $baseUrl . 'files',
-		'directory' => $baseDir . 'files',
+		'url' => $baseUrl,
+		'directory' => $baseDir,
 		'maxSize' => 0,
 		'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,pxd,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,sitd,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip',
 		'deniedExtensions' => '');
 
-$config['ResourceType'][] = Array(
-		'name' => 'Images',
-		'url' => $baseUrl . 'images',
-		'directory' => $baseDir . 'images',
-		'maxSize' => "16M",
-		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,avi,iso,mp3',
-		'deniedExtensions' => '');
-
-$config['ResourceType'][] = Array(
-		'name' => 'Flash',
-		'url' => $baseUrl . 'flash',
-		'directory' => $baseDir . 'flash',
-		'maxSize' => 0,
-		'allowedExtensions' => 'swf,flv',
-		'deniedExtensions' => '');
 
 /*
  Due to security issues with Apache modules, it is recommended to leave the
