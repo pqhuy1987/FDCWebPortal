@@ -30,7 +30,7 @@
     <td id="hang2"><?php require "menu.php"; ?></td>
   </tr>
   <tr>
-    <td> <?php require "../test_2/ft2.php"; ?></td>
+    <td> <?php require "../admin_file_mng/ft2.php"; ?></td>
   </tr>
 </table>
 </body>

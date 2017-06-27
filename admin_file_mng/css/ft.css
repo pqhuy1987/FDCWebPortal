@@ -3,7 +3,6 @@
 	left:-10000px;
 }
 body {
-	font-family:Verdana, sans-serif;
 	font-size:12px;
 	color:#000;
 	background:#fff;
@@ -24,9 +23,11 @@ body, h1, h2, .navigation, #sidebar form #sidebar #files_list, #filelist .filede
 .ok {color:#135194;}
 .hidden {display:none;}
 a {
+	font-size:1.3em;
 	color:#135194;
 	text-decoration:none;
 }
+
 a:hover {
 	text-decoration:underline;
 }

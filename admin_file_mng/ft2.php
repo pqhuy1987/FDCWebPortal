@@ -1281,7 +1281,7 @@ function ft_make_scripts() {
   $result = ft_invoke_hook('add_js_file');
   $scripts = array_merge($scripts, $result);
   foreach ($scripts as $c) {
-    echo "<script type='text/javascript' charset='utf-8' src='../test_2/js/{$c}'></script>\r\n";
+    echo "<script type='text/javascript' charset='utf-8' src='../admin_file_mng/js/{$c}'></script>\r\n";
   }
 }
 
@@ -1618,7 +1618,7 @@ function ft_settings_load() {
   $settings = array();
 
   // Load external configuration if any.
-  $json = ft_settings_external('../test_2/config.php');
+  $json = ft_settings_external('../admin_file_mng/config.php');
   if ($json) {
     // Merge settings.
     if (is_array($json['settings'])) {
@@ -1891,7 +1891,7 @@ if (headers_sent()) {
 	});
 	</script>
 	<style type="text/css">
-	  @import "../test_2/css/ft.css";
+	  @import "../admin_file_mng/css/ft.css";
     <?php echo implode("\r\n", ft_invoke_hook('add_css'));?>
 	</style>
 </head>
