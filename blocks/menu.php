@@ -47,7 +47,7 @@ ddsmoothmenu.init({
 	while ($row_danhsachtheloai = mysqli_fetch_array($danhsachtheloai)) {
 		$idTL = $row_danhsachtheloai['idTL'];
 ?>
-<li><a href="#"><?php echo $row_danhsachtheloai['TenTL']?></a>
+<li><a href="index.php?p=theloai&idTL=<?php echo $row_danhsachtheloai['idTL'] ?>"><?php echo $row_danhsachtheloai['TenTL']?></a>
   <ul>
   	<?php 
 		$danhsachtheloaitin = LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL);

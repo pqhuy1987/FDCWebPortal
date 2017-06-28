@@ -47,7 +47,7 @@ function TinMoiNhat_TheoLoaiTin_BonTin($connect, $idLT)
 			select * from Tin
 			where idLT=$idLT
 			order by idTin desc
-			limit 1,4
+			limit 1,2
 	";
 	return mysqli_query($connect, $qr);
 }
@@ -58,6 +58,16 @@ function TenLoanTin($connect, $idLT)
 			select Ten
 			from loaitin
 			where idLT=$idLT
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function TenTheLoai($connect, $idTL)
+{
+	$qr = "
+			select *
+			from theloai
+			where idTL=$idTL
 	";
 	return mysqli_query($connect, $qr);
 }
@@ -124,7 +134,7 @@ function ChonTin_Theo_TenLoanTin($connect, $idLT)
 function breadCrumb($connect, $idLT)
 {
 	$qr = "
-			select TenTL, Ten
+			select loaitin.idTL, TenTL, Ten
 			from theloai, loaitin
 			where theloai.idTL = loaitin.idTL
 			and idLT = $idLT

@@ -85,7 +85,9 @@ else
                      case 'chitiettin':         require 'pages/chitiettin.php'; 
                         break;             
                      case 'timkiem':            require 'pages/timkiem.php'; 
-                        break;   
+                        break;
+					 case 'theloai':            require 'pages/theloai.php'; 
+                        break;    
                     default:                    require 'pages/trangchu.php'; 
                         break;
                 }

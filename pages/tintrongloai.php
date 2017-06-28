@@ -10,10 +10,10 @@
 <div class="box-cat">
     <div class="cat">
         <div class="main-cat">
-			<a href="./"> Trang chủ>></a>
+			<a href="./">Trang chủ</a>
         </div>
         <div class="child-cat">
-			<a href="#"><?php echo $row_bc["TenTL"]?> >></a> <a href="#"> <?php echo $row_bc["Ten"]?> </a>
+			<a href="index.php?p=theloai&idTL=<?php echo $row_bc["idTL"] ?>">--  <?php echo $row_bc["TenTL"]?> --</a> <a href="#"> <?php echo $row_bc["Ten"]?>: </a>
         </div>                
     </div>
 </div>

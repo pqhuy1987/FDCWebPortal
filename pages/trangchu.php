@@ -6,7 +6,7 @@
 <div class="box-cat">
 	<div class="cat">
     	<div class="main-cat">
-        	<a href="#"><?php echo $row_danhsachtheloai['TenTL']?></a>
+        	<a href="index.php?p=theloai&idTL=<?php echo $row_danhsachtheloai['idTL'] ?>"><?php echo $row_danhsachtheloai['TenTL']?></a>
         </div>
         <div class="child-cat">
         <?php 
