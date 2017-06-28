@@ -100,7 +100,7 @@ else
 		<!--blocks/cot_phai.php-->
         <?php require "blocks/tin_moi_nhat.php"; ?>
         </div>
-        <div id="content-right">    
+        <div id="content-right-general">    
 		<!--blocks/cot_phai.php-->
         <?php require "blocks/cot_phai.php"; ?>
         </div>

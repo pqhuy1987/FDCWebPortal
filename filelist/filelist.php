@@ -45,6 +45,7 @@ function FileList_Show()
 {
 	global $_gFL, $ErrorMessage;
 
+
 	if ($_gFL['Param.Dir'] === FALSE) {
 		if (strlen($ErrorMessage > 0)) $ErrorMessage .= '<br />';
 		$ErrorMessage .= FileList_GetLngStr('ErrWrongDirName') . "\n";
@@ -73,6 +74,9 @@ function FileList_Show()
 
 	echo '<table class="FileListTable">'."\n";
 	
+	if (!FileList_GetArrayValue($_gFL, 'Intern.HidePoweredByLink', FALSE)) {
+		echo '<tr><td class="FileListCell" colspan="4" style="text-align:center; font-weight:bold; color:#fff ;background-color:#135194"> FILES/TÀI LIỆU BAN HÀNH </td></tr>'."\n";
+	}
 	// Header mit Links für Sortierung
 	$sLinkUrlDir = htmlspecialchars(FileList_GetParam('PHP_SELF', 'S')) . '?dir=' . htmlspecialchars(urlencode($_gFL['Param.Dir']));
 	
@@ -215,9 +219,6 @@ function FileList_Show()
 	
 	If you want to remove the link to	www.gaijin.at please contact <info@gaijin.at>
 	*/
-	if (!FileList_GetArrayValue($_gFL, 'Intern.HidePoweredByLink', FALSE)) {
-		echo '<tr><td class="FileListCell" colspan="4" style="text-align:center; font-weight:bold; color:#fff ;background-color:#135194"> FILES/TÀI LIỆU BAN HÀNH </td></tr>'."\n";
-	}
 	
 	echo "</table>\n";
 	

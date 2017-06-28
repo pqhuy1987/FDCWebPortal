@@ -21,7 +21,7 @@
 
 <?php
 
-    $sotin1trang = 10;
+    $sotin1trang = 4;
 
     if (isset($_GET["trang"]))
     {
