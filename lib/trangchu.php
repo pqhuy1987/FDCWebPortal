@@ -15,7 +15,7 @@ function TinMoiNhat_BonTin($connect)
 	$qr = "
 			select * from Tin
 			order by idTin desc
-			limit 1,4
+			limit 1,20
 	";
 	return mysqli_query($connect, $qr);
 }
