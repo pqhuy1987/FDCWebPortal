@@ -39,12 +39,12 @@ color: white;
 }
 
 .ddsmoothmenu ul li a.selected { /*CSS class that's dynamically added to the currently active menu items' LI A element*/
-background: black !important; 
+background: #EC2229 !important; 
 color: white;
 }
 
 .ddsmoothmenu ul li a:hover{
-background: black; /*background of menu items during onmouseover (hover state)*/
+background: #EC2229; /*background of menu items during onmouseover (hover state)*/
 color: white;
 }
 	
