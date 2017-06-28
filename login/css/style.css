@@ -10,7 +10,7 @@ body {
 	font-family: "Lato" ;
 }
 .wrap {
-	width:250px;
+	width:350px;
 	height: auto;
 	margin: auto;
 	margin-top: 10%;
@@ -75,15 +75,16 @@ body {
 .wrap button {
 	width: 100%;
 	border-radius: 7px;
-	background: #b6ee65;
+	background: #135194;
 	text-decoration: center;
 	border: none;
-	color: #51771a;
+	color: #FFF;
   margin-top:-5px;
 	padding-top: 14px;
 	padding-bottom: 14px;
 	outline: none;
-	font-size: 13px;	
-	border-bottom: 3px solid #307d63;
+	font-size: 20px;
+	font-weight:bold;	
+	border-bottom: 3px solid #EC2229;
 	cursor: pointer;
 }

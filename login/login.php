@@ -66,15 +66,14 @@
 <body>
 
   <div class="wrap">
-      <div><img width="250" height="140" src="../images/logo1.png" />
+      <div><img width="350" height="140" src="../images/logo1.png" />
       <form action = "" method = "post">
-			<input name = "username" type="text" placeholder="username" required>
+			<input name = "username" type="text" placeholder="Tài khoản (ten.ho, ví dụ:quanghuy.pham)" required>
 			<div class="bar">
 				<i></i>
 			</div>
-			<input name = "password" type="password" placeholder="password" required>
-			<a href="" class="forgot_link">forgot ?</a>
-			<button type = "submit" name = "btnSubmit">Sign in</button>
+			<input name = "password" type="password" placeholder="Mật Khẩu" required>
+			<button type = "submit" name = "btnSubmit">Đăng Nhập</button>
         </form>		
 	</div>
 
