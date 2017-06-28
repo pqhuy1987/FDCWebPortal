@@ -216,7 +216,7 @@ function FileList_Show()
 	If you want to remove the link to	www.gaijin.at please contact <info@gaijin.at>
 	*/
 	if (!FileList_GetArrayValue($_gFL, 'Intern.HidePoweredByLink', FALSE)) {
-		echo '<tr><td class="FileListCell" colspan="4" style="text-align:center; font-weight:bold;">Powered by <a href="http://www.gaijin.at/">Gaijin.at</a></td></tr>'."\n";
+		echo '<tr><td class="FileListCell" colspan="4" style="text-align:center; font-weight:bold; color:#fff ;background-color:#135194"> FILES/TÀI LIỆU BAN HÀNH </td></tr>'."\n";
 	}
 	
 	echo "</table>\n";
