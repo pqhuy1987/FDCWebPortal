@@ -30,13 +30,18 @@ $(document).ready(function() {
 <!--noi dung-->
 <?php echo $row_ChiTietTin_NoiDungTin['Content'] ?>
 <?php
+if ($row_ChiTietTin_NoiDungTin['urlFile'] != null) {
     $path = $row_ChiTietTin_NoiDungTin['urlFile'];
 	$file = basename($path);         // $file is set to "index.php"
 	
 	
 ?>
-<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>"><?php echo urldecode($file); ?> </a>
-
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>" target="_blank"><img src="images/attachment.png" width="15" height="15" />  <?php echo urldecode($file);?></a>
+<?php 
+} else {
+	
+}
+?>
 <!--//noi dung-->
 </div>
 <div class="clear"></div>
