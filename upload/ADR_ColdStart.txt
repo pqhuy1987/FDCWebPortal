@@ -1,3 +1,0 @@
-
- Elapsed Time: 0; 	 Start ADR
- Elapsed Time: 17378; 	 ADR Load Completed

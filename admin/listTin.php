@@ -19,6 +19,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Trang Quản Trị</title>
 <link rel="stylesheet" type="text/css" href="layout.css">
+
+<script type="text/javascript" src="../jquery-slider-master/js/jquery-2.1.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#idTL").change(function(){
+		var id	= $(this).val();
+		$.get("../loaitin.php", {idTL:id}, function(data){
+			$("#idLT").html(data);
+		});
+	});
+});
+
+$(document).ready(function() {
+    $("#idLT").change(function(){
+		var id	= $(this).val();
+		$.get("../chitiettin.php", {idLT:id}, function(data){
+			$("#test").html(data);
+		});
+	});
+});
+
+</script>
 </head>
 
 <body>
@@ -35,42 +57,96 @@
         <td colspan="5">DANH SÁCH TIN</td>
         </tr>
       <tr>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
-        <td><a href="themTin.php">Thêm</a></td>
+        <td width="148">ID TIN</td>
+        <td width="551">TIÊU ĐỀ VÀ TÓM TẮT</td>
+        <td width="219">
+        <form id="form1" name="form1" method="post" action="">
+          <label for="idTL">THỂ LOẠI</label>
+          <select name="idTL" id="idTL">
+          <option  value="" selected="selected">-Chọn-</option>
+			<?php 
+                $theloai = DanhSachTheLoai($connect);
+                while ($row_theloai = mysqli_fetch_array($theloai))
+                {
+            ?>
+                <option value="<?php echo $row_theloai["idTL"]?>"><?php echo $row_theloai["TenTL"]?></option>
+    
+            <?php 
+                }
+            ?>
+          </select>
+          <label for="idLT"><br />
+            LOẠI TIN</label>
+          <select name="idLT" id="idLT">
+          <option  value="">-Chọn-</option>
+			<?php 
+                $loaitin = DanhSachLoaiTin($connect);
+                while ($row_loaitin = mysqli_fetch_array($loaitin))
+                {
+            ?>
+                <option  value="<?php echo $row_loaitin["idLT"]?>"><?php echo $row_loaitin["Ten"]?></option>
+    
+            <?php 
+                }
+            ?>
+          </select>
+        </form></td>
+
+        <td width="121">GHI CHÚ</td>
+        <td width="127"><a href="themTin.php">Thêm</a></td>
       </tr>
-      <?php 
-	  	$tin = DanhSachTin($connect);
-		while ($row_tin = mysqli_fetch_array($tin))
-		{
-			ob_start();
-	  ?>
-      <tr>
-        <td>idTin:{idTin}</td>
-        <td><a href="suaTin.php?idTin={idTin}">{TieuDe}</a><br />          <img src="../upload/tintuc/{urlHinh}" width="150" />{TomTat}</td>
-        <td>{TenTL}-{Ten}</td>
-        <td>Số Lần Xem:{SoLanXem}<br />
-          {TinNoiBat} - {AnHien}<br /></td>
-        <td><a href="suaTin.php?idTin={idTin}">Sửa</a> - <a href="xoaTin.php?idTin={idTin}">Xóa</a></td>
+
+			<?php
+            $sotin1trang = 50;
+        
+            if (isset($_GET["trang"]))
+            {
+                $trang = $_GET["trang"];
+                settype($trang, "int");
+            }else {
+                $trang = 1;
+            }
+        
+            $from = ($trang - 1)*$sotin1trang;
+    
+            $ChonTin_Theo_PhanTrang = ChonTin_Theo_PhanTrang($connect, $from, $sotin1trang);
+            
+            while ($row_ChonTin_Theo_PhanTrang = mysqli_fetch_array($ChonTin_Theo_PhanTrang))
+            {
+            ?>
+          <tr>
+            <td>idTin:<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?></td>
+            <td><a href="suaTin.php?idTin=<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?>"><?php echo $row_ChonTin_Theo_PhanTrang["TieuDe"]?></a><br />          <img src="../upload/tintuc/<?php echo $row_ChonTin_Theo_PhanTrang["urlHinh"]?>" width="150" /><?php echo $row_ChonTin_Theo_PhanTrang["TomTat"]?></td>
+            <td><?php echo $row_ChonTin_Theo_PhanTrang["TenTL"]?>-<?php echo $row_ChonTin_Theo_PhanTrang["Ten"]?></td>
+            <td>Số Lần Xem:<?php echo $row_ChonTin_Theo_PhanTrang["SoLanXem"]?>-<br />
+              <?php echo $row_ChonTin_Theo_PhanTrang["TinNoiBat"]?> - <?php echo $row_ChonTin_Theo_PhanTrang["AnHien"]?><br /></td>
+            <td><a href="suaTin.php?idTin=<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?>">Sửa</a> - <a onclick="return confirm('Bạn có chắc muốn xóa?')" href="xoaTin.php?idTin=<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?>">Xóa</a></td>
+          </tr>
+          <?php 
+            }
+          ?>
+        </table></td>
       </tr>
-      <?php 
-	  		$s = ob_get_clean();
-			$s = str_replace("{idTin}", $row_tin["idTin"], $s);
-			$s = str_replace("{TieuDe}", $row_tin["TieuDe"], $s);
-			$s = str_replace("{TomTat}", $row_tin["TomTat"], $s);
-			$s = str_replace("{urlHinh}", $row_tin["urlHinh"], $s);
-			$s = str_replace("{TenTL}", $row_tin["TenTL"], $s);
-			$s = str_replace("{Ten}", $row_tin["Ten"], $s);
-			$s = str_replace("{SoLanXem}", $row_tin["SoLanXem"], $s);
-			$s = str_replace("{TinNoiBat}", $row_tin["TinNoiBat"], $s);
-			$s = str_replace("{AnHien}", $row_tin["AnHien"], $s);
-			echo $s;
-		}
-	  ?>
-    </table></td>
-  </tr>
-</table>
+    </table>
+	<style>
+        #phantrang {text-align: center; margin:15px auto; overflow:auto}
+        #phantrang a {background-color: #000; color:#ff0; padding:5px; margin-right: 3px;}
+        #phantrang a:hover{background-color:#09f}
+    </style>
+    <div id="phantrang">
+		<?php 
+            $Tongsotin = ChonTin_TatCa($connect);
+            $row_Tongsotin = mysqli_num_rows($Tongsotin);
+            $tongsotrang =  ceil($row_Tongsotin/$sotin1trang);
+            for ($i = 1; $i <=$tongsotrang; $i++)
+			{
+        ?>
+        
+        	<a <?php if($i==$trang) echo "style='background-color:red' "; ?> href="listTin.php?p=&trang=<?php echo $i?>"><?php echo $i ?></a>
+        
+        <?php 
+            }
+        ?>
+    </div>
 </body>
 </html>

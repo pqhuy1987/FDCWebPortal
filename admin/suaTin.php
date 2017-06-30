@@ -13,6 +13,58 @@
     require "../lib/quantri.php";
 ?>
 
+<?php 
+	$idTin = $_GET["idTin"]; settype($idTin, "int");
+	$ChiTietLoaiTin = ChonNoiDungTin($connect, $idTin);
+	$row_ChiTietLoaiTin = mysqli_fetch_array($ChiTietLoaiTin);
+?>
+
+<?php 
+
+	if (isset($_POST["btnThem"])){
+		if (($_POST["idLT"] == null) || ($_POST["idTL"] == null) || ($_POST["TieuDe"] == null))
+		{
+			echo '<script language="javascript">';
+			echo 'alert("Bạn chưa chọn Loại Tin hoặc Tiêu Đề hoặc Thể Loại")';
+			echo '</script>';	
+		} else { 
+			$TieuDe = $_POST["TieuDe"];
+			$TieuDe_KhongDau = changeTitle($TieuDe);
+			$TomTat = $_POST["TomTat"];	
+			$urlHinh = $_POST["urlHinh"];
+			$Ngay = date("Y-m-d");
+			$idUser = $_SESSION["idUser"];
+			$Content = $_POST["Content"];
+			$idLT = $_POST["idLT"];
+			$idTL = $_POST["idTL"];	
+			$SoLanXem = 0;	
+			$TinNoiBat = $_POST["TinNoiBat"];
+			$AnHien = $_POST["AnHien"];
+			$urlFile = $_POST["urlFile"];
+			
+			$qr = "
+				update tin set
+				TieuDe = '$TieuDe',
+				TieuDe_KhongDau = '$TieuDe_KhongDau',
+				TomTat = '$TomTat',
+				urlHinh = '$urlHinh',
+				Ngay = '$Ngay',
+				idUser = '$idUser',
+				Content = '$Content',
+				idLT = '$idLT',
+				idTL = '$idTL',
+				SoLanXem = '$SoLanXem',
+				TinNoiBat = '$TinNoiBat',
+				AnHien = '$AnHien',
+				urlFile = '$urlFile'
+				where idTin='$idTin'
+				";
+			mysqli_query($connect, $qr);
+			header("location: listTin.php");
+		}
+	}
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -29,9 +81,10 @@ function BrowseServer( startupPath, functionData ){
 	finder.startupPath = startupPath; //Đường path hiện sẵn cho user chọn file
 	finder.selectActionFunction = SetFileField; // hàm sẽ được gọi khi 1 file được chọn
 	finder.selectActionData = functionData; //id của text field cần hiện địa chỉ hình
-	//finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn	
+	finder.selectThumbnailActionFunction = ShowThumbnails; //hàm sẽ được gọi khi 1 file thumnail được chọn	
 	finder.popup(); // Bật cửa sổ CKFinder
 } //BrowseServer
+
 
 function SetFileField( fileUrl, data ){
 	document.getElementById( data["selectActionData"] ).value = fileUrl;
@@ -49,7 +102,18 @@ function ShowThumbnails( fileUrl, data ){
 	return false; // nếu là true thì ckfinder sẽ tự đóng lại khi 1 file thumnail được chọn
 }
 </script>
+<script type="text/javascript" src="../jquery-slider-master/js/jquery-2.1.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $("#idTL").change(function(){
+		var id	= $(this).val();
+		$.get("../loaitin.php", {idTL:id}, function(data){
+			$("#idLT").html(data);
+		});
+	});
+});
 
+</script>
 </head>
 
 <body>
@@ -61,34 +125,36 @@ function ShowThumbnails( fileUrl, data ){
     <td id="hang2"><?php require "menu.php"; ?></td>
   </tr>
   <tr>
-    <td height="133"><table width="1200" border="1">
+    <td height="133"><form action="" method="post"><table width="1200" border="1">
       <tr>
         <td colspan="2">THÊM TIN</td>
         </tr>
       <tr>
         <td width="146">Tiêu Đề</td>
-        <td width="1038"><label for="TieuDe"></label>          <input type="text" name="TieuDe" id="TieuDe" />        </td>
+        <td width="1038"><label for="TieuDe"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["TieuDe"] ?>" name="TieuDe" maxlength="50" id="TieuDe" />        </td>
       </tr>
       <tr>
         <td>Tóm Tắt</td>
-        <td><label for="TomTat"></label>          <textarea name="TomTat" id="TomTat" cols="45" rows="5"></textarea>        </td>
+        <td><label for="TomTat"></label>          <textarea name="TomTat" id="TomTat" cols="45" rows="5" maxlength="100"><?php echo $row_ChiTietLoaiTin["TomTat"] ?></textarea>        </td>
       </tr>
       <tr>
         <td>URL Hình</td>
-        <td><label for="urlHinh"></label>          <input type="text" name="urlHinh" id="urlHinh" /><input onclick="BrowseServer('Images:/','urlHinh')" type="button" name="btnChonFile" id="btnChonFile" value="Chọn Hình" />          </td>
+        <td><label for="urlHinh"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["urlHinh"]?>" name="urlHinh" id="urlHinh" /><input onclick="BrowseServer('','urlHinh')" type="button" name="btnChonFile" id="btnChonFile" value="Chọn Hình" />          </td>
+      </tr>
+      <tr>
+        <td>URL File</td>
+        <td><label for="urlFile"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["urlFile"]?>" name="urlFile" id="urlFile" /><input onclick="BrowseServer('','urlFile')" type="button" name="btnChonFile2" id="btnChonFile2" value="Chọn File" />          </td>
       </tr>
       <tr>
         <td height="23">Content</td>
-        <td><label for="Content"></label>          <textarea name="Content" id="Content" cols="45" rows="5"></textarea>
+        <td><label for="Content"></label>          <textarea name="Content" id="Content" cols="45" rows="5"><?php echo $row_ChiTietLoaiTin["Content"] ?></textarea>
 		<script type="text/javascript">
 var editor = CKEDITOR.replace( 'Content',{
-	uiColor : '#9AB8F3',
 	language:'vi',
-	skin:'v2',
 	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
-filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
-filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+	filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
+	filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+	filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
 			 	
 	toolbar:[
 	['Source','-','Save','NewPage','Preview','-','Templates'],
@@ -111,43 +177,46 @@ filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=Q
         <td height="23">ID Thể Loại</td>
         <td><label for="idTL"></label> 
             <select name="idTL" id="idTL">
+            <option  value="">--Chọn--</option>
         <?php 
 			$theloai = DanhSachTheLoai($connect);
 			while ($row_theloai = mysqli_fetch_array($theloai))
 			{
 		?>
-            <option value="<?php echo $row_theloai["idTL"]?>"><?php echo $row_theloai["TenTL"]?></option>
+            <option <?php if ($row_theloai["idTL"] == $row_ChiTietLoaiTin["idTL"]) echo "selected='selected'"?> value="<?php echo $row_theloai["idTL"]?>"><?php echo $row_theloai["TenTL"]?></option>
 
         <?php 
 			}
 		?>
-         </select>        </td>
+         </select></td>
       </tr>
       <tr>
         <td height="23">ID Loại Tin</td>
         <td><label for="idLT"></label> 
             <select name="idLT" id="idLT">
+            <option  value="">--Chọn--</option>
         <?php 
+
 			$loaitin = DanhSachLoaiTin($connect);
 			while ($row_loaitin = mysqli_fetch_array($loaitin))
 			{
 		?>
-            <option value="<?php echo $row_loaitin["idLT"]?>"><?php echo $row_loaitin["Ten"]?></option>
+            <option <?php if ($row_loaitin["idLT"] == $row_ChiTietLoaiTin["idLT"]) echo "selected='selected'"?> value="<?php echo $row_loaitin["idLT"]?>"><?php echo $row_loaitin["Ten"]?></option>
 
         <?php 
 			}
 		?>
-          </select>        </td>
+          </select></td>
       </tr>
       <tr>
         <td height="23">Tin Nổi Bật</td>
         <td><p>
           <label>
-            <input type="radio" name="RadioGroup1" value="1" id="RadioGroup1_0" />
+            <input <?php if($row_ChiTietLoaiTin["TinNoiBat"]==1) echo "checked='checked'" ?> type="radio" name="TinNoiBat" value="1" id="TinNoiBat_0" />
             Nổi bật</label>
           <br />
           <label>
-            <input type="radio" name="RadioGroup1" value="0" id="RadioGroup1_1" />
+            <input <?php if($row_ChiTietLoaiTin["TinNoiBat"]==0) echo "checked='checked'" ?> type="radio" name="TinNoiBat" value="0" id="TinNoiBat_1" />
             Thường</label>
           <br />
         </p>        </td>
@@ -156,20 +225,20 @@ filebrowserFlashUploadUrl : 'ckfinder/core/connector/php/connector.php?command=Q
         <td height="23">Ẩn Hiện</td>
         <td><p>
           <label>
-            <input type="radio" name="RadioGroup2" value="1" id="RadioGroup2_0" />
+            <input <?php if($row_ChiTietLoaiTin["AnHien"]==1) echo "checked='checked'" ?> type="radio" name="AnHien" value="1" id="AnHien_0" />
             Hiện</label>
           <br />
           <label>
-            <input type="radio" name="RadioGroup2" value="0" id="RadioGroup2_1" />
+            <input <?php if($row_ChiTietLoaiTin["AnHien"]==0) echo "checked='checked'" ?> type="radio" name="AnHien" value="0" id="AnHien_1" />
             Ẩn</label>
           <br />
         </p>        </td>
       </tr>
       <tr>
         <td height="23">&nbsp;</td>
-        <td><input type="submit" name="btnThem" id="btnThem" value="Thêm" />        </td>
+        <td><input type="submit" name="btnThem" id="btnThem" value="Sửa" />        </td>
       </tr>
-    </table></td>
+    </table></form></td>
   </tr>
 </table>
 </body>

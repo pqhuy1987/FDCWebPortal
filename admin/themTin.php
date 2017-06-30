@@ -16,10 +16,10 @@
 <?php 
 
 	if (isset($_POST["btnThem"])){
-		if (($_POST["idLT"] == null) || ($_POST["idTL"] == null))
+		if (($_POST["idLT"] == null) || ($_POST["idTL"] == null) || ($_POST["TieuDe"] == null))
 		{
 			echo '<script language="javascript">';
-			echo 'alert("Bạn chưa chọn Loại Tin và Thể Loại")';
+			echo 'alert("Bạn chưa chọn Loại Tin hoặc Tiêu Đề hoặc Thể Loại")';
 			echo '</script>';	
 		} else { 
 			$TieuDe = $_POST["TieuDe"];
@@ -98,14 +98,17 @@ function ShowThumbnails( fileUrl, data ){
 }
 </script>
 <script type="text/javascript" src="../jquery-slider-master/js/jquery-2.1.0.min.js"></script>
-
 <script>
-$(document).ready(function(){
-	alert(1);
-})
+$(document).ready(function() {
+    $("#idTL").change(function(){
+		var id	= $(this).val();
+		$.get("../loaitin.php", {idTL:id}, function(data){
+			$("#idLT").html(data);
+		});
+	});
+});
+
 </script>
-
-
 </head>
 
 <body>
@@ -142,9 +145,7 @@ $(document).ready(function(){
         <td><label for="Content"></label>          <textarea name="Content" id="Content" cols="45" rows="5"></textarea>
 		<script type="text/javascript">
 var editor = CKEDITOR.replace( 'Content',{
-	uiColor : '#9AB8F3',
 	language:'vi',
-	skin:'v2',
 	filebrowserImageBrowseUrl : 'ckfinder/ckfinder.html?Type=Images',
 	filebrowserFlashBrowseUrl : 'ckfinder/ckfinder.html?Type=Flash',
 	filebrowserImageUploadUrl : 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',

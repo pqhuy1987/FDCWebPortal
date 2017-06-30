@@ -1,6 +1,17 @@
 <?php
 
 //Quan Li TheLoai
+
+function ChonNoiDungTin($connect, $idTin)
+{
+	$qr = "
+			select * from Tin
+			where idTin=$idTin
+			limit 0,100000
+	";
+	return mysqli_query($connect, $qr);
+}
+
 function DanhSachTheLoai($connect){
 
 	$qr = " select * from TheLoai
@@ -123,4 +134,57 @@ function PhatSinhRandomKey(){
 	return $s;
 }
 
+function ChonTin_Theo_TenLoanTin_PhanTrang($connect, $idLT, $from, $sotin1trang)
+{
+	$qr = "
+			select * from tin
+			where idLT=$idLT
+			order by idTin desc
+			limit $from, $sotin1trang
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function ChonTin_Theo_TenTheLoai_PhanTrang($connect, $idTL, $from, $sotin1trang)
+{
+	$qr = "
+			select * from tin
+			where idTL=$idTL
+			order by idTin desc
+			limit $from, $sotin1trang
+	";
+	return mysqli_query($connect, $qr);
+}
+function ChonTin_Theo_PhanTrang($connect, $from, $sotin1trang)
+{
+	$qr = "
+			select tin.*, TenTL, Ten
+			from tin, theloai, loaitin
+			where tin.idTL = theloai.idTL
+			and tin.idLT = loaitin.idLT
+			order by idTin desc
+			limit $from, $sotin1trang
+	";
+	return mysqli_query($connect, $qr);
+}
+function ChonTin_TatCa($connect)
+{
+	$qr = "
+			select * from tin
+			order by idTin desc
+			limit 0,100000
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function ChonTin_Theo_TenLoanTin($connect, $idLT)
+{
+	$qr = "
+			select * from tin
+			where idLT=$idLT
+			order by idTin desc
+			limit 0,100000
+	";
+	return mysqli_query($connect, $qr);
+}
 ?>

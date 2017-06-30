@@ -17,6 +17,7 @@
 <div class="chitiet">
 <!--noi dung-->
 <?php echo $row_ChiTietTin_NoiDungTin['Content'] ?>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile'] ?>"><?php echo $row_ChiTietTin_NoiDungTin['urlFile'] ?></a>
 <!--//noi dung-->
 </div>
 <div class="clear"></div>

@@ -22,16 +22,18 @@
 </head>
 
 <body>
-<table width="1200" border="1">
-  <tr>
-    <td width="1323" id="hangTieuDe">TRANG QUẢN TRỊ</td>
-  </tr>
-  <tr>
-    <td id="hang2"><?php require "menu.php"; ?></td>
-  </tr>
-  <tr>
-    <td> <?php require "../admin_file_mng/ft2.php"; ?></td>
-  </tr>
-</table>
+<div id="content-vp">
+    <table width="1200" border="1">
+      <tr>
+        <td width="1323" id="hangTieuDe">TRANG QUẢN TRỊ</td>
+      </tr>
+      <tr>
+        <td id="hang2"><?php require "menu.php"; ?></td>
+      </tr>
+      <tr>
+        <td> <?php require "../admin_file_mng/ft2.php"; ?></td>
+      </tr>
+    </table>
+</div>
 </body>
 </html>

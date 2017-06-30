@@ -15,7 +15,7 @@ body, h1, h2, .navigation, #sidebar form #sidebar #files_list, #filelist .filede
 	background:#ffc;
 	color:#000;  
 }
-#filelist tr.rowhover, a:hover, h1, #sidebar h2, #filelist th, #filelist tfoot td, #filelist .hover, #filelist tr.rowhover .details span.hide {
+#filelist tr.rowhover, h1, #sidebar h2, #filelist th, #filelist tfoot td, #filelist .hover, #filelist tr.rowhover .details span.hide {
 	background:#135194 !important;
 	color:#fff !important;
 }

@@ -7,12 +7,12 @@ ul{ list-style:none}
 .left{ float:left; margin:0 2px}
 .right{ float:right}
 .clear{ clear:both; height:5px; margin:5px 0}
-.title{ margin:5px 0 5px 0}
+.title{ margin:5px 0 5px 0; overflow:auto}
 .des{ color:#333; margin-top:3px; line-height:140%} 
 .images_news{ width:120px; margin:0 7px 7px 0}
 .tlq{ background:url(../images/bg_dot_gray_3x3.gif) no-repeat left 5px; padding-left:10px; height:auto}
 .tlq a{ color:#999; font-size:11px; font-weight:bold; line-height:140%}
-.tlq a:hover{ color:#135194;}
+.tlq a:hover{ color:#EC2229;}
 .xemthem{ color:#666; font-size:11px;}
 .xemthem:hover{ color:#069;}
 .hit{ background:url(../images/icon_title.png) -22px 0 no-repeat; width:2px; height:10px; float:right; color:#900; margin:0 8px 0 0; padding:0 0 0 18px; font-weight:normal; font-size:11px}
@@ -43,6 +43,7 @@ ul{ list-style:none}
 #content-vp{}
 	#content-vp #content-main{border-right:solid 1px #E2E2E3; width:50%; float:left; padding: 5px; min-height:500px; margin: 0 0 0 5px; }
 	#content-vp #content-right{width:46%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
+	#content-vp #content-right-files{width:46%; float:left; padding: 5px; min-height:200px; max-height:350px; overflow:auto}
 	#content-vp #content-right-general{width:47%; float:right; padding: 5px; min-height:300px; margin: 0 0 0 1px}
 	
 	#content-vp #content-main .chitiet{ line-height:150%; margin:0 0 40px 0}
@@ -63,17 +64,29 @@ ul{ list-style:none}
 #content-vp #content-right .cat .cat-content .title a:hover{ color:#EC2229}	
 #content-vp #content-right .cat .cat-content .col2{ float:left; clear:both}	
 
+#content-vp	#content-right-files .cat .cat-content .title a{ color:#135194; font-size:12px;}	
+#content-vp #content-right-files .cat .cat-content .title a:hover{ color:#EC2229}	
+#content-vp #content-right-files .cat .cat-content .col2{ float:left; clear:both}	
+#content-vp #content-right-files .child-cat{ width:20%; margin: 11px 0 0 5px; float:left}
+#content-vp #content-right-files .child-cat a{ font-weight:bold; height:30px;  font-size:12px; color:#333; border-right:1px solid #E2E2E3; font-size:11px; padding: 0 3px 0 3px}
+#content-vp #content-right-files .child-cat a:hover{ color:#EC2229}
+
 #content-vp	#content-right-general .cat .cat-content .title a{ color:#135194}	
 #content-vp #content-right-general .cat .cat-content .title a:hover{ color:#EC2229}	
 #content-vp #content-right-general .cat .cat-content .col2{ float:left; clear:both}	
+
+
 	
 	
 	#content-vp #content-main .box-cat{ margin-right:5px}
 	#content-vp .cat{ background:url(../images/bg_1x28.gif) repeat-x; height:30px; padding:0 0 0 10px; margin:7px 0 10px 0}
 	#content-vp .main-cat{ width:auto; float:left}
 	#content-vp .main-cat a{ border-top:solid 3px #EC2229; color:#135194; font-weight:bold; display:block; height:30px; padding:3px 0 0 10px; font-size:12px}
+	#content-vp .main-cat a:hover{ color:#EC2229}
 	#content-vp #content-main .child-cat{ width:79%; margin:6px 0 0 5px; float:left}
 	#content-vp #content-main .child-cat a{ font-weight:bold; height:30px;  font-size:12px; color:#333; border-right:1px solid #E2E2E3; font-size:11px; padding: 0 3px 0 3px}
+	#content-vp #content-main .child-cat a:hover{ color:#EC2229}
+	
 	#content-vp #content-main .cat-content .col1{ width:75%; float:left}
 	#content-vp #content-main .cat-content .col0{ width:100%}
 	#content-vp #content-main .cat-content .col1 .title a{ color:#135194;}

@@ -13,6 +13,11 @@
     require "../lib/quantri.php";
 ?>
 
+<?php 
+	$idLT = $_GET["idLT"]; settype($idLT, "int");
+	$row_ChiTietLoaiTin = ChiTietLoaiTin($connect, $idLT);
+?>
+
 <?php
 if(isset($_POST["btnThem"])){
 	$Ten = $_POST["Ten"];
@@ -24,24 +29,18 @@ if(isset($_POST["btnThem"])){
 	$idTL  = $_POST["idTL"];
 		settype($idTL, "int");
 	$qr = "
-		insert into loaitin values (
-		null,
-		'$Ten',
-		'$Ten_KhongDau',
-		'$ThuTu',
-		'$AnHien',
-		'$idTL'
-	)
+		update loaitin set
+		Ten = '$Ten',
+		Ten_KhongDau = '$Ten_KhongDau',
+		ThuTu = '$ThuTu',
+		AnHien = '$AnHien',
+		idTL = '$idTL'
+		where idLT='$idLT'
 	";
+	echo "OK";	
 	mysqli_query($connect, $qr);
 	header ("location: listLoaiTin.php");
 }
-?>
-
-
-<?php 
-	$idLT = $_GET["idLT"]; settype($idLT, "int");
-	$row_ChiTietLoaiTin = ChiTietLoaiTin($connect, $idLT);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -104,7 +103,7 @@ if(isset($_POST["btnThem"])){
       </tr>
       <tr>
         <td>&nbsp;</td>
-        <td><input type="submit" name="btnThem" id="btnThem" value="Thêm" /></td>
+        <td><input type="submit" name="btnThem" id="btnThem" value="Sửa" /></td>
       </tr>
     </table></form></td>
   </tr>
