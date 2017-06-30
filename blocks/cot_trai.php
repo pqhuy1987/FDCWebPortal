@@ -13,7 +13,7 @@
             ?>
                 <div class="col1">
                 	<div class="news">
-                      <img class="images_news" src="upload/tintuc/<?php echo $row_xemnhieunhat['urlHinh']?>" />
+                      <img class="images_news" src="<?php echo $row_xemnhieunhat['urlHinh']?>" />
                         <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_xemnhieunhat['idTin'] ?>"><?php echo $row_xemnhieunhat['TieuDe']?></a><span class="hit"><?php echo $row_xemnhieunhat['SoLanXem']?></span></h3>
                         <div class="clear"></div>
     				</div>

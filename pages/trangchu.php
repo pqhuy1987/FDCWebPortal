@@ -27,7 +27,7 @@
         	<div class="col1">
             	<div class="news">
                     <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['idTin'] ?>"><?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['TieuDe']?> </a></h3>
-                    <img class="images_news" src="upload/tintuc/<?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['urlHinh']?>" align="left" />
+                    <img class="images_news" src="<?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['urlHinh']?>" align="left" />
                     <div class="des"><?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['TomTat']?> </div>
                     <div class="clear"></div>
                    

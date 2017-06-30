@@ -12,7 +12,7 @@
             <div class="col0 col1">
                 <div class="news">
                     <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_timkiem['idTin'] ?>"><?php echo $row_timkiem['TieuDe']?></a></h3>
-                    <img class="images_news" src="upload/tintuc/<?php echo $row_timkiem['urlHinh']?>" align="left" />
+                    <img class="images_news" src="<?php echo $row_timkiem['urlHinh']?>" align="left" />
                     <div class="des"><?php echo $row_timkiem['TomTat']?> </div>
                     <div class="clear"></div>
                    

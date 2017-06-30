@@ -4,7 +4,7 @@
               $row_tinmoinhatmottin = mysqli_fetch_array($tinmoinhat_mottin);
           ?>
         	<div id="slideleft-main">
-                <img src="upload/tintuc/<?php echo $row_tinmoinhatmottin['urlHinh'] ?>" width="486" height="316"  /><br />
+                <img src="<?php echo $row_tinmoinhatmottin['urlHinh'] ?>" width="486" height="316"  /><br />
                 <h2 class="title"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhatmottin['idTin'] ?>"><?php echo $row_tinmoinhatmottin['TieuDe'] ?></a> </h2>
                 <div class="des">
                     <?php echo $row_tinmoinhatmottin['TomTat'] ?> 

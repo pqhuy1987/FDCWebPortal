@@ -1,5 +1,5 @@
-<a href="./">Trang chủ</a>
-<a href="./listTheLoai.php">Quản lý thể loại</a>
-<a href="./listLoaiTin.php">Quản lý loại tin</a>
-<a href="./listTin.php">Quản lý tin tức</a>
-<a href="./listQuangCao.php">Quản lý quảng cáo</a>
+<a href="./">TRANG CHỦ</a>
+<a href="./listTheLoai.php">QUẢN LÝ THỂ LOẠI</a>
+<a href="./listLoaiTin.php">QUẢN LÝ LOẠI TIN</a>
+<a href="./listTin.php">QUẢN LÝ TIN TỨC</a>
+<a href="./listQuangCao.php">QUẢN LÝ FILE VÀ TÀI LIỆU</a>

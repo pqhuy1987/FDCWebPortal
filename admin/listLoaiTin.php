@@ -33,7 +33,7 @@
     <td><form id="form1" name="form1" method="post" action="">
       <table width="1200" border="1">
         <tr>
-          <td colspan="7">DANH SÁCH LOẠI TIN</td>
+          <td id="hang3" width = "1200px" colspan="7">DANH SÁCH LOẠI TIN</td>
           </tr>
         <tr>
           <td>ID LOẠI TIN</td>

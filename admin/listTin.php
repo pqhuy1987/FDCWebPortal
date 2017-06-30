@@ -54,7 +54,7 @@ $(document).ready(function() {
   <tr>
     <td height="58"><table width="1200" border="1">
       <tr>
-        <td colspan="5">DANH SÁCH TIN</td>
+        <td id="hang3" width = "1200px" colspan="5">DANH SÁCH TIN</td>
         </tr>
       <tr>
         <td width="148">ID TIN</td>
@@ -116,7 +116,7 @@ $(document).ready(function() {
             ?>
           <tr>
             <td>idTin:<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?></td>
-            <td><a href="suaTin.php?idTin=<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?>"><?php echo $row_ChonTin_Theo_PhanTrang["TieuDe"]?></a><br />          <img src="../upload/tintuc/<?php echo $row_ChonTin_Theo_PhanTrang["urlHinh"]?>" width="150" /><?php echo $row_ChonTin_Theo_PhanTrang["TomTat"]?></td>
+            <td><a href="suaTin.php?idTin=<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?>"><?php echo $row_ChonTin_Theo_PhanTrang["TieuDe"]?></a><br />          <img src="<?php echo $row_ChonTin_Theo_PhanTrang["urlHinh"]?>" width="150" /><?php echo $row_ChonTin_Theo_PhanTrang["TomTat"]?></td>
             <td><?php echo $row_ChonTin_Theo_PhanTrang["TenTL"]?>-<?php echo $row_ChonTin_Theo_PhanTrang["Ten"]?></td>
             <td>Số Lần Xem:<?php echo $row_ChonTin_Theo_PhanTrang["SoLanXem"]?>-<br />
               <?php echo $row_ChonTin_Theo_PhanTrang["TinNoiBat"]?> - <?php echo $row_ChonTin_Theo_PhanTrang["AnHien"]?><br /></td>
