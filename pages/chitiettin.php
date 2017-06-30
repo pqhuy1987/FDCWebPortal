@@ -1,3 +1,15 @@
+<script>
+$(document).ready(function() {
+    $("#idTL").change(function(){
+		var id	= $(this).val();
+		$.get("../loaitin.php", {idTL:id}, function(data){
+			$("#idLT").html(data);
+		});
+	});
+});
+
+</script>
+
 <?php 
     if (isset($_GET["idTin"])){
       $idTin = $_GET["idTin"];
@@ -20,8 +32,11 @@
 <?php
     $path = $row_ChiTietTin_NoiDungTin['urlFile'];
 	$file = basename($path);         // $file is set to "index.php"
+	
+	
 ?>
-<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>"><?php echo $file ?></a>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>"><?php echo urldecode($file); ?> </a>
+
 <!--//noi dung-->
 </div>
 <div class="clear"></div>
