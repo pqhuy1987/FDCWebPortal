@@ -17,7 +17,11 @@
 <div class="chitiet">
 <!--noi dung-->
 <?php echo $row_ChiTietTin_NoiDungTin['Content'] ?>
-<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile'] ?>"><?php echo $row_ChiTietTin_NoiDungTin['urlFile'] ?></a>
+<?php
+    $path = $row_ChiTietTin_NoiDungTin['urlFile'];
+	$file = basename($path);         // $file is set to "index.php"
+?>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>"><?php echo $file ?></a>
 <!--//noi dung-->
 </div>
 <div class="clear"></div>

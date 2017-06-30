@@ -1,4 +1,8 @@
 <?php 
+    $path = "upload/11. BM-011-HT Phieu CAR.doc";
+	$file = basename($path);         // $file is set to "index.php"
+	echo "$file";
+    
     $danhsachtheloai = DanhSachTheLoai($connect);
     while ($row_danhsachtheloai = mysqli_fetch_array($danhsachtheloai)) {
         $idTL = $row_danhsachtheloai['idTL'];
