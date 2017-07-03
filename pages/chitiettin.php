@@ -23,7 +23,20 @@ $(document).ready(function() {
 <?php
     $ChiTietTin_NoiDungTin = ChonNoiDungTin($connect, $idTin);
     $row_ChiTietTin_NoiDungTin = mysqli_fetch_array($ChiTietTin_NoiDungTin);
+	
+	$bc = breadCrumb($connect, $row_ChiTietTin_NoiDungTin["idLT"]);
+    $row_bc = mysqli_fetch_array($bc);
 ?>
+<div class="box-cat">
+    <div class="cat">
+        <div class="main-cat">
+			<a href="./">Trang chủ</a>
+        </div>
+        <div class="child-cat">
+			<a href="index.php?p=theloai&idTL=<?php echo $row_bc["idTL"] ?>">--  <?php echo $row_bc["TenTL"]?> --</a> <a href="#"> <?php echo $row_bc["Ten"]?>: </a>
+        </div>                
+    </div>
+</div>
 
 <h1 class="title"><?php echo $row_ChiTietTin_NoiDungTin['TieuDe'] ?></h1>
 <div class="chitiet">
@@ -36,7 +49,7 @@ if ($row_ChiTietTin_NoiDungTin['urlFile'] != null) {
 	
 	
 ?>
-<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>" target="_blank"><img src="images/attachment.png" width="15" height="15" />  <?php echo urldecode($file);?></a>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>" target="_blank"></br><strong>File Đính Kèm: </strong></br><img src="images/attachment.png" width="15" height="15" /><strong><?php echo urldecode($file);?></strong></a>
 <?php 
 } else {
 	
