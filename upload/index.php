@@ -30,7 +30,7 @@ if($PASSWORD) {
 // must be in UTF-8 or `basename` doesn't work
 setlocale(LC_ALL,'en_US.UTF-8');
 $tmp_dir = dirname($_SERVER['SCRIPT_FILENAME']);
-$tmp_dir = 'pqhuy1987_3/upload';
+$tmp_dir = 'upload';
 if(DIRECTORY_SEPARATOR==='\\') $tmp_dir = str_replace('/',DIRECTORY_SEPARATOR,$tmp_dir);
 $tmp = get_absolute_path($tmp_dir . '/' .$_REQUEST['file']);
 if($tmp === false)

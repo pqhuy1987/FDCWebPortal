@@ -61,7 +61,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/pqhuy1987_3/upload/';
+$baseUrl = '/cms/upload/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
@@ -80,7 +80,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseDir = "C://xampp/htdocs/pqhuy1987_3/upload/";
+$baseDir = "/cms/upload/";
 
 /*
  * ### Advanced Settings

@@ -3,7 +3,7 @@
 function TinMoiNhat_MotTin($connect)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			order by idTin desc
 			limit 0,1
 	";
@@ -13,7 +13,7 @@ function TinMoiNhat_MotTin($connect)
 function TinMoiNhat_BonTin($connect)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			order by idTin desc
 			limit 1,35
 	";
@@ -23,7 +23,7 @@ function TinMoiNhat_BonTin($connect)
 function TinXemNhieuNhat($connect)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			order by SoLanXem desc
 			limit 0,5
 	";
@@ -33,7 +33,7 @@ function TinXemNhieuNhat($connect)
 function TinMoiNhat_TheoLoaiTin_MotTin($connect, $idLT)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			where idLT=$idLT
 			order by idTin desc
 			limit 0,1
@@ -44,7 +44,7 @@ function TinMoiNhat_TheoLoaiTin_MotTin($connect, $idLT)
 function TinMoiNhat_TheoLoaiTin_BonTin($connect, $idLT)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			where idLT=$idLT
 			order by idTin desc
 			limit 1,2
@@ -101,7 +101,7 @@ function LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL)
 function TinMoiNhat_TheoTheLoai_MotTin($connect, $idTL)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			where idTL=$idTL
 			order by idTin desc
 			limit 0,1
@@ -112,7 +112,7 @@ function TinMoiNhat_TheoTheLoai_MotTin($connect, $idTL)
 function TinMoiNhat_TheoTheLoai_HaiTin($connect, $idTL)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			where idLT=$idTL
 			order by idTin desc
 			limit 1,2
@@ -156,7 +156,7 @@ function ChonTin_Theo_TenLoanTin_PhanTrang($connect, $idLT, $from, $sotin1trang)
 function ChonNoiDungTin($connect, $idTin)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			where idTin=$idTin
 			limit 0,100000
 	";
@@ -166,7 +166,7 @@ function ChonNoiDungTin($connect, $idTin)
 function TinCungLoaiTin($connect, $idTin, $idLT)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			where idTin <> $idTin
 			and idLT = $idLT
 			order by rand()

@@ -5,7 +5,7 @@
 function ChonNoiDungTin($connect, $idTin)
 {
 	$qr = "
-			select * from Tin
+			select * from tin
 			where idTin=$idTin
 			limit 0,100000
 	";
@@ -14,7 +14,7 @@ function ChonNoiDungTin($connect, $idTin)
 
 function DanhSachTheLoai($connect){
 
-	$qr = " select * from TheLoai
+	$qr = " select * from theloai
 			order by idTL desc
 	";
 	return mysqli_query($connect, $qr);
@@ -22,7 +22,7 @@ function DanhSachTheLoai($connect){
 
 function ChiTietTheLoai($connect, $idTL){
 
-	$qr = " select * from TheLoai
+	$qr = " select * from theloai
 			where idTL='$idTL
 			'
 	";
