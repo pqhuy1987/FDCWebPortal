@@ -116,7 +116,7 @@ $(document).ready(function() {
             ?>
           <tr>
             <td>idTin:<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?></td>
-            <td><a href="suaTin.php?idTin=<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?>"><?php echo $row_ChonTin_Theo_PhanTrang["TieuDe"]?></a><br />          <img src="<?php echo $row_ChonTin_Theo_PhanTrang["urlHinh"]?>" width="150" /><?php echo $row_ChonTin_Theo_PhanTrang["TomTat"]?></td>
+            <td><a href="suaTin.php?idTin=<?php echo $row_ChonTin_Theo_PhanTrang["idTin"]?>"><?php echo $row_ChonTin_Theo_PhanTrang["TieuDe"]?></a><br />          <img src="<?php if($row_ChonTin_Theo_PhanTrang['urlHinh']==null) echo '../images/temp_image.jpg';  else echo $row_ChonTin_Theo_PhanTrang["urlHinh"]?>" width="150" /><?php echo $row_ChonTin_Theo_PhanTrang["TomTat"]?></td>
             <td><?php echo $row_ChonTin_Theo_PhanTrang["TenTL"]?>-<?php echo $row_ChonTin_Theo_PhanTrang["Ten"]?></td>
             <td>Số Lần Xem:<?php echo $row_ChonTin_Theo_PhanTrang["SoLanXem"]?>-<br />
               <?php echo $row_ChonTin_Theo_PhanTrang["TinNoiBat"]?> - <?php echo $row_ChonTin_Theo_PhanTrang["AnHien"]?><br /></td>
