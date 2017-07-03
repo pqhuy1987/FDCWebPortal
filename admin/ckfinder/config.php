@@ -80,7 +80,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseDir = "/cms/upload/";
+$baseDir = "C:/xampp/htdocs/cms/upload";
 
 /*
  * ### Advanced Settings

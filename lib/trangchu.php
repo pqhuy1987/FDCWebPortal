@@ -113,7 +113,7 @@ function TinMoiNhat_TheoTheLoai_HaiTin($connect, $idTL)
 {
 	$qr = "
 			select * from tin
-			where idLT=$idTL
+			where idTL=$idTL
 			order by idTin desc
 			limit 1,2
 	";

@@ -27,7 +27,7 @@
         	<div class="col1">
             	<div class="news">
                     <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['idTin'] ?>"><?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['TieuDe']?> </a></h3>
-                    <img class="images_news" src="<?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['urlHinh']?>" align="left" />
+                    <img class="images_news" src="<?php if($row_TinMoiNhat_TheoTheLoai_MotTin['urlHinh']==null) echo '../cms/images/temp_image.jpg';  else echo $row_TinMoiNhat_TheoTheLoai_MotTin['urlHinh']?>" align="left" />
                     <div class="des"><?php echo $row_TinMoiNhat_TheoTheLoai_MotTin['TomTat']?> </div>
                     <div class="clear"></div>
                    
@@ -36,9 +36,10 @@
             <?php 
                 $TinMoiNhat_TheoTheLoai_HaiTin = TinMoiNhat_TheoTheLoai_HaiTin($connect, $idTL);
                 while ($row_TinMoiNhat_TheoTheLoai_HaiTin = mysqli_fetch_array($TinMoiNhat_TheoTheLoai_HaiTin)){
+					
             ?>
             <div class="col2">
-             <p class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_TinMoiNhat_TheoTheLoai_HaiTin['idTin'] ?>"> <?php echo $row_TinMoiNhat_TheoTheLoai_HaiTin['TieuDe']?> </a>
+             <p class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_TinMoiNhat_TheoTheLoai_HaiTin['idTin'] ?>"> <?php echo $row_TinMoiNhat_TheoTheLoai_HaiTin['TieuDe'] ?> </a>
                 </a></p>
             </div> 
             <?php 
