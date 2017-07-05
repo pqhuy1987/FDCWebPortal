@@ -10,6 +10,9 @@ if(isset($_POST['func']) && !empty($_POST['func'])){
 		case 'addEvent':
 			addEvent($_POST['date'],$_POST['title']);
 			break;
+		case 'delEvent':
+			delEvent($_POST['id']);
+			break;
 		default:
 			break;
 	}
@@ -31,10 +34,11 @@ function getCalender($year = '',$month = '')
         </h2>
 		<div id="event_list" class="none"></div>
         <div id="event_add" class="none">
-        	<p>&nbspAdd Event On <span id="eventDateView"></span></p>
-            <p><b>Add Event Name: </b><input type="text" id="eventTitle" value=""/></p>
+        	<p style="color:#FFF; font-weight: bold;"> THÊM SỰ KIỆN NGÀY: <span id="eventDateView"></span></p>
+            <p ><b style="color:#FFF;">TÊN SỰ KIỆN: </b><input type="text" id="eventTitle" value=""/></p>
             <input type="hidden" id="eventDate" value=""/>
-            <input type="button" id="addEventBtn" value="ADD"/>
+            <input type="button" id="addEventBtn" value="THÊM"/>
+            <input type="button" id="delEventBtn" value="XÓA"/>
         </div>
 		<div id="calender_section_top">
 			<ul>
@@ -137,22 +141,55 @@ function getCalender($year = '',$month = '')
 			});
 		});
 		$(document).ready(function(){
+			$('#delEventBtn').on('click',function(){
+				var id = $('input[name="LuaChon"]:checked').val();
+				$.ajax({
+					type:'POST',
+					url:'functions.php',
+					data:'func=delEvent&id='+id,
+					success:function(msg){
+						if(msg == 'ok'){
+							var dateSplit = date.split("-");
+							$('#eventTitle').val('');
+							alert('Xóa sự kiện thành côngs.');
+							getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
+						} else {
+								alert('Có lỗi phát sinh, vui lòng thử lại lần nữa.');
+						}
+					}
+				});
+			});
+		});
+		$(document).ready(function(){
 			$('.date_cell').mouseenter(function(){
 				date = $(this).attr('date');
-				$(".date_popup_wrap").fadeOut();
-				$("#date_popup_"+date).fadeIn();	
+				//$(".date_popup_wrap").fadeOut();
+				//$("#date_popup_"+date).fadeIn();	
 			});
 			$('.date_cell').mouseleave(function(){
 				$(".date_popup_wrap").fadeOut();		
+			});
+			$('.date_cell').on('click',function(){
+				$('#eventDate').val(date);
+				$('#eventDateView').html(date);
+				//$('#event_list').slideUp('slow');
+				$('#event_add').slideDown('slow');
+				$.ajax({
+					type:'POST',
+					url:'functions.php',
+					data:'func=getEvents&date='+date,
+					success:function(html){
+						$('#event_list').html(html);
+						//$('#event_add').slideUp('slow');
+						$('#event_list').slideDown('slow');
+					}
+				});
 			});
 			$('.month_dropdown').on('change',function(){
 				getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
 			});
 			$('.year_dropdown').on('change',function(){
 				getCalendar('calendar_div',$('.year_dropdown').val(),$('.month_dropdown').val());
-			});
-			$(document).click(function(){
-				$('#event_list').slideUp('slow');
 			});
 		});
 	</script>
@@ -181,12 +218,12 @@ function getEvents($date = ''){
 	include 'dbConfig.php';
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
-	$result = $db->query("SELECT title FROM events WHERE date = '".$date."' AND status = 1");
+	$result = $db->query("SELECT title, id FROM events WHERE date = '".$date."' AND status = 1");
 	if($result->num_rows > 0){
-		$eventListHTML = '<h2>SỰ KIỆN NGÀY:'.date("l, d M Y",strtotime($date)).'</h2>';
+		$eventListHTML = '<h2 >SỰ KIỆN NGÀY:'.date("l, d M Y",strtotime($date)).'</h2>'; 
 		$eventListHTML .= '<ul>';
 		while($row = $result->fetch_assoc()){ 
-            $eventListHTML .= '<li style="font-size:18px; color:#FFF; font-weight: bold;">'.$row['title'].'</li>';
+            $eventListHTML .= '<li style="font-size:18px; color:#FFF; font-weight: bold;">'.$row['title'].'<input style="float: right" type="radio" name="LuaChon" value='.$row['id'].'id="LuaChon"/>'.'</li>';
         }
 		$eventListHTML .= '</ul>';
 	}
@@ -204,6 +241,16 @@ function addEvent($date,$title){
 		}else{
 			echo 'err';
 		}
+	}
+}
+function delEvent($id){
+	include 'dbConfig.php';
+	$del = $db->query("delete from events
+	where id='$id' ");
+	if($del){
+		echo 'ok';
+	}else{
+		echo 'err';
 	}
 }
 ?>
