@@ -34,7 +34,7 @@ else
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Lap Trinh PHP - KhoaPhamTraining</title>
+<title>FDC-Cổng Thông Tin Nội Bộ</title>
 <link rel="stylesheet" type="text/css" href="css/layout.css" />
 <link rel="shortcut icon" type="image/x-icon" href="images/logo1.png" />
 </head>

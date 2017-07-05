@@ -5,7 +5,7 @@
 <div class="box-cat">
 	<div class="cat">
     	<div class="main-cat">
-        	<a href="#">LỊCH CÔNG TY</a>
+        	<a href="../cms/test/" target="_blank">LỊCH CÔNG TY</a>
         </div>
        
         <div class="clear"></div>

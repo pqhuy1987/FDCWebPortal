@@ -80,7 +80,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseDir = "C:/xampp/htdocs/cms/upload";
+$baseDir = "/var/www/html/cms/upload";
 
 /*
  * ### Advanced Settings
@@ -288,7 +288,7 @@ $config['ChmodFiles'] = 0777 ;
 See comments above.
 Used when creating folders that does not exist.
 */
-$config['ChmodFolders'] = 0755 ;
+$config['ChmodFolders'] = 0777 ;
 
 /*
 Force ASCII names for files and folders.
