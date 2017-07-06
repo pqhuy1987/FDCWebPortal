@@ -127,10 +127,16 @@ function getCalender($year = '',$month = '')
 					data:'func=addEvent&date='+date+'&title='+title,
 					success:function(msg){
 						if(msg == 'ok'){
-							var dateSplit = date.split("-");
-							$('#eventTitle').val('');
-							alert('Tạo sự kiện thành côngs.');
-							getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
+							$.ajax({
+								type:'POST',
+								url:'functions.php',
+								data:'func=getEvents&date='+date,
+								success:function(html){
+									$('#event_list').html(html);
+									//$('#event_add').slideUp('slow');
+									$('#event_list').slideDown('slow');
+								}
+							});
 						}else if (msg == 'notitle'){
 							alert('Bạn chưa thêm tiêu đề.');
 						} else {
@@ -148,17 +154,25 @@ function getCalender($year = '',$month = '')
 					url:'functions.php',
 					data:'func=delEvent&id='+id,
 					success:function(msg){
+						var date = $('#eventDate').val();
+						var title = $('#eventTitle').val();
 						if(msg == 'ok'){
-							var dateSplit = date.split("-");
-							$('#eventTitle').val('');
-							alert('Xóa sự kiện thành côngs.');
-							getCalendar('calendar_div',dateSplit[0],dateSplit[1]);
+						 	$.ajax({
+								type:'POST',
+								url:'functions.php',
+								data:'func=getEvents&date='+date,
+								success:function(html){
+									$('#event_list').html(html);
+									//$('#event_add').slideUp('slow');
+									$('#event_list').slideDown('slow');
+								}
+							});
 						} else {
-								alert('Có lỗi phát sinh, vui lòng thử lại lần nữa.');
+							alert('Có lỗi phát sinh, vui lòng thử lại lần nữa.');
 						}
 					}
-				});
-			});
+				 });		
+			 });
 		});
 		$(document).ready(function(){
 			$('.date_cell').mouseenter(function(){

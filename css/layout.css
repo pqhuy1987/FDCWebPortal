@@ -19,7 +19,7 @@ ul{ list-style:none}
 
 
 
-#wrap-vp{ width:1000px; margin:15px auto}
+#wrap-vp{margin:15px auto}
 #header-vp{ height:70px;}
 	#logo{ width:300px; float:left; margin-top:5px}
 	
@@ -41,10 +41,10 @@ ul{ list-style:none}
 	#midheader-vp #right .txt_24h{ background:#CCC; color:#333; font-size:12px; height:18px; padding :2px 3px 0 3px}
 	
 #content-vp{}
-	#content-vp #content-main{border-right:solid 1px #E2E2E3; width:51%; float:left; padding: 5px; min-height:500px; margin: 0 0 0 5px; }
-	#content-vp #content-right{width:45%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
-	#content-vp #content-right-files{width:45%; float:left; padding: 5px; min-height:200px; max-height:350px; overflow:auto}
-	#content-vp #content-right-general{width:46%; float:right; padding: 5px; min-height:300px; margin: 0 0 0 1px}
+	#content-vp #content-main{border-right:solid 1px #E2E2E3; width:60%; float:left; padding: 5px; min-height:500px; margin: 0 0 0 5px; }
+	#content-vp #content-right{width:38%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
+	#content-vp #content-right-files{width:38%; float:left; padding: 5px; min-height:200px; max-height:350px; overflow:auto}
+	#content-vp #content-right-general{width:38%; float:right; padding: 5px; min-height:300px; margin: 0 0 0 1px}
 	
 	#content-vp #content-main .chitiet{ line-height:150%; margin:0 0 40px 0}
 	#content-vp #content-main .btn_quantam{ background:url(../images/btn_quantam.gif) no-repeat; width:75px; height:20px; float:left}
@@ -80,10 +80,11 @@ ul{ list-style:none}
 	
 	#content-vp #content-main .box-cat{ margin-right:5px}
 	#content-vp .cat{ background:url(../images/bg_1x28.gif) repeat-x; height:30px; padding:0 0 0 10px; margin:7px 0 10px 0}
-	#content-vp .main-cat{ width:auto; float:left}
+	#content-vp .main-cat{ width:auto; float:left }
 	#content-vp .main-cat a{ border-top:solid 3px #EC2229; color:#135194; font-weight:bold; display:block; height:30px; padding:3px 0 0 10px; font-size:12px}
 	#content-vp .main-cat a:hover{ color:#EC2229}
-	#content-vp #content-main .child-cat{ width:79%; margin:6px 0 0 5px; float:left}
+	#content-vp #content-main .main-cat{ max-width:29%;}
+	#content-vp #content-main .child-cat{ width:70%; margin:6px 0 0 5px; float:left}
 	#content-vp #content-main .child-cat a{ font-weight:bold; height:30px;  font-size:12px; color:#333; border-right:1px solid #E2E2E3; font-size:11px; padding: 0 3px 0 3px}
 	#content-vp #content-main .child-cat a:hover{ color:#EC2229}
 	
