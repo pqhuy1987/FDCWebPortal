@@ -75,25 +75,33 @@ else
 
   	<div id="content-vp">
         <div id="content-main">
-			
+        	<div id="content-main-1">	
+            	<div id="left">	
+					<?php require "blocks/tin_moi_nhat.php"; ?>     
+                </div>
+                <div id="right">	
+					<?php require "gallery/index.php"; ?> 
+                </div>  
+
+        	</div>
+            <div id="content-main-2">
 			<!--PAGES-->
-            <?php
-                switch ($p) {
-                    case 'tintrongloai':        require 'pages/tintrongloai.php'; 
-                        break;
-                     case 'chitiettin':         require 'pages/chitiettin.php'; 
-                        break;             
-                     case 'timkiem':            require 'pages/timkiem.php'; 
-                        break;
-					 case 'theloai':            require 'pages/theloai.php'; 
-                        break;    
-                    default:                    {
-						require "blocks/tin_moi_nhat.php";
-						require 'pages/trangchu.php'; 
-					}
-                        break;
-                }
-            ?>
+				<?php
+                    switch ($p) {
+                        case 'tintrongloai':        require 'pages/tintrongloai.php'; 
+                            break;
+                         case 'chitiettin':         require 'pages/chitiettin.php'; 
+                            break;             
+                         case 'timkiem':            require 'pages/timkiem.php'; 
+                            break;
+                         case 'theloai':            require 'pages/theloai.php'; 
+                            break;    
+                        default:                    require 'pages/trangchu.php'; 
+                            
+                            break;
+                    }
+                ?>
+             </div>
             
         </div>
         <div id="content-right-files">    
