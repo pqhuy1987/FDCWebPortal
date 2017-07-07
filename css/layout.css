@@ -21,6 +21,8 @@ ul{ list-style:none}
 
 #wrap-vp{margin:0 5px 5px 5px}
 #header-vp{ height:65px; background: url('../images/logo2.png') no-repeat; background-size: contain; background-clip: border-box;}
+
+#ft-bot{ height:30px; background: url('../images/footer.jpg') no-repeat; background-size: contain; background-clip: border-box;}
 	
 #menu-vp{ border-bottom:3px solid #CCC; padding:0 0 3px 0px}
 	#menu-vp ul{ }

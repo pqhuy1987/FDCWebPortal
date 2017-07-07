@@ -152,8 +152,10 @@ else
         <?php require "blocks/cot_phai.php"; ?>
         </div>
 
-    <div class="clear"></div>
-    	
+    <div class="clear"></div>  	
+    </div>
+    
+    <div id="ft-bot">
     </div>
     
 </div>
