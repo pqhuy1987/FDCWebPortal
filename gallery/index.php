@@ -14,10 +14,10 @@
 ?>
 <?php
 	//-----------------------------------------------------------------------------//
-        $files = scandir('upload/tintuc/', 1);
+        $files = scandir('upload/Hình/', 1);
         foreach ($files as $file):
             
-            $dir = 'upload/tintuc/' . $file;
+            $dir = 'upload/Hình/' . $file;
              if (is_dir($dir) && $file != '.' && $file != '..'): 
 ?>
                 <h3 class="tlq"><div class="col2"><a href="#"><?php echo ucwords($file); ?></a></div></h3>
