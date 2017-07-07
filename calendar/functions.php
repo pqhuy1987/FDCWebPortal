@@ -1,4 +1,8 @@
 <?php
+
+require "../lib/dbCon.php";
+require "../lib/quantri.php";
+	
 if(isset($_POST['func']) && !empty($_POST['func'])){
 	switch($_POST['func']){
 		case 'getCalender':
@@ -54,12 +58,12 @@ function getCalender($year = '',$month = '')
 		<div id="calender_section_bot">
 			<ul>
 			<?php 
+				require "../lib/dbCon.php";
 				$dayCount = 1; 
 				for($cb=1;$cb<=$boxDisplay;$cb++){
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
-						include 'dbConfig.php';
 						$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1");
 						$eventNum = $result->num_rows;
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
@@ -229,7 +233,6 @@ function getYearList($selected = ''){
 	return $options;
 }
 function getEvents($date = ''){
-	include 'dbConfig.php';
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	$result = $db->query("SELECT title, id FROM events WHERE date = '".$date."' AND status = 1");
@@ -244,7 +247,6 @@ function getEvents($date = ''){
 	echo $eventListHTML;
 }
 function addEvent($date,$title){
-	include 'dbConfig.php';
 	$currentDate = date("Y-m-d H:i:s");
 	if ($title == null) {
 		echo 'notitle';
@@ -258,7 +260,6 @@ function addEvent($date,$title){
 	}
 }
 function delEvent($id){
-	include 'dbConfig.php';
 	$del = $db->query("delete from events
 	where id='$id' ");
 	if($del){
