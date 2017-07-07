@@ -233,6 +233,7 @@ function getYearList($selected = ''){
 	return $options;
 }
 function getEvents($date = ''){
+	require "../lib/dbCon.php";
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	$result = $db->query("SELECT title, id FROM events WHERE date = '".$date."' AND status = 1");
@@ -247,6 +248,7 @@ function getEvents($date = ''){
 	echo $eventListHTML;
 }
 function addEvent($date,$title){
+	require "../lib/dbCon.php";
 	$currentDate = date("Y-m-d H:i:s");
 	if ($title == null) {
 		echo 'notitle';
@@ -260,6 +262,7 @@ function addEvent($date,$title){
 	}
 }
 function delEvent($id){
+	require "../lib/dbCon.php";
 	$del = $db->query("delete from events
 	where id='$id' ");
 	if($del){

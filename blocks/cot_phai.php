@@ -41,7 +41,7 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1a" class="ddsmoothmenu">
 <ul>
-<li><a href="../cms/calendar/index.php">LỊCH CÔNG TY</a>
+<li><a href="../cms/calendar/index.php?group=1" target="_blank">LỊCH CÔNG TY</a>
   <ul>
   		<li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">LỊCH DU LỊCH</a></li>
         <li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">LỊCH NGHĨ LỄ</a></li>
