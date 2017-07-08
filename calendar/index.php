@@ -1,4 +1,12 @@
 <?php include_once('functions.php'); ?>
+<?php
+if (isset($_GET["group_general"])){
+	$group_general = $_GET["group_general"];
+	settype($group_general, "int");
+} else {
+ 	$group_general = 0;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

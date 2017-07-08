@@ -1,18 +1,15 @@
 <?php
-
-require "../lib/dbCon.php";
-require "../lib/quantri.php";
-	
+				
 if(isset($_POST['func']) && !empty($_POST['func'])){
 	switch($_POST['func']){
 		case 'getCalender':
 			getCalender($_POST['year'],$_POST['month']);
 			break;
 		case 'getEvents':
-			getEvents($_POST['date']);
+			getEvents($_POST['date'], $_POST['group_general']);
 			break;
 		case 'addEvent':
-			addEvent($_POST['date'],$_POST['title']);
+			addEvent($_POST['date'],$_POST['title'], $_POST['group_general']);
 			break;
 		case 'delEvent':
 			delEvent($_POST['id']);
@@ -59,12 +56,20 @@ function getCalender($year = '',$month = '')
 			<ul>
 			<?php 
 				require "../lib/dbCon.php";
+				
+				if (isset($_GET["group_general"])){
+					$group_general = $_GET["group_general"];
+					settype($group_general, "int");
+				} else {
+					$group_general = 0;
+				}
+
 				$dayCount = 1; 
 				for($cb=1;$cb<=$boxDisplay;$cb++){
 					if(($cb >= $currentMonthFirstDay+1 || $currentMonthFirstDay == 7) && $cb <= ($totalDaysOfMonthDisplay)){
 						$currentDate = $dateYear.'-'.$dateMonth.'-'.$dayCount;
 						$eventNum = 0;
-						$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1");
+						$result = $db->query("SELECT title FROM events WHERE date = '".$currentDate."' AND status = 1 AND group_general = $group_general");
 						$eventNum = $result->num_rows;
 						if(strtotime($currentDate) == strtotime(date("Y-m-d"))){
 							echo '<li date="'.$currentDate.'" class="grey date_cell">';
@@ -92,6 +97,16 @@ function getCalender($year = '',$month = '')
 		</div>
 	</div>
 	<script type="text/javascript">
+		$.urlParam = function(name){
+			var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+			if (results==null){
+			   return null;
+			}
+			else{
+			   return decodeURI(results[1]) || 0;
+			}
+		}
+		
 		function getCalendar(target_div,year,month){
 			$.ajax({
 				type:'POST',
@@ -107,7 +122,7 @@ function getCalender($year = '',$month = '')
 			$.ajax({
 				type:'POST',
 				url:'functions.php',
-				data:'func=getEvents&date='+date,
+				data:'func=getEvents&date='+date+'&group_general='+group_general,
 				success:function(html){
 					$('#event_list').html(html);
 					$('#event_add').slideUp('slow');
@@ -125,16 +140,17 @@ function getCalender($year = '',$month = '')
 			$('#addEventBtn').on('click',function(){
 				var date = $('#eventDate').val();
 				var title = $('#eventTitle').val();
+				var group_general = $.urlParam('group_general');
 				$.ajax({
 					type:'POST',
 					url:'functions.php',
-					data:'func=addEvent&date='+date+'&title='+title,
+					data:'func=addEvent&date='+date+'&title='+title+'&group_general='+group_general,
 					success:function(msg){
 						if(msg == 'ok'){
 							$.ajax({
 								type:'POST',
 								url:'functions.php',
-								data:'func=getEvents&date='+date,
+								data:'func=getEvents&date='+date+'&group_general='+group_general,
 								success:function(html){
 									$('#event_list').html(html);
 									//$('#event_add').slideUp('slow');
@@ -192,10 +208,14 @@ function getCalender($year = '',$month = '')
 				$('#eventDateView').html(date);
 				//$('#event_list').slideUp('slow');
 				$('#event_add').slideDown('slow');
+				var group_general = $.urlParam('group_general');
+				
+				//console.log(group_general);
+				
 				$.ajax({
 					type:'POST',
 					url:'functions.php',
-					data:'func=getEvents&date='+date,
+					data:'func=getEvents&date='+date+'&group_general='+group_general,
 					success:function(html){
 						$('#event_list').html(html);
 						//$('#event_add').slideUp('slow');
@@ -232,11 +252,12 @@ function getYearList($selected = ''){
 	}
 	return $options;
 }
-function getEvents($date = ''){
+function getEvents($date = '',$group_general){
 	require "../lib/dbCon.php";
+	
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
-	$result = $db->query("SELECT title, id FROM events WHERE date = '".$date."' AND status = 1");
+	$result = $db->query("SELECT title, id FROM events WHERE date = '".$date."' AND status = 1 AND group_general = $group_general");
 	if($result->num_rows > 0){
 		$eventListHTML = '<h2 >SỰ KIỆN NGÀY:'.date("l, d M Y",strtotime($date)).'</h2>'; 
 		$eventListHTML .= '<ul>';
@@ -247,13 +268,13 @@ function getEvents($date = ''){
 	}
 	echo $eventListHTML;
 }
-function addEvent($date,$title){
+function addEvent($date,$title,$group_general){
 	require "../lib/dbCon.php";
 	$currentDate = date("Y-m-d H:i:s");
 	if ($title == null) {
 		echo 'notitle';
 	} else {
-		$insert = $db->query("INSERT INTO events (title,date,created,modified) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."')");
+		$insert = $db->query("INSERT INTO events (title,date,created,modified,group_general) VALUES ('".$title."','".$date."','".$currentDate."','".$currentDate."','".$group_general."')");
 		if($insert){
 			echo 'ok';
 		}else{

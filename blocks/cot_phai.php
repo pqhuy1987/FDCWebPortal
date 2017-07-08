@@ -41,13 +41,13 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1a" class="ddsmoothmenu">
 <ul>
-<li><a href="../cms/calendar/index.php?group=1" target="_blank">LỊCH CÔNG TY</a>
+<li><a href="../cms/calendar/index.php?group_general=0" target="_blank">LỊCH CÔNG TY</a>
   <ul>
   		<li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">LỊCH DU LỊCH</a></li>
         <li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">LỊCH NGHĨ LỄ</a></li>
   </ul>
 </li>
-<li><a href="#">LỊCH LÀM VIỆC BAN LÃNH ĐẠO</a>
+<li><a href="../cms/calendar/index.php?group_general=1" target="_blank">LỊCH LÀM VIỆC BAN LÃNH ĐẠO</a>
   <ul>
 
   		<li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">TGĐ NGÔ THANH PHONG</a></li>
@@ -60,5 +60,32 @@ ddsmoothmenu.init({
 </ul>
 <br style="clear: left" />
 </div>
+
+<div class="box-cat">
+	<div class="cat">
+    	<div class="main-cat">
+        	<a>LỊCH LÀM VIỆC MỚI NHẤT</a>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<div class="col1">
+     <div class="news">
+          <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat['idTin'] ?>"> dsadasdasdadadasdasdada </a></h3>       
+	 </div>
+</div>
+            
+<div class="col2">
+	<h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfgh   fghfghfghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfgh  fghfghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghfghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghf   ghfghfghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghfghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghf   ghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghfghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghf   ghfg</a></h3>
+    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfgh   fghfghfghfg</a></h3>
+</div> 
 
 
