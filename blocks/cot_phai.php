@@ -41,18 +41,19 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1a" class="ddsmoothmenu">
 <ul>
-<li><a href="../cms/calendar/index.php?group_general=0" target="_blank">LỊCH CÔNG TY</a>
+<li><a href="../cms/calendar/index.php?group_general=0&group_small=''" target="_blank">LỊCH CÔNG TY</a>
   <ul>
-  		<li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">LỊCH DU LỊCH</a></li>
-        <li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">LỊCH NGHĨ LỄ</a></li>
+  		<li><a href="../cms/calendar/index.php?group_general=0&group_small=1" target="_blank">LỊCH DU LỊCH</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=0&group_small=2" target="_blank">LỊCH NGHĨ LỄ</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=0&group_small=3" target="_blank">LỊCH SỰ KIỆN</a></li>
   </ul>
 </li>
-<li><a href="../cms/calendar/index.php?group_general=1" target="_blank">LỊCH LÀM VIỆC BAN LÃNH ĐẠO</a>
+<li><a href="../cms/calendar/index.php?group_general=1&group_small=''" target="_blank">LỊCH LÀM VIỆC BAN LÃNH ĐẠO</a>
   <ul>
 
-  		<li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">TGĐ NGÔ THANH PHONG</a></li>
-        <li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">PHÓ TGĐ NGUYỄN QUANG THỤY</a></li>
-        <li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>">PHÓ TGĐ NGUYỄN NGỌC LÂN</a></li>
+  		<li><a href="../cms/calendar/index.php?group_general=1&group_small=1" target="_blank">TGĐ NGÔ THANH PHONG</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=1&group_small=2" target="_blank">PHÓ TGĐ NGUYỄN QUANG THỤY</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=1&group_small=3" target="_blank">PHÓ TGĐ NGUYỄN NGỌC LÂN</a></li>
 
   </ul>
 </li>
@@ -70,22 +71,25 @@ ddsmoothmenu.init({
 </div>
 <div class="clear"></div>
 
+<?php
+	$DanhSachLich_MotTin = DanhSachLich_MotTin($connect);
+	$row_DanhSachLich_MotTin = mysqli_fetch_array($DanhSachLich_MotTin);
+?>
+
 <div class="col1">
      <div class="news">
-          <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat['idTin'] ?>"> dsadasdasdadadasdasdada </a></h3>       
+          <h3 class="title" ><a href="#"><?php echo $row_DanhSachLich_MotTin['title'] ?></a></h>
 	 </div>
 </div>
-            
-<div class="col2">
-	<h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfgh   fghfghfghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfgh  fghfghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghfghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghf   ghfghfghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghfghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghf   ghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghfghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfghfghfghf   ghfg</a></h3>
-    <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">ggfhfgh   fghfghfghfg</a></h3>
-</div> 
-
+<?php 
+    $DanhSachLich_BaMuoiTin = DanhSachLich_BaMuoiTin($connect);
+    while($row_DanhSachLich_BaMuoiTin = mysqli_fetch_array($DanhSachLich_BaMuoiTin))
+    {
+?>           
+    <div class="col2">
+        <h3 class="tlq"><a><?php echo $row_DanhSachLich_BaMuoiTin['title']?></a></h3>
+    </div> 
+<?php 
+	}
+?>
 

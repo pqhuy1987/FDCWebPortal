@@ -21,7 +21,7 @@ require_once('filelist/config.php');
 // SETTINGS
 
 // Directory that contains the files and folders
-$_gFL['Config.BasePath'] = 'upload/';
+$_gFL['Config.BasePath'] = 'upload/Document/';
 
 // Relative path to image files
 $_gFL['Config.ImagePath'] = 'filelist/images/';

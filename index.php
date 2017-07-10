@@ -59,7 +59,7 @@ else
            </ul>
            <ul class="list_arrow_breakumb">
            <li class="start">
-                <a href="#" onClick="MyWindow=window.open('../cms/upload/','MyWindow',width=1000,height=100); return false;">FILES / TÀI LIỆU</a>
+                <a href="#" onClick="MyWindow=window.open('../cms/upload/Document/','MyWindow',width=1000,height=100); return false;">FILES / TÀI LIỆU</a>
            </ul>
             <form action = "" method = "post">
             <a href="#">

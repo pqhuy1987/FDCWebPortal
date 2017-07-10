@@ -1,5 +1,25 @@
 <?php
 
+
+function DanhSachLich_MotTin($connect)
+{
+	$qr = "
+			select * from events
+			order by id desc
+			limit 0,1
+	";
+	return mysqli_query($connect, $qr);
+}
+
+function DanhSachLich_BaMuoiTin($connect){
+
+	$qr = " select * from events
+			order by id desc
+			limit 1,30
+	";
+	return mysqli_query($connect, $qr);
+}
+
 function TinMoiNhat_MotTin($connect)
 {
 	$qr = "
