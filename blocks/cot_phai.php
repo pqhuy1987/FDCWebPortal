@@ -81,10 +81,10 @@ ddsmoothmenu.init({
 
 				$eventListHTML .= '<div class="col1">
      							<div class="news">
-         						 <h3 class="title" ><a>';
+         						 <h3 class="title" ><a href="#">';
 				$eventListHTML .= $row['title'];
 				$eventListHTML .= '</a></h>
-   				 </div>';
+   				 </div></div>';
 		}
 	}
 	echo $eventListHTML;
