@@ -1,5 +1,20 @@
 <?php
-
+function to_utf8($in) 
+{ 
+        if (is_array($in)) { 
+            foreach ($in as $key => $value) { 
+                $out[to_utf8($key)] = to_utf8($value); 
+            } 
+        } elseif(is_string($in)) { 
+            if(mb_detect_encoding($in) != "UTF-8") 
+                return utf8_encode($in); 
+            else 
+                return $in; 
+        } else { 
+            return $in; 
+        } 
+        return $out; 
+} 
 
 function DanhSachLich_MotTin($connect)
 {

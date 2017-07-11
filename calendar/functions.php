@@ -36,7 +36,7 @@ function getCalender($year = '',$month = '')
 		<div id="event_list" class="none"></div>
         <div id="event_add" class="none">
         	<p style="color:#FFF; font-weight: bold;"> THÊM SỰ KIỆN NGÀY: <span id="eventDateView"></span></p>
-            <p ><b style="color:#FFF;">TÊN SỰ KIỆN: </b><input accept-charset="UTF-8" type="text" id="eventTitle" /></p>
+            <p ><b style="color:#FFF;">TÊN SỰ KIỆN: </b><input type="text" id="eventTitle" value=""/></p>
             <input type="hidden" id="eventDate" value=""/>
             <input type="button" id="addEventBtn" value="THÊM"/>
             <input type="button" id="delEventBtn" value="XÓA"/>
@@ -143,6 +143,7 @@ function getCalender($year = '',$month = '')
 				var title = $('#eventTitle').val();
 				var group_general = $.urlParam('group_general');
 				var group_small = $.urlParam('group_small');
+				//console.log(title);
 				$.ajax({
 					type:'POST',
 					url:'functions.php',
@@ -257,9 +258,9 @@ function getYearList($selected = ''){
 	}
 	return $options;
 }
+
 function getEvents($date = '',$group_general,$group_small){
-	require "../lib/dbCon.php";
-	
+	require "../lib/dbCon.php";	
 	$eventListHTML = '';
 	$date = $date?$date:date("Y-m-d");
 	$result = $db->query("SELECT title, id FROM events WHERE date = '".$date."' AND status = 1 AND group_general = $group_general AND group_small = $group_small");
@@ -275,6 +276,9 @@ function getEvents($date = '',$group_general,$group_small){
 }
 function addEvent($date,$title,$group_general,$group_small){
 	require "../lib/dbCon.php";
+	
+
+	
 	$currentDate = date("Y-m-d H:i:s");
 	if ($title == null) {
 		echo 'notitle';

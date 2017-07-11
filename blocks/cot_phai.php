@@ -41,14 +41,14 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1a" class="ddsmoothmenu">
 <ul>
-<li><a href="../cms/calendar/index.php?group_general=0&group_small=''" target="_blank">LỊCH CÔNG TY</a>
+<li><a href="#">LỊCH CÔNG TY</a>
   <ul>
   		<li><a href="../cms/calendar/index.php?group_general=0&group_small=1" target="_blank">LỊCH DU LỊCH</a></li>
         <li><a href="../cms/calendar/index.php?group_general=0&group_small=2" target="_blank">LỊCH NGHĨ LỄ</a></li>
         <li><a href="../cms/calendar/index.php?group_general=0&group_small=3" target="_blank">LỊCH SỰ KIỆN</a></li>
   </ul>
 </li>
-<li><a href="../cms/calendar/index.php?group_general=1&group_small=''" target="_blank">LỊCH LÀM VIỆC BAN LÃNH ĐẠO</a>
+<li><a href="#">LỊCH LÀM VIỆC BAN LÃNH ĐẠO</a>
   <ul>
 
   		<li><a href="../cms/calendar/index.php?group_general=1&group_small=1" target="_blank">TGĐ NGÔ THANH PHONG</a></li>
@@ -70,26 +70,44 @@ ddsmoothmenu.init({
     </div>
 </div>
 <div class="clear"></div>
-
-<?php
-	$DanhSachLich_MotTin = DanhSachLich_MotTin($connect);
-	$row_DanhSachLich_MotTin = mysqli_fetch_array($DanhSachLich_MotTin);
-?>
-
-<div class="col1">
-     <div class="news">
-          <h3 class="title" ><a href="#"><?php echo $row_DanhSachLich_MotTin['title'] ?></a></h>
-	 </div>
-</div>
 <?php 
-    $DanhSachLich_BaMuoiTin = DanhSachLich_BaMuoiTin($connect);
-    while($row_DanhSachLich_BaMuoiTin = mysqli_fetch_array($DanhSachLich_BaMuoiTin))
-    {
-?>           
-    <div class="col2">
-        <h3 class="tlq"><a><?php echo $row_DanhSachLich_BaMuoiTin['title']?></a></h3>
-    </div> 
-<?php 
+	$eventListHTML = '';
+	$result = $db->query("SELECT title FROM events order by id desc
+			limit 0,1");
+	if($result->num_rows > 0)
+	{ 
+		while($row = $result->fetch_assoc())
+		{ 
+
+				$eventListHTML .= '<div class="col1">
+     							<div class="news">
+         						 <h3 class="title" ><a>';
+				$eventListHTML .= $row['title'];
+				$eventListHTML .= '</a></h>
+   				 </div>';
+		}
 	}
-?>
+	echo $eventListHTML;
+?>    
+
+<?php 
+	$eventListHTML = '';
+	$result = $db->query("SELECT title FROM events order by id desc
+			limit 1,30");
+	if($result->num_rows > 0)
+	{ 
+		while($row = $result->fetch_assoc())
+		{ 
+
+				$eventListHTML .= '<div class="col2">
+       						 <h3 class="tlq">
+							 	<a>';
+				$eventListHTML .= $row['title'];
+				$eventListHTML .= '</a></h>
+   				 </div>';
+		}
+	}
+	echo $eventListHTML;
+?>           
+
 
