@@ -1,7 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../menu_2/ddsmoothmenu.css" />
 <link rel="stylesheet" type="text/css" href="../menu_2/ddsmoothmenu-v.css" />
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script type="text/javascript" src="../menu_2/ddsmoothmenu.js">
 
 /***********************************************
