@@ -40,19 +40,19 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1a" class="ddsmoothmenu">
 <ul>
-<li><a href="#">LỊCH CÔNG TY</a>
+<li><a href="#">Lịch Công Ty</a>
   <ul>
-  		<li><a href="../cms/calendar/index.php?group_general=0&group_small=1" target="_blank">LỊCH DU LỊCH</a></li>
-        <li><a href="../cms/calendar/index.php?group_general=0&group_small=2" target="_blank">LỊCH NGHĨ LỄ</a></li>
-        <li><a href="../cms/calendar/index.php?group_general=0&group_small=3" target="_blank">LỊCH SỰ KIỆN</a></li>
+  		<li><a href="../cms/calendar/index.php?group_general=0&group_small=1" target="_blank">Lịch Du Lịch</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=0&group_small=2" target="_blank">Lịch Nghỉ Lễ</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=0&group_small=3" target="_blank">Lịch Sự Kiện</a></li>
   </ul>
 </li>
-<li><a href="#">LỊCH LÀM VIỆC BAN LÃNH ĐẠO</a>
+<li><a href="#">Lịch Làm Việc Ban Lãnh Đạo</a>
   <ul>
 
-  		<li><a href="../cms/calendar/index.php?group_general=1&group_small=1" target="_blank">TGĐ NGÔ THANH PHONG</a></li>
-        <li><a href="../cms/calendar/index.php?group_general=1&group_small=2" target="_blank">PHÓ TGĐ NGUYỄN QUANG THỤY</a></li>
-        <li><a href="../cms/calendar/index.php?group_general=1&group_small=3" target="_blank">PHÓ TGĐ NGUYỄN NGỌC LÂN</a></li>
+  		<li><a href="../cms/calendar/index.php?group_general=1&group_small=1" target="_blank">TGĐ Ngô Thanh Phong</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=1&group_small=2" target="_blank">Phó TGĐ Nguyễn Quang Thụy</a></li>
+        <li><a href="../cms/calendar/index.php?group_general=1&group_small=3" target="_blank">Phó TGĐ Nguyễn Ngọc Lân</a></li>
 
   </ul>
 </li>
@@ -64,7 +64,7 @@ ddsmoothmenu.init({
 <div class="box-cat">
 	<div class="cat">
     	<div class="main-cat">
-        	<a>LỊCH LÀM VIỆC MỚI NHẤT</a>
+        	<a>Lịch Làm Việc Mới Nhất</a>
         </div>
     </div>
 </div>

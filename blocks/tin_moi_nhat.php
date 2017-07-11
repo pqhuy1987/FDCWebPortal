@@ -5,7 +5,7 @@
 <div class="box-cat">
 	<div class="cat">
     	<div class="main-cat">
-        	<a href="#">TIN TỨC VÀ SỰ KIỆN MỚI NHẤT</a>
+        	<a href="#">Tin Tức Và Sự Kiện Mới Nhất</a>
         </div>
        
         <div class="clear"></div>

@@ -1,7 +1,7 @@
 <div class="box-cat">
 	<div class="cat">
     	<div class="main-cat">
-        	<a href="#">GALLERY HÌNH ẢNH CÔNG TY</a>
+        	<a href="#">Gallery Hình Ảnh Công Ty</a>
         </div>
        
         <div class="clear"></div>

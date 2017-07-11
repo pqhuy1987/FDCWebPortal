@@ -118,10 +118,10 @@ else
         <div class="box-cat">
 			<div class="cat">
     			<div class="main-cat">
-                    <a href="https://chrome.google.com/webstore/detail/office-editing-for-docs-s/gbkeegbaiigmenfmjfclcdgdpimamgkj?hl=en" target="_blank"><img src="images/Logo_Extension.jpg" width="40" height="15" /> ADD-ON ĐỌC FILE WORD, EXCEL, PPT ONLINE</a>
+                    <a href="https://chrome.google.com/webstore/detail/office-editing-for-docs-s/gbkeegbaiigmenfmjfclcdgdpimamgkj?hl=en" target="_blank"><img src="images/Logo_Extension.jpg" width="40" height="15" /> Add-On Đọc File Word, Excel, PPT Online</a>
                  </div>
         		<div class="child-cat">
-					<a href="#" onClick="MyWindow=window.open('../cms/images/guide/','MyWindow',width=1000,height=100); return false;">(HƯỚNG DẪN)</a>
+					<a href="#" onClick="MyWindow=window.open('../cms/images/guide/','MyWindow',width=1000,height=100); return false;">(Hướng Dẫn)</a>
         		</div>   
         	</div>
         </div>
