@@ -49,26 +49,10 @@ else
     </div>
       <div id="midheader-vp">
     	<div id="left">
-        	<ul class="list_arrow_breakumb">
-            	<li class="start">
-                <a href="javascript:;">CHÀO BẠN <?php echo $_SESSION['ldap_dn'];?></a>
-           </ul>
-           <ul class="list_arrow_breakumb">
-           <li class="start">
-                <a href="./admin/index.php" target="_blank">TRANG QUẢN TRỊ</a>
-           </ul>
-           <ul class="list_arrow_breakumb">
-           <li class="start">
-                <a href="#" onClick="MyWindow=window.open('../cms/upload/Document/','MyWindow',width=1000,height=100); return false;">FILES / TÀI LIỆU</a>
-           </ul>
-            <form action = "" method = "post">
-            <a href="#">
-            <input style="width: 100px; height: 25px; padding: 5px; cursor: pointer; box-shadow: 6px 6px 5px; #999; font-weight: bold; background: #135194; color: #FFF; border-radius: 5px; border: 2px solid #EC2229; font-size: 100%;" type = "submit" name="btnThoat" value="THOÁT"/> </a>
-            </form>
-        </div>
-        <div id="right">
             <?php require "blocks/thongtinchung.php"; ?>
 			<!--blocks/thongtinchung.php-->
+        </div>
+        <div id="right">
         </div>
     </div>
     <div class="clear"></div>
@@ -141,11 +125,9 @@ else
         		</div>   
         	</div>
         </div>
-        <?php require "filebrowser.php"; ?>
-        </div>
-        <div id="content-right">    
-		<!--blocks/cot_phai.php-->
-        <?php require "blocks/tin_moi_nhat.php"; ?>
+        	 <div id="content-file">
+        		<?php require "filebrowser.php"; ?>
+             </div>
         </div>
         <div id="content-right-general">    
 		<!--blocks/cot_phai.php-->
@@ -159,6 +141,5 @@ else
     </div>
     
 </div>
-
 </body>
 </html>

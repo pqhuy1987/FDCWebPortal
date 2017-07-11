@@ -23,7 +23,7 @@
 			$samaccountname = $ldap_dn;
 			$filter = "(samaccountname=$samaccountname)";
 			$dn = "OU=FDC Department,DC=FDC,DC=LOCAL";
-			$attributes = array("memberof");
+			$attributes = array("memberof","cn");
 
 			$res = ldap_search($ldap_con, $dn, $filter, $attributes);
 			$first = ldap_get_entries($ldap_con, $res);
@@ -35,9 +35,9 @@
 					$_SESSION['admin'] = $samaccountname;
 				}
     		}
-			//print "<pre>";
-			//print_r ($first);
-			//print "</pre>";
+			
+			$_SESSION['nameuser'] = $first[0]["cn"][0];
+
          	header('Location: ../index.php');
 		}
 		else

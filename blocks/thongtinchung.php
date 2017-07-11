@@ -1,5 +1,4 @@
-<div class="txt_timer left" id="clockPC">Thứ hai, 28/7/2014 | 09:55 GMT+7</div>	
-             <div class="left">
+        <div class="left">
                 
              </div>
                           <a href="#" class="txt_24h left">KPT</a>

@@ -14,17 +14,12 @@
             $tinmoinhat= TinMoiNhat_MotTin($connect);
             $row_tinmoinhat = mysqli_fetch_array($tinmoinhat);
         ?>
-        	<div class="col1">
-            	<div class="news">
-                <h3 class="title" ><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat['idTin'] ?>"> <?php echo $row_tinmoinhat['TieuDe']?> </a></h3>       
-				</div>
-            </div>
             <?php 
                 $tinmoinhat_bontin = TinMoiNhat_BonTin($connect, $idLT);
             while ($row_tinmoinhat_bontin = mysqli_fetch_array($tinmoinhat_bontin)){    
             ?>
             <div class="col2">
-            <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>"><?php echo $row_tinmoinhat_bontin['TieuDe']?></a></h3>
+            <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">[<?php echo $row_tinmoinhat_bontin['Ngay']?>] <?php echo $row_tinmoinhat_bontin['TieuDe']?></a></h3>
             </div> 
             <?php 
                 }

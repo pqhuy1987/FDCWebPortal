@@ -72,37 +72,17 @@ ddsmoothmenu.init({
 <div class="clear"></div>
 <?php 
 	$eventListHTML = '';
-	$result = $db->query("SELECT title FROM events order by id desc
-			limit 0,1");
+	$result = $db->query("SELECT title, date FROM events order by id desc
+			limit 0,30");
 	if($result->num_rows > 0)
 	{ 
 		while($row = $result->fetch_assoc())
 		{ 
-
-				$eventListHTML .= '<div class="col1">
-     							<div class="news">
-         						 <h3 class="title" ><a href="#">';
-				$eventListHTML .= $row['title'];
-				$eventListHTML .= '</a></h>
-   				 </div></div>';
-		}
-	}
-	echo $eventListHTML;
-?>    
-
-<?php 
-	$eventListHTML = '';
-	$result = $db->query("SELECT title FROM events order by id desc
-			limit 1,30");
-	if($result->num_rows > 0)
-	{ 
-		while($row = $result->fetch_assoc())
-		{ 
-
-				$eventListHTML .= '<div class="col2">
+				$eventListHTML .= '<div style="padding:0 0 0 25px;" class="col2">
        						 <h3 class="tlq">
 							 	<a>';
 				$eventListHTML .= $row['title'];
+				$eventListHTML .= ' [ Vào ngày: '.$row['date'].' ] ';
 				$eventListHTML .= '</a></h>
    				 </div>';
 		}

@@ -32,26 +32,23 @@ ul{ list-style:none}
 	#menu-vp ul li a:hover{ color:#900}
 	
 #midheader-vp{ margin-top:2px}	
-	#midheader-vp #left{ width:50%; float:left; height:20px}	
-	#midheader-vp #left ul li a{ background-color:#135194; border-left:4px solid #EC2229; color:#FFF; font-weight:bold; padding:4px 4px 4px 4px; height:17px; display:block; float:left;}	
-	#midheader-vp #left ul li a:hover{ background-color:#EC2229}	
-	#midheader-vp #left ul li span{background: url("../images/bg_arrow_breakumb_web.gif") no-repeat scroll left top transparent; height:25px; width:13px; float:left}
-	#midheader-vp #right{ width:50%; float:right}
-	#midheader-vp #right .icon_search_web{border:none;background: url("../images/icon_search_web.gif") no-repeat scroll left top transparent;border-bottom: 1px solid #C0C0C0;border-right: 1px solid #C0C0C0;border-top: 1px solid #C0C0C0;cursor: pointer;float: left;height: 20px;width: 20px; margin-left:-2px}
-	#midheader-vp #right .txt_input{background: none repeat scroll 0 0 #FFFFFF; float: left;height: 18px;padding: 0 5px 0 4px;width: 165px;border-bottom: 1px solid #C0C0C0;border-left: 1px solid #C0C0C0;border-top: 1px solid #C0C0C0; float:left}
-	#midheader-vp #right .txt_24h{ background:#CCC; color:#333; font-size:12px; height:18px; padding :2px 3px 0 3px}
+	#midheader-vp #left{ width:50%; float:left}
+	#midheader-vp #left .icon_search_web{border:none;background: url("../images/icon_search_web.gif") no-repeat scroll left top transparent;border-bottom: 1px solid #C0C0C0;border-right: 1px solid #C0C0C0;border-top: 1px solid #C0C0C0;cursor: pointer;float: left;height: 20px;width: 20px; margin-left:-2px}
+	#midheader-vp #left .txt_input{background: none repeat scroll 0 0 #FFFFFF; float: left;height: 18px;padding: 0 5px 0 4px;width: 165px;border-bottom: 1px solid #C0C0C0;border-left: 1px solid #C0C0C0;border-top: 1px solid #C0C0C0; float:left}
+	#midheader-vp #left .txt_24h{ background:#CCC; color:#333; font-size:12px; height:18px; padding :2px 3px 0 3px}
 	
-#content-vp{}
+#content-vp{margin-top:-20px }
 	
-	#content-vp #content-main {border-right:solid 2px #E2E2E3; width:58%; float:left; padding: 15px; min-height:500px; margin: 0 0 0 5px; }
+	#content-vp #content-main {border-right:solid 2px #E2E2E3; width:58%; float:left; padding: 0px 15px 15px 0px; min-height:500px; margin: 0 0 0 5px; }
 	#content-vp #content-main #content-main-1{width:100%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; }
-	#content-vp #content-main #content-main-1 #left{border-right:solid 1px #E2E2E3; width:45%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; overflow:auto }
-	#content-vp #content-main #content-main-1 #right{ width:50%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; overflow:auto }
+	#content-vp #content-main #content-main-1 #left{border-right:solid 1px #E2E2E3; width:52%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 0px; overflow:auto }
+	#content-vp #content-main #content-main-1 #right{ width:43%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; overflow:auto }
 	
 	#content-vp #content-main #content-main-2{width:100%; float:left; padding: 5px; min-height:300px; margin: 0 0 0 5px; }
 	#content-vp #content-right {width:38%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
-	#content-vp #content-right-files{width:38%; float:left; padding: 5px; min-height:200px; max-height:350px; overflow:auto}
-	#content-vp #content-right-general{width:38%; float:right; padding: 5px; min-height:200px; max-height:300px; margin: 0 0 0 1px; overflow:auto}
+	#content-vp #content-right-files{width:38%; float:left; padding: 5px}
+	#content-vp #content-right-files #content-file {width:100%; float:left; padding: 5px; min-height:200px; max-height:350px; overflow:auto}
+	#content-vp #content-right-general{width:38%; float:left; padding: 15px 5px 5px 5px; min-height:200px; max-height:300px; margin: 0 0 0 1px; overflow:auto}
 	
 	#content-vp #content-main .chitiet{ line-height:150%; margin:0 0 40px 0}
 	#content-vp #content-main .btn_quantam{ background:url(../images/btn_quantam.gif) no-repeat; width:75px; height:20px; float:left}
@@ -69,7 +66,7 @@ ul{ list-style:none}
 
 #content-vp	#content-right .cat .cat-content .title a{ color:#135194}	
 #content-vp #content-right .cat .cat-content .title a:hover{ color:#EC2229}	
-#content-vp #content-right .cat .cat-content .col2{ float:left; clear:both}	
+#content-vp #content-right .cat .cat-content .col2{ float:left; clear:both;}	
 
 #content-vp	#content-right-files .cat .cat-content .title a{ color:#135194; font-size:12px;}	
 #content-vp #content-right-files .cat .cat-content .title a:hover{ color:#EC2229}	
@@ -80,7 +77,7 @@ ul{ list-style:none}
 
 #content-vp	#content-right-general .cat .cat-content .title a{ color:#135194}	
 #content-vp #content-right-general .cat .cat-content .title a:hover{ color:#EC2229}	
-#content-vp #content-right-general .cat .cat-content .col2{ float:left; clear:both}	
+#content-vp #content-right-general .cat .cat-content .col2{ float:left; clear:both; padding: 0 0 0 30px}	
 
 
 	
@@ -92,7 +89,7 @@ ul{ list-style:none}
 	#content-vp .main-cat a:hover{ color:#EC2229}
 	#content-vp #content-main .main-cat{ max-width:29%;}
 	#content-vp #content-main .child-cat{ width:70%; margin:6px 0 0 5px; float:left}
-	#content-vp #content-main .child-cat a{ font-weight:bold; height:30px;  font-size:12px; color:#333; border-right:1px solid #E2E2E3; font-size:11px; padding: 0 3px 0 3px}
+	#content-vp #content-main .child-cat a{ font-weight:bold; height:30px;  font-size:12px; color:#333; border-right:1px solid #E2E2E3; font-size:11px; }
 	#content-vp #content-main .child-cat a:hover{ color:#EC2229}
 	
 	#content-vp #content-main .cat-content .col1{ width:75%; float:left}
@@ -103,7 +100,7 @@ ul{ list-style:none}
 	
 	#content-vp	#content-main #content-main-1 #left .cat .cat-content .title a{ color:#135194}	
 	#content-vp #content-main #content-main-1 #left .cat .cat-content .title a:hover{ color:#EC2229}	
-	#content-vp #content-main #content-main-1 #left .cat .cat-content .col2{ width:100%; float:left; clear:both}
+	#content-vp #content-main #content-main-1 #left .cat .cat-content .col2{ width:100%; float:left; clear:both; padding: 0 0 0 15px}
 	#content-vp #content-main #content-main-1 #left .main-cat{ max-width:60%;}
 	
 	#content-vp	#content-main #content-main-1 #right .cat .cat-content .title a{ color:#135194}	
