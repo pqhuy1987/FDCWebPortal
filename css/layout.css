@@ -46,7 +46,7 @@ ul{ list-style:none}
 	
 	#content-vp #content-main #content-main-2{width:100%; float:left; padding: 5px; min-height:300px; margin: 0 0 0 5px; }
 	#content-vp #content-right {width:38%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
-	#content-vp #content-right-files{width:38%; float:left; padding: 5px}
+	#content-vp #content-right-files{width:38%; float:left; padding: 9.5px 5px 5px 5px}
 	#content-vp #content-right-files #content-file {width:100%; float:left; padding: 5px; min-height:200px; max-height:350px; overflow:auto}
 	#content-vp #content-right-general{width:38%; float:left; padding: 15px 5px 5px 5px; min-height:200px; max-height:300px; margin: 0 0 0 1px; overflow:auto}
 	
@@ -107,7 +107,7 @@ ul{ list-style:none}
 	#content-vp #content-main #content-main-1 #right .cat .cat-content .title a:hover{ color:#EC2229}	
 	#content-vp #content-main #content-main-1 #right .cat .cat-content .col2{ width:100%; float:left; clear:both}
 	#content-vp #content-main #content-main-1 #right .main-cat{ max-width:60%;}
-
+	
 	#content-vp #content-right img{ margin:0 5px 5 0}
 	
 	
