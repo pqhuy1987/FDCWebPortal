@@ -1,0 +1,22 @@
+<div style="float:left; width:160px">
+    <daypilot-navigator id="navigator" config="navigatorConfig"></daypilot-navigator>
+</div>
+<div style="margin-left: 160px">
+    <div class="space">
+        Project: <select ng-model="selectedProject" ng-options="option.name for option in projects track by option.id" ng-change="onSelectedProjectChanged()"></select>
+    </div>
+    <div class="space">
+        Cell duration:
+        <select ng-model="scheduler.cellDuration">
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="60">60 minutes</option>
+        </select>
+
+        Show non-business hours:
+        <select ng-model="scheduler.showNonBusiness" ng-options="(item?'show':'hide') for item in [true, false]"></select>
+
+    </div>
+    <daypilot-scheduler id="dp" config="scheduler" events="events"></daypilot-scheduler>
+</div>
+

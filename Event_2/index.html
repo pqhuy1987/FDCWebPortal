@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>AngularJS Timesheet Tutorial (JavaScript, PHP)</title>
+
+        <!-- demo stylesheet -->
+    	<link type="text/css" rel="stylesheet" href="media/layout.css" />
+    </head>
+    <body>
+        <div class="header">
+            <h1><a href='http://code.daypilot.org/54503/angularjs-timesheet-tutorial-javascript-php'>AngularJS Timesheet Tutorial (JavaScript, PHP)</a></h1>
+            <div><a href="http://javascript.daypilot.org/">DayPilot for JavaScript</a> - AJAX Calendar/Scheduling Widgets for JavaScript/HTML5/jQuery/AngularJS</div>
+        </div>
+
+        <div ng-app="timesheet" ng-controller="MainCtrl" class="main">
+            <div class="space"><a href="#/people">People</a> | <a href="#/projects">Projects</a></div>
+            <div ng-view></div>
+        </div>
+
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+        <script src="js/daypilot/daypilot-all.min.js"></script>
+        <script src="index.js"></script>
+        <script src="people.js"></script>
+        <script src="projects.js"></script>
+    </body>
+</html>

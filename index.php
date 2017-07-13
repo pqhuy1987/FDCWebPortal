@@ -126,7 +126,7 @@ else
         	</div>
         </div>
         	 <div id="content-file">
-        		<?php require "filebrowser.php"; ?>
+        		<?php require "kcfinder/index.php"; ?>
              </div>
         </div>
         <div id="content-right-general">    
