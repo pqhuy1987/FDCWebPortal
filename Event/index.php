@@ -9,9 +9,9 @@
 		
         
 		<!-- daypilot libraries -->
-        <script src="js/daypilot/daypilot-all.min.js" type="text/javascript"></script>
+        <script src="../EventCalendar/js/daypilot/daypilot-all.min.js" type="text/javascript"></script>
 
-        <link type="text/css" rel="stylesheet" href="media/layout.css" />
+        <link type="text/css" rel="stylesheet" href="../EventCalendar/media/layout.css" />
 
     </head>
     <body>

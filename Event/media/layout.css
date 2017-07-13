@@ -1,4 +1,4 @@
-﻿p, body, td { font-family: Tahoma, Arial, Sans-Serif; font-size: 10pt; }
+p, body, td { font-family: Tahoma, Arial, Sans-Serif; font-size: 10pt; }
 body { padding: 0px; margin: 0px; background-color: #ffffff; }
 a { color: #1155a3; }
 
@@ -105,7 +105,7 @@ body#fullheight .right { height: 100%; }
 .toolbar_left { height:30px; width: 200px; position: absolute; top: 0px; left: 0px; right: 0px; }
 .toolbar_right { margin-left: 210px; height: 30px; padding: 5px; }
 
-.task { height: 25px; line-height: 25px; padding-left: 5px; display: block; text-decoration:none; background-color:white; border: 1px solid #cccccc; cursor: pointer; background: url(bg/gray30.gif) repeat-x; margin-bottom: 1px; }
+.task { height: 25px; line-height: 25px; padding-left: 5px; display: block; text-decoration:none; background-color:white; border: 1px solid #cccccc; cursor: pointer; background: url(../../EventCalendar/media/bg/gray30.gif) repeat-x; margin-bottom: 1px; }
 .new { font-weight: bold; cursor: pointer; color: black; }
 
 .task span { color: gray;}
