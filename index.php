@@ -131,7 +131,7 @@ else
         </div>
         <div id="content-right-general">    
 		<!--blocks/cot_phai.php-->
-        <?php require "blocks/cot_phai.php"; ?>
+        <?php require "EventCalendar/index.php"; ?>
         </div>
 
     <div class="clear"></div>  	

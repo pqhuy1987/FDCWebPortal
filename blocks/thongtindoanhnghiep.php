@@ -1,7 +1,7 @@
 <div class="thongtin-title">Thông tin doanh nghiệp</div>
 <div class="thongtin-content">
 	<!-- it works the same with all jquery version from 1.x to 2.x -->
-    <script type="text/javascript" src="jquery-slider-master/js/jquery-1.9.1.min.js"></script>
+   
     <!-- use jssor.slider.mini.js (39KB) or jssor.sliderc.mini.js (31KB, with caption, no slideshow) or jssor.sliders.mini.js (26KB, no caption, no slideshow) instead for release -->
     <!-- jssor.slider.mini.js = jssor.sliderc.mini.js = jssor.sliders.mini.js = (jssor.core.js + jssor.utils.js + jssor.slider.js) -->
     <script type="text/javascript" src="jquery-slider-master/js/jssor.core.js"></script>
