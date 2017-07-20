@@ -40,9 +40,10 @@ ul{ list-style:none}
 #content-vp{margin-top:-20px }
 	
 	#content-vp #content-main {border-right:solid 2px #E2E2E3; width:58%; float:left; padding: 0px 15px 15px 0px; min-height:500px; margin: 0 0 0 5px; }
-	#content-vp #content-main #content-main-1{width:100%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; }
-	#content-vp #content-main #content-main-1 #left{border-right:solid 1px #E2E2E3; width:52%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 0px; overflow:auto }
-	#content-vp #content-main #content-main-1 #right{ width:43%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; overflow:auto }
+	#content-vp #content-main #content-main-1{width:100%; float:left; padding: 5px; max-height:300px; margin: 0 0 0 5px; }
+	#content-vp #content-main #content-main-1 #left{border-right:solid 1px #E2E2E3; width:43%; float:left; padding: 5px; max-height:300px; margin: 0 0 0 0px; overflow:auto }
+	#content-vp #content-main #content-main-1 #right { width:52%; float:left; padding: 5px; max-height:300px; margin: 0 0 0 5px;}
+	#content-vp #content-main #content-main-1 #right #content-file {width:100%; float:left; padding: 5px; max-height:230px; margin: 0 0 0 5px; overflow:auto }
 	
 	#content-vp #content-main #content-main-2{width:100%; float:left; padding: 5px; min-height:300px; margin: 0 0 0 5px; }
 	#content-vp #content-right {width:38%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
@@ -109,6 +110,9 @@ ul{ list-style:none}
 	#content-vp #content-main #content-main-1 #right .main-cat{ max-width:60%;}
 	
 	#content-vp #content-right img{ margin:0 5px 5 0}
+	
+	#content-vp #content-main #content-main-1 #right .main-cat{ max-width:50%;}
+	#content-vp #content-main #content-main-1 #right .child-cat{ max-width:50%;}
 	
 	
 	
