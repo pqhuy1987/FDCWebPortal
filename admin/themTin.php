@@ -35,6 +35,11 @@
 			$TinNoiBat = $_POST["TinNoiBat"];
 			$AnHien = $_POST["AnHien"];
 			$urlFile = $_POST["urlFile"];
+			$urlFile2 = $_POST["urlFile2"];
+			$urlFile3 = $_POST["urlFile3"];
+			$urlFile4 = $_POST["urlFile4"];
+			$urlFile5 = $_POST["urlFile5"];
+			
 			
 			$qr = "
 				insert into tin values (
@@ -51,7 +56,11 @@
 				'$SoLanXem',
 				'$TinNoiBat',
 				'$AnHien',
-				'$urlFile'
+				'$urlFile',
+				'$urlFile2',
+				'$urlFile3',
+				'$urlFile4',
+				'$urlFile5'
 				)
 				";
 			mysqli_query($connect, $qr);
@@ -140,6 +149,23 @@ $(document).ready(function() {
         <td>URL File</td>
         <td><label for="urlFile"></label>          <input type="text" name="urlFile" id="urlFile" /><input onclick="BrowseServer('','urlFile')" type="button" name="btnChonFile2" id="btnChonFile2" value="Chọn File" />          </td>
       </tr>
+      <tr>
+        <td>URL File 2</td>
+        <td><label for="urlFile2"></label>          <input type="text" name="urlFile2" id="urlFile2" /><input onclick="BrowseServer('','urlFile2')" type="button" name="btnChonFile3" id="btnChonFile3" value="Chọn File" />          </td>
+      </tr>
+      <tr>
+        <td>URL File 3</td>
+        <td><label for="urlFile3"></label>          <input type="text" name="urlFile3" id="urlFile3" /><input onclick="BrowseServer('','urlFile3')" type="button" name="btnChonFile4" id="btnChonFile4" value="Chọn File" />          </td>
+      </tr>
+      <tr>
+        <td>URL File 4</td>
+        <td><label for="urlFile4"></label>          <input type="text" name="urlFile4" id="urlFile4" /><input onclick="BrowseServer('','urlFile4')" type="button" name="btnChonFile5" id="btnChonFile5" value="Chọn File" />          </td>
+      </tr>
+      <tr>
+        <td>URL File 5</td>
+        <td><label for="urlFile5"></label>          <input type="text" name="urlFile5" id="urlFile5" /><input onclick="BrowseServer('','urlFile5')" type="button" name="btnChonFile6" id="btnChonFile6" value="Chọn File" />          </td>
+      </tr>
+
       <tr>
         <td height="23">Content</td>
         <td><label for="Content"></label>          <textarea name="Content" id="Content" cols="45" rows="5"></textarea>

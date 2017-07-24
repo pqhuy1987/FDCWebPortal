@@ -41,6 +41,10 @@
 			$TinNoiBat = $_POST["TinNoiBat"];
 			$AnHien = $_POST["AnHien"];
 			$urlFile = $_POST["urlFile"];
+			$urlFile2 = $_POST["urlFile2"];
+			$urlFile3 = $_POST["urlFile3"];
+			$urlFile4 = $_POST["urlFile4"];
+			$urlFile5 = $_POST["urlFile5"];
 			
 			$qr = "
 				update tin set
@@ -56,7 +60,11 @@
 				SoLanXem = '$SoLanXem',
 				TinNoiBat = '$TinNoiBat',
 				AnHien = '$AnHien',
-				urlFile = '$urlFile'
+				urlFile = '$urlFile',
+				urlFile2 = '$urlFile2',
+				urlFile3 = '$urlFile3',
+				urlFile4 = '$urlFile4',
+				urlFile5 = '$urlFile5'		
 				where idTin='$idTin'
 				";
 			mysqli_query($connect, $qr);
@@ -144,6 +152,22 @@ $(document).ready(function() {
       <tr>
         <td>URL File</td>
         <td><label for="urlFile"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["urlFile"]?>" name="urlFile" id="urlFile" /><input onclick="BrowseServer('','urlFile')" type="button" name="btnChonFile2" id="btnChonFile2" value="Chọn File" />          </td>
+      </tr>
+      <tr>
+        <td>URL File 2</td>
+        <td><label for="urlFile2"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["urlFile2"]?>" name="urlFile2" id="urlFile2" /><input onclick="BrowseServer('','urlFile2')" type="button" name="btnChonFile3" id="btnChonFile3" value="Chọn File" />          </td>
+      </tr>
+      <tr>
+        <td>URL File 3</td>
+        <td><label for="urlFile3"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["urlFile3"]?>" name="urlFile3" id="urlFile3" /><input onclick="BrowseServer('','urlFile3')" type="button" name="btnChonFile4" id="btnChonFile4" value="Chọn File" />          </td>
+      </tr>
+      <tr>
+        <td>URL File 4</td>
+        <td><label for="urlFile4"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["urlFile4"]?>" name="urlFile4" id="urlFile4" /><input onclick="BrowseServer('','urlFile4')" type="button" name="btnChonFile5" id="btnChonFile5" value="Chọn File" />          </td>
+      </tr>
+      <tr>
+        <td>URL File 5</td>
+        <td><label for="urlFile5"></label>          <input type="text" value="<?php echo $row_ChiTietLoaiTin["urlFile5"]?>" name="urlFile5" id="urlFile5" /><input onclick="BrowseServer('','urlFile5')" type="button" name="btnChonFile6" id="btnChonFile6" value="Chọn File" />          </td>
       </tr>
       <tr>
         <td height="23">Content</td>

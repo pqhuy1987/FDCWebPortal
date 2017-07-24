@@ -42,19 +42,79 @@ $(document).ready(function() {
 <div class="chitiet">
 <!--noi dung-->
 <?php echo $row_ChiTietTin_NoiDungTin['Content'] ?>
-<?php
+
+<?php //File 1
 if ($row_ChiTietTin_NoiDungTin['urlFile'] != null) {
     $path = $row_ChiTietTin_NoiDungTin['urlFile'];
 	$file = basename($path);         // $file is set to "index.php"
 	
 	
 ?>
-<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>" target="_blank"></br><strong>File Đính Kèm: </strong></br><img src="images/attachment.png" width="15" height="15" /><strong><?php echo urldecode($file);?></strong></a>
+<strong>File Đính Kèm: </strong>
+
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile']?>" target="_blank"></br><img src="images/attachment.png" width="15" height="15" /><strong><?php echo urldecode($file);?></strong></a>
 <?php 
 } else {
 	
 }
 ?>
+
+<?php	//File 2
+if ($row_ChiTietTin_NoiDungTin['urlFile2'] != null) {
+    $path = $row_ChiTietTin_NoiDungTin['urlFile2'];
+	$file = basename($path);         // $file is set to "index.php"
+	
+	
+?>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile2']?>" target="_blank"></br><img src="images/attachment.png" width="15" height="15" /><strong><?php echo urldecode($file);?></strong></a>
+<?php 
+} else {
+	
+}
+?>
+
+<?php	//File 3
+if ($row_ChiTietTin_NoiDungTin['urlFile3'] != null) {
+    $path = $row_ChiTietTin_NoiDungTin['urlFile3'];
+	$file = basename($path);         // $file is set to "index.php"
+	
+	
+?>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile3']?>" target="_blank"></br><img src="images/attachment.png" width="15" height="15" /><strong><?php echo urldecode($file);?></strong></a>
+<?php 
+} else {
+	
+}
+?>
+
+<?php	//File 4
+if ($row_ChiTietTin_NoiDungTin['urlFile4'] != null) {
+    $path = $row_ChiTietTin_NoiDungTin['urlFile4'];
+	$file = basename($path);         // $file is set to "index.php"
+	
+	
+?>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile4']?>" target="_blank"></br><img src="images/attachment.png" width="15" height="15" /><strong><?php echo urldecode($file);?></strong></a>
+<?php 
+} else {
+	
+}
+?>
+
+<?php	//File 5
+if ($row_ChiTietTin_NoiDungTin['urlFile5'] != null) {
+    $path = $row_ChiTietTin_NoiDungTin['urlFile5'];
+	$file = basename($path);         // $file is set to "index.php"
+	
+	
+?>
+<a href="<?php echo $row_ChiTietTin_NoiDungTin['urlFile5']?>" target="_blank"></br><img src="images/attachment.png" width="15" height="15" /><strong><?php echo urldecode($file);?></strong></a>
+<?php 
+} else {
+	
+}
+?>
+
 <!--//noi dung-->
 </div>
 <div class="clear"></div>
