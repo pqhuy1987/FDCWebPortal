@@ -42,15 +42,15 @@ ddsmoothmenu.init({
 <div id="smoothmenu3" class="ddsmoothmenu">
 <ul>
 
-<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@portal.fdcc.com.vn:8080/" target="_blank"> <img src="images/Menu1.jpg" width="200" height="50" /></a>
-<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@project.fdcc.com.vn/" target="_blank"> <img src="images/Menu2.jpg" width="200" height="50" /></a>
-<li><a href="http://hrm.fdcc.com.vn:8000/" target="_blank"> <img src="images/Menu3.jpg" width="200" height="50" /></a>
-<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@forum.fdcc.com.vn/index.php/" target="_blank"> <img src="images/Menu4.jpg" width="200" height="50" /></a>
-<li><a href="http://nas.fdcc.com.vn:5000/" target="_blank"> <img src="images/Menu5.jpg" width="200" height="50" /></a>
-<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@mail.fdcc.com.vn/" target="_blank"> <img src="images/Menu6.jpg" width="200" height="50" /></a>
-<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@edu.fdcc.com.vn/" target="_blank"> <img src="images/Menu7.jpg" width="200" height="50" /></a>
-<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@cfe.fdcc.com.vn/" target="_blank"> <img src="images/Menu8.jpg" width="200" height="50" /></a>
-<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@youtube.com/channel/UC2TriOxypZZJp7uZm6PbWQQ/" target="_blank"> <img src="images/Menu9.jpg" width="200" height="50" /></a>
+<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@portal.fdcc.com.vn:8080/" target="_blank"> <img src="images/Menu1.jpg" width="250" height="60" /></a>
+<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@project.fdcc.com.vn/" target="_blank"> <img src="images/Menu2.jpg" width="250" height="60" /></a>
+<li><a href="http://hrm.fdcc.com.vn:8000/" target="_blank"> <img src="images/Menu3.jpg" width="250" height="60" /></a>
+<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@forum.fdcc.com.vn/index.php/" target="_blank"> <img src="images/Menu4.jpg" width="250" height="60" /></a>
+<li><a href="http://nas.fdcc.com.vn:5000/" target="_blank"> <img src="images/Menu5.jpg" width="250" height="60" /></a>
+<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@mail.fdcc.com.vn/" target="_blank"> <img src="images/Menu6.jpg" width="250" height="60" /></a>
+<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@edu.fdcc.com.vn/" target="_blank"> <img src="images/Menu7.jpg" width="250" height="60" /></a>
+<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@cfe.fdcc.com.vn/" target="_blank"> <img src="images/Menu8.jpg" width="250" height="60" /></a>
+<li><a href="http://<?php echo $_SESSION['ldap_dn'];?>:<?php echo $_SESSION['ldap_password'];?>@youtube.com/channel/UC2TriOxypZZJp7uZm6PbWQQ/" target="_blank"> <img src="images/Menu9.jpg" width="250" height="60" /></a>
 
 </li>
 
