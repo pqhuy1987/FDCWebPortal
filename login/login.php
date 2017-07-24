@@ -19,6 +19,7 @@
 		{
 			session_start();
         	$_SESSION['ldap_dn'] = $ldap_dn;
+			$_SESSION['ldap_password'] = $ldap_password;
 			
 			$samaccountname = $ldap_dn;
 			$filter = "(samaccountname=$samaccountname)";

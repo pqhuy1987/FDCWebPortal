@@ -32,24 +32,6 @@ ddsmoothmenu.init({
 	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
 })
 
-ddsmoothmenu.init({
-	mainmenuid: "smoothmenu3", //menu DIV id
-	orientation: 'h', //Horizontal or vertical menu: Set to "h" or "v"
-	classname: 'ddsmoothmenu', //class added to menu's outer DIV
-	//customtheme: ["#1c5a80", "#18374a"],
-	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-})
-
-ddsmoothmenu.init({
-	mainmenuid: "smoothmenu2", //Menu DIV id
-	orientation: 'v', //Horizontal or vertical menu: Set to "h" or "v"
-	classname: 'ddsmoothmenu-v', //class added to menu's outer DIV
-	method: 'toggle', // set to 'hover' (default) or 'toggle'
-	arrowswap: true, // enable rollover effect on menu arrow images?
-	//customtheme: ["#804000", "#482400"],
-	contentsource: "markup" //"markup" or ["container_id", "path_to_menu_file"]
-})
-
 </script>
 
 <!-- Markup for mobile menu toggler. Hidden by default, only shown when in mobile menu mode -->
@@ -88,6 +70,7 @@ ddsmoothmenu.init({
   		<li><form id="btnThoat" action = "" method = "post"><a href="#" onClick="document.getElementById('btnThoat').submit();"> <input type="hidden" name="btnThoat"> Thoát </input></a></form></li>
   </ul>
 </li>
+
 </ul>
 <br style="clear: left" />
 </div>
