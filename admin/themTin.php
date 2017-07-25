@@ -135,7 +135,7 @@ $(document).ready(function() {
         </tr>
       <tr>
         <td width="146">Tiêu Đề</td>
-        <td width="1038"><label for="TieuDe"></label>          <input type="text" name="TieuDe" maxlength="50" id="TieuDe" />        </td>
+        <td width="1038"><label for="TieuDe"></label>          <input type="text" name="TieuDe" maxlength="100" id="TieuDe" />        </td>
       </tr>
       <tr>
         <td>Tóm Tắt</td>
