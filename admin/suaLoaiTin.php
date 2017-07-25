@@ -20,26 +20,33 @@
 
 <?php
 if(isset($_POST["btnThem"])){
-	$Ten = $_POST["Ten"];
-	$Ten_KhongDau  = changeTitle($Ten);	
-	$ThuTu  = $_POST["ThuTu"];
-		settype($ThuTu, "int");
-	$AnHien  = $_POST["AnHien"];
-		settype($AnHien, "int");
-	$idTL  = $_POST["idTL"];
-		settype($idTL, "int");
-	$qr = "
-		update loaitin set
-		Ten = '$Ten',
-		Ten_KhongDau = '$Ten_KhongDau',
-		ThuTu = '$ThuTu',
-		AnHien = '$AnHien',
-		idTL = '$idTL'
-		where idLT='$idLT'
-	";
-	echo "OK";	
-	mysqli_query($connect, $qr);
-	header ("location: listLoaiTin.php");
+	if (($_POST["Ten"] == null) || ($_POST["idTL"] == null))
+	{
+		echo '<script language="javascript">';
+		echo 'alert("Bạn chưa thêm Tên hoặc Thể Loại")';
+		echo '</script>';	
+	} else { 
+		$Ten = $_POST["Ten"];
+		$Ten_KhongDau  = changeTitle($Ten);	
+		$ThuTu  = $_POST["ThuTu"];
+			settype($ThuTu, "int");
+		$AnHien  = $_POST["AnHien"];
+			settype($AnHien, "int");
+		$idTL  = $_POST["idTL"];
+			settype($idTL, "int");
+		$qr = "
+			update loaitin set
+			Ten = '$Ten',
+			Ten_KhongDau = '$Ten_KhongDau',
+			ThuTu = '$ThuTu',
+			AnHien = '$AnHien',
+			idTL = '$idTL'
+			where idLT='$idLT'
+		";
+		echo "OK";	
+		mysqli_query($connect, $qr);
+		header ("location: listLoaiTin.php");
+	}
 }
 ?>
 

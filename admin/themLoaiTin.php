@@ -15,26 +15,33 @@
 
 <?php
 if(isset($_POST["btnThem"])){
-	$Ten = $_POST["Ten"];
-	$Ten_KhongDau  = changeTitle($Ten);	
-	$ThuTu  = $_POST["ThuTu"];
-		settype($ThuTu, "int");
-	$AnHien  = $_POST["AnHien"];
-		settype($AnHien, "int");
-	$idTL  = $_POST["idTL"];
-		settype($idTL, "int");
-	$qr = "
-		insert into loaitin values (
-		null,
-		'$Ten',
-		'$Ten_KhongDau',
-		'$ThuTu',
-		'$AnHien',
-		'$idTL'
-	)
-	";
-	mysqli_query($connect, $qr);
-	header ("location: listLoaiTin.php");
+	if (($_POST["Ten"] == null) || ($_POST["idTL"] == null))
+	{
+		echo '<script language="javascript">';
+		echo 'alert("Bạn chưa thêm Tên hoặc Thể Loại")';
+		echo '</script>';	
+	} else { 
+		$Ten = $_POST["Ten"];
+		$Ten_KhongDau  = changeTitle($Ten);	
+		$ThuTu  = $_POST["ThuTu"];
+			settype($ThuTu, "int");
+		$AnHien  = $_POST["AnHien"];
+			settype($AnHien, "int");
+		$idTL  = $_POST["idTL"];
+			settype($idTL, "int");
+		$qr = "
+			insert into loaitin values (
+			null,
+			'$Ten',
+			'$Ten_KhongDau',
+			'$ThuTu',
+			'$AnHien',
+			'$idTL'
+		)
+		";
+		mysqli_query($connect, $qr);
+		header ("location: listLoaiTin.php");
+	}
 }
 ?>
 
@@ -81,6 +88,7 @@ if(isset($_POST["btnThem"])){
         <td>ID THỂ LOẠI</td>
         <td><label for="idTL"></label>
           <select name="idTL" id="idTL">
+          	<option  value="">--Chọn--</option>
           	<?php 
 				$theloai = DanhSachTheLoai($connect);
 				while($row_theloai = mysqli_fetch_array($theloai)){

@@ -15,16 +15,23 @@
 
 <?php 
 	if (isset($_POST["btnThem"])){
-		$TenTL = $_POST["TenTL"];		
-		$TenTL_KhongDau = changeTitle($TenTL);
-		$ThuTu = $_POST["ThuTu"];
-			settype($ThuTu, "int");
-		$AnHien = $_POST["AnHien"];	
-			settype($AnHien, "int");
-		$qr = "insert into theloai
-		values(null, '$TenTL', '$TenTL_KhongDau', '$ThuTu', '$AnHien' )";
-		mysqli_query($connect, $qr);	
-		header("location: listTheLoai.php");	
+		if (($_POST["TenTL"] == null))
+		{
+			echo '<script language="javascript">';
+			echo 'alert("Bạn chưa thêm Tên Thể Loại")';
+			echo '</script>';	
+		} else { 
+			$TenTL = $_POST["TenTL"];		
+			$TenTL_KhongDau = changeTitle($TenTL);
+			$ThuTu = $_POST["ThuTu"];
+				settype($ThuTu, "int");
+			$AnHien = $_POST["AnHien"];	
+				settype($AnHien, "int");
+			$qr = "insert into theloai
+			values(null, '$TenTL', '$TenTL_KhongDau', '$ThuTu', '$AnHien' )";
+			mysqli_query($connect, $qr);	
+			header("location: listTheLoai.php");
+		}
 }
 ?>
 
