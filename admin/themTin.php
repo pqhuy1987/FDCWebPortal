@@ -129,9 +129,9 @@ $(document).ready(function() {
     <td id="hang2"><?php require "menu.php"; ?></td>
   </tr>
   <tr>
-    <td height="133"><form action="" method="post"><table width="1200" border="1">
+    <td height="505"><form action="" method="post"><table width="1200" border="1">
       <tr>
-        <td colspan="2">THÊM TIN</td>
+        <td id="hang3" colspan="2">THÊM TIN</td>
         </tr>
       <tr>
         <td width="146">Tiêu Đề</td>
@@ -228,32 +228,6 @@ var editor = CKEDITOR.replace( 'Content',{
 			}
 		?>
           </select>        </td>
-      </tr>
-      <tr>
-        <td height="23">Tin Nổi Bật</td>
-        <td><p>
-          <label>
-            <input type="radio" name="TinNoiBat" value="1" id="TinNoiBat_0" />
-            Nổi bật</label>
-          <br />
-          <label>
-            <input type="radio" name="TinNoiBat" value="0" id="TinNoiBat_1" />
-            Thường</label>
-          <br />
-        </p>        </td>
-      </tr>
-      <tr>
-        <td height="23">Ẩn Hiện</td>
-        <td><p>
-          <label>
-            <input type="radio" name="AnHien" value="1" id="AnHien_0" />
-            Hiện</label>
-          <br />
-          <label>
-            <input type="radio" name="AnHien" value="0" id="AnHien_1" />
-            Ẩn</label>
-          <br />
-        </p>        </td>
       </tr>
       <tr>
         <td height="23">&nbsp;</td>

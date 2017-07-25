@@ -57,30 +57,13 @@ if (isset($_POST["btnSua"])){
     <td id="hang2"><?php require "menu.php"; ?></td>
   </tr>
   <tr>
-    <td height="140"><form action="" method="post" name="form2"><table width="1200" border="1">
+    <td height="92"><form action="" method="post" name="form2"><table width="1200" border="1">
       <tr>
-        <td height="24" colspan="2">SỬA THỂ LOẠI</td>
+        <td id="hang3" height="24" colspan="2">SỬA THỂ LOẠI</td>
         </tr>
       <tr>
         <td width="492">Tên TL</td>
         <td width="492"><label for="TenTL"></label>          <input type="text" value="<?php echo $row_suatheloai["TenTL"] ?>" name="TenTL" id="TenTL" />        </td>
-      </tr>
-      <tr>
-        <td>Thứ Tự</td>
-        <td><label for="ThuTu"></label>          <input type="text" value="<?php echo $row_suatheloai["ThuTu"] ?>" name="ThuTu" id="ThuTu" />        </td>
-      </tr>
-      <tr>
-        <td>Ẩn Hiện</td>
-        <td><p>
-          <label>
-            <input <?php if($row_suatheloai["AnHien"]==1) echo "checked='checked'" ?> type="radio" name="AnHien" value="1" id="AnHien_0" />
-            Hiện</label>
-          <br />
-          <label>
-            <input <?php if($row_suatheloai["AnHien"]==0) echo "checked='checked'" ?> type="radio" name="AnHien" value="0" id="AnHien_1" />
-            Ẩn</label>
-          <br />
-        </p>        </td>
       </tr>
       <tr>
         <td height="28">&nbsp;</td>

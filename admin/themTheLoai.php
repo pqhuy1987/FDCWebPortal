@@ -39,42 +39,24 @@
 <body>
 <table width="auto" border="1">
   <tr>
-    <td id="hangTieuDe">TRANG QUẢN TRỊ</td>
+    <td width="1196" id="hangTieuDe">TRANG QUẢN TRỊ</td>
   </tr>
   <tr>
     <td id="hang2"><?php require "menu.php"; ?></td>
   </tr>
   <tr>
-    <td height="140"><form id="form1" name="form1" method="post" action="">
+    <td height="91"><form id="form1" name="form1" method="post" action="">
       <table width="1200" border="1">
         <tr>
-          <td height="24" colspan="2">THÊM THỂ LOẠI</td>
+          <td id="hang3" colspan="7">THÊM THỂ LOẠI</td>
         </tr>
         <tr>
-          <td width="492">Tên TL</td>
-          <td width="492"><label for="TenTL"></label>
+          <td width="559">Tên TL</td>
+          <td width="625"><label for="TenTL"></label>
             <input type="text" name="TenTL" id="TenTL" /></td>
         </tr>
         <tr>
-          <td>Thứ Tự</td>
-          <td><label for="ThuTu2"></label>
-            <input type="text" name="ThuTu" id="ThuTu2" /></td>
-        </tr>
-        <tr>
-          <td>Ẩn Hiện</td>
-          <td><p>
-            <label>
-              <input type="radio" name="AnHien" value="1" id="RadioGroup1_0" />
-              Hiện</label>
-            <br />
-            <label>
-              <input type="radio" name="AnHien" value="0" id="RadioGroup1_1" />
-              Ẩn</label>
-            <br />
-          </p></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
+          <td height="28">&nbsp;</td>
           <td><input type="submit" name="btnThem" id="btnThem" value="Thêm" /></td>
         </tr>
       </table>

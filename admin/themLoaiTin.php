@@ -57,30 +57,25 @@ if(isset($_POST["btnThem"])){
   <tr>
     <td><form action="" method="post" name="form1"><table width="1200" border="1">
       <tr>
-        <td colspan="2">THÊM LOẠI TIN</td>
+        <td id="hang3" width = "1200px" colspan="7" >THÊM LOẠI TIN</td>
         </tr>
       <tr>
         <td width="508">TÊN</td>
         <td width="509"><label for="Ten"></label>
           <input type="text" name="Ten" id="Ten" /></td>
       </tr>
+
+        <label  for="ThuTu"></label>
+          <input type="hidden" type="text" name="ThuTu" id="ThuTu" />
+
       <tr>
-        <td>THỨ TỰ</td>
-        <td><label for="ThuTu"></label>
-          <input type="text" name="ThuTu" id="ThuTu" /></td>
-      </tr>
-      <tr>
-        <td>ẨN HIỆN</td>
-        <td><p>
           <label>
-            <input type="radio" name="AnHien" value="1" id="AnHien_0" />
-            Hiện</label>
-          <br />
+            <input type="hidden" type="radio" name="AnHien" value="1" id="AnHien_0" />
+            </label>
+         
           <label>
-            <input type="radio" name="AnHien" value="0" id="AnHien_1" />
-            Ẩn</label>
-          <br />
-        </p>        </td>
+            <input  type="hidden" type="radio" name="AnHien" value="0" id="AnHien_1" />
+           </label>            
       </tr>
       <tr>
         <td>ID THỂ LOẠI</td>

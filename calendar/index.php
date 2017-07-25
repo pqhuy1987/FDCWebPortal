@@ -10,6 +10,17 @@
 <body>
 <?php include_once('functions.php'); ?>
 <?php
+
+ob_start();
+session_start();
+    
+if (isset($_SESSION['admin']))
+{
+	;
+} else {
+ 	header("location: ../index.php");
+}
+	
 if (isset($_GET["group_general"])){
 	$group_general = $_GET["group_general"];     
 	settype($group_general, "int");
