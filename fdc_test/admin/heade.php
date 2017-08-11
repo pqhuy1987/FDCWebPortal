@@ -34,7 +34,7 @@ if($connect)
 	$dbcon = mysqli_select_db($connect, $dbname);
 }
 $hr_admin =mysqli_query($connect,"select username from hioxpm");
- if($hrline=@mysqli_fetch_array($hr_admin,MYSQL_ASSOC))
+ if($hrline=@mysqli_fetch_array($hr_admin))
    {
      $uname=$hrline['username'];
    }	

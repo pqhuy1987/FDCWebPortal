@@ -102,7 +102,7 @@ $limit_tag="<br>";
  echo "</div><div class='clear'></div>";   
  $lt=1;$pn=0;
 
-  while($row = mysqli_fetch_array($query, MYSQL_ASSOC))
+  while($row = mysqli_fetch_array($query))
    {
     
                         $id = $row['id'];
@@ -312,21 +312,23 @@ count();
     }
     else
     {
-       echo "<div class='frms'>
-                 <form name='quiz' action='' method='post'>
+		  $cquery = mysqli_query($connect,"SELECT * FROM category WHERE status='release'" );
+       	  echo "<div class='frms'>
+          <form name='quiz' action='' method='post'>
 		  <label>Your Name : </label>
 		  <input type='text' name='uname' value='' maxlength='20'> 
-		 <label>Select Category : </label>
+		  <label>Select Category : </label>
 		  <select name='catid'>";
-		   $cquery = mysqli_query($connect,"SELECT * FROM category WHERE status='release'" );
+
 		   if($cquery)
 		   {
-		     
-                     while($crow = mysqli_fetch_array($cquery, MYSQL_ASSOC))
-                      {
-		         $catid=$crow['id'];
-			 $catname=$crow['category'];
-			 echo "<option value='$catid'>$catname</option>";
+		      echo "test 4";
+              while($crow = mysqli_fetch_array($cquery))
+              {
+				  	echo "test 5";
+		         	$catid=$crow['id'];
+			 		$catname=$crow['category'];
+			 		echo "<option value='$catid'>$catname</option>";
 		      }
 		    
 		   }
