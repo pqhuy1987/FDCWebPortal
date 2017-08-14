@@ -1,6 +1,6 @@
 <html>
 		     <head>
-					  <title>PHP Quiz System</title>
+					  <title>FDC Hệ Thống Trắc Nghiệm</title>
 		     </head>
 </html>
 <?php
@@ -13,7 +13,6 @@ if($hm2=="")
 require_once "$hm/admin/auth/config.php";
 if(($hostname == "" || $dbname == "" || $username == "") )
 {
-		     
   echo "<div align='center' style='margin-top:20%;color:red;'><b>Installation process is not completed.kindly follow the read me file instruction.</b></div>";
 }
 else{
@@ -49,7 +48,7 @@ $time =$settings_row['examtime'];
 } 
  else
  {
-    $uname="<b>     Quiz System     </b>";		     
+    $uname="<b>     FDC - Hệ thống đánh giá giám sát     </b>";		     
  }
 ?>
 
@@ -315,25 +314,23 @@ count();
 		  $cquery = mysqli_query($connect,"SELECT * FROM category WHERE status='release'" );
        	  echo "<div class='frms'>
           <form name='quiz' action='' method='post'>
-		  <label>Your Name : </label>
+		  <label>Họ và Tên : </label>
 		  <input type='text' name='uname' value='' maxlength='20'> 
-		  <label>Select Category : </label>
+		  <label>Chọn chuyên mục đánh giá : </label>
 		  <select name='catid'>";
 
 		   if($cquery)
 		   {
-		      echo "test 4";
               while($crow = mysqli_fetch_array($cquery))
               {
-				  	echo "test 5";
-		         	$catid=$crow['id'];
-			 		$catname=$crow['category'];
+		         	$catid = $crow['id'];
+			 		$catname = $crow['category'];
 			 		echo "<option value='$catid'>$catname</option>";
 		      }
 		    
 		   }
 		  echo "</select>
-		  <input type='submit' value='Submit'>
+		  <input type='submit' value='Bắt đầu'>
 		 </form>
         </div>";
     }

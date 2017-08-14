@@ -71,6 +71,13 @@ ddsmoothmenu.init({
   </ul>
 </li>
 
+<li><a href="./">Đánh Giá Năng Lực Giám Sát</a>
+  <ul>
+  		<li><a href="./Fdc_test/" target="_blank">Làm trắc nghiệm</a></li>
+  		<li><a href="./Fdc_test/Admin" target="_blank">Quản trị nội dung trắc nghiệm</a></li>
+  </ul>
+</li>
+
 </ul>
 <br style="clear: left" />
 </div>
