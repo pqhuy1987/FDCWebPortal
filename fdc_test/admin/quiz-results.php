@@ -51,7 +51,7 @@ include "heade.php" ;
 <?php
 
 $per_page = 10;  //Display Images or Content
-$count=mysqli_query($connect,"select count(*) from quizresults");
+$count=mysqli_query($connect_2,"select count(*) from quizresults");
 while ($row2 = mysqli_fetch_row($count)) 
 {
    $total=$row2[0];

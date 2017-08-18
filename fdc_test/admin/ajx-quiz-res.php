@@ -1,10 +1,10 @@
 <?php
 error_reporting(0);
 require_once "./auth/config.php";
-$connect = mysqli_connect("$hostname","$username","$password");
-if($connect)
+$connect_2 = mysqli_connect("$hostname","$username","$password");
+if($connect_2)
 {
-	$dbcon = mysqli_select_db($connect, "$dbname");
+	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
 $uidd  = $_SERVER['REQUEST_URI'];
     $host1 = $_SERVER['SERVER_NAME'];
@@ -16,7 +16,7 @@ $page = $_REQUEST['page'];
 
 $start = ($page)*10;
 
-$res2 = mysqli_query($connect,"SELECT * FROM quizresults order by id desc limit $start,10");
+$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit $start,10");
 echo "<div id='maindiv'>";
 
 //echo $start;
@@ -46,7 +46,7 @@ echo "<div id='maindiv'>";
 			
 			$name = $line['name'];
 			$catid = $line['cat_id'];
-			$res3 = mysqli_query($connect,"SELECT category FROM category where id='$catid'");
+			$res3 = mysqli_query($connect_2,"SELECT category FROM category where id='$catid'");
 			$crow=mysqli_fetch_assoc($res3);
 			$cat_name=$crow['category'];
 			

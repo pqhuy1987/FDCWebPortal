@@ -28,12 +28,12 @@
 error_reporting(0);
 require_once "auth/config.php";
 
-$connect = mysqli_connect($hostname, $username,$password);
-if($connect)
+$connect_2 = mysqli_connect($hostname, $username,$password);
+if($connect_2)
 {
-	$dbcon = mysqli_select_db($connect, $dbname);
+	$dbcon = mysqli_select_db($connect_2, $dbname);
 }
-$hr_admin =mysqli_query($connect,"select username from hioxpm");
+$hr_admin =mysqli_query($connect_2,"select username from hioxpm");
  if($hrline=@mysqli_fetch_array($hr_admin))
    {
      $uname=$hrline['username'];

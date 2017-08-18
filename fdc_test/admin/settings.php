@@ -4,10 +4,10 @@ include "authheader.php";
 if($block != true)
 {
 require_once "./auth/config.php";
-$connect = mysqli_connect("$hostname","$username","$password");
-if($connect)
+$connect_2 = mysqli_connect("$hostname","$username","$password");
+if($connect_2)
 {
-	$dbcon = mysqli_select_db($connect, "$dbname");
+	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
 include "heade.php";
 ?>
@@ -44,7 +44,7 @@ function submit_settings()
 }
 </script>
 <?php
-$res = mysqli_query($connect,"SELECT * FROM settings where id='1'");
+$res = mysqli_query($connect_2,"SELECT * FROM settings where id='1'");
 if($res)
 {
 $row=mysqli_fetch_assoc($res);

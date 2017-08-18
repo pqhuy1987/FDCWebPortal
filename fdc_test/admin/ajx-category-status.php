@@ -1,10 +1,10 @@
 <?php
 error_reporting(0);
 require_once "./auth/config.php";
-$connect = mysqli_connect("$hostname","$username","$password");
-if($connect)
+$connect_2 = mysqli_connect("$hostname","$username","$password");
+if($connect_2)
 {
-	$dbcon = mysqli_select_db($connect, "$dbname");
+	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
 $status=$_POST['status'];
 $id=$_POST['id'];
@@ -16,7 +16,7 @@ if($id=="")
 }
 else if($status=="delete")
 {
-    $query=mysqli_query($connect,"delete from category where id='$id'");
+    $query=mysqli_query($connect_2,"delete from category where id='$id'");
     if($query)
     {
 	$msg="Deleted Sucessfully...";
@@ -24,7 +24,7 @@ else if($status=="delete")
 }
 else if($status=="update")
 {
-    $query=mysqli_query($connect,"update category set category='$catname', status='$catstatus' where id='$id'");
+    $query=mysqli_query($connect_2,"update category set category='$catname', status='$catstatus' where id='$id'");
     
      if($query)
     {

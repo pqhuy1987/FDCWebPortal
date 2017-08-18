@@ -1,10 +1,10 @@
 <?php
 error_reporting(0);
 require_once "./auth/config.php";
-$connect = mysqli_connect("$hostname","$username","$password");
-if($connect)
+$connect_2 = mysqli_connect("$hostname","$username","$password");
+if($connect_2)
 {
-	$dbcon = mysqli_select_db($connect, "$dbname");
+	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
 $uidd  = $_SERVER['REQUEST_URI'];
     $host1 = $_SERVER['SERVER_NAME'];
@@ -16,7 +16,7 @@ $page = $_REQUEST['page'];
 
 $start = ($page)*10;
 
-$res2 = mysqli_query($connect,"SELECT * FROM category order by id desc limit $start,10");
+$res2 = mysqli_query($connect_2,"SELECT * FROM category order by id desc limit $start,10");
 
 echo "<div id='maindiv'>";
 

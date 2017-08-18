@@ -5,16 +5,16 @@ $pw = $_POST['passw'];
 
 $pw=md5($pw);
 
-$connect = mysqli_connect($hostname, $username,$password);
+$connect_2 = mysqli_connect($hostname, $username,$password);
 
-if($connect)
+if($connect_2)
 {
 
- 	$dbcon = mysqli_select_db($connect, $dbname);
+ 	$dbcon = mysqli_select_db($connect_2, $dbname);
 
 	if($dbcon)
 	{
-	    	$result = mysqli_query($connect,"insert into hioxpm values( '$un', '$pw')");
+	    	$result = mysqli_query($connect_2,"insert into hioxpm values( '$un', '$pw')");
 
 	 	if (!$result)
 		{

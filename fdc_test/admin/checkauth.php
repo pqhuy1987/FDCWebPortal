@@ -6,17 +6,17 @@ $pw = $_POST['passw'];
 
 $pw1=md5($pw);
 
-$connect = mysqli_connect($hostname, $username,$password);
+$connect_2 = mysqli_connect($hostname, $username,$password);
 
-if($connect)
+if($connect_2)
 {
 
- 	$dbcon = mysqli_select_db($connect, "$dbname");
+ 	$dbcon = mysqli_select_db($connect_2, "$dbname");
 
 	if($dbcon)
 	{
 		
-	    	$result = mysqli_query($connect,"select password from hioxpm where username='$un'");
+	    	$result = mysqli_query($connect_2,"select password from hioxpm where username='$un'");
 $login_msg="";
 	 	if (!$result)
 		{

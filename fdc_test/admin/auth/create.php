@@ -1,28 +1,28 @@
 <?php
 
-$connect = mysqli_connect($hostname, $username,$password);
+$connect_2 = mysqli_connect($hostname, $username,$password);
 echo "test1";
-if($connect)
+if($connect_2)
 {
 	echo "test2";
- 	$dbcon = mysqli_select_db($connect, $dbname);
+ 	$dbcon = mysqli_select_db($connect_2, $dbname);
 
 	if($dbcon)
 	{
 		echo "test3";
-	    $result = mysqli_query($connect,"CREATE TABLE hioxpm (username varchar(255) NOT NULL, password varchar(255) default '',  PRIMARY KEY (username))");
-		$result1 = @mysqli_query($connect,"create table quiz(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, catid varchar(6), question varchar(250),opt1 varchar(100), opt2 varchar(100), opt3 varchar(100),opt4 varchar(100) ,answer varchar(100), datee date, status enum('susbend','release'))"); 
-               $result2 = @mysqli_query($connect,"create table category(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, category varchar(150),status enum('susbend','release'))"); 
-               $result3 = @mysqli_query($connect,"create table settings(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, pagenum varchar(50),examtime varchar(50))");
-			     $result3 = @mysqli_query($connect,"create table quizresults(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, name varchar(150),cat_id int(20),correct_ans int(20),wrong_ans int(20),marks int(20),datee varchar(20),examtime varchar(50))"); 
- @mysqli_query($connect,"INSERT INTO `settings` (`id`, `pagenum`, `examtime`) VALUES ('1', '1', '00:30:00')");
+	    $result = mysqli_query($connect_2,"CREATE TABLE hioxpm (username varchar(255) NOT NULL, password varchar(255) default '',  PRIMARY KEY (username))");
+		$result1 = @mysqli_query($connect_2,"create table quiz(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, catid varchar(6), question varchar(250),opt1 varchar(100), opt2 varchar(100), opt3 varchar(100),opt4 varchar(100) ,answer varchar(100), datee date, status enum('susbend','release'))"); 
+               $result2 = @mysqli_query($connect_2,"create table category(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, category varchar(150),status enum('susbend','release'))"); 
+               $result3 = @mysqli_query($connect_2,"create table settings(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, pagenum varchar(50),examtime varchar(50))");
+			     $result3 = @mysqli_query($connect_2,"create table quizresults(id BIGINT NOT NULL UNIQUE AUTO_INCREMENT, name varchar(150),cat_id int(20),correct_ans int(20),wrong_ans int(20),marks int(20),datee varchar(20),examtime varchar(50))"); 
+ @mysqli_query($connect_2,"INSERT INTO `settings` (`id`, `pagenum`, `examtime`) VALUES ('1', '1', '00:30:00')");
  
-@mysqli_query($connect,"INSERT INTO `category` (`id`, `category`, `status`) VALUES
+@mysqli_query($connect_2,"INSERT INTO `category` (`id`, `category`, `status`) VALUES
 (1, 'Sports', 'release'),
 (2, 'HTML', 'release'),
 (3, 'PHP', 'release'),
 (4, 'CSS', 'release')");
-@mysqli_query($connect,"INSERT INTO `quiz` (`id`, `catid`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `answer`, `datee`, `status`) VALUES
+@mysqli_query($connect_2,"INSERT INTO `quiz` (`id`, `catid`, `question`, `opt1`, `opt2`, `opt3`, `opt4`, `answer`, `datee`, `status`) VALUES
 (1, '1', 'Where did India play its 1st one day international match?', 'Lords', 'Headingley', 'Taunton', 'The Oval', '2', '0000-00-00', 'release'),
 (2, '1', 'Who was the 1st ODI captain for India?\r\n', 'Ajit Wadekar ', 'Bishen Singh Bedi', 'Nawab Pataudi', 'Vinoo Mankad ', '1', '0000-00-00', 'release'),
 (3, '1', 'Who has made the Fastest Test century in Test Cricket ?\r\n\r\n\r\n\r\n', 'Sachin Tendulkar', ' Sahid Afridi', ' Virender Sehwag', 'Vivian Richards', '4', '0000-00-00', 'release'),
@@ -41,7 +41,7 @@ if($connect)
 (17, '3', 'PHP server scripts are surrounded by delimiters, which?\r\n\r\n	\r\n	\r\n	\r\n	', '&lt;?php&gt;...&lt;/?&gt;', '&lt;?php ... ?&gt;', '&lt;script&gt;...&lt;/script&gt;', '&lt;&amp;&gt;...&lt;/&amp;&gt;', '2', '0000-00-00', 'release'),
 (18, '3', 'How do you write \"Hello World\" in PHP', '\"Hello World\"', 'echo \"Hello World\"', 'Document.Write(\"Hello World\");', 'print_f(\"Hello World\");', '2', '0000-00-00', 'release')");
 
-		@mysqli_free_result($connect);
+		@mysqli_free_result($connect_2);
 	 	if (!$result)
 		{
 		    

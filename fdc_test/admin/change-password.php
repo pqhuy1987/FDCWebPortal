@@ -14,7 +14,7 @@ $pw = $_POST['oldpwd'];
 $npw = $_POST['newpwd'];
 
 $pw1=md5("$pw");
-$result = mysqli_query($connect,"select * from hioxpm where username='$un'");
+$result = mysqli_query($connect_2,"select * from hioxpm where username='$un'");
 	
 	if($cha = mysqli_fetch_row($result)){
 	$usr = $cha[0];
@@ -23,7 +23,7 @@ $result = mysqli_query($connect,"select * from hioxpm where username='$un'");
 
 	   if($usr == $un && $pwd == $pw1 && $npw != ""){
 		$npw = md5($npw);
-		$result1 = mysqli_query($connect,"update hioxpm set password='$npw' where username='$un'");
+		$result1 = mysqli_query($connect_2,"update hioxpm set password='$npw' where username='$un'");
 		if($result1)
                         echo "<div align='center'><font color=Green><b>Password Changed Successfully</b></font></div>";
                 else

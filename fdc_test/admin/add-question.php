@@ -4,10 +4,10 @@ include "authheader.php";
 if($block != true)
 {
 require_once "./auth/config.php";
-$connect = mysqli_connect("$hostname","$username","$password");
-if($connect)
+$connect_2 = mysqli_connect("$hostname","$username","$password");
+if($connect_2)
 {
-	$dbcon = mysqli_select_db($connect, "$dbname");
+	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
 include "heade.php";
 ?>
@@ -69,7 +69,7 @@ $eid=$_GET['eid'];
 if($eid!="")
 {
 	
-$edit_res = mysqli_query($connect,"SELECT * FROM quiz where id='$eid'");
+$edit_res = mysqli_query($connect_2,"SELECT * FROM quiz where id='$eid'");
 $row=mysqli_fetch_assoc($edit_res);
 $ques=trim($row['question']);
 $opt1=trim($row['opt1']);
@@ -78,11 +78,11 @@ $opt3=trim($row['opt3']);
 $opt4=trim($row['opt4']);
 $answer=trim($row['answer']);
 $catidd=$row['catid'];
-$edit_cat_name = mysqli_query($connect,"SELECT * FROM category where id='$catidd'");
+$edit_cat_name = mysqli_query($connect_2,"SELECT * FROM category where id='$catidd'");
 $cat_row=mysqli_fetch_assoc($edit_cat_name);
 $edit_cat_name=$cat_row['category'];
 }
-$res = mysqli_query($connect,"SELECT * FROM category where status='release' order by id  ");
+$res = mysqli_query($connect_2,"SELECT * FROM category where status='release' order by id  ");
    
 			echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			
