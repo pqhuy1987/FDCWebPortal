@@ -21,21 +21,20 @@ echo "<div id='maindiv'>";
 
 //echo $start;
 
-       $delcnt1=mysqli_num_rows($res2);
+       	 $delcnt1=mysqli_num_rows($res2);
 	     $tcount=$delcnt1;
 	     echo "<input type='hidden' value='$tcount' id='tcount'>";
                     
 		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
-          
-          <th>Name</th>
-          <th>Category</th>
-          <th>Correct Answers</th>
-	  <th>Wrong Answers</th>
-	  <th>Marks</th>
-	  <th>Taken Time</th>
-	  <th>Date</th>
-	 
+          	<th>Name</th>
+          	<th>Category</th>
+          	<th>Correct Answers</th>
+	  		<th>Wrong Answers</th>
+	  		<th>Marks</th>
+	  		<th>Taken Time</th>
+	  		<th>Date</th>
+			<th>Email</th>
         </tr>';
 	$xx=0;
 		$d=0;
@@ -54,14 +53,14 @@ echo "<div id='maindiv'>";
 			$wans = $line['wrong_ans'];
 			$marks = $line['marks'];
 			$examtime=$line['examtime'];
-			
 			$date = $line['datee'];
+			$email=$line['email'];
 			
 					echo "<tr id='row_$id'>";
 			
 			
 			echo "<td>$name</td><td>$cat_name</td>
-			<td>$cans</td><td>$wans</td><td>$marks</td><td>$examtime</td><td>$date</td>
+			<td>$cans</td><td>$wans</td><td>$marks</td><td>$examtime</td><td>$date</td><td>$email</td>
 			
 			
 			</tr>";

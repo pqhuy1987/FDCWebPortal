@@ -44,23 +44,39 @@ else
 		header('Location: index.php');
 	}
   
-	if((isset($_SESSION['catid']))||(isset($_POST['catid']) && isset($_POST['uname'])))
+	if((isset($_SESSION['catid']))||(isset($_POST['catid']) && isset($_POST['uname'])&& isset($_POST['uemail'])))
 	{
 		if($_SESSION['catid']=="")
 		   $_SESSION['catid']=$_POST['catid'];
 		if($_SESSION['uname']=="")   
 		   $_SESSION['uname']=$_POST['uname'];
-		$catid=$_SESSION['catid'];
-		$uname=$_SESSION['uname'];
-		$settings_query = mysqli_query($connect_2,"SELECT * FROM settings WHERE id=1 " );
-		$settings_row=mysqli_fetch_assoc($settings_query);
+		if($_SESSION['uemail']=="")   
+		   $_SESSION['uemail']=$_POST['uemail'];
+
+		$catid	=	$_SESSION['catid'];
+		$uname 	=	$_SESSION['uname'];
+		$email 	=	$_SESSION['uemail'];
+		$settings_query = mysqli_query($connect_2,"SELECT * FROM settings WHERE id=1");
+		$settings_row = mysqli_fetch_assoc($settings_query);
 		$limit=$settings_row['pagenum'];
 		$time =$settings_row['examtime'];
-		$quiz_staus=1;
+		
+		$sql = "SELECT id FROM quizresults WHERE email='$email' and cat_id='$catid'";
+		$result = mysqli_query($connect_2,$sql);
+		
+		if(mysqli_num_rows($result) >0)
+		{
+		   	session_destroy();
+		   	$bname= basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+		 	echo "<script type='text/javascript'>window.location.href='./$bname';</script>";
+			header('Location: index.php');
+		}else{
+		   $quiz_staus = 1;
+		}
 	} 
 	else
 	{
-		$uname="<b>     HỆ THỐNG ĐÁNH GIÁ GIÁM SÁT     </b>";		     
+	    $uname="<b>     HỆ THỐNG ĐÁNH GIÁ GIÁM SÁT     </b>";		      
 	}
 ?>
     <div class="top">
@@ -104,7 +120,6 @@ else
 
   		while($row = mysqli_fetch_array($query))
    		{
-    
             $id = $row['id'];
 			$qns = $row['question'];
 			$ans = $row['answer'];
@@ -184,6 +199,7 @@ else
 		     var time_out;
 		     var prev=0;
 		     var cstatus=0;
+			 var email="<?php echo $email;?>";
 			 var uname="<?php echo $uname;?>";
 			 var cat_id="<?php echo $catid;?>";
 		     var total_pages="<?php echo $pages;?>";
@@ -263,7 +279,7 @@ else
 	   $.ajax({//Make the Ajax Request
                     type: "POST",
                     url: hm2+"/add-results.php",
-                    data:{name:uname,catid:cat_id,cans:$tcans,wans:$twans,examtime:$examtime,hm:hm,hm2:hm2},
+                    data:{name:uname,catid:cat_id,cans:$tcans,wans:$twans,examtime:$examtime,hm:hm,hm2:hm2,email:email},
                     success: function(data){
 			
                        $('#error_msg').html(""); 
@@ -301,7 +317,10 @@ else
     time_out= setTimeout(count, 1000);
 }
 count();
+
 </script>
+
+
 
 <?php
     }
@@ -310,10 +329,10 @@ count();
 		  $cquery = mysqli_query($connect_2,"SELECT * FROM category WHERE status='release'" );
        	  echo "<div class='frms'>
           <form name='quiz' action='' method='post'>
-		  <label>Họ và Tên : </label>
+		  <label> Họ và Tên : </label>
 		  <input type='text' name='uname' readonly value=' ";?> <?php echo $_SESSION['nameuser']; ?> <?php echo"' maxlength='20'> 
 		  <label>E-mail : </label>
-		  <input type='text' name='email' readonly value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
+		  <input type='text' name='uemail' readonly value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
 		  <label>Chọn chuyên mục đánh giá : </label>
 		  <select name='catid'>";
 		   if($cquery)

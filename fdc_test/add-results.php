@@ -7,6 +7,7 @@ $cans=$_POST['cans'];
 $catid=$_POST['catid'];
 $etime=$_POST['examtime'];
 $cdate=date("Y-m-d");
+$email=$_POST['email'];
 
 require_once "$hm/admin/auth/config.php";
 if(($hostname == "" || $dbname == "" || $username == "") )
@@ -22,7 +23,7 @@ if($connect)
 }
     if($catid!="" && $name!="" && $wans!="" && $cans!="")
     {
-        $query =  mysqli_query($connect,"INSERT into quizresults set name='$name' , cat_id='$catid' , correct_ans='$cans',wrong_ans='$wans',marks='$cans',datee='$cdate',examtime='$etime'");
+        $query =  mysqli_query($connect,"INSERT into quizresults set name='$name' , cat_id='$catid' , correct_ans='$cans',wrong_ans='$wans',marks='$cans',datee='$cdate',examtime='$etime',email='$email' ");
        
     }
     
