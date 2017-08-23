@@ -11,7 +11,14 @@ if($connect_2)
 }
 include "heade.php";
 ?>
+<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 <script type='text/javascript'>
+
+function CKupdate(){
+    for ( instance in CKEDITOR.instances )
+        CKEDITOR.instances[instance].updateElement();
+}
+
 var pp=1;
 $(document).ready(function(){
  $('#m2').html("<span class='curr_mnu'>Add Question</span>")
@@ -84,12 +91,33 @@ $edit_cat_name=$cat_row['category'];
 }
 $res = mysqli_query($connect_2,"SELECT * FROM category where status='release' order by id  ");
    
-			echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
+				echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			
          		echo "<form name=de method='post' action=''>";
-			echo "<div class='form_con'> <div class='form_element lable'>Question</div><div class='form_element'><textarea name=question  id='ques' value='' class='textbox' />$ques</textarea></div></div>";
-			
-			echo "<div class='form_con'> <div class='form_element lable'>Select Category : </div><div class='form_element'><select name='cat' id='cat' class='selectbox'>";
+				echo "<div class='form_con'> <div class='form_element lable'>Question</div><div class='form_element'><textarea name=question  id='ques' value='' class='textbox' />$ques</textarea></div></div>";
+?>
+<script>
+var editor = CKEDITOR.replace( 'ques',{
+	language:'vi',
+			 	
+	toolbar:[
+	['Source','-','Save','NewPage','Preview','-','Templates'],
+	['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print'],
+	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+	['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField'],
+	['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+	['NumberedList','BulletedList','-','Outdent','Indent','Blockquote','CreateDiv'],
+	['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+	['Link','Unlink','Anchor'],
+	['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+	['Styles','Format','Font','FontSize'],
+	['TextColor','BGColor'],
+	['Maximize', 'ShowBlocks','-','About']
+	]
+});
+</script>
+<?php
+				echo "<div class='form_con'> <div class='form_element lable'>Select Category : </div><div class='form_element'><select name='cat' id='cat' class='selectbox'>";
 			 while($line = mysqli_fetch_assoc($res))
 		           {
 				 $catid=$line['id'];
@@ -114,7 +142,7 @@ $res = mysqli_query($connect_2,"SELECT * FROM category where status='release' or
 			if($eid=="")
                           echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_quiz()'><input type='hidden' value='add' id='imptid'>";
 			else
-			  echo "<input name=submit type='button' value=Update class='form_button' onclick='submit_quiz()'><input type='hidden' value='$eid' id='imptid'>"; 
+			  echo "<input name=submit type='button' value=Update class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='$eid' id='imptid'>"; 
                         
 			echo "</span></form></div>";
     
