@@ -19,7 +19,7 @@
 
 <!-- css3-mediaqueries.js for IE less than 9 -->
 <!--[if lt IE 9]-->
-	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 
 <script type="text/javascript" src="./jquery.js"></script>
 
@@ -41,9 +41,7 @@ $hr_admin =mysqli_query($connect_2,"select username from hioxpm");
 ?>
 
 <body>
-
-    
-    <div class="top">
+   <div class="top">
 
   <!-- top_con begins -->
   <div class="top_con">

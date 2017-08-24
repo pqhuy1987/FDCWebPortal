@@ -42,6 +42,10 @@ body {
 	color: #666;
 }
 
+fieldset {
+border: none;
+} 
+
 .top
 {
 	margin:0 auto;
