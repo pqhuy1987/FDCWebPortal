@@ -6,35 +6,34 @@ if($connect_2)
 {
 	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
-$uidd  = $_SERVER['REQUEST_URI'];
+	$uidd  = $_SERVER['REQUEST_URI'];
     $host1 = $_SERVER['SERVER_NAME'];
     $uidd = "http://$host1$uidd";
    // echo $uidd;
-
-
+   
 $page = $_REQUEST['page'];
 
-$start = ($page)*10;
+$start = ($page)*100;
 
-$res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by id desc limit $start,10");
+$res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by id desc limit $start,100");
 echo "<div id='maindiv'>";
 
 //echo $start;
 
-       $delcnt1=mysqli_num_rows($res2);
+       	 $delcnt1=mysqli_num_rows($res2);
 	     $tcount=$delcnt1;
 	     echo "<input type='hidden' value='$tcount' id='tcount'>";
                     
 		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
           
-          <th>Questions</th>
-          <th>Answer</th>
-          <th>Option1</th>
-	  <th>Option2</th>
-	  <th>Status</th>
-	  <th>Delete</th>
-	  <th>Edit</th>
+          	<th>Questions</th>
+          	<th>Answer</th>
+          	<th>Option1</th>
+	  		<th>Option2</th>
+	  		<th>Status</th>
+	  		<th>Delete</th>
+	 		<th>Edit</th>
 	 
         </tr>';
 	$xx=0;

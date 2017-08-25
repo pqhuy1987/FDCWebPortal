@@ -94,7 +94,7 @@ $res = mysqli_query($connect_2,"SELECT * FROM category where status='release' or
 				echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			
          		echo "<form name=de method='post' action=''>";
-				echo "<div class='form_con'> <div class='form_element lable'>Question</div><div class='form_element'><textarea name=question  id='ques' value='' class='textbox' />$ques</textarea></div></div>";
+				echo "<div class='form_con'> <div class='form_element lable'>Câu hỏi : </div><div class='form_element'><textarea name=question  id='ques' value='' class='textbox' />$ques</textarea></div></div>";
 ?>
 <script>
 var editor = CKEDITOR.replace( 'ques',{
@@ -117,36 +117,33 @@ var editor = CKEDITOR.replace( 'ques',{
 });
 </script>
 <?php
-				echo "<div class='form_con'> <div class='form_element lable'>Select Category : </div><div class='form_element'><select name='cat' id='cat' class='selectbox'>";
+			 echo "<div class='form_con'> <div class='form_element lable'>Chọn chuyên mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>";
+			 
 			 while($line = mysqli_fetch_assoc($res))
-		           {
+		     {
 				 $catid=$line['id'];
 				 $catname=$line['category'];
 				 if($edit_cat_name!="")
-				   echo "<option value='$catidd'>$edit_cat_name</option>";
-			        echo "<option value='$catid'>$catname</option>";
-			       
-			   }
-			echo "</select></div></div><div class='form_con'> <div class='form_element lable'>Option1</div><div class='form_element'><input type=text name=opt1 id='opt1' value='$opt1'  class='textbox'></div></div>";
-                        echo "<div class='form_con'> <div class='form_element lable'>Option2</div><div class='form_element'><input type=text name=opt2 id='opt2' value='$opt2'  class='textbox'></div></div>";
-                        echo "<div class='form_con'> <div class='form_element lable'>Option3</div><div class='form_element'><input type=text name=opt3 id='opt3' value='$opt3'  class='textbox'></div></div>";
-                        echo "<div class='form_con'> <div class='form_element lable'>Option4</div><div class='form_element'><input type=text name=opt4 id='opt4' value='$opt4'  class='textbox'></div></div>";
-			echo "<div class='form_con'> <div class='form_element lable'>Answer : </div><div class='form_element'><select name='ans' id='ans' class='selectbox'>";
+				 echo "<option value='$catidd'>$edit_cat_name</option>";
+			     echo "<option value='$catid'>$catname</option>";
+			 }
+			 
+			echo "</select></div></div><div class='form_con'> <div class='form_element lable'>Lựa chọn 1 : </div><div class='form_element'><input type=textarea name=opt1 id='opt1' value='$opt1'  class='textbox'></div></div>";
+            echo "<div class='form_con'> <div class='form_element lable'>Lựa chọn 2 : </div><div class='form_element'><input type=textarea name=opt2 id='opt2' value='$opt2'  class='textbox'></div></div>";
+            echo "<div class='form_con'> <div class='form_element lable'>Lựa chọn 3 : </div><div class='form_element'><input type=textarea name=opt3 id='opt3' value='$opt3'  class='textbox'></div></div>";
+            echo "<div class='form_con'> <div class='form_element lable'>Lựa chọn 4 : </div><div class='form_element'><input type=textarea name=opt4 id='opt4' value='$opt4'  class='textbox'></div></div>";
+			echo "<div class='form_con'> <div class='form_element lable'>Đáp án đúng : </div><div class='form_element'><select style='height: 35px;' name='ans' id='ans' class='selectbox'>";
 			
 			if($answer!="")
-			  echo "<option value='$answer'>Option $answer</option>";
-			echo "<option value='1'>Option 1</option><option value='2'>Option 2</option><option value='3'>Option 3</option><option value='4'>Option 4</option></select></div></div>";
-                        
-
+			  	echo "<optgroup value='$answer' label='Lựa chọn $answer'>Lựa chọn $answer</strong></option>";
+				echo "<option value='$answer'>Lựa chọn $answer</option> <option value='1'>Lựa chọn 1</option><option value='2'>Lựa chọn 2</option><option value='3'>Lựa chọn 3</option><option value='4'>Lựa chọn 4</option></select></div></div>";
 			echo " <span style='float:left;'>";
 			if($eid=="")
-                          echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_quiz()'><input type='hidden' value='add' id='imptid'>";
+              echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_quiz()'><input type='hidden' value='add' id='imptid'>";
 			else
-			  echo "<input name=submit type='button' value=Update class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='$eid' id='imptid'>"; 
-                        
-			echo "</span></form></div>";
-    
+			  echo "<input name=submit type='button' value=Update class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='$eid' id='imptid'>";                  
+			echo "</span></form></div>";   
 }
-	?>
+?>
 
 

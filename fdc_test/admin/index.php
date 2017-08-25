@@ -88,22 +88,19 @@ if(doIt)
 
 </script>
 
-
-
- 
-  	
 <?php
 
-$per_page = 10;  //Display Images or Content
+$per_page = 20;  //Display Images or Content
 $count=mysqli_query($connect_2,"select count(*) from quiz");
 while ($row2 = mysqli_fetch_row($count)) 
 {
    $total=$row2[0];
 }
+
 $pages = ceil($total/$per_page);
 
 ?>
-		<h1>Quiz system questions</h1>
+<h1>Quiz system questions</h1>
 <div class="search-background" style='margin-left:250px;'>
 			<label><img src="./images/load.gif" alt="" /></label>
 		</div>
