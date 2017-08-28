@@ -14,7 +14,7 @@ include "heade.php";
 <script type='text/javascript'>
 var pp=1;
 $(document).ready(function(){
- $('#m5').html("<span class='curr_mnu'>Settings</span>")
+ $('#m5').html("<span class='curr_mnu'>Cài Đặt</span>")
  
  });
 function submit_settings()

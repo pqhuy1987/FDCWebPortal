@@ -29,11 +29,11 @@ echo "<div id='maindiv'>";
 		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
           
-          <th>Category</th>
-          <th>Status</th>
-          <th>Edit</th>
-	  <th>Delete</th>
-	   <th>Update</th>
+          <th>Chuyên Mục</th>
+          <th>Trạng Thái</th>
+          <th>Sửa Đổi</th>
+	  	  <th>Xóa</th>
+	   	  <th>Cập Nhật</th>
 	 
         </tr>';
 	$xx=0;

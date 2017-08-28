@@ -14,7 +14,7 @@ include "heade.php";
 <script type='text/javascript'>
 var pp=1;
 $(document).ready(function(){
- $('#m3').html("<span class='curr_mnu'>Add Category</span>")
+ $('#m3').html("<span class='curr_mnu'>Thêm Chuyên Mục</span>")
  
  });
 function submit_category()
@@ -53,16 +53,14 @@ function submit_category()
    
 			echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			
-         		echo "<form name=de method='post' action=''>";
+         	echo "<form name=de method='post' action=''>";
 			echo "<div class='form_con'> <div class='form_element lable'>Category Name</div><div class='form_element'><input type=text name=catname id='catname' value=''  class='textbox'></div></div>";
 			
 			echo "<div class='form_con'> <div class='form_element lable'> Status : </div><div class='form_element'><select name='catstatus' id='catstatus' class='selectbox'><option value='release'>release</option><option value='susbend'>susbend</option></select></div>";
 			 
-			
-
 			echo " <span style='float:left;'>";
 			
-                          echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_category()'>";
+            echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_category()'>";
 			
                         
 			echo "</span></form></div>";

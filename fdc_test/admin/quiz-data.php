@@ -27,13 +27,13 @@ echo "<div id='maindiv'>";
 		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
           
-          	<th>Questions</th>
-          	<th>Answer</th>
-          	<th>Option1</th>
-	  		<th>Option2</th>
-	  		<th>Status</th>
-	  		<th>Delete</th>
-	 		<th>Edit</th>
+          	<th>Câu Hỏi</th>
+          	<th>Đáp Án</th>
+          	<th>Câu 1</th>
+	  		<th>Câu 2</th>
+	  		<th>Trạng Thái</th>
+	  		<th>Xóa</th>
+	 		<th>Sửa Đổi</th>
 	 
         </tr>';
 	$xx=0;
@@ -65,8 +65,8 @@ echo "<div id='maindiv'>";
 			echo "<td>$qns</td><td>Opt $ans</td>
 			<td>$opt1</td><td>$opt2</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td>
 			
-			<td> <a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
-			<td><a href='./add-question.php?eid=$id'>Edit</a></td>
+			<td> <a href='javascript:changestatus(\"delete\",$id);'>Xóa</a></td>
+			<td><a href='./add-question.php?eid=$id'>Sửa Đổi</a></td>
 			</tr>";
 			$xx++;
 			$d++;

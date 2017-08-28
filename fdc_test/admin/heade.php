@@ -41,7 +41,7 @@ $hr_admin =mysqli_query($connect_2,"select username from hioxpm");
 ?>
 
 <body>
-   <div class="top">
+  <div class="top">
 
   <!-- top_con begins -->
   <div class="top_con">
@@ -51,8 +51,8 @@ $hr_admin =mysqli_query($connect_2,"select username from hioxpm");
     
     
     <ul class="top_con_ul_pos2">
-      <li><a href="./change-password.php">Change Password</a></li>
-         <li><a href="./logout.php">Sign out</a></li>
+      <li><a href="./change-password.php">Đổi Password</a></li>
+         <li><a href="./logout.php">Thoát</a></li>
     </ul>
     
     
@@ -68,13 +68,13 @@ $hr_admin =mysqli_query($connect_2,"select username from hioxpm");
     <div class="logo"><img src="images/logo.png" width="190" height="150" alt="Logo"></div>
     <div class="menu">
     <ul>
-    <li id='m1'><a href="index.php">Edit Questions</a></li>
-    <li id='m2'><a href="add-question.php">Add Questions</a></li>
-    <li id='m3'><a href="add-category.php">Add Category</a></li>
-    <li id='m4'><a href="edit-category.php">Edit Category</a></li>
-    <li id='m5'><a href="settings.php">Settings</a></li>
-    <li id='m6'><a href="code.php">Get Code</a></li>
-	  <li id='m7'><a href="quiz-results.php">Quiz User Results</a></li>
+    <li id='m1'><a href="index.php">Sửa Câu Hỏi</a></li>
+    <li id='m2'><a href="add-question.php">Thêm Câu Hỏi</a></li>
+    <li id='m3'><a href="add-category.php">Thêm Chuyên Mục</a></li>
+    <li id='m4'><a href="edit-category.php">Sửa Chuyên Mục</a></li>
+    <li id='m5'><a href="settings.php">Cài Đặt</a></li>
+    <li id='m6'><a href="code.php">Lấy Mã</a></li>
+	  <li id='m7'><a href="quiz-results.php">Kết Quả Kiểm Tra</a></li>
    
     </ul>
     </div>

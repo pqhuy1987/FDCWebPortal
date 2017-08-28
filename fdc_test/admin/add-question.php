@@ -21,7 +21,7 @@ function CKupdate(){
 
 var pp=1;
 $(document).ready(function(){
- $('#m2').html("<span class='curr_mnu'>Add Question</span>")
+ $('#m2').html("<span class='curr_mnu'>Thêm Câu Hỏi</span>")
  
  });
 function submit_quiz()
@@ -123,26 +123,33 @@ var editor = CKEDITOR.replace( 'ques',{
 		     {
 				 $catid=$line['id'];
 				 $catname=$line['category'];
-				 if($edit_cat_name!="")
-				 echo "<option value='$catidd'>$edit_cat_name</option>";
-			     echo "<option value='$catid'>$catname</option>";
+?>
+				<option value='<?php echo $catid ?>' <?php if ($catidd == $catid ) echo "selected='selected'" ?> ><?php echo $catname ?> </option>
+<?php 	
 			 }
-			 
-			echo "</select></div></div><div class='form_con'> <div class='form_element lable'>Lựa chọn 1 : </div><div class='form_element'><input type=textarea name=opt1 id='opt1' value='$opt1'  class='textbox'></div></div>";
-            echo "<div class='form_con'> <div class='form_element lable'>Lựa chọn 2 : </div><div class='form_element'><input type=textarea name=opt2 id='opt2' value='$opt2'  class='textbox'></div></div>";
-            echo "<div class='form_con'> <div class='form_element lable'>Lựa chọn 3 : </div><div class='form_element'><input type=textarea name=opt3 id='opt3' value='$opt3'  class='textbox'></div></div>";
-            echo "<div class='form_con'> <div class='form_element lable'>Lựa chọn 4 : </div><div class='form_element'><input type=textarea name=opt4 id='opt4' value='$opt4'  class='textbox'></div></div>";
-			echo "<div class='form_con'> <div class='form_element lable'>Đáp án đúng : </div><div class='form_element'><select style='height: 35px;' name='ans' id='ans' class='selectbox'>";
-			
+?>			 
+			</select></div></div><div class='form_con'> <div class='form_element lable'>Lựa chọn 1 : </div><div class='form_element'><input type=textarea name=opt1 id='opt1' value='<?php echo $opt1 ?>'  class='textbox'></div></div>
+            <div class='form_con'> <div class='form_element lable'>Lựa chọn 2 : </div><div class='form_element'><input type=textarea name=opt2 id='opt2' value='<?php echo $opt2 ?>' class='textbox'></div></div>
+            <div class='form_con'> <div class='form_element lable'>Lựa chọn 3 : </div><div class='form_element'><input type=textarea name=opt3 id='opt3' value='<?php echo $opt3 ?>'  class='textbox'></div></div>
+            <div class='form_con'> <div class='form_element lable'>Lựa chọn 4 : </div><div class='form_element'><input type=textarea name=opt4 id='opt4' value='<?php echo $opt4 ?>'  class='textbox'></div></div>
+            
+            <div class='form_con'> <div class='form_element lable'>Đáp án đúng : </div><div class='form_element'><select style='height: 35px;' name='ans' id='ans' class='selectbox'>
+<?php	
 			if($answer!="")
 			  	echo "<optgroup value='$answer' label='Lựa chọn $answer'>Lựa chọn $answer</strong></option>";
-				echo "<option value='$answer'>Lựa chọn $answer</option> <option value='1'>Lựa chọn 1</option><option value='2'>Lựa chọn 2</option><option value='3'>Lựa chọn 3</option><option value='4'>Lựa chọn 4</option></select></div></div>";
+?>
+				<option value='1' <?php if($answer == 1) echo "selected='selected'"?>>Lựa chọn 1</option> 
+                <option value='2' <?php if($answer == 2) echo "selected='selected'"?>>Lựa chọn 2</option>
+                <option value='3' <?php if($answer == 3) echo "selected='selected'"?>>Lựa chọn 3</option>
+                <option value='4' <?php if($answer == 4) echo "selected='selected'"?>>Lựa chọn 4</option></select></div></div>
+
+<?php
 			echo " <span style='float:left;'>";
 			if($eid=="")
-              echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_quiz()'><input type='hidden' value='add' id='imptid'>";
+              	echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_quiz()'><input type='hidden' value='add' id='imptid'>";
 			else
-			  echo "<input name=submit type='button' value=Update class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='$eid' id='imptid'>";                  
-			echo "</span></form></div>";   
+			  	echo "<input name=submit type='button' value=Update class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='$eid' id='imptid'>";                  
+				echo "</span></form></div>";   
 }
 ?>
 

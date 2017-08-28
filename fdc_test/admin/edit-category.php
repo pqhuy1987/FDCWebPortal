@@ -13,7 +13,7 @@ include "heade.php" ;
  var chk_id='';
 
  $(document).ready(function(){
-     $('#m4').html("<span class='curr_mnu'>Edit Category</span>");   
+     $('#m4').html("<span class='curr_mnu'>Sửa Chuyên Mục</span>");   
 	
 	function showLoader(){
 	
@@ -86,7 +86,7 @@ while ($row2 = mysqli_fetch_row($count))
 $pages = ceil($total/$per_page);
 
 ?>
-		<h1>Edit Category</h1>
+		<h1>Chỉnh Sửa Chuyên Mục</h1>
 <div class="search-background" style='margin-left:250px;'>
 			<label><img src="./images/load.gif" alt="" /></label>
 		</div>
