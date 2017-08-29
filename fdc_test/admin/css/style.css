@@ -384,9 +384,7 @@ p
 	padding:.5%;
 	width:100%;
 	display: inline-block;
-    -webkit-appearance:none;
-    -moz-appearance:none;
-    appearance:none;
+	
     cursor:pointer;
 }
 .lable
@@ -463,7 +461,6 @@ border-radius:5px;
 }
 .pagenum:hover{
 	background: #4c8ce1;
-	
 	
 	}
 .pagenum a:hover{ color:#666; cursor: pointer; }	

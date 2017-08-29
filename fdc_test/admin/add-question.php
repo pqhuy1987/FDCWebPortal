@@ -118,7 +118,7 @@ var editor = CKEDITOR.replace( 'ques',{
 </script>
 <?php
 			 echo "<div class='form_con'> <div class='form_element lable'>Chọn chuyên mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>";
-			 
+
 			 while($line = mysqli_fetch_assoc($res))
 		     {
 				 $catid=$line['id'];
