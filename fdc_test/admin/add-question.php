@@ -146,7 +146,7 @@ var editor = CKEDITOR.replace( 'ques',{
 <?php
 			echo " <span style='float:left;'>";
 			if($eid=="")
-              	echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_quiz()'><input type='hidden' value='add' id='imptid'>";
+              	echo "<input name=submit type='button' value=submit class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='add' id='imptid'>";
 			else
 			  	echo "<input name=submit type='button' value=Update class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='$eid' id='imptid'>";                  
 				echo "</span></form></div>";   

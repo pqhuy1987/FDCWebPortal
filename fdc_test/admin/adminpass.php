@@ -28,8 +28,8 @@ Tables are created successfully.<br>
 Now update your admin username and password.
 <form name=setf method=POST action="<?php echo $PHP_SELF;?>" onsubmit="return check()">
 <input name="type" type=hidden value="updateadmin"><br>
-User Name - <input name="usern" type=text><br>
-Pass Word - <input name="passw" type=password><br>
+Tài Khoản - <input name="usern" type=text><br>
+Mật Khẩu - <input name="passw" type=password><br>
 &nbsp; &nbsp; &nbsp; &nbsp;<input type=submit value="Next ->">
 </form>
 </td></tr></table>

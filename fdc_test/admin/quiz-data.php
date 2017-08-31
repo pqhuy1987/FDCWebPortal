@@ -26,15 +26,13 @@ echo "<div id='maindiv'>";
                     
 		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
-          
-          	<th>Câu Hỏi</th>
-          	<th>Đáp Án</th>
-          	<th>Câu 1</th>
-	  		<th>Câu 2</th>
-	  		<th>Trạng Thái</th>
-	  		<th>Xóa</th>
-	 		<th>Sửa Đổi</th>
-	 
+          	<th>Câu Hỏi		</th>
+          	<th>Đáp Án		</th>
+          	<th>Câu 1		</th>
+	  		<th>Câu 2		</th>
+	  		<th>Trạng Thái	</th>
+	  		<th>Xóa			</th>
+	 		<th>Sửa Đổi		</th>
         </tr>';
 	$xx=0;
 		$d=0;

@@ -79,6 +79,20 @@ else
 	    $uname="<b>     HỆ THỐNG ĐÁNH GIÁ GIÁM SÁT     </b>";		      
 	}
 ?>
+    <div class="top_2">
+        <!-- top_con begins -->
+        <div class="top_con_2">
+            <div class="top_con_ul_pos1_2"> 
+            	<h1>
+                	<span style="color:#135194;">F</span><span style="color:#ec2229;">D</span><span style="color:#135194;">C</span>
+                </h1>            
+            </div>
+            <div class="top_con_ul_pos2_2">
+            	 
+    		</div>
+         </div>
+          <!-- top_con ends -->
+	</div>
     <div class="top">
         <!-- top_con begins -->
         <div class="top_con">
@@ -135,7 +149,7 @@ else
 			 
             echo "<div class='news_poling disp_$pn'  $disp >";
             echo "<input type='hidden' id='ans_$id' value='$ans'>";
-            echo "<div class='news_poling_top'><b>$lt</b>.$qns</div>";
+            echo "<div class='news_poling_top'><b>Câu $lt</b>: $qns</div>";
             echo "<div class='news_poling_sele-ct'><form id='polingForm' method='post' action='survey-script/polling-result.php'>";
             echo "<div>
                   <input type='hidden' value='151' name='Qid'>
@@ -191,6 +205,7 @@ else
                    
  
   ?>
+ 
 <script type="text/javascript" src="<?php echo $hm2;?>/admin/jquery.js"></script>
 <script type="text/javascript">
 		     var cresult=0;
@@ -354,3 +369,4 @@ count();
 <?php
 }
 ?>
+

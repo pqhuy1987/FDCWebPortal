@@ -60,9 +60,8 @@ if(doIt)
                     url: "./ajx-category-status.php",
                     data:{catname: $catname,catstatus: $catstatus,status:statuss,id:idd},
                     success: function(data){
-                       alert(data)
-		       window.location.reload();
-		    
+                     alert(data)
+		       		window.location.reload();
                     }
                 });
  }
