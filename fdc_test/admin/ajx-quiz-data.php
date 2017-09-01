@@ -39,7 +39,7 @@ $catid_2 = $idTL;
 if ($catid_2 == NULL)
 	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by id desc limit $start,100");
 else
-	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 limit $start,100");
+	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 order by id desc limit $start,100");
 	
 echo "<div id='maindiv'>";
 
@@ -53,7 +53,7 @@ echo "<div id='maindiv'>";
         <tr>
           	<th>Câu Hỏi		</th>';
 ?>
-			<th> <select name="Catid" id="Catid"><option  value="">--Chọn--
+			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Mục --
              <?php 
 				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");;
 				while ($row_category_temp = mysqli_fetch_array($category_temp))

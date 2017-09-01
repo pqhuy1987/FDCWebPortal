@@ -68,7 +68,7 @@ $hr_admin =mysqli_query($connect_2,"select username from hioxpm");
     <div class="logo"><img src="images/logo.png" width="190" height="150" alt="Logo"></div>
     <div class="menu">
     <ul>
-    <li id='m1'><a href="index.php">Sửa Câu Hỏi</a></li>
+    <li id='m1'><a href="index.php">Ngân Hàng Câu Hỏi</a></li>
     <li id='m2'><a href="add-question.php">Thêm Câu Hỏi</a></li>
     <li id='m3'><a href="add-category.php">Thêm Chuyên Mục</a></li>
     <li id='m4'><a href="edit-category.php">Sửa Chuyên Mục</a></li>

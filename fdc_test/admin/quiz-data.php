@@ -46,7 +46,7 @@ echo "<div id='maindiv'>";
         <tr>
           	<th>Câu Hỏi		</th>';
 ?>
-			<th> <select name="Catid" id="Catid"><option  value="">--Chọn--
+			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Mục --
              <?php 
 				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");;
 				while ($row_category_temp = mysqli_fetch_array($category_temp))

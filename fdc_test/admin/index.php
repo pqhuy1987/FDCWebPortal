@@ -12,7 +12,7 @@ include "heade.php" ;
  var chk_id='';
 
  $(document).ready(function(){
-     $('#m1').html("<span class='curr_mnu'>Sửa Câu Hỏi</span>");   
+     $('#m1').html("<span class='curr_mnu'>Ngân Hàng Câu Hỏi</span>");   
 	
 	function showLoader(){
 	
