@@ -1,9 +1,11 @@
 <?php
 error_reporting(0);
 require_once "./auth/config.php";
+
+$idTL = $_GET["idTL"];
+settype($idTL, "int");
+
 ?>
-
-
 <script type="text/javascript"> 
 $(document).ready(function() {
 	 $("#Catid").change(function(){
@@ -15,7 +17,6 @@ $(document).ready(function() {
 	 });
 });
 </script>
-
 
 <?php
 
@@ -33,7 +34,13 @@ $page = $_REQUEST['page'];
 
 $start = ($page)*100;
 
-$res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by id desc limit $start,100");
+$catid_2 = $idTL;
+
+if ($catid_2 == NULL)
+	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by id desc limit $start,100");
+else
+	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 limit $start,100");
+	
 echo "<div id='maindiv'>";
 
 //echo $start;
@@ -52,7 +59,7 @@ echo "<div id='maindiv'>";
 				while ($row_category_temp = mysqli_fetch_array($category_temp))
 				{
 			 ?>
-            		<option value="<?php echo $row_category_temp["id"]?>"><?php echo $row_category_temp["category"]?></option>
+            		<option value="<?php echo $row_category_temp["id"]?>" <?php if ($catid_2 == $row_category_temp["id"]) echo "selected='selected'"; ?> ><?php echo $row_category_temp["category"]?></option>
 
         	 <?php 
 				}

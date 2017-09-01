@@ -235,7 +235,7 @@ p {
 }
 .curr_mnu
 {
-margin:0;
+	margin:0;
 	padding:0px;
 	color:#fff;
 	text-decoration:none;
@@ -311,10 +311,10 @@ h2
 {
 	padding:2px;
 	-moz-box-shadow:    inset 0 0 1px #fff;
-	-o-box-shadow:    inset 0 0 1px #fff;
-   -webkit-box-shadow: inset 0 0 1px #fff;
-   box-shadow:         inset 0 0 1px #fff;
-   text-align:center;
+	-o-box-shadow:    	inset 0 0 1px #fff;
+   	-webkit-box-shadow: inset 0 0 1px #fff;
+   	box-shadow:         inset 0 0 1px #fff;
+   	text-align:center;
 }
 .admin_table td
 {
@@ -322,7 +322,7 @@ h2
 	color:#666;
 	text-shadow:#fff 1px 1px 0px;
 	vertical-align:middle;
-	text-align:center;
+	text-align:left;
 }
 .admin_table tr:nth-child(even)
 {
@@ -408,9 +408,9 @@ label
 	text-shadow:#fff 1px 1px 0px;
 	-moz-box-shadow:    inset 0 0 1px #fff;
 	-o-box-shadow:    inset 0 0 1px #fff;
-   -webkit-box-shadow: inset 0 0 1px #fff;
-   box-shadow:         inset 0 0 1px #fff;
-   background: #f8f8f8; /* Old browsers */
+   	-webkit-box-shadow: inset 0 0 1px #fff;
+   	box-shadow:         inset 0 0 1px #fff;
+   	background: #f8f8f8; /* Old browsers */
 	background: -moz-linear-gradient(top,  #f8f8f8 0%, #ebebeb 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f8f8f8), color-stop(100%,#ebebeb)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top,  #f8f8f8 0%,#ebebeb 100%); /* Chrome10+,Safari5.1+ */
@@ -488,8 +488,6 @@ border-radius:5px;
 
 #paging_button ul li { 
 
-
-
     -moz-border-radius: 3px 3px 3px 3px;
 
     background: none repeat scroll 0 0 #000000;
@@ -516,9 +514,9 @@ border-radius:5px;
 
     width: 35px;
 
-cursor:pointer;
+	cursor:pointer;
 
-	}
+}
 
 	
 
