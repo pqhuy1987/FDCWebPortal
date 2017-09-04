@@ -70,6 +70,7 @@ echo "<div id='maindiv'>";
           	<th>Câu 1		</th>
 	  		<th>Câu 2		</th>
 	  		<th>Trạng Thái	</th>
+			<th>Ngày Tạo	</th>
 	  		<th>Xóa			</th>
 	 		<th>Sửa Đổi</th>
         </tr>';
@@ -88,6 +89,7 @@ echo "<div id='maindiv'>";
 			
 			$date = $line['datee'];
 			$status = $line['status'];
+			$datee = $line['datee'];
 			
 			$catid =  $line['catid'];
 			
@@ -108,7 +110,7 @@ echo "<div id='maindiv'>";
 			
 			
 			echo "<td>$qns</td><td>$category</td><td>Câu $ans</td>
-			<td>$opt1</td><td>$opt2</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td>
+			<td>$opt1</td><td>$opt2</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td><td>$datee</td>
 			
 			<td> <a href='javascript:changestatus(\"delete\",$id);'>Xóa</a></td>
 			<td><a href='./add-question.php?eid=$id'>Sửa Đổi</a></td>

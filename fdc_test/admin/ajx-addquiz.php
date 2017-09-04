@@ -38,6 +38,7 @@ else
 else
 {
 
+	$dat=date('Y-m-d');
     if($imptid!="")
     {
         $query =  mysqli_query($connect_2,"update quiz set catid='$catid' , question='$ques',opt1='$opt1',opt2='$opt2',opt3='$opt3',opt4='$opt4',answer='$ans',datee='$dat' where id='$imptid'");
