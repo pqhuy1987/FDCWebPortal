@@ -34,6 +34,7 @@ function submit_quiz()
 	$opt4=$('#opt4').val();
 	$ans=$('#ans').val();
 	$imptid=$('#imptid').val();
+	$dokho=$('#dokho').val();
 	
 	if ($ques=="") {
 		$('#error_msg').html("Enter your question..")
@@ -49,7 +50,7 @@ function submit_quiz()
 		     $.ajax({//Make the Ajax Request
                     type: "POST",
                     url: "./ajx-addquiz.php",
-                    data:{ques:$ques,catid:$catid,opt1:$opt1,opt2:$opt2,opt3:$opt3,opt4:$opt4,ans:$ans,imptid:$imptid},
+                    data:{ques:$ques,catid:$catid,opt1:$opt1,opt2:$opt2,opt3:$opt3,opt4:$opt4,ans:$ans,imptid:$imptid,dokho:$dokho},
                     success: function(data){
 			
                        $('#error_msg').html(""); 
@@ -85,6 +86,7 @@ $opt3=trim($row['opt3']);
 $opt4=trim($row['opt4']);
 $answer=trim($row['answer']);
 $catidd=$row['catid'];
+$dokho=$row['dokho'];
 $edit_cat_name = mysqli_query($connect_2,"SELECT * FROM category where id='$catidd'");
 $cat_row=mysqli_fetch_assoc($edit_cat_name);
 $edit_cat_name=$cat_row['category'];
@@ -116,6 +118,7 @@ var editor = CKEDITOR.replace( 'ques',{
 	]
 });
 </script>
+
 <?php
 			 echo "<div class='form_con'> <div class='form_element lable'>Chọn chuyên mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>";
 
@@ -128,6 +131,11 @@ var editor = CKEDITOR.replace( 'ques',{
 <?php 	
 			 }
 ?>			 
+
+<?php
+			 echo "<div class='form_con'> <div class='form_element lable'>Chọn chuyên mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>";
+?>
+
 			</select></div></div><div class='form_con'> <div class='form_element lable'>Lựa chọn 1 : </div><div class='form_element'><input type=textarea name=opt1 id='opt1' value='<?php echo $opt1 ?>'  class='textbox'></div></div>
             <div class='form_con'> <div class='form_element lable'>Lựa chọn 2 : </div><div class='form_element'><input type=textarea name=opt2 id='opt2' value='<?php echo $opt2 ?>' class='textbox'></div></div>
             <div class='form_con'> <div class='form_element lable'>Lựa chọn 3 : </div><div class='form_element'><input type=textarea name=opt3 id='opt3' value='<?php echo $opt3 ?>'  class='textbox'></div></div>
@@ -142,8 +150,27 @@ var editor = CKEDITOR.replace( 'ques',{
                 <option value='2' <?php if($answer == 2) echo "selected='selected'"?>>Lựa chọn 2</option>
                 <option value='3' <?php if($answer == 3) echo "selected='selected'"?>>Lựa chọn 3</option>
                 <option value='4' <?php if($answer == 4) echo "selected='selected'"?>>Lựa chọn 4</option></select></div></div>
+                
+<div class='form_con'> <div class='form_element lable'>Mức Độ Khó : </div><div class='form_element'><select style='height: 35px;' name='dokho' id='dokho' class='selectbox'>
+<?php	
+			if($dokho!=""){
+?>
+			  	<optgroup value='<?php echo $dokho ?>' label='Mức Độ <?php if($dokho == 1)  echo "Trung Bình"; else if($dokho == 2) echo "Khá"; else if($dokho == 3) echo "Khó"; else if($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?>'>Mức Độ $dokho</strong></option>
+                <option value='1' <?php if($dokho == 1) echo "selected='selected'"?>>Mức Độ Trung Bình</option> 
+                <option value='2' <?php if($dokho == 2) echo "selected='selected'"?>>Mức Độ Khá́</option>
+                <option value='3' <?php if($dokho == 3) echo "selected='selected'"?>>Mức Độ Khó</option>
+                <option value='4' <?php if($dokho == 4) echo "selected='selected'"?>>Mức Độ Rất Khó</option></select></div></div>
+<?php 
+			} else {
+?>
+				
+				<option value='1' <?php if($dokho == 1) echo "selected='selected'"?>>Mức Độ Trung Bình</option> 
+                <option value='2' <?php if($dokho == 2) echo "selected='selected'"?>>Mức Độ Khá́</option>
+                <option value='3' <?php if($dokho == 3) echo "selected='selected'"?>>Mức Độ Khó</option>
+                <option value='4' <?php if($dokho == 4) echo "selected='selected'"?>>Mức Độ Rất Khó</option></select></div></div>
 
 <?php
+			}
 			echo " <span style='float:left;'>";
 			if($eid=="")
               	echo "<input name=submit type='button' value=submit class='form_button' onclick='CKupdate();submit_quiz()'><input type='hidden' value='add' id='imptid'>";

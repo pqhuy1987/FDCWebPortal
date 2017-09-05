@@ -55,11 +55,23 @@ echo "<div id='maindiv'>";
 ?>
 			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Mục --
              <?php 
-				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");;
+				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");
 				while ($row_category_temp = mysqli_fetch_array($category_temp))
 				{
 			 ?>
             		<option value="<?php echo $row_category_temp["id"]?>" <?php if ($catid_2 == $row_category_temp["id"]) echo "selected='selected'"; ?> ><?php echo $row_category_temp["category"]?></option>
+        	 <?php 
+				}
+			 ?>
+            </option></select></th>
+            
+			<th> <select name="dokho" id="dokho"><option  value="">-- Chọn Độ Khó --
+             <?php 
+				$dokho = mysqli_query($connect_2,"SELECT DISTINCT dokho FROM quiz order by dokho desc");
+				while ($row_dokho = mysqli_fetch_array($dokho))
+				{
+			 ?>
+            		<option value="<?php echo $row_dokho["dokho"]?>"><?php if ($row_dokho["dokho"] == 1) echo "Trung Bình"; else if ($row_dokho["dokho"] == 2) echo "Khá"; else if ($row_dokho["dokho"] == 3) echo "Khó́"; else if ($row_dokho["dokho"] == 4) echo "Rất Khó́́"; else echo "Trung Bình"  ?></option>
 
         	 <?php 
 				}
@@ -92,6 +104,7 @@ echo "<div id='maindiv'>";
 			$datee = $line['datee'];
 			
 			$catid =  $line['catid'];
+			$dokho =  $line['dokho'];
 			
 			$res3 = mysqli_query($connect_2,"SELECT category FROM category order by id = $catid desc limit 0,1");
 			$line2 = mysqli_fetch_assoc($res3);
@@ -107,9 +120,11 @@ echo "<div id='maindiv'>";
 			    $stle_bg="";
 			}
 			echo "<tr id='row_$id'>";
+?>
 			
-			
-			echo "<td>$qns</td><td>$category</td><td>Câu $ans</td>
+			<td><?php echo $qns?></td><td><?php echo $category?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá"; else if ($dokho == 3) echo "Khó́"; else if ($dokho == 4) echo "Rất Khó́́"; else echo "Trung Bình"  ?></td>
+<?php		
+			echo "<td>Câu $ans</td>
 			<td>$opt1</td><td>$opt2</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td><td>$datee</td>
 			
 			<td> <a href='javascript:changestatus(\"delete\",$id);'>Xóa</a></td>
