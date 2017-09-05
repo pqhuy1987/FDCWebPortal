@@ -213,7 +213,7 @@ var editor = CKEDITOR.replace( 'Content',{
 			}
 		?>
          </select></td>
-      </tr>
+      </tr> 
       <tr>
         <td height="23">ID Loại Tin</td>
         <td><label for="idLT"></label> 

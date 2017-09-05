@@ -24,10 +24,14 @@
 			$samaccountname = $ldap_dn;
 			$filter = "(samaccountname=$samaccountname)";
 			$dn = "OU=FDC Department,DC=FDC,DC=LOCAL";
-			$attributes = array("memberof","cn");
+			$attributes = array("memberof","cn","mail");
 
 			$res = ldap_search($ldap_con, $dn, $filter, $attributes);
 			$first = ldap_get_entries($ldap_con, $res);
+			
+			print "<pre>";
+			print_r ($first);
+			print "</pre>";
 			
 			for ($i=0; $i < $first[0]["memberof"]["count"]; $i++)
     		{
@@ -38,6 +42,7 @@
     		}
 			
 			$_SESSION['nameuser'] = $first[0]["cn"][0];
+			$_SESSION['mail'] = $first[0]["mail"][0];
 
          	header('Location: ../index.php');
 		}
