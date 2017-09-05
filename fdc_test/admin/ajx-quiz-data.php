@@ -2,19 +2,33 @@
 error_reporting(0);
 require_once "./auth/config.php";
 
+
+
+$dokho = $_GET["dokho"];
+settype($dokho, "int");
 $idTL = $_GET["idTL"];
 settype($idTL, "int");
-
 ?>
 <script type="text/javascript"> 
 $(document).ready(function() {
+
 	 $("#Catid").change(function(){
 		 var id	= $(this).val();
+		 var dokho	= $("#dokho").val();
 		 console.log(id);
-		 $.get("ajx-quiz-data.php", {idTL:id}, function(data){
+		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho}, function(data){
 			$("#maindiv").html(data);
 		 });
 	 });
+	 
+	 $("#dokho").change(function(){
+		 var dokho	= $(this).val();
+		  var id	= $("#Catid").val();
+		 console.log(id);
+		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho}, function(data){
+			$("#maindiv").html(data);
+		 });
+	 });	
 });
 </script>
 
@@ -35,11 +49,21 @@ $page = $_REQUEST['page'];
 $start = ($page)*100;
 
 $catid_2 = $idTL;
+$dokho_2 = $dokho;
 
-if ($catid_2 == NULL)
+if (($catid_2 == NULL)&&($dokho_2 == NULL))
+{
 	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by id desc limit $start,100");
-else
+} else if (($catid_2 != NULL)&&($dokho_2 == NULL))
+{
 	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 order by id desc limit $start,100");
+} else if (($catid_2 == NULL)&&($dokho_2 != NULL))
+{
+	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where dokho=$dokho_2 order by id desc limit $start,100");
+}
+else{
+	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 AND dokho=$dokho_2 order by id desc limit $start,100");
+}
 	
 echo "<div id='maindiv'>";
 
@@ -71,7 +95,7 @@ echo "<div id='maindiv'>";
 				while ($row_dokho = mysqli_fetch_array($dokho))
 				{
 			 ?>
-            		<option value="<?php echo $row_dokho["dokho"]?>"><?php if ($row_dokho["dokho"] == 1) echo "Trung Bình"; else if ($row_dokho["dokho"] == 2) echo "Khá"; else if ($row_dokho["dokho"] == 3) echo "Khó́"; else if ($row_dokho["dokho"] == 4) echo "Rất Khó́́"; else echo "Trung Bình"  ?></option>
+            		<option value="<?php echo $row_dokho["dokho"]?>" <?php if ($row_dokho["dokho"] == $dokho_2) echo "selected='selected'"; ?> ><?php if ($row_dokho["dokho"] == 1) echo "Trung Bình"; else if ($row_dokho["dokho"] == 2) echo "Khá Khó"; else if ($row_dokho["dokho"] == 3) echo "Khó"; else if ($row_dokho["dokho"] == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></option>
 
         	 <?php 
 				}
@@ -122,7 +146,7 @@ echo "<div id='maindiv'>";
 			echo "<tr id='row_$id'>";
 ?>
 			
-			<td><?php echo $qns?></td><td><?php echo $category?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá"; else if ($dokho == 3) echo "Khó́"; else if ($dokho == 4) echo "Rất Khó́́"; else echo "Trung Bình"  ?></td>
+			<td><?php echo $qns?></td><td><?php echo $category?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá Khó"; else if ($dokho == 3) echo "Khó"; else if ($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></td>
 <?php		
 			echo "<td>Câu $ans</td>
 			<td>$opt1</td><td>$opt2</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td><td>$datee</td>
