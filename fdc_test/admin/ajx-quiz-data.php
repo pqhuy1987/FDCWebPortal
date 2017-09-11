@@ -102,14 +102,14 @@ echo "<div id='maindiv'>";
 			 ?>
             </option></select></th>
 <?php
-        echo '<th>Đáp Án		</th>
+      echo '<th>Đáp Án		</th>
           	<th>Câu 1		</th>
 	  		<th>Câu 2		</th>
 	  		<th>Trạng Thái	</th>
 			<th>Ngày Tạo	</th>
 	  		<th>Xóa			</th>
 	 		<th>Sửa Đổi</th>
-        </tr>';
+        	</tr>';
 		$xx=0;
 		$d=0;
 		

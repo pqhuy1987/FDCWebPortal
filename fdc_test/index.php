@@ -335,8 +335,6 @@ count();
 
 </script>
 
-
-
 <?php
     }
     else

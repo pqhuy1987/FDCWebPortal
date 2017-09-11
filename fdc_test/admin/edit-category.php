@@ -13,7 +13,7 @@ include "heade.php" ;
  var chk_id='';
 
  $(document).ready(function(){
-     $('#m4').html("<span class='curr_mnu'>Sửa Chuyên Mục</span>");   
+     $('#m5').html("<span class='curr_mnu'>Sửa Chuyên Mục</span>");   
 	
 	function showLoader(){
 	
@@ -70,10 +70,6 @@ if(doIt)
 
 </script>
 
-
-
- 
-  	
 <?php
 
 $per_page = 10;  //Display Images or Content
