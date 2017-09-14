@@ -53,11 +53,24 @@ echo "<div id='maindiv'>";
 	     $tcount=$delcnt1;
 	     echo "<input type='hidden' value='$tcount' id='tcount'>";
                     
-		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
+		 echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
           	<th>Câu Hỏi		</th>';
 ?>
 			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Mục --
+             <?php 
+				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");;
+				while ($row_category_temp = mysqli_fetch_array($category_temp))
+				{
+			 ?>
+            		<option value="<?php echo $row_category_temp["id"]?>"><?php echo $row_category_temp["category"]?></option>
+
+        	 <?php 
+				}
+			 ?>
+            </option></select></th>
+            
+			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Đề --
              <?php 
 				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");;
 				while ($row_category_temp = mysqli_fetch_array($category_temp))

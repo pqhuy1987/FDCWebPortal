@@ -56,7 +56,7 @@ function submit_category()
 			
          	echo "<form name=de method='post' action=''>";
 ?>	
-			<th> <div class='form_con'> <div class='form_element lable'> Tên Chuyên Mục : </div><div class='form_element'><select name='Catid' id='Catid' class='selectbox'><option  value="">-- Chọn Chuyên Mục --
+			<th> <div class='form_con'> <div class='form_element lable'> Tên Chuyên Mục : </div><div class='form_element'><select name='Catid' id='Catid' class='selectbox'>
              <?php 
 				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");
 				while ($row_category_temp = mysqli_fetch_array($category_temp))
@@ -67,7 +67,7 @@ function submit_category()
         	 <?php 
 				}
 			 ?>
-            </option></select></th>
+            </select></th>
 <?php            
 			echo "<div class='form_con'> <div class='form_element lable'>Tên Chuyên Đề</div><div class='form_element'><input type=text name=catname id='catname' value=''  class='textbox'></div></div>";
 			 

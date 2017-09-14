@@ -60,11 +60,12 @@ function changestatus(statuss,idd)
 		 doIt=confirm('Are you Sure want to '+statuss+' this?');
 		 if(doIt)
 		 {
+			 	     var otherValue=$('#catstatus_'+idd).find('option:selected').attr('data-value');
 					 $.ajax(
 					 	{//Make the Ajax Request
 							type: "POST",
 							url: "./ajx-category-status-sub.php",
-							data:{catname: $catname,catstatus: $catstatus,status:statuss,id:idd},
+							data:{catname: $catname, catstatus: $catstatus, id:idd, status:statuss, otherValue:otherValue},
 							success: function(data)
 							{
 							 	alert(data)

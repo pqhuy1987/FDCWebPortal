@@ -15,15 +15,14 @@ $(document).ready(function() {
 	 $("#Catid").change(function(){
 		 var id	= $(this).val();
 		 var dokho	= $("#dokho").val();
-		 console.log(id);
 		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho}, function(data){
-			$("#maindiv").html(data);
+				$("#maindiv").html(data);
 		 });
 	 });
 	 
 	 $("#dokho").change(function(){
 		 var dokho	= $(this).val();
-		  var id	= $("#Catid").val();
+		 var id		= $("#Catid").val();
 		 console.log(id);
 		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho}, function(data){
 			$("#maindiv").html(data);

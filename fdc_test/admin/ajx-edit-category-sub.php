@@ -44,16 +44,27 @@ if($connect_2)
 			
 			$catname = $line['name_sub'];
 			$catstatus = $line['category'];
-			$name = $line['category'];
 	
 			echo "<tr id='row_$id'>";
 			
-			echo "<td><input type='text' value='$catname' readonly='readonly' id='catname_$id' class='textbox'></td>"
+			echo "<td><input type='text' value='$catname' readonly='readonly' id='catname_$id' class='textbox'></td>";
 ?>
 			<td>
-            	<select name='catstatus' id='catstatus_$id' class='selectbox' disabled='disabled'><option value='$catstatus'><?php echo $catstatus?></option>
-            	<option value='release'>release</option><option value='susbend'>susbend</option></select>
-           </td>
+            	<select name='catstatus' id='catstatus_<?php echo $id ?>' class='selectbox' disabled='disabled'>
+                <optgroup value='$catstatus' label='<?php echo $catstatus?>' ><?php echo $catstatus?></strong></option>   
+             	<?php 
+				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");
+				while ($row_category_temp = mysqli_fetch_array($category_temp))
+				{
+			 	?>
+            		<option value="<?php echo $row_category_temp["id"]?>" data-value="<?php echo $row_category_temp["category"]?>" <?php if($catstatus == $row_category_temp["category"]) echo "selected='selected'"?> ><?php echo $row_category_temp["category"]?></option>
+
+        	 	<?php 
+				}
+			 	?>
+            	</option></select>
+            
+            </td>
 <?php		
 			echo "
 			<td><a href='javascript:changestatus(\"edit\",$id);'>Edit</a> </td>

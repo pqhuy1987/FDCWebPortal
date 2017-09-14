@@ -8,15 +8,17 @@ if($connect_2)
 }
 $status=$_POST['status'];
 $id=$_POST['id'];
-$catname=$_POST['catname'];
-$catstatus=$_POST['catstatus'];
+$name_sub=$_POST['catname'];
+$id2=$_POST['catstatus'];
+$otherValue=$_POST['otherValue'];
+
 if($id=="")
 {
 	$msg="Invalid data..";
 }
 else if($status=="delete")
 {
-    $query=mysqli_query($connect_2,"delete from category where id='$id'");
+    $query=mysqli_query($connect_2,"delete from category_sub where id_sub='$id'");
     if($query)
     {
 		$msg="Deleted Sucessfully...";
@@ -24,7 +26,7 @@ else if($status=="delete")
 }
 else if($status=="update")
 {
-    $query=mysqli_query($connect_2,"update category set category='$catname', status='$catstatus' where id='$id'");
+    $query=mysqli_query($connect_2,"update category_sub set category='$otherValue', name_sub='$name_sub', id='$id2' where id_sub='$id'");
     
     if($query)
     {

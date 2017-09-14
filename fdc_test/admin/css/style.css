@@ -283,6 +283,7 @@ h2
 {
 	margin:20px auto;
 	padding:0px;
+	overflow:auto;
 }
 .admin_table table
 {

@@ -44,28 +44,28 @@ include "heade.php" ;
 });
 function changestatus(statuss,idd)
 {
-if (statuss=="edit") {
- $('#catname_'+idd).removeAttr('readonly');
- $('#catstatus_'+idd).removeAttr('disabled');
-}
-else
-{
- $catname=$('#catname_'+idd).val();
- $catstatus=$('#catstatus_'+idd).val();
- doIt=confirm('Are you Sure want to '+statuss+' this?');
-if(doIt)
-{
- 		     $.ajax({//Make the Ajax Request
-                    type: "POST",
-                    url: "./ajx-category-status.php",
-                    data:{catname: $catname,catstatus: $catstatus,status:statuss,id:idd},
-                    success: function(data){
-                     alert(data)
-		       		window.location.reload();
-                    }
-                });
- }
-}
+	if (statuss=="edit") {
+	 	 $('#catname_'+idd).removeAttr('readonly');
+	 	 $('#catstatus_'+idd).removeAttr('disabled');
+	}
+	else
+	{
+		 $catname=$('#catname_'+idd).val();
+		 $catstatus=$('#catstatus_'+idd).val();
+		 doIt=confirm('Are you Sure want to '+statuss+' this?');
+	if(doIt)
+	{
+				 $.ajax({//Make the Ajax Request
+						type: "POST",
+						url: "./ajx-category-status.php",
+						data:{catname: $catname,catstatus: $catstatus,status:statuss,id:idd},
+						success: function(data){
+						 alert(data)
+						window.location.reload();
+						}
+					});
+	 }
+	}
 }
 
 </script>
