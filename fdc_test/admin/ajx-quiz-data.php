@@ -8,23 +8,37 @@ $dokho = $_GET["dokho"];
 settype($dokho, "int");
 $idTL = $_GET["idTL"];
 settype($idTL, "int");
+$id_sub = $_GET["id_sub"];
+settype($id_sub, "int");
 ?>
 <script type="text/javascript"> 
 $(document).ready(function() {
 
 	 $("#Catid").change(function(){
-		 var id	= $(this).val();
+		 var id		= $(this).val();
 		 var dokho	= $("#dokho").val();
-		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho}, function(data){
+		 var id_sub	= $("#Catid_sub").val();
+		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho, id_sub:id_sub}, function(data){
 				$("#maindiv").html(data);
 		 });
 	 });
 	 
+	 $("#Catid_sub").change(function(){
+		 var id_sub	= $(this).val();
+		 var id		= $("#Catid").val();
+		 var dokho	= $("#dokho").val();
+		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho, id_sub:id_sub}, function(data){
+				$("#maindiv").html(data);
+		 });
+	 });	 
+	 
+	 
 	 $("#dokho").change(function(){
 		 var dokho	= $(this).val();
 		 var id		= $("#Catid").val();
+		 var id_sub	= $("#Catid_sub").val();
 		 console.log(id);
-		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho}, function(data){
+		 $.get("ajx-quiz-data.php", {idTL:id, dokho:dokho, id_sub:id_sub}, function(data){
 			$("#maindiv").html(data);
 		 });
 	 });	
@@ -48,6 +62,7 @@ $page = $_REQUEST['page'];
 $start = ($page)*100;
 
 $catid_2 = $idTL;
+$catid_sub_2 = $id_sub;
 $dokho_2 = $dokho;
 
 if (($catid_2 == NULL)&&($dokho_2 == NULL))
@@ -55,13 +70,19 @@ if (($catid_2 == NULL)&&($dokho_2 == NULL))
 	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by id desc limit $start,100");
 } else if (($catid_2 != NULL)&&($dokho_2 == NULL))
 {
-	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 order by id desc limit $start,100");
+	if ($catid_sub_2 == NULL)
+		$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 order by id desc limit $start,100");
+	else
+		$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 AND id_sub=$catid_sub_2 order by id desc limit $start,100");
 } else if (($catid_2 == NULL)&&($dokho_2 != NULL))
 {
 	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where dokho=$dokho_2 order by id desc limit $start,100");
 }
 else{
-	$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 AND dokho=$dokho_2 order by id desc limit $start,100");
+	if ($catid_sub_2 == NULL)
+		$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 AND dokho=$dokho_2 order by id desc limit $start,100");
+	else 
+		$res2 = mysqli_query($connect_2,"SELECT * FROM quiz where catid=$catid_2 AND dokho=$dokho_2 AND id_sub=$catid_sub_2 order by id desc limit $start,100");
 }
 	
 echo "<div id='maindiv'>";
@@ -88,13 +109,13 @@ echo "<div id='maindiv'>";
 			 ?>
             </option></select></th>
             
-			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Đề --
-             <?php 
-				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");
-				while ($row_category_temp = mysqli_fetch_array($category_temp))
+			<th> <select name="Catid_sub" id="Catid_sub"><option  value="">-- Chọn Chuyên Đề --
+             <?php
+			 	$res3 = mysqli_query($connect_2,"SELECT * FROM category_sub where id='$catid_2' order by id_sub"); 
+				while ($row_res3 = mysqli_fetch_array($res3))
 				{
 			 ?>
-            		<option value="<?php echo $row_category_temp["id"]?>" <?php if ($catid_2 == $row_category_temp["id"]) echo "selected='selected'"; ?> ><?php echo $row_category_temp["category"]?></option>
+            		<option value="<?php echo $row_res3["id_sub"]?>" <?php if ($catid_sub_2 == $row_res3["id_sub"]) echo "selected='selected'"; ?> ><?php echo $row_res3["name_sub"]?></option>
         	 <?php 
 				}
 			 ?>
@@ -144,10 +165,16 @@ echo "<div id='maindiv'>";
 			
 			$catid =  $line['catid'];
 			$dokho =  $line['dokho'];
+			$id_sub =  $line['id_sub'];
 			
 			$res3 = mysqli_query($connect_2,"SELECT category FROM category order by id = $catid desc limit 0,1");
+			$res4 = mysqli_query($connect_2,"SELECT name_sub FROM category_sub order by id_sub = $id_sub desc limit 0,1");
+			
 			$line2 = mysqli_fetch_assoc($res3);
+			$line3 = mysqli_fetch_assoc($res4);
+			
 			$category = $line2['category'];
+			$category_sub = $line3['name_sub'];
 
 			
 			if($status=='susbend')
@@ -161,7 +188,7 @@ echo "<div id='maindiv'>";
 			echo "<tr id='row_$id'>";
 ?>
 			
-			<td><?php echo $qns?></td><td><?php echo $category?></td><td><?php echo $category?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá Khó"; else if ($dokho == 3) echo "Khó"; else if ($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></td>
+			<td><?php echo $qns?></td><td><?php echo $category?></td><td><?php echo $category_sub?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá Khó"; else if ($dokho == 3) echo "Khó"; else if ($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></td>
 <?php		
 			echo "<td>Câu $ans</td>
 			<td>$opt1</td><td>$opt2</td><td>$opt3</td><td>$opt4</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td><td>$datee</td>
