@@ -97,12 +97,20 @@ if($eid!="")
 	$answer		=	trim($row['answer']);
 	$catidd		=	$row['catid'];
 	$dokho		=	$row['dokho'];
+	$id_sub		=	$row['id_sub'];
+	
 	$edit_cat_name = mysqli_query($connect_2,"SELECT * FROM category where id='$catidd'");
 	$cat_row=mysqli_fetch_assoc($edit_cat_name);
 	$edit_cat_name=$cat_row['category'];
 }
+
 $res = mysqli_query($connect_2,"SELECT * FROM category where status='release' order by id");
-$res2 = mysqli_query($connect_2,"SELECT * FROM category_sub order by id_sub");
+if($eid!="")
+{ 
+	$res2 = mysqli_query($connect_2,"SELECT * FROM category_sub where id='$catidd' order by id_sub");
+} else {
+	$res2 = mysqli_query($connect_2,"SELECT * FROM category_sub where id='$catidd' order by id_sub");
+}
    
 				echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			
@@ -131,8 +139,11 @@ var editor = CKEDITOR.replace( 'ques',{
 </script>
 
 <?php
-			 echo "<div class='form_con'> <div class='form_element lable'>Chọn Chuyên Mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>";
-
+			 echo "<div class='form_con'> <div class='form_element lable'>Chọn Chuyên Mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>
+			";
+?>
+			 <option  value=""> -- Chọn Chuyên Mục -- </option>
+<?php 
 			 while($line = mysqli_fetch_assoc($res))
 		     {
 				 $catid=$line['id'];
@@ -145,14 +156,16 @@ var editor = CKEDITOR.replace( 'ques',{
 			</select></div></div>
 <?php
 			 echo "<div id='test1' class='form_con'> <div class='form_element lable'>Chọn Chuyên Đề : </div><div class='form_element'><select style='height: 35px;' name='cat_sub' id='cat_sub' class='selectbox'>";
-
+?>
+			 <option  value=""> -- Chọn Chuyên Đề -- </option>
+<?php 
 			 
 			 while($line = mysqli_fetch_assoc($res2))
 		     {
 				 $catid_sub=$line['id_sub'];
 				 $catname_sub=$line['name_sub'];
 ?>
-				<option value='<?php echo $catid_sub ?>' <?php if ($catidd == $catid_sub ) echo "selected='selected'" ?> ><?php echo $catname_sub ?> </option>
+				<option value='<?php echo $catid_sub ?>' <?php if ($id_sub == $catid_sub ) echo "selected='selected'" ?> ><?php echo $catname_sub ?> </option>
 <?php 	
 			 }
 ?>			 
