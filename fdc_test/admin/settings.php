@@ -14,8 +14,13 @@ include "heade.php";
 <script type='text/javascript'>
 var pp=1;
 $(document).ready(function(){
- $('#m7').html("<span class='curr_mnu'>Cài Đặt</span>")
- 
+ $('#m7').html("<span class='curr_mnu'>Cài Đặt Bộ Đề</span>")
+ 		 $("#Catid").change(function(){
+		 var id	= $(this).val();
+		 $.get("ajx-settings.php", {idTL:id}, function(data){
+			$("#test1").html(data);
+		 });
+	 });
  });
 function submit_settings()
 {
@@ -34,7 +39,6 @@ function submit_settings()
                  $('#msg').html("<font color='green'>"+data+"</font>");
 		 
 		 setTimeout(function(){
-			
 			 window.location.href="./settings.php";	
 			
                           },1000);
@@ -43,13 +47,31 @@ function submit_settings()
 	
 }
 </script>
-			<form name=de method='post' action=''>	
-			<input type="checkbox" name="check_list[]" value="<?=$rowid?>" /> test 1 <br />
-            <input type="checkbox" name="check_list[]" value="<?=$rowid?>" /> test 1 <br />
-            <input type="checkbox" name="check_list[]" value="<?=$rowid?>" /> test 1 <br />
-         	<input type="checkbox" name="check_list[]" value="<?=$rowid?>" /> test 1 <br />
-            <input type="checkbox" name="check_list[]" value="<?=$rowid?>" /> test 1 <br />
-            <input type="checkbox" name="check_list[]" value="<?=$rowid?>" /> test 1 <br />
+			<th> <div class='form_con'> <div class='form_element lable'> Tên Chuyên Mục : </div><div class='form_element'><select name='Catid' id='Catid' class='selectbox'>
+             <?php 
+				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");
+				while ($row_category_temp = mysqli_fetch_array($category_temp))
+				{
+			 ?>
+            		<option value="<?php echo $row_category_temp["id"]?>"><?php echo $row_category_temp["category"]?></option>
+        	 <?php 
+				}
+			 ?>
+            </select></th>
+ 			<div id='test1'>
+			 <?php
+			 	$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");
+				$row_category_temp = mysqli_fetch_array($category_temp);
+			 	$tem_id = $row_category_temp["id"];           
+				$category_temp_sub = mysqli_query($connect_2,"SELECT * FROM category_sub where id = $tem_id  order by id_sub desc");
+				while ($row_category_temp_sub = mysqli_fetch_array($category_temp_sub))
+				{
+ 			?>        
+					<li><input type="checkbox" name="check_list[]" value="<?php echo $row_category_temp_sub["id_sub"]?>"/> <?php echo $row_category_temp_sub["name_sub"]?> <br /></li>
+			<?php 
+                }
+            ?> 
+            </div>           
                                                                         
 <?php
 			
@@ -68,7 +90,7 @@ function submit_settings()
 			
          	
 			
-			echo "<div class='form_con'> <div class='form_element lable'> No of Questions display in single page : </div><div class='form_element'><select name='num' id='num' class='selectbox'>";
+			echo "<div class='form_con'> <div class='form_element lable'> Số câu hỏi hiển trị trên một trang : </div><div class='form_element'><select name='num' id='num' class='selectbox'>";
 			
 			echo "<option value='$pnum'>$pnum</option>";
 			
@@ -78,7 +100,7 @@ function submit_settings()
 			 
 			}
 			
-			echo "</select></div>  <div class='clear'></div><br><div class='form_element lable'> Choose Examination Time : </div><div class='form_element'><select name='etime' id='etime' class='selectbox'>";
+			echo "</select></div>  <div class='clear'></div><br><div class='form_element lable'> Chọn thời gian kiểm tra : </div><div class='form_element'><select name='etime' id='etime' class='selectbox'>";
 			echo "<option value='$examtime'>$examtime_val</option>";
 
 		 	echo '

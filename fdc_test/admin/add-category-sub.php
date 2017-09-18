@@ -63,7 +63,6 @@ function submit_category()
 				{
 			 ?>
             		<option value="<?php echo $row_category_temp["id"]?>"><?php echo $row_category_temp["category"]?></option>
-
         	 <?php 
 				}
 			 ?>

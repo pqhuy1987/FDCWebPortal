@@ -6,7 +6,7 @@ if($block != true)
  include "heade.php"
  ?>
  <script type='text/javascript'>
-$('#m8').html("<span class='curr_mnu'>Lấy Mã</span>")           
+$('#m8').html("<span class='curr_mnu'>Danh Sách Bộ Đề</span>")           
         
  </script>
 <h1>Get Codes :</h1>
