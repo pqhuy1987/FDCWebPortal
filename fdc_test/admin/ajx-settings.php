@@ -19,33 +19,11 @@ $(document).ready(function(){
  $('#m7').html("<span class='curr_mnu'>Cài Đặt Bộ Đề</span>")
  		 $("#Catid").change(function(){
 		 var id	= $(this).val();
-		 console.log(id);
 		 $.get("ajx-settings.php", {idTL:id}, function(data){
 			$("#test1").html(data);
 		 });
 	 });
  });
-function submit_settings()
-{
-	$pnum=$('#num').val();
-	$etime=$('#etime').val();
-
-		     $.ajax({//Make the Ajax Request
-                    type: "POST",
-                    url: "./ajx-update-settings.php",
-                    data:{pnum:$pnum,etime:$etime},
-                    success: function(data){
-			
-                 $('#msg').html("<font color='green'>"+data+"</font>");
-		 
-		 setTimeout(function(){
-			 window.location.href="./settings.php";	
-			
-                          },1000);
-                    }
-                });
-	
-}
 </script>
 			 <?php
 				$category_temp_sub = mysqli_query($connect_2,"SELECT * FROM category_sub where id = $idTL order by id_sub desc");

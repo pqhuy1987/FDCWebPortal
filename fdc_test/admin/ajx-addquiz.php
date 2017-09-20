@@ -26,7 +26,7 @@ if($ques!="" && $opt1!="" && $opt2!="" && $ans!="" && $catid!="")
    // echo "INSERT into quiz set catid='$catid' , question='$ques',opt1='$opt1',opt2='$opt2',opt3='$opt3',opt4='$opt4',ans='$ans',date='$dat'";
     if($query)
     {
-       echo "<font color='green'>Your question added sucessfully..</font>";    
+       	echo "<font color='green'>Your question added sucessfully..</font>";    
     }
     else
      {

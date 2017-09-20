@@ -13,40 +13,52 @@ include "heade.php";
 ?>
 <script type='text/javascript'>
 var pp=1;
+var val = [];
 $(document).ready(function(){
- $('#m7').html("<span class='curr_mnu'>Cài Đặt Bộ Đề</span>")
+ $('#m7').html("<span class='curr_mnu'>Xây Dựng Bộ Đề</span>")
  		 $("#Catid").change(function(){
-		 var id	= $(this).val();
-		 $.get("ajx-settings.php", {idTL:id}, function(data){
-			$("#test1").html(data);
-		 });
-	 });
- });
-function submit_settings()
-{
-	$pnum=$('#num').val();
-	$etime=$('#etime').val();
-
-
-	
-		     $.ajax({//Make the Ajax Request
-                    type: "POST",
-                    url: "./ajx-update-settings.php",
-                    data:{pnum:$pnum,etime:$etime},
-                    success: function(data){
-			
-                       
-                 $('#msg').html("<font color='green'>"+data+"</font>");
+			 var id	= $(this).val();
+			 $.get("ajx-settings.php", {idTL:id}, function(data){
+				$("#test1").html(data);
+			 });
+	 	 });
 		 
-		 setTimeout(function(){
-			 window.location.href="./settings.php";	
+		$('#submit').click(function(){
 			
-                          },1000);
-                    }
-                });
+			$(':checkbox:checked').each(function(i){
+          		val[i] = $(this).val();
+        	});
+			
+			$pnum=$('#num').val();
+			$etime=$('#etime').val();
+			$catname=$('#catname').val();
+			$length=val.length;
+			
+			var jsonString = JSON.stringify(val);
+		
+			$.ajax({//Make the Ajax Request
+					type: "POST",
+					url: "./ajx-update-settings.php",
+					data:{pnum:$pnum, etime:$etime, length:$length, jsonString:jsonString, catname:$catname},
+					success: function(data){
+
+					$('#msg').html("<font color='green'>"+data+"</font>");
+			 
+					setTimeout(function(){
+				 		window.location.href="./settings.php";	
+							  },1000);
+						}
+					});			 
+		 });
 	
-}
+ });
 </script>
+			
+<?php
+			echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
+			echo "<div class='form_con'> <div class='form_element lable'>Bộ Đề Kiểm Tra: </div><div class='form_element'><input type=text name=catname id='catname' value=''  class='textbox'></div></div>";
+?>
+            
 			<th> <div class='form_con'> <div class='form_element lable'> Tên Chuyên Mục : </div><div class='form_element'><select name='Catid' id='Catid' class='selectbox'>
              <?php 
 				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");
@@ -67,12 +79,11 @@ function submit_settings()
 				while ($row_category_temp_sub = mysqli_fetch_array($category_temp_sub))
 				{
  			?>        
-					<li><input type="checkbox" name="check_list[]" value="<?php echo $row_category_temp_sub["id_sub"]?>"/> <?php echo $row_category_temp_sub["name_sub"]?> <br /></li>
+					<li><input type="checkbox" name="check_list[]" id="" value="<?php echo $row_category_temp_sub["id_sub"]?>"/> <?php echo $row_category_temp_sub["name_sub"]?> <br /></li>
 			<?php 
                 }
             ?> 
             </div>           
-                                                                        
 <?php
 			
 			$res = mysqli_query($connect_2,"SELECT * FROM settings where id='1'");
@@ -86,10 +97,6 @@ function submit_settings()
 				$examtime_val=$examtimearr[0].":".$examtimearr[1];
 			}
 			
-			echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
-			
-         	
-			
 			echo "<div class='form_con'> <div class='form_element lable'> Số câu hỏi hiển trị trên một trang : </div><div class='form_element'><select name='num' id='num' class='selectbox'>";
 			
 			echo "<option value='$pnum'>$pnum</option>";
@@ -97,9 +104,7 @@ function submit_settings()
 			for($i=1;$i<=10;$i++)
 			{
 				echo "<option value='$i'>$i</option>";
-			 
 			}
-			
 			echo "</select></div>  <div class='clear'></div><br><div class='form_element lable'> Chọn thời gian kiểm tra : </div><div class='form_element'><select name='etime' id='etime' class='selectbox'>";
 			echo "<option value='$examtime'>$examtime_val</option>";
 
@@ -120,7 +125,7 @@ function submit_settings()
 			
        		echo "</select></div> <div class='clear'></div><br> <span style='float:left;'>";
 			
-            echo "<input name=submit type='button' value=submit class='form_button' onclick='submit_settings()'>";
+            echo "<input name=submit id=submit type='button' value=submit class='form_button' onclick='submit_settings()'>";
 			       
 			echo "</span></form></div>";
 }     

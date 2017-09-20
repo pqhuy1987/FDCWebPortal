@@ -1,41 +1,114 @@
 <?php
+error_reporting(0);
 include "authheader.php";
-
 if($block != true)
 {
- include "heade.php"
- ?>
- <script type='text/javascript'>
-$('#m8').html("<span class='curr_mnu'>Danh Sách Bộ Đề</span>")           
-        
- </script>
-<h1>Get Codes :</h1>
- <h2>Copy the below code in to the pages where you want HRS (HIOX Review Script -user comments)</h2>
 
- <div class="form_element"><textarea name="" cols="" rows="" class="textarea" readonly="readonly">
-<?php
-$url = $_SERVER['SCRIPT_FILENAME'];
-$pp = strrpos($url,"/");
+require_once "auth/config.php";
 
-$url = substr($url,0,$pp);
-
-$ura = $_SERVER['SCRIPT_NAME'];
-$host = $_SERVER['SERVER_NAME'];
-$ser = "http://$host";
-$ura= $ser.$ura;
-$pp1 = strrpos($ura,"/");
-$ura = substr($ura,0,$pp1);
-$url=str_replace("/admin","",$url);
-$ura=str_replace("/admin","",$ura);
-echo "&lt?php
-$"."hm = \"$url\";
-$"."hm2 = \"$ura\";
-include \"$"."hm/index.php\";
-?&gt;";
+include "heade.php" ;
 ?>
 
-</textarea></div>
+<script type="text/javascript">
+ var chk_id='';
+
+ $(document).ready(function(){
+     $('#m8').html("<span class='curr_mnu'>Danh Sách Bộ Đề Đã Được Tạo</span>");   
+	
+	function showLoader(){
+	
+		$('.search-background').fadeIn(200);
+	}
+	
+	function hideLoader(){
+	
+		$('.search-background').fadeOut(200);
+	};
+	
+	$("#paging_button li").click(function(){
+		
+		showLoader();
+		
+		$("#paging_button li").css({'background-color' : ''});
+		$(this).css({'background-color' : '#006699'});
+
+		$("#content").load("ajx-edit-category.php?page=" + this.id, hideLoader);
+		
+		return false;
+	});
+	
+	$("#1").css({'background-color' : '#006699'});
+	showLoader();
+	$("#content").load("ajx-edit-settings.php?page=0", hideLoader);
+	
+});
+function changestatus(statuss,idd)
+{
+	if (statuss=="edit") {
+	 	 $('#catname_'+idd).removeAttr('readonly');
+	 	 $('#catstatus_'+idd).removeAttr('disabled');
+	}
+	else
+	{
+		 $catname=$('#catname_'+idd).val();
+		 $catstatus=$('#catstatus_'+idd).val();
+		 doIt=confirm('Are you Sure want to '+statuss+' this?');
+	if(doIt)
+	{
+				 $.ajax({//Make the Ajax Request
+						type: "POST",
+						url: "./ajx-settings-status.php",
+						data:{catname: $catname,catstatus: $catstatus,status:statuss,id:idd},
+						success: function(data){
+						alert(data)
+						window.location.reload();
+						}
+					});
+	 }
+	}
+}
+
+</script>
+
 <?php
-include './footer.php';
+
+$per_page = 10;  //Display Images or Content
+$count=mysqli_query($connect_2,"select count(*) from category");
+while ($row2 = mysqli_fetch_row($count)) 
+{
+   $total=$row2[0];
+}
+$pages = ceil($total/$per_page);
+
+?>
+		<h1>Danh Sách Bộ Đề Đã Được Tạo</h1>
+<div class="search-background" style='margin-left:250px;'>
+			<label><img src="./images/load.gif" alt="" /></label>
+		</div>
+		<div id="content">
+		&nbsp;
+		</div>
+<?php
+if($pages>1)
+{
+?>
+		
+<div id="paging_button" style="margin: 0 auto;" align='center'>
+
+		<ul>
+		<?php
+			//echo '<li id=1>First</li>';
+		for($i=1; $i<=$pages; $i++)
+		{
+		 $jk=$i-1;
+			echo '<li id="'.$jk.'">'.$i.'</li>';
+		}
+		//echo '<li id="'.$pages.'">Last</li>';
+    ?>
+		</ul>
+	</div>
+<?php
+}
 }
 ?>
+  

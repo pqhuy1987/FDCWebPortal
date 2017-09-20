@@ -56,7 +56,7 @@ else
 		$catid	=	$_SESSION['catid'];
 		$uname 	=	$_SESSION['uname'];
 		$email 	=	$_SESSION['uemail'];
-		$settings_query = mysqli_query($connect_2,"SELECT * FROM settings WHERE id=1");
+		$settings_query = mysqli_query($connect_2,"SELECT * FROM settings WHERE id=$catid");
 		$settings_row = mysqli_fetch_assoc($settings_query);
 		$limit=$settings_row['pagenum'];
 		$time =$settings_row['examtime'];
@@ -114,14 +114,31 @@ else
           <!-- top_con ends -->
 	</div>
 <?php
-
  	echo "<div id='maindiv' class='frms clearfix'>";
    	if($quiz_staus==1)
     {
  		echo "<div id='res_id' class='clearfix'><div class='clearfix'>";
 
 		$limit_tag="<br>";
-  		$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and catid=$catid" );
+		$setting_temp = mysqli_query($connect_2,"SELECT * FROM settings WHERE id=$catid" );
+		$row_setting_temp = mysqli_fetch_array($setting_temp);
+		
+		$chuyende_1 	= 	$row_setting_temp['chuyende_1'];
+		$chuyende_2 	= 	$row_setting_temp['chuyende_2'];
+		$chuyende_3 	= 	$row_setting_temp['chuyende_3'];
+		$chuyende_4 	= 	$row_setting_temp['chuyende_4'];
+		$chuyende_5 	= 	$row_setting_temp['chuyende_5'];
+		$chuyende_6 	= 	$row_setting_temp['chuyende_6'];
+		$chuyende_7 	= 	$row_setting_temp['chuyende_7'];
+		$chuyende_8 	= 	$row_setting_temp['chuyende_8'];
+		$chuyende_9 	= 	$row_setting_temp['chuyende_9'];
+		$chuyende_10 	= 	$row_setting_temp['chuyende_10'];
+																				
+  		$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and 
+		(
+			id_sub=$chuyende_1 or id_sub=$chuyende_2 or id_sub=$chuyende_3 or id_sub=$chuyende_4 or id_sub=$chuyende_5 or
+		 	id_sub=$chuyende_6 or id_sub=$chuyende_7 or id_sub=$chuyende_8 or id_sub=$chuyende_9 or id_sub=$chuyende_10
+		)" );
  		$pcount = mysqli_num_rows($query);
  		$pages = ceil($pcount/$limit);
   
@@ -339,7 +356,7 @@ count();
     }
     else
     {
-		  $cquery = mysqli_query($connect_2,"SELECT * FROM category WHERE status='release'" );
+		  $cquery = mysqli_query($connect_2,"SELECT * FROM settings order by id desc" );
        	  echo "<div class='frms'>
           <form name='quiz' action='' method='post'>
 		  <label> Họ và Tên : </label>
@@ -353,7 +370,7 @@ count();
               while($crow = mysqli_fetch_array($cquery))
               {
 		         	$catid = $crow['id'];
-			 		$catname = $crow['category'];
+			 		$catname = $crow['exam_name'];
 			 		echo "<option value='$catid'>$catname</option>";
 		      }
 		   }
