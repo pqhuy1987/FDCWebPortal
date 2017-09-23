@@ -321,7 +321,7 @@ else
                 });
 	
  }
-     function count() {
+    function count() {
      
     var startTime = document.getElementById('hms').innerHTML;
     var pieces = startTime.split(":");

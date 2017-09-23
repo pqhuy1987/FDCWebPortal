@@ -53,8 +53,9 @@ echo "<div id='maindiv'>";
 					<td><input type='text' value='$num' readonly='readonly' id='num_$id' class='textbox'></td>
 					<td><input type='text' value='$time' readonly='readonly' id='time_$id' class='textbox'></td>
 					
-			<td><a href='javascript:changestatus(\"edit\",$id);'>Edit</a> </td>
+			<td><a href='./settings.php?eid=$id'>Sửa Đổi</a></td>
 			<td><a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
+			
 			</tr>";
 			$xx++;
 			$d++;

@@ -36,6 +36,7 @@ echo "<div id='maindiv'>";
 	  		<th>Ngày</th>
 			<th>Email</th>
 			<th>Xuất Excel File</th>
+			<th>Xóa</th>
         </tr>';
 	$xx=0;
 		$d=0;
@@ -61,7 +62,9 @@ echo "<div id='maindiv'>";
 			
 			
 			echo "<td>$name</td><td>$cat_name</td>
-			<td>$cans</td><td>$wans</td><td>$marks</td><td>$examtime</td><td>$date</td><td>$email</td><td><a href='./add-question.php?eid=$id'>Xuất File</a></td>
+			<td>$cans</td><td>$wans</td><td>$marks</td><td>$examtime</td><td>$date</td><td>$email</td>
+			<td><a href='./add-question.php?eid=$id'>Xuất File</a></td>
+			<td><a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
 			
 			
 			</tr>";

@@ -16,7 +16,7 @@ settype($idTL, "int");
 <script type='text/javascript'>
 var pp=1;
 $(document).ready(function(){
- $('#m7').html("<span class='curr_mnu'>Cài Đặt Bộ Đề</span>")
+ $('#m7').html("<span class='curr_mnu'>Xây Dựng Bộ Đề</span>")
  		 $("#Catid").change(function(){
 		 var id	= $(this).val();
 		 $.get("ajx-settings.php", {idTL:id}, function(data){

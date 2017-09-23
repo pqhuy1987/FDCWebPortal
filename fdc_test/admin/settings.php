@@ -10,6 +10,8 @@ if($connect_2)
 	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
 include "heade.php";
+$eid=$_GET['eid'];
+
 ?>
 <script type='text/javascript'>
 var pp=1;
@@ -99,14 +101,14 @@ $(document).ready(function(){
 			
 			echo "<div class='form_con'> <div class='form_element lable'> Số câu hỏi hiển trị trên một trang : </div><div class='form_element'><select name='num' id='num' class='selectbox'>";
 			
-			echo "<option value='$pnum'>$pnum</option>";
+			echo "<option value=''>-- Chọn Số Câu Hỏi --</option>";
 			
-			for($i=1;$i<=10;$i++)
+			for($i=20;$i<=200;$i=$i+20)
 			{
 				echo "<option value='$i'>$i</option>";
 			}
 			echo "</select></div>  <div class='clear'></div><br><div class='form_element lable'> Chọn thời gian kiểm tra : </div><div class='form_element'><select name='etime' id='etime' class='selectbox'>";
-			echo "<option value='$examtime'>$examtime_val</option>";
+			echo "<option value=''>-- Chọn Thời Gian Làm Bài --</option>";
 
 		 	echo '
     			<option value="00:30:00">00:30</option>

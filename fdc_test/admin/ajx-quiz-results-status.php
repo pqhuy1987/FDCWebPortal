@@ -16,7 +16,7 @@ if($id=="")
 }
 else if($status=="delete")
 {
-    $query=mysqli_query($connect_2,"delete from settings where id='$id'");
+    $query=mysqli_query($connect_2,"delete from quizresults where id='$id'");
     if($query)
     {
 	$msg="Deleted Sucessfully...";
