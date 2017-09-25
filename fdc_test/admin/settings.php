@@ -14,10 +14,11 @@ $eid=$_GET['eid'];
 
 if($eid!="")
 {
-	$edit_res 	= 	mysqli_query($connect_2,"SELECT * FROM settings where id='$eid'");
-	$row		=	mysqli_fetch_assoc($edit_res);
+	$edit_res 		= 	mysqli_query($connect_2,"SELECT * FROM settings where id='$eid'");
+	$row			=	mysqli_fetch_assoc($edit_res);
 	$exam_name		=	trim($row['exam_name']);
-	$opt1		=	trim($row['opt1']);
+	$opt1			=	trim($row['opt1']);
+	
 	$opt2		=	trim($row['opt2']);
 	$opt3		=	trim($row['opt3']);
 	$opt4		=	trim($row['opt4']);

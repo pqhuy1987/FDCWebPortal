@@ -15,7 +15,7 @@ if($connect_2)
 	
 	$start = ($page)*10;
 	
-	$res2 = mysqli_query($connect_2,"SELECT * FROM category_sub order by id_sub desc limit $start,10");
+	$res2 = mysqli_query($connect_2,"SELECT * FROM category_sub order by id_sub desc limit $start,100");
 	
 	echo "<div id='maindiv'>";
 

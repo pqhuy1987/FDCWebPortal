@@ -80,7 +80,7 @@ function changestatus(statuss,idd)
 
 <?php
 
-$per_page = 10;  //Display Images or Content
+$per_page = 100;  //Display Images or Content
 $count=mysqli_query($connect_2,"select count(*) from category");
 while ($row2 = mysqli_fetch_row($count)) 
 {
