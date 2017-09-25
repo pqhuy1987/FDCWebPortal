@@ -12,6 +12,25 @@ if($connect_2)
 include "heade.php";
 $eid=$_GET['eid'];
 
+if($eid!="")
+{
+	$edit_res 	= 	mysqli_query($connect_2,"SELECT * FROM settings where id='$eid'");
+	$row		=	mysqli_fetch_assoc($edit_res);
+	$exam_name		=	trim($row['exam_name']);
+	$opt1		=	trim($row['opt1']);
+	$opt2		=	trim($row['opt2']);
+	$opt3		=	trim($row['opt3']);
+	$opt4		=	trim($row['opt4']);
+	$answer		=	trim($row['answer']);
+	$catidd		=	$row['catid'];
+	$dokho		=	$row['dokho'];
+	$id_sub		=	$row['id_sub'];
+	
+	$edit_cat_name = mysqli_query($connect_2,"SELECT * FROM category where id='$catidd'");
+	$cat_row=mysqli_fetch_assoc($edit_cat_name);
+	$edit_cat_name=$cat_row['category'];
+}
+
 ?>
 <script type='text/javascript'>
 var pp=1;
@@ -55,12 +74,10 @@ $(document).ready(function(){
 	
  });
 </script>
-			
 <?php
 			echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			echo "<div class='form_con'> <div class='form_element lable'>Bộ Đề Kiểm Tra: </div><div class='form_element'><input type=text name=catname id='catname' value=''  class='textbox'></div></div>";
 ?>
-            
 			<th> <div class='form_con'> <div class='form_element lable'> Tên Chuyên Mục : </div><div class='form_element'><select name='Catid' id='Catid' class='selectbox'>
              <?php 
 				$category_temp = mysqli_query($connect_2,"SELECT * FROM category order by id desc");

@@ -325,6 +325,11 @@ h2
 	min-width: 450px;
 }
 
+.admin_table #ques2
+{
+	min-width: 70px;
+}
+
 .admin_table td
 {
 	font:normal .75em/26px Tahoma, Geneva, sans-serif;

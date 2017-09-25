@@ -90,7 +90,7 @@ if(doIt)
 
 <?php
 
-$per_page = 20;  //Display Images or Content
+$per_page = 100;  //Display Images or Content
 $count=mysqli_query($connect_2,"select count(*) from quiz");
 while ($row2 = mysqli_fetch_row($count)) 
 {

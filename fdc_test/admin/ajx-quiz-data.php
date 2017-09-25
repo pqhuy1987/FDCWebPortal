@@ -95,6 +95,7 @@ echo "<div id='maindiv'>";
                     
 		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0"`	 >
         <tr>
+			<th id="ques2" >Số Thứ Tự</th>
           	<th id="ques" >Câu Hỏi		</th>';
 ?>
 			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Mục --
@@ -134,7 +135,8 @@ echo "<div id='maindiv'>";
 			 ?>
             </option></select></th>
 <?php
-      echo '<th>Đáp Án		</th>
+      echo '
+	  		<th>Đáp Án		</th>
           	<th>Câu 1		</th>
 	  		<th>Câu 2		</th>
 			<th>Câu 3		</th>
@@ -188,7 +190,7 @@ echo "<div id='maindiv'>";
 			echo "<tr id='row_$id'>";
 ?>
 			
-			<td id='ques' ><?php echo $qns?></td><td><?php echo $category?></td><td><?php echo $category_sub?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá Khó"; else if ($dokho == 3) echo "Khó"; else if ($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></td>
+			<td id='ques2' ><?php echo "Câu số: $id"?></td><td id='ques' ><?php echo $qns?></td><td><?php echo $category?></td><td><?php echo $category_sub?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá Khó"; else if ($dokho == 3) echo "Khó"; else if ($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></td>
 <?php		
 			echo "<td>Câu $ans</td>
 			<td>$opt1</td><td>$opt2</td><td>$opt3</td><td>$opt4</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td><td>$datee</td>

@@ -47,15 +47,14 @@ $start = ($page)*100;
 $res2 = mysqli_query($connect_2,"SELECT * FROM quiz order by datee desc limit $start,100");
 echo "<div id='maindiv'>";
 
-//echo $start;
-
        	 $delcnt1=mysqli_num_rows($res2);
 	     $tcount=$delcnt1;
 	     echo "<input type='hidden' value='$tcount' id='tcount'>";
                     
 		 echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
-          	<th id="ques">Câu Hỏi		</th>';
+			<th id="ques2" >Số Thứ Tự	</th>
+          	<th id="ques"  >Câu Hỏi		</th>';
 ?>
 			<th> <select name="Catid" id="Catid"><option  value="">-- Chọn Chuyên Mục --
              <?php 
@@ -118,7 +117,6 @@ echo "<div id='maindiv'>";
 			$opt3 = $line['opt3'];
 			$opt4 = $line['opt4'];
 			
-			
 			$date = $line['datee'];
 			$status = $line['status'];
 			$datee = $line['datee'];
@@ -135,7 +133,6 @@ echo "<div id='maindiv'>";
 			
 			$category = $line2['category'];
 			$category_sub = $line3['name_sub'];
-
 			
 			if($status=='susbend')
 			{
@@ -148,7 +145,7 @@ echo "<div id='maindiv'>";
 			echo "<tr id='row_$id'>";
 ?>
 			
-			<td id='ques'><?php echo $qns?></td><td><?php echo $category?></td><td><?php echo $category_sub?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá Khó"; else if ($dokho == 3) echo "Khó"; else if ($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></td>
+			<td id='ques2'><?php echo "Câu Số: $id" ?></td><td id='ques'><?php echo $qns?></td><td><?php echo $category?></td><td><?php echo $category_sub?></td><td><?php if ($dokho == 1) echo "Trung Bình"; else if ($dokho == 2) echo "Khá Khó"; else if ($dokho == 3) echo "Khó"; else if ($dokho == 4) echo "Rất Khó"; else echo "Trung Bình"  ?></td>
 <?php		
 			echo "<td >Câu $ans</td>
 			<td>$opt1</td><td>$opt2</td><td>$opt3</td><td>$opt4</td><td $stle_bg id='status_$id'><a href='javascript:changestatus(\"$status\",$id);' id='href_status_$id'> $status</a></td><td>$datee</td>
