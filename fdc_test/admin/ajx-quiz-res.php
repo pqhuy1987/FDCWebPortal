@@ -63,7 +63,7 @@ echo "<div id='maindiv'>";
 			
 			echo "<td>$name</td><td>$cat_name</td>
 			<td>$cans</td><td>$wans</td><td>$marks</td><td>$examtime</td><td>$date</td><td>$email</td>
-			<td><a href='./add-question.php?eid=$id'>Xuất File</a></td>
+			<td><a href='./excel.php?eid=$id'>Xuất File</a></td>
 			<td><a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
 			
 			

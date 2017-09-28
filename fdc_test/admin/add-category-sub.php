@@ -25,7 +25,6 @@ function submit_category()
 	console.log($catname);
 	console.log($Catid);
 
-
 	if ($catname=="") {
 		$('#error_msg').html("Category name is empty..")
 	}

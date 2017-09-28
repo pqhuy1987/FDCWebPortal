@@ -103,7 +103,6 @@ if($eid!="")
 	$cat_row=mysqli_fetch_assoc($edit_cat_name);
 	$edit_cat_name=$cat_row['category'];
 }
-
 $res = mysqli_query($connect_2,"SELECT * FROM category where status='release' order by id");
 if($eid!="")
 { 
