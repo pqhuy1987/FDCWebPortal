@@ -123,78 +123,97 @@ else
 		$setting_temp = mysqli_query($connect_2,"SELECT * FROM settings WHERE id=$catid" );
 		$row_setting_temp = mysqli_fetch_array($setting_temp);
 		
-		$chuyende_1 	= 	$row_setting_temp['chuyende_1'];
-		$chuyende_2 	= 	$row_setting_temp['chuyende_2'];
-		$chuyende_3 	= 	$row_setting_temp['chuyende_3'];
-		$chuyende_4 	= 	$row_setting_temp['chuyende_4'];
-		$chuyende_5 	= 	$row_setting_temp['chuyende_5'];
-		$chuyende_6 	= 	$row_setting_temp['chuyende_6'];
-		$chuyende_7 	= 	$row_setting_temp['chuyende_7'];
-		$chuyende_8 	= 	$row_setting_temp['chuyende_8'];
-		$chuyende_9 	= 	$row_setting_temp['chuyende_9'];
-		$chuyende_10 	= 	$row_setting_temp['chuyende_10'];
+		$chuyende[1] 	= 	$row_setting_temp['chuyende_1'];
+		$chuyende[2] 	= 	$row_setting_temp['chuyende_2'];
+		$chuyende[3] 	= 	$row_setting_temp['chuyende_3'];
+		$chuyende[4] 	= 	$row_setting_temp['chuyende_4'];
+		$chuyende[5] 	= 	$row_setting_temp['chuyende_5'];
+		$chuyende[6] 	= 	$row_setting_temp['chuyende_6'];
+		$chuyende[7] 	= 	$row_setting_temp['chuyende_7'];
+		$chuyende[8] 	= 	$row_setting_temp['chuyende_8'];
+		$chuyende[9] 	= 	$row_setting_temp['chuyende_9'];
+		$chuyende[10] 	= 	$row_setting_temp['chuyende_10'];
 																				
-  		$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and 
-		(
-			id_sub=$chuyende_1 or id_sub=$chuyende_2 or id_sub=$chuyende_3 or id_sub=$chuyende_4 or id_sub=$chuyende_5 or
-		 	id_sub=$chuyende_6 or id_sub=$chuyende_7 or id_sub=$chuyende_8 or id_sub=$chuyende_9 or id_sub=$chuyende_10
-		)" );
- 		$pcount = mysqli_num_rows($query);
- 		$pages = ceil($pcount/$limit);
-  
     	echo "<input type='button' value='Previous' style='float:left;display:none;' id='top_prev' onclick=prevnext(0)>";
    
-   		echo "<input type='button' value='Next' style='float:right;' id='top_next' onclick=prevnext(1)>";
+   		echo "<input type='button' value='Hoàn Thành' style='float:right;' id='top_next' onclick=results()>";
     
  		echo "</div><div class='clear'></div>";   
  		$lt=1;$pn=0;
+		$lt2=1;
+		$pcount=0;
+		
+		for ($i = 1; $i < 11; $i++)
+		{
+			$temp = $chuyende[$i];
+			if ($temp != 0)
+			{
+				$category_sub_temp = mysqli_query($connect_2,"SELECT * FROM category_sub WHERE id_sub=$temp" );
+				$row_category_sub_temp = mysqli_fetch_array($category_sub_temp); 
+ 				
+				echo "<div class='sub_title'> Phần $lt2: $row_category_sub_temp[name_sub] </div>";
+				$temp_category_sub = $row_category_sub_temp["name_sub"];
+				$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp" );
+				$pcount = $pcount + mysqli_num_rows($query);
+				$pages = ceil($pcount/$limit);
+				while($row = mysqli_fetch_array($query))
+				{
+					$id = $row['id'];
+					$qns = $row['question'];
+					$ans = $row['answer'];
+					$opt1 = $row['opt1'];
+					$opt2 = $row['opt2'];
+					$opt3 = $row['opt3'];
+					$opt4 = $row['opt4'];
+					$dokho = $row['dokho'];
+			
+					if($lt>$limit)
+					  $disp="style='display:none;'";
+					else
+					  $disp="";
+					 
+					echo "<div class='news_poling disp_$pn'  $disp >";
+					echo "<input type='hidden' id='ans_$id' value='$ans'>";
+					if ($dokho == 1) {
+						echo "<div class='news_poling_top'><b>Câu $lt (Trung Bình)</b>: $qns </div>";
+					} else if ($dokho == 2) {
+						echo "<div class='news_poling_top'><b>Câu $lt (Khá Khó)</b>: $qns </div>";
+					} else if ($dokho == 3) {
+						echo "<div class='news_poling_top'><b>Câu $lt (Khó)</b>: $qns </div>";
+					} else if ($dokho == 4) {
+						echo "<div class='news_poling_top'><b>Câu $lt (Rất Khó)</b>: $qns </div>";
+					}
+					echo "<div class='news_poling_sele-ct'><form id='polingForm' method='post' action='survey-script/polling-result.php'>";
+					echo "<div>
+						  <input type='hidden' value='151' name='Qid'>
+						  <fieldset class='radios' id='$id'>
+						  <input type='radio' value='opt1' name='options_$id'  onclick=chkans(1,$id,$lt2,$temp) >$opt1 $limit_tag
+						  <input type='radio' value='opt2' name='options_$id' onclick=chkans(2,$id,$lt2,$temp) >$opt2 $limit_tag";
+					if($opt3!='')
+					{
+						echo "<input type='radio' value='opt3' name='options_$id' onclick=chkans(3,$id,$lt2,$temp)>$opt3 $limit_tag ";
+					}
+					if($opt4!='')
+					{
+						echo "<input type='radio' value='opt4' name='options_$id' onclick=chkans(4,$id,$lt2,$temp)>$opt4 $limit_tag ";
+					}
+								
+					 echo "</fieldset>
+							</div>";
+					 echo "</div>";           
+					 echo "</div>";
+				  
+					if($lt%$limit==0)
+						$pn++;
+					$lt++;       
+				 }
+				 $lt2++;
+			}
+		}
 
-  		while($row = mysqli_fetch_array($query))
-   		{
-            $id = $row['id'];
-			$qns = $row['question'];
-			$ans = $row['answer'];
-			$opt1 = $row['opt1'];
-			$opt2 = $row['opt2'];
-			$opt3 = $row['opt3'];
-			$opt4 = $row['opt4'];
-	
-			if($lt>$limit)
-			  $disp="style='display:none;'";
-			else
-			  $disp="";
-			 
-            echo "<div class='news_poling disp_$pn'  $disp >";
-            echo "<input type='hidden' id='ans_$id' value='$ans'>";
-            echo "<div class='news_poling_top'><b>Câu $lt</b>: $qns</div>";
-            echo "<div class='news_poling_sele-ct'><form id='polingForm' method='post' action='survey-script/polling-result.php'>";
-            echo "<div>
-                  <input type='hidden' value='151' name='Qid'>
-                  <fieldset class='radios' id='$id'>
-                  <input type='radio' value='opt1' name='options_$id'  onclick=chkans(1,$id)>$opt1 $limit_tag
-                  <input type='radio' value='opt2' name='options_$id' onclick=chkans(2,$id)>$opt2 $limit_tag";
-            if($opt3!='')
-            {
-				echo "<input type='radio' value='opt3' name='options_$id' onclick=chkans(3,$id)>$opt3 $limit_tag ";
-			}
-            if($opt4!='')
-            {
-				echo "<input type='radio' value='opt4' name='options_$id' onclick=chkans(4,$id)>$opt4 $limit_tag ";
-			}
-                        
-             echo "</fieldset>
-                    </div>";
-             echo "</div>";           
-           	 echo "</div>";
-          
-	   		if($lt%$limit==0)
-	    		$pn++;
-      		$lt++;       
-   		 }
- 
    		echo "<input type='button' value='Get Results' onclick='results()' id='res_btn' style='display:none;'>";
      	echo "<input type='button' value='Previous' style='float:left;display:none;' id='prev' onclick=prevnext(0)>";
-    	echo "<input type='button' value='Next' style='float:right;' id='next' onclick=prevnext(1)>";
+    	echo "<input type='button' value='Hoàn Thành' style='float:right;' id='next' onclick=results()>";
      	echo "</div><div id='results' align='center' style='display:none;'>
 				  <div class='result' >
 					  <div class='row'>
@@ -217,16 +236,14 @@ else
 				  </div><div class='clear'></div>
 				  <div class='btn_style'><a href='$hm2/index.php?logout=yes'>Exit.</a></div></div>
      		 ";  
-      
-    
-                   
- 
   ?>
  
 <script type="text/javascript" src="<?php echo $hm2;?>/admin/jquery.js"></script>
 <script type="text/javascript">
-		     var cresult=0;
-		     var wresult=0;
+		     var cresult1=0;
+		     var wresult1=0;
+			 var cresult2=0;
+		     var wresult2=0;
 		     var currpage=0;
 		     var time_out;
 		     var prev=0;
@@ -239,20 +256,31 @@ else
 			 var hm2="<?php echo $hm2;?>";
 		     total_pages=total_pages-1;
 		     var total_ques="<?php echo   $pcount ;?>";
- function chkans(opt,ansid)
+ function chkans(opt,ansid,chuyende,tenchuyende)
  {
-	
-     $ans=$('#ans_'+ansid).val()
-     if ($ans==opt) {
-		  cresult=parseInt(cresult)+1;
-     }
-     else
-     {
-	
-		  wresult=parseInt(wresult)+1;     
-	 
-     }
- 
+	 console.log(chuyende);
+	 if (chuyende == 1 )
+	 {
+		 console.log(tenchuyende);
+		 $ans=$('#ans_'+ansid).val()
+		 if ($ans==opt) {
+			  cresult1=parseInt(cresult1)+1;
+		 }
+		 else
+		 {
+			  wresult1=parseInt(wresult1)+1;     
+		 }
+	 } else if (chuyende == 2 ) {
+		 console.log(tenchuyende);
+		 $ans=$('#ans_'+ansid).val()
+		 if ($ans==opt) {
+			  cresult2=parseInt(cresult2)+1;
+		 }
+		 else
+		 {
+			  wresult2=parseInt(wresult2)+1;     
+		 }		 
+	 }
  }
   function prevnext(opt) {
 	
@@ -298,10 +326,8 @@ else
  }
  function results()
  {
-		     
-		  
-	$tcans=	cresult;
-	$twans=	wresult;
+	$tcans	=	cresult1;
+	$twans	=	wresult1;
 	$examtime=$('#hms').html();
 	$('#cans').html($tcans);
 	$('#wans').html($twans);
@@ -319,13 +345,15 @@ else
 
                     }
                 });
-	
  }
     function count() {
      
     var startTime = document.getElementById('hms').innerHTML;
     var pieces = startTime.split(":");
     var time = new Date();
+	
+	localStorage.getItem("startTime");
+	
     time.setHours(pieces[0]);
     time.setMinutes(pieces[1]);
     time.setSeconds(pieces[2]);
@@ -349,7 +377,48 @@ else
     time_out= setTimeout(count, 1000);
 }
 count();
+/////////////////////////////////////////////////////
 
+    function setCookie(c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value;
+        }
+
+    function getCookie(c_name) {
+        var i, x, y, ARRcookies = document.cookie.split(";");
+        for (i = 0; i < ARRcookies.length; i++) {
+            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+            y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+            x = x.replace(/^\s+|\s+$/g, "");
+            if (x == c_name) {
+                return unescape(y);
+            }
+        }
+    }
+
+    function DeleteCookie(name) {
+            document.cookie = name + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+        }
+/////////////////////////////////////////////////////
+
+$(window).load(function () {
+ //if IsRefresh cookie exists
+ var IsRefresh = getCookie("IsRefresh");
+ if (IsRefresh != null && IsRefresh != "") {
+    //cookie exists then you refreshed this page(F5, reload button or right click and reload)
+    //SOME CODE
+    DeleteCookie("IsRefresh");
+	//alert("Hello! I am an alert box 1!!");
+ }
+ else {
+    //cookie doesnt exists then you landed on this page
+    //SOME CODE
+    setCookie("IsRefresh", "true", 1);
+	//alert("Hello! I am an alert box 2!!");
+ }
+})
 </script>
 
 <?php

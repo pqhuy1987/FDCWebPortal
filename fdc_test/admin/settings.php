@@ -91,8 +91,10 @@ $(document).ready(function(){
 				$category_temp_sub = mysqli_query($connect_2,"SELECT * FROM category_sub where id = $tem_id  order by id_sub desc");
 				while ($row_category_temp_sub = mysqli_fetch_array($category_temp_sub))
 				{
+					$row_quiz_with_temp_sub = mysqli_query($connect_2,"SELECT * FROM quiz where id_sub = $row_category_temp_sub[id_sub] order by id desc");
+					$rowcount=mysqli_num_rows($row_quiz_with_temp_sub);
  			?>        
-					<li><input type="checkbox" name="check_list[]" id="" value="<?php echo $row_category_temp_sub["id_sub"]?>"/> <?php echo $row_category_temp_sub["name_sub"]?> <br /></li>
+					<li><input type="checkbox" name="check_list[]" id="" value="<?php echo $row_category_temp_sub["id_sub"]?>"/> <?php echo $row_category_temp_sub["name_sub"]; echo " (".$rowcount." câu)" ?> <br /></li>
 			<?php 
                 }
             ?> 
