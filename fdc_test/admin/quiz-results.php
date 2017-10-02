@@ -87,7 +87,7 @@ while ($row2 = mysqli_fetch_row($count))
 $pages = ceil($total/$per_page);
 
 ?>
-		<h1>Quiz User Results</h1>
+		<h1>Kết Quả Kiểm Tra</h1>
 <div class="search-background" style='margin-left:250px;'>
 			<label><img src="./images/load.gif" alt="" /></label>
 		</div>

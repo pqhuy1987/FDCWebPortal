@@ -133,6 +133,28 @@ else
 		$chuyende[8] 	= 	$row_setting_temp['chuyende_8'];
 		$chuyende[9] 	= 	$row_setting_temp['chuyende_9'];
 		$chuyende[10] 	= 	$row_setting_temp['chuyende_10'];
+		
+		$chuyende[11] 	= 	$row_setting_temp['chuyende_11'];
+		$chuyende[12] 	= 	$row_setting_temp['chuyende_12'];
+		$chuyende[13] 	= 	$row_setting_temp['chuyende_13'];
+		$chuyende[14] 	= 	$row_setting_temp['chuyende_14'];
+		$chuyende[15] 	= 	$row_setting_temp['chuyende_15'];
+		$chuyende[16] 	= 	$row_setting_temp['chuyende_16'];
+		$chuyende[17] 	= 	$row_setting_temp['chuyende_17'];
+		$chuyende[18] 	= 	$row_setting_temp['chuyende_18'];
+		$chuyende[19] 	= 	$row_setting_temp['chuyende_19'];
+		$chuyende[20] 	= 	$row_setting_temp['chuyende_20'];
+		
+		$chuyende[21] 	= 	$row_setting_temp['chuyende_21'];
+		$chuyende[22] 	= 	$row_setting_temp['chuyende_22'];
+		$chuyende[23] 	= 	$row_setting_temp['chuyende_23'];
+		$chuyende[24] 	= 	$row_setting_temp['chuyende_24'];
+		$chuyende[25] 	= 	$row_setting_temp['chuyende_25'];
+		$chuyende[26] 	= 	$row_setting_temp['chuyende_26'];
+		$chuyende[27] 	= 	$row_setting_temp['chuyende_27'];
+		$chuyende[28] 	= 	$row_setting_temp['chuyende_28'];
+		$chuyende[29] 	= 	$row_setting_temp['chuyende_29'];
+		$chuyende[30] 	= 	$row_setting_temp['chuyende_30'];
 																				
     	echo "<input type='button' value='Previous' style='float:left;display:none;' id='top_prev' onclick=prevnext(0)>";
    
@@ -143,7 +165,7 @@ else
 		$lt2=1;
 		$pcount=0;
 		
-		for ($i = 1; $i < 11; $i++)
+		for ($i = 1; $i < 31; $i++)
 		{
 			$temp = $chuyende[$i];
 			if ($temp != 0)
@@ -242,8 +264,10 @@ else
 <script type="text/javascript">
 		     var cresult1=0;
 		     var wresult1=0;
+			 var tenchuyende1=0;
 			 var cresult2=0;
 		     var wresult2=0;
+			 var tenchuyende2=0;			 
 		     var currpage=0;
 		     var time_out;
 		     var prev=0;
@@ -258,11 +282,10 @@ else
 		     var total_ques="<?php echo   $pcount ;?>";
  function chkans(opt,ansid,chuyende,tenchuyende)
  {
-	 console.log(chuyende);
 	 if (chuyende == 1 )
 	 {
-		 console.log(tenchuyende);
 		 $ans=$('#ans_'+ansid).val()
+		 tenchuyende1=parseInt(tenchuyende);
 		 if ($ans==opt) {
 			  cresult1=parseInt(cresult1)+1;
 		 }
@@ -271,8 +294,8 @@ else
 			  wresult1=parseInt(wresult1)+1;     
 		 }
 	 } else if (chuyende == 2 ) {
-		 console.log(tenchuyende);
 		 $ans=$('#ans_'+ansid).val()
+		 tenchuyende2=parseInt(tenchuyende);
 		 if ($ans==opt) {
 			  cresult2=parseInt(cresult2)+1;
 		 }
@@ -328,16 +351,22 @@ else
  {
 	$tcans	=	cresult1;
 	$twans	=	wresult1;
+	$tenchuyende1 = tenchuyende1;
+	
+	$tcans2	=	cresult2;
+	$twans2	=	wresult2;
+	$tenchuyende2 = tenchuyende2;
+	
 	$examtime=$('#hms').html();
 	$('#cans').html($tcans);
 	$('#wans').html($twans);
-	$('#marks').html(cresult);
+	$('#marks').html(cresult1);
 	$('#res_id').css('display','none');
 	$('#results').css('display','block');
 	   $.ajax({//Make the Ajax Request
                     type: "POST",
                     url: hm2+"/add-results.php",
-                    data:{name:uname,catid:cat_id,cans:$tcans,wans:$twans,examtime:$examtime,hm:hm,hm2:hm2,email:email},
+                    data:{name:uname,catid:cat_id,chuyende_1:$tenchuyende1,cans:$tcans,wans:$twans,chuyende_2:$tenchuyende2,cans_2:$tcans2,wans_2:$twans2,examtime:$examtime,hm:hm,hm2:hm2,email:email},
                     success: function(data){
 			
                        $('#error_msg').html(""); 
