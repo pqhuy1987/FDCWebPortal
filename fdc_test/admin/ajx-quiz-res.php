@@ -105,7 +105,7 @@ echo "<div id='maindiv'>";
 			//----------------------chuyende_3----------------------------//
 			$chuyende_3 = $line['chuyende_3'];
 			$res_chuyende_3 = mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_3'");
-			$crow_chuyende_3 =mysqli_fetch_assoc($res_chuyende_2);
+			$crow_chuyende_3 =mysqli_fetch_assoc($res_chuyende_3);
 			$cat_name3=$crow_chuyende_3['name_sub'];
 			
 			$cans_3 = $line['correct_ans_3'];
