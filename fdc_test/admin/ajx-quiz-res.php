@@ -16,7 +16,7 @@ $page = $_REQUEST['page'];
 
 $start = ($page)*10;
 
-$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit $start,10");
+$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit $start,500");
 echo "<div id='maindiv'>";
 
 //echo $start;
@@ -28,6 +28,10 @@ echo "<div id='maindiv'>";
 		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
           	<th>Tên</th>
+			<th>Email</th>
+			<th>Phòng Ban/Công Trường</th>
+			<th>Vị Trí</th>
+			<th>Bậc Hợp Đồng</th>
           	<th>Bộ Đề</th>
           	<th>Chuyên Đề 1</th>
 	  		<th>Chuyên Đề 2</th>
@@ -63,7 +67,6 @@ echo "<div id='maindiv'>";
 	  		<th>Điểm</th>
 	  		<th>Thời gian sử dụng</th>
 	  		<th>Ngày</th>
-			<th>Email</th>
 			<th>Xuất Excel File</th>
 			<th>Xóa</th>
         </tr>';
@@ -80,11 +83,12 @@ echo "<div id='maindiv'>";
 			$crow			= mysqli_fetch_assoc($res3);
 			$cat_name		= $crow['exam_name'];
 			
+			
 			//----------------------chuyende_1----------------------------//
 			$chuyende_1 = $line['chuyende_1'];
-			$res_chuyende_1 	= mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_1'");
-			$crow_chuyende_1 	= mysqli_fetch_assoc($res_chuyende_1);
-			$cat_name1			= $crow_chuyende_1['name_sub'];
+			$res_chuyende_1 = mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_1'");
+			$crow_chuyende_1 = mysqli_fetch_assoc($res_chuyende_1);
+			$cat_name1=$crow_chuyende_1['name_sub'];
 			
 			$cans = $line['correct_ans'];
 			$wans = $line['wrong_ans'];
@@ -183,7 +187,7 @@ echo "<div id='maindiv'>";
 			$chuyende_10 = $line['chuyende_10'];
 			$res_chuyende_10 	= mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_10'");
 			$crow_chuyende_10 	= mysqli_fetch_assoc($res_chuyende_10);
-			$cat_name1			= $crow_chuyende_10['name_sub'];
+			$cat_name10			= $crow_chuyende_10['name_sub'];
 			
 			$cans_10 = $line['correct_ans_10'];
 			$wans_10 = $line['wrong_ans_10'];
@@ -414,12 +418,19 @@ echo "<div id='maindiv'>";
 			$examtime=$line['examtime'];
 			$date = $line['datee'];
 			$email=$line['email'];
+			$workplace=$line['workplace'];
+			$title=$line['title'];
+			$contact=$line['contact'];
 			
 					echo "<tr id='row_$id'>";
 			
 			
 			echo 
-			"<td>$name</td><td>$cat_name</td>
+			"<td>$name</td><td>$email</td>
+			<td>$workplace</td>
+            <td>$title</td>
+            <td>$contact</td>
+			<td>$cat_name</td>
 			<td>$cat_name1: ( đúng $cans/$total_1 câu)</td>
 			<td>$cat_name2: ( đúng $cans_2/$total_2 câu)</td>
 			<td>$cat_name3: ( đúng $cans_3/$total_3 câu)</td>
@@ -453,7 +464,7 @@ echo "<div id='maindiv'>";
 			<td>$cat_name29: ( đúng $cans_29/$total_29 câu)</td>
 			<td>$cat_name30: ( đúng $cans_30/$total_30 câu)</td>
 
-			<td>$marks</td><td>$examtime</td><td>$date</td><td>$email</td>
+			<td>$marks</td><td>$examtime</td><td>$date</td>
 			<td><a href='./excel.php?eid=$id'>Xuất File</a></td>
 			<td><a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
 			

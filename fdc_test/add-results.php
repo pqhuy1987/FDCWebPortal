@@ -124,6 +124,9 @@ $wans_30=$_POST['wans_30'];
 $cans_30=$_POST['cans_30'];
 
 $catid=$_POST['catid'];
+$workplace  	= $_POST['catid_2'];
+$title			= $_POST['catid_3'];
+$contact		= $_POST['catid_4'];
 $etime=$_POST['examtime'];
 $cdate=date("Y-m-d");
 $email=$_POST['email'];
@@ -142,7 +145,7 @@ if($connect)
 }
     if($catid!="" && $name!="" && $wans!="" && $cans!="")
     {
-        $query =  mysqli_query($connect,"INSERT into quizresults set name='$name', cat_id='$catid', 
+        $query =  mysqli_query($connect,"INSERT into quizresults set name='$name', cat_id='$catid', workplace='$workplace',title='$title', contact='$contact',
 		chuyende_1 = '$chuyende_1', correct_ans='$cans',wrong_ans='$wans', 
 		chuyende_2 = '$chuyende_2', correct_ans_2='$cans_2',wrong_ans_2='$wans_2', 
 		chuyende_3 = '$chuyende_3', correct_ans_3='$cans_3',wrong_ans_3='$wans_3', 

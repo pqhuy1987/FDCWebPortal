@@ -46,14 +46,21 @@ else
   
 	if((isset($_SESSION['catid']))||(isset($_POST['catid']) && isset($_POST['uname'])&& isset($_POST['uemail'])))
 	{
-		if($_SESSION['catid']=="")
+		if($_SESSION['catid']==""){
 		   $_SESSION['catid']=$_POST['catid'];
+		   $_SESSION['catid_2']=$_POST['catid_2'];
+		   $_SESSION['catid_3']=$_POST['catid_3'];
+		   $_SESSION['catid_4']=$_POST['catid_4'];
+		}
 		if($_SESSION['uname']=="")   
 		   $_SESSION['uname']=$_POST['uname'];
 		if($_SESSION['uemail']=="")   
 		   $_SESSION['uemail']=$_POST['uemail'];
 
 		$catid	=	$_SESSION['catid'];
+		$catid_2	=	$_SESSION['catid_2'];
+		$catid_3	=	$_SESSION['catid_3'];
+		$catid_4	=	$_SESSION['catid_4'];
 		$uname 	=	$_SESSION['uname'];
 		$email 	=	$_SESSION['uemail'];
 		$settings_query = mysqli_query($connect_2,"SELECT * FROM settings WHERE id=$catid");
@@ -391,6 +398,9 @@ else
 			 var email="<?php echo $email;?>";
 			 var uname="<?php echo $uname;?>";
 			 var cat_id="<?php echo $catid;?>";
+			 var cat_id_2="<?php echo $catid_2;?>";
+			 var cat_id_3="<?php echo $catid_3;?>";
+			 var cat_id_4="<?php echo $catid_4;?>";
 		     var total_pages="<?php echo $pages;?>";
 			 var hm="<?php echo $hm;?>";
 			 var hm2="<?php echo $hm2;?>";
@@ -745,6 +755,7 @@ else
  }
  function results()
  {
+
 	$tcans	=	cresult1;
 	$twans	=	wresult1;
 	$tenchuyende1 = tenchuyende1;
@@ -874,7 +885,7 @@ else
 	   $.ajax({//Make the Ajax Request
                     type: "POST",
                     url: hm2+"/add-results.php",
-                    data:{name:uname,catid:cat_id,
+                    data:{name:uname,catid:cat_id,catid_2:cat_id_2,catid_3:cat_id_3,catid_4:cat_id_4,
 					chuyende_1:$tenchuyende1,cans:$tcans,wans:$twans,
 					chuyende_2:$tenchuyende2,cans_2:$tcans2,wans_2:$twans2,
 					chuyende_3:$tenchuyende3,cans_3:$tcans3,wans_3:$twans3,
@@ -1000,6 +1011,27 @@ $(window).load(function () {
 		  <input type='text' name='uname' readonly value=' ";?> <?php echo $_SESSION['nameuser']; ?> <?php echo"' maxlength='20'> 
 		  <label>E-mail : </label>
 		  <input type='text' name='uemail' readonly value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
+		   </div>
+		   <div class='frms_sub1'>
+		  <label>Tên Công Trường/Phòng Ban : </label>
+		  <input type='text' name='catid_2' value=' ";?> <?php  ?> <?php echo"' maxlength='40'> 
+		  <label>Vị trí/Chức Vụ : </label>
+		  <select name='catid_3'>";
+
+		  echo "<option value='Giám Sát'>Giám Sát</option>";
+		  echo "<option value='Nhân Viên'>Nhân Viên</option>";
+
+		  echo "</select>
+		  <label>Loại Hợp Đồng : </label>
+		  <select name='catid_4'>";
+
+		  echo "<option value='Hợp Đồng Thử Việc'>Hợp Đồng Thử Việc</option>";
+		  echo "<option value='Hợp Đồng Bậc 4'>Hợp Đồng Bậc 4</option>";
+		  echo "<option value='Hợp Đồng Bậc 3'>Hợp Đồng Bậc 3</option>";
+		  echo "<option value='Hợp Đồng Bậc 2'>Hợp Đồng Bậc 2</option>";
+		  echo "<option value='Hợp Đồng Bậc 1'>Hợp Đồng Bậc 1</option>";
+
+		  echo "</select>
 		  <label>Chọn chuyên mục đánh giá : </label>
 		  <select name='catid'>";
 		   if($cquery)

@@ -16,7 +16,7 @@ $page = $_REQUEST['page'];
 
 $start = ($page)*10;
 
-$res2 = mysqli_query($connect_2,"SELECT * FROM settings order by id desc limit $start,10");
+$res2 = mysqli_query($connect_2,"SELECT * FROM settings order by id desc limit $start,100");
 
 echo "<div id='maindiv'>";
 
@@ -30,6 +30,7 @@ echo "<div id='maindiv'>";
         <tr>
           
           <th>Tên Bộ Đề</th>
+		  <th>Chuyên Đề</th>
 		  <th>Số Câu Hỏi</th>
 		  <th>Thời Gian</th>
           <th>Sửa Đổi</th>
