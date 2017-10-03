@@ -30,7 +30,7 @@ echo "<div id='maindiv'>";
         <tr>
           
           <th>Tên Bộ Đề</th>
-		  <th>Chuyên Đề</th>
+		  <th>Cách Lộc Bộ Đề</th>
 		  <th>Số Câu Hỏi</th>
 		  <th>Thời Gian</th>
           <th>Sửa Đổi</th>
@@ -46,11 +46,20 @@ echo "<div id='maindiv'>";
 			
 			$catname = $line['exam_name'];
 			$num = $line['pagenum'];	
-			$time = $line['examtime'];	
+			$time = $line['examtime'];
+			$filter = $line['filter'];	
 			
 			echo "<tr id='row_$id'>";
 			
-			echo "  <td><input type='text' value='$catname' readonly='readonly' id='catname_$id' class='textbox'></td>
+			echo "  <td><input type='text' value='$catname' readonly='readonly' id='catname_$id' class='textbox'></td>";
+			if ($filter == 1){
+					echo "<td><input type='text' value='Lọc bộ đề cũ nhất' readonly='readonly' id='num_$id' class='textbox'></td>";
+			} else if ($filter == 2) {
+					echo "<td><input type='text' value='Lọc bộ đề mới nhất' readonly='readonly' id='num_$id' class='textbox'></td>";
+			} else {
+					echo "<td><input type='text' value='Lọc bộ đề ngẫu nhiên' readonly='readonly' id='num_$id' class='textbox'></td>";
+			}
+			echo "
 					<td><input type='text' value='$num' readonly='readonly' id='num_$id' class='textbox'></td>
 					<td><input type='text' value='$time' readonly='readonly' id='time_$id' class='textbox'></td>
 					

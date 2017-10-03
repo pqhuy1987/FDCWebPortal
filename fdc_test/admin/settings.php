@@ -47,14 +47,16 @@ $(document).ready(function(){
 			$pnum=$('#num').val();
 			$etime=$('#etime').val();
 			$catname=$('#catname').val();
+			$filter=$('#filter').val();
 			$length=val.length;
 			
+			console.log($filter);
 			var jsonString = JSON.stringify(val);
 		
 			$.ajax({//Make the Ajax Request
 					type: "POST",
 					url: "./ajx-update-settings.php",
-					data:{pnum:$pnum, etime:$etime, length:$length, jsonString:jsonString, catname:$catname},
+					data:{pnum:$pnum, etime:$etime, length:$length, jsonString:jsonString, catname:$catname, filter:$filter},
 					success: function(data){
 
 					$('#msg').html("<font color='green'>"+data+"</font>");
@@ -69,6 +71,7 @@ $(document).ready(function(){
  });
 </script>
 <?php
+			
 			echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			echo "<div class='form_con'> <div class='form_element lable'>Bộ Đề Kiểm Tra: </div><div class='form_element'><input type=text name=catname id='catname' value=''  class='textbox'></div></div>";
 ?>
@@ -137,6 +140,15 @@ $(document).ready(function(){
       			<option value="03:30:00">03:30</option>
       			<option value="04:00:00">04:00</option>
         	';
+       		echo "</select></div> ";
+			echo "</select></div>  <div class='clear'></div><div class='form_element lable'> Chọn phương pháp lọc bộ đề : </div><div class='form_element'><select name='filter' id='filter' class='selectbox'>";
+			echo "<option value=''>-- Chọn Cách Lọc Bộ Đề --</option>";
+?>
+    			<option value="1">Lọc Theo Câu Hỏi Cũ Nhất</option>
+     			<option value="2">Lọc Theo Câu Hỏi Mới Nhất</option>
+    			<option value="<?php echo(rand (3,10)) ?>">Lọc Theo Câu Hỏi Ngẫu Nhiên</option>
+<?php
+
 			
        		echo "</select></div> <div class='clear'></div><br> <span style='float:left;'>";
 			

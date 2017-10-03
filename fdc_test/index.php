@@ -75,6 +75,7 @@ else
 		
 		if(mysqli_num_rows($result) >0)
 		{
+			echo "<script type='text/javascript'> alert(1); </script>";
 		   	session_destroy();
 		   	$bname= basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 		 	echo "<script type='text/javascript'>window.location.href='./$bname';</script>";
@@ -184,7 +185,17 @@ else
  				
 				echo "<div class='sub_title'> Phần $lt2: $row_category_sub_temp[name_sub] </div>";
 				$temp_category_sub = $row_category_sub_temp["name_sub"];
-				$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp limit 0,$limit_num" );
+				
+				if ($row_setting_temp['filter'] == 1) {
+					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id asc limit 0,$limit_num " );
+				} else if($row_setting_temp['filter'] == 2) {
+					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id desc limit 0,$limit_num " );
+				} else {
+					$random_value = $row_setting_temp['filter'];
+					$limit_num = $limit_num + $random_value;
+					
+					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp limit $random_value,$limit_num" );
+				}
 				$pcount = $pcount + mysqli_num_rows($query);
 				$pages = ceil($pcount/$limit);
 				while($row = mysqli_fetch_array($query))
