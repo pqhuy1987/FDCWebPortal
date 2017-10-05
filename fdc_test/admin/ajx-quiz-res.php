@@ -16,8 +16,8 @@ $page = $_REQUEST['page'];
 
 $start = ($page)*10;
 
-$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit $start,500");
-echo "<div id='maindiv'>";
+		$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit $start,500");
+		echo "<div id='maindiv'>";
 
 //echo $start;
 
@@ -33,6 +33,8 @@ echo "<div id='maindiv'>";
 			<th>Vị Trí</th>
 			<th>Bậc Hợp Đồng</th>
           	<th>Bộ Đề</th>
+	  		<th>Thời gian sử dụng</th>
+	  		<th>Ngày</th>
           	<th>Chuyên Đề 1</th>
 	  		<th>Chuyên Đề 2</th>
 			<th>Chuyên Đề 3</th>
@@ -63,10 +65,6 @@ echo "<div id='maindiv'>";
 	  		<th>Chuyên Đề 28</th>
 			<th>Chuyên Đề 29</th>
 	  		<th>Chuyên Đề 30</th>
-			
-	  		<th>Điểm</th>
-	  		<th>Thời gian sử dụng</th>
-	  		<th>Ngày</th>
 			<th>Xuất Excel File</th>
 			<th>Xóa</th>
         </tr>';
@@ -431,6 +429,8 @@ echo "<div id='maindiv'>";
             <td>$title</td>
             <td>$contact</td>
 			<td>$cat_name</td>
+			<td>$examtime</td>
+			<td>$date</td>
 			<td>$cat_name1: ( đúng $cans/$total_1 câu)</td>
 			<td>$cat_name2: ( đúng $cans_2/$total_2 câu)</td>
 			<td>$cat_name3: ( đúng $cans_3/$total_3 câu)</td>
@@ -464,7 +464,6 @@ echo "<div id='maindiv'>";
 			<td>$cat_name29: ( đúng $cans_29/$total_29 câu)</td>
 			<td>$cat_name30: ( đúng $cans_30/$total_30 câu)</td>
 
-			<td>$marks</td><td>$examtime</td><td>$date</td>
 			<td><a href='./excel.php?eid=$id'>Xuất File</a></td>
 			<td><a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
 			
