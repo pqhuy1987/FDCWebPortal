@@ -412,6 +412,8 @@ $start = ($page)*100;
        	<td>'.$line["title"].'</td>  
        	<td>'.$line["contact"].'</td>
        	<td>'.$cat_name.'</td>  
+       	<td>'.$line["examtime"].'</td>  
+       	<td>'.$line["datee"].'</td>
        	<td>'.$cat_name1.': ( Đúng '.$cans.' \ '.$total_1.' câu )</td>  
        	<td>'.$cat_name2.': ( Đúng '.$cans_2.' \ '.$total_2.' câu )</td>  
 	   	<td>'.$cat_name3.': ( Đúng '.$cans_3.' \ '.$total_3.' câu )</td>  
