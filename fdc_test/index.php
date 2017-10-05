@@ -1,8 +1,10 @@
+
 <html>
 		     <head>
 					  <title>FDC Hệ Thống Trắc Nghiệm</title>
 		     </head>
 </html>
+
 <?php
 require "../lib/dbCon.php";
 require "../lib/trangchu.php";
@@ -67,9 +69,16 @@ else
 		$settings_row = mysqli_fetch_assoc($settings_query);
 		$limit=$settings_row['pagenum'];
 		$length=$settings_row['length'];
-		$limit_num = ROUND($limit/$length);
-		$time =$settings_row['examtime'];
+		$limit_num = floor($limit/$length);
+		$time = $settings_row['examtime'];
 		
+		if (!isset($_SESSION['FirstVisit']))
+		{
+    		$_SESSION['FirstVisit'] = 1;
+    	} else {
+			$_SESSION['FirstVisit'] = 2;
+		}	
+
 		$sql = "SELECT id FROM quizresults WHERE email='$email' and cat_id='$catid'";
 		$result = mysqli_query($connect_2,$sql);
 		
@@ -187,14 +196,17 @@ else
 				$temp_category_sub = $row_category_sub_temp["name_sub"];
 				
 				if ($row_setting_temp['filter'] == 1) {
-					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id asc limit 0,$limit_num " );
+					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id asc limit $limit_num " );
 				} else if($row_setting_temp['filter'] == 2) {
-					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id desc limit 0,$limit_num " );
+					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id desc limit $limit_num " );
 				} else {
-					$random_value = $row_setting_temp['filter'];
-					$limit_num = $limit_num + $random_value;
-					
-					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp limit $random_value,$limit_num" );
+					if ($limit_num <=2){
+						$limit_num_temp = ceil($limit_num/2);
+						$query = mysqli_query($connect_2,"(SELECT * FROM quiz WHERE status='release' and id_sub=$temp and dokho=1 order by RAND() limit $limit_num_temp) union (SELECT * FROM quiz WHERE status='release' and id_sub=$temp and dokho=2 order by RAND() limit $limit_num_temp)" );							
+					} else {
+						$limit_num_temp = ceil($limit_num/3);
+						$query = mysqli_query($connect_2,"(SELECT * FROM quiz WHERE status='release' and id_sub=$temp and dokho=1 order by RAND() limit $limit_num_temp) union (SELECT * FROM quiz WHERE status='release' and id_sub=$temp and dokho=2 order by RAND() limit $limit_num_temp) union (SELECT * FROM quiz WHERE status='release' and id_sub=$temp and (dokho=3 or dokho=4) order by RAND() limit $limit_num_temp)" );						
+					}
 				}
 				$pcount = $pcount + mysqli_num_rows($query);
 				$pages = ceil($pcount/$limit);
@@ -253,7 +265,7 @@ else
 			}
 		}
 
-   		echo "<input type='button' value='Get Results' onclick='results()' id='res_btn' style='display:none;'>";
+   		echo "<input type='button' value='Get Results' onclick=results() id='res_btn' style='display:none;'>";
      	echo "<input type='button' value='Previous' style='float:left;display:none;' id='prev' onclick=prevnext(0)>";
     	echo "<input type='button' value='Hoàn Thành' style='float:right;' id='next' onclick=results()>";
      	echo "</div><div id='results' align='center' style='display:none;'>
@@ -401,7 +413,8 @@ else
 			 var cresult30=0;
 		     var wresult30=0;
 			 var tenchuyende30=0;
-			 			 
+			 
+			 var $pcount_check = 0;			 
 		     var currpage=0;
 		     var time_out;
 		     var prev=0;
@@ -416,9 +429,11 @@ else
 			 var hm="<?php echo $hm;?>";
 			 var hm2="<?php echo $hm2;?>";
 		     total_pages=total_pages-1;
-		     var total_ques="<?php echo   $pcount ;?>";
+		     var total_ques = "<?php echo $pcount; ?>";
+			 
  function chkans(opt,ansid,chuyende,tenchuyende)
  {
+	 $pcount_check = $pcount_check + 1;
 	 if (chuyende == 1 )
 	 {
 		 $ans=$('#ans_'+ansid).val()
@@ -766,7 +781,6 @@ else
  }
  function results()
  {
-
 	$tcans	=	cresult1;
 	$twans	=	wresult1;
 	$tenchuyende1 = tenchuyende1;
@@ -886,64 +900,434 @@ else
 	$tcans30	=	cresult30;
 	$twans30	=	wresult30;
 	$tenchuyende30 = tenchuyende30;
-	
-	$examtime=$('#hms').html();
-	$('#cans').html($tcans);
-	$('#wans').html($twans);
-	$('#marks').html(cresult1);
-	$('#res_id').css('display','none');
-	$('#results').css('display','block');
-	   $.ajax({//Make the Ajax Request
-                    type: "POST",
-                    url: hm2+"/add-results.php",
-                    data:{name:uname,catid:cat_id,catid_2:cat_id_2,catid_3:cat_id_3,catid_4:cat_id_4,
-					chuyende_1:$tenchuyende1,cans:$tcans,wans:$twans,
-					chuyende_2:$tenchuyende2,cans_2:$tcans2,wans_2:$twans2,
-					chuyende_3:$tenchuyende3,cans_3:$tcans3,wans_3:$twans3,
-					chuyende_4:$tenchuyende4,cans_4:$tcans4,wans_4:$twans4,
-					chuyende_5:$tenchuyende5,cans_5:$tcans5,wans_5:$twans5,
-					chuyende_6:$tenchuyende6,cans_6:$tcans6,wans_6:$twans6,
-					chuyende_7:$tenchuyende7,cans_7:$tcans7,wans_7:$twans7,
-					chuyende_8:$tenchuyende8,cans_8:$tcans8,wans_8:$twans8,
-					chuyende_9:$tenchuyende9,cans_9:$tcans9,wans_9:$twans9,
-					chuyende_10:$tenchuyende10,cans_10:$tcans10,wans_10:$twans10,
-					chuyende_11:$tenchuyende11,cans_11:$tcans11,wans_11:$twans11,
-					chuyende_12:$tenchuyende12,cans_12:$tcans12,wans_12:$twans12,
-					chuyende_13:$tenchuyende13,cans_13:$tcans13,wans_13:$twans13,
-					chuyende_14:$tenchuyende14,cans_14:$tcans14,wans_14:$twans14,
-					chuyende_15:$tenchuyende15,cans_15:$tcans15,wans_15:$twans15,
-					chuyende_16:$tenchuyende16,cans_16:$tcans16,wans_16:$twans16,
-					chuyende_17:$tenchuyende17,cans_17:$tcans17,wans_17:$twans17,
-					chuyende_18:$tenchuyende18,cans_18:$tcans18,wans_18:$twans18,
-					chuyende_19:$tenchuyende19,cans_19:$tcans19,wans_19:$twans19,
-					chuyende_20:$tenchuyende20,cans_20:$tcans20,wans_20:$twans20,
-					chuyende_21:$tenchuyende21,cans_21:$tcans21,wans_21:$twans21,
-					chuyende_22:$tenchuyende22,cans_22:$tcans22,wans_22:$twans22,
-					chuyende_23:$tenchuyende23,cans_23:$tcans23,wans_23:$twans23,
-					chuyende_24:$tenchuyende24,cans_24:$tcans24,wans_24:$twans24,
-					chuyende_25:$tenchuyende25,cans_25:$tcans25,wans_25:$twans25,
-					chuyende_26:$tenchuyende26,cans_26:$tcans26,wans_26:$twans26,
-					chuyende_27:$tenchuyende27,cans_27:$tcans27,wans_27:$twans27,
-					chuyende_28:$tenchuyende28,cans_28:$tcans28,wans_28:$twans28,
-					chuyende_29:$tenchuyende29,cans_29:$tcans29,wans_29:$twans29,
-					chuyende_30:$tenchuyende30,cans_30:$tcans30,wans_30:$twans30,
-					examtime:$examtime,hm:hm,hm2:hm2,email:email},
-                    success: function(data){
-			
-                       $('#error_msg').html(""); 
-                 $('#msg').html(data);
 
-                    }
-                });
+		if ($pcount_check == total_ques)
+		{
+			$examtime=$('#hms').html();
+			$('#cans').html($tcans);
+			$('#wans').html($twans);
+			$('#marks').html(cresult1);
+			$('#res_id').css('display','none');
+			$('#results').css('display','block');
+		   $.ajax({//Make the Ajax Request
+						type: "POST",
+						url: hm2+"/add-results.php",
+						data:{name:uname,catid:cat_id,catid_2:cat_id_2,catid_3:cat_id_3,catid_4:cat_id_4,
+						chuyende_1:$tenchuyende1,cans:$tcans,wans:$twans,
+						chuyende_2:$tenchuyende2,cans_2:$tcans2,wans_2:$twans2,
+						chuyende_3:$tenchuyende3,cans_3:$tcans3,wans_3:$twans3,
+						chuyende_4:$tenchuyende4,cans_4:$tcans4,wans_4:$twans4,
+						chuyende_5:$tenchuyende5,cans_5:$tcans5,wans_5:$twans5,
+						chuyende_6:$tenchuyende6,cans_6:$tcans6,wans_6:$twans6,
+						chuyende_7:$tenchuyende7,cans_7:$tcans7,wans_7:$twans7,
+						chuyende_8:$tenchuyende8,cans_8:$tcans8,wans_8:$twans8,
+						chuyende_9:$tenchuyende9,cans_9:$tcans9,wans_9:$twans9,
+						chuyende_10:$tenchuyende10,cans_10:$tcans10,wans_10:$twans10,
+						chuyende_11:$tenchuyende11,cans_11:$tcans11,wans_11:$twans11,
+						chuyende_12:$tenchuyende12,cans_12:$tcans12,wans_12:$twans12,
+						chuyende_13:$tenchuyende13,cans_13:$tcans13,wans_13:$twans13,
+						chuyende_14:$tenchuyende14,cans_14:$tcans14,wans_14:$twans14,
+						chuyende_15:$tenchuyende15,cans_15:$tcans15,wans_15:$twans15,
+						chuyende_16:$tenchuyende16,cans_16:$tcans16,wans_16:$twans16,
+						chuyende_17:$tenchuyende17,cans_17:$tcans17,wans_17:$twans17,
+						chuyende_18:$tenchuyende18,cans_18:$tcans18,wans_18:$twans18,
+						chuyende_19:$tenchuyende19,cans_19:$tcans19,wans_19:$twans19,
+						chuyende_20:$tenchuyende20,cans_20:$tcans20,wans_20:$twans20,
+						chuyende_21:$tenchuyende21,cans_21:$tcans21,wans_21:$twans21,
+						chuyende_22:$tenchuyende22,cans_22:$tcans22,wans_22:$twans22,
+						chuyende_23:$tenchuyende23,cans_23:$tcans23,wans_23:$twans23,
+						chuyende_24:$tenchuyende24,cans_24:$tcans24,wans_24:$twans24,
+						chuyende_25:$tenchuyende25,cans_25:$tcans25,wans_25:$twans25,
+						chuyende_26:$tenchuyende26,cans_26:$tcans26,wans_26:$twans26,
+						chuyende_27:$tenchuyende27,cans_27:$tcans27,wans_27:$twans27,
+						chuyende_28:$tenchuyende28,cans_28:$tcans28,wans_28:$twans28,
+						chuyende_29:$tenchuyende29,cans_29:$tcans29,wans_29:$twans29,
+						chuyende_30:$tenchuyende30,cans_30:$tcans30,wans_30:$twans30,
+						examtime:$examtime,hm:hm,hm2:hm2,email:email},
+						success: function(data){
+				
+						$('#error_msg').html(""); 
+						$('#msg').html(data);
+						}
+					});
+		} 
+		else {
+			alert("Bạn vẫn chưa hoàn thành bài kiểm tra, vui lòng kiểm tra lại !!!");
+		}
  }
-    function count() {
-     
-    var startTime = document.getElementById('hms').innerHTML;
-    var pieces = startTime.split(":");
-    var time = new Date();
+ 
+ function results()
+ {
+	$tcans	=	cresult1;
+	$twans	=	wresult1;
+	$tenchuyende1 = tenchuyende1;
 	
-	localStorage.getItem("startTime");
+	$tcans2	=	cresult2;
+	$twans2	=	wresult2;
+	$tenchuyende2 = tenchuyende2;
 	
+	$tcans3	=	cresult3;
+	$twans3	=	wresult3;
+	$tenchuyende3 = tenchuyende3;
+	
+	$tcans4	=	cresult4;
+	$twans4	=	wresult4;
+	$tenchuyende4 = tenchuyende4;
+	
+	$tcans5	=	cresult5;
+	$twans5	=	wresult5;
+	$tenchuyende5 = tenchuyende5;
+	
+	$tcans6	=	cresult6;
+	$twans6	=	wresult6;
+	$tenchuyende6 = tenchuyende6;
+	
+	$tcans7	=	cresult7;
+	$twans7	=	wresult7;
+	$tenchuyende7 = tenchuyende7;
+	
+	$tcans8	=	cresult8;
+	$twans8	=	wresult8;
+	$tenchuyende8 = tenchuyende8;
+	
+	$tcans9	=	cresult9;
+	$twans9	=	wresult9;
+	$tenchuyende9 = tenchuyende9;
+	
+	$tcans10	=	cresult10;
+	$twans10	=	wresult10;
+	$tenchuyende10 = tenchuyende10;
+	
+	$tcans11	=	cresult11;
+	$twans11	=	wresult11;
+	$tenchuyende11 = tenchuyende11;
+	
+	$tcans12	=	cresult12;
+	$twans12	=	wresult12;
+	$tenchuyende12 = tenchuyende12;
+	
+	$tcans13	=	cresult13;
+	$twans13	=	wresult13;
+	$tenchuyende13 = tenchuyende13;
+	
+	$tcans14	=	cresult14;
+	$twans14	=	wresult14;
+	$tenchuyende14 = tenchuyende14;
+	
+	$tcans15	=	cresult15;
+	$twans15	=	wresult15;
+	$tenchuyende15 = tenchuyende15;
+	
+	$tcans16	=	cresult16;
+	$twans16	=	wresult16;
+	$tenchuyende16 = tenchuyende16;
+	
+	$tcans17	=	cresult17;
+	$twans17	=	wresult17;
+	$tenchuyende17 = tenchuyende17;
+	
+	$tcans18	=	cresult18;
+	$twans18	=	wresult18;
+	$tenchuyende18 = tenchuyende18;
+	
+	$tcans19	=	cresult19;
+	$twans19	=	wresult19;
+	$tenchuyende19 = tenchuyende19;
+	
+	$tcans20	=	cresult20;
+	$twans20	=	wresult20;
+	$tenchuyende20 = tenchuyende20;
+	
+	$tcans21	=	cresult21;
+	$twans21	=	wresult21;
+	$tenchuyende21 = tenchuyende21;
+	
+	$tcans22	=	cresult22;
+	$twans22	=	wresult22;
+	$tenchuyende22 = tenchuyende22;
+	
+	$tcans23	=	cresult23;
+	$twans23	=	wresult23;
+	$tenchuyende23 = tenchuyende23;
+	
+	$tcans24	=	cresult24;
+	$twans24	=	wresult24;
+	$tenchuyende24 = tenchuyende24;
+	
+	$tcans25	=	cresult25;
+	$twans25	=	wresult25;
+	$tenchuyende25 = tenchuyende25;
+	
+	$tcans26	=	cresult26;
+	$twans26	=	wresult26;
+	$tenchuyende26 = tenchuyende26;
+	
+	$tcans27	=	cresult27;
+	$twans27	=	wresult27;
+	$tenchuyende27 = tenchuyende27;
+	
+	$tcans28	=	cresult28;
+	$twans28	=	wresult28;
+	$tenchuyende28 = tenchuyende28;
+	
+	$tcans29	=	cresult29;
+	$twans29	=	wresult29;
+	$tenchuyende29 = tenchuyende29;
+	
+	$tcans30	=	cresult30;
+	$twans30	=	wresult30;
+	$tenchuyende30 = tenchuyende30;
+
+		if ($pcount_check == total_ques)
+		{
+			$examtime=$('#hms').html();
+			$('#cans').html($tcans);
+			$('#wans').html($twans);
+			$('#marks').html(cresult1);
+			$('#res_id').css('display','none');
+			$('#results').css('display','block');
+		   $.ajax({//Make the Ajax Request
+						type: "POST",
+						url: hm2+"/add-results.php",
+						data:{name:uname,catid:cat_id,catid_2:cat_id_2,catid_3:cat_id_3,catid_4:cat_id_4,
+						chuyende_1:$tenchuyende1,cans:$tcans,wans:$twans,
+						chuyende_2:$tenchuyende2,cans_2:$tcans2,wans_2:$twans2,
+						chuyende_3:$tenchuyende3,cans_3:$tcans3,wans_3:$twans3,
+						chuyende_4:$tenchuyende4,cans_4:$tcans4,wans_4:$twans4,
+						chuyende_5:$tenchuyende5,cans_5:$tcans5,wans_5:$twans5,
+						chuyende_6:$tenchuyende6,cans_6:$tcans6,wans_6:$twans6,
+						chuyende_7:$tenchuyende7,cans_7:$tcans7,wans_7:$twans7,
+						chuyende_8:$tenchuyende8,cans_8:$tcans8,wans_8:$twans8,
+						chuyende_9:$tenchuyende9,cans_9:$tcans9,wans_9:$twans9,
+						chuyende_10:$tenchuyende10,cans_10:$tcans10,wans_10:$twans10,
+						chuyende_11:$tenchuyende11,cans_11:$tcans11,wans_11:$twans11,
+						chuyende_12:$tenchuyende12,cans_12:$tcans12,wans_12:$twans12,
+						chuyende_13:$tenchuyende13,cans_13:$tcans13,wans_13:$twans13,
+						chuyende_14:$tenchuyende14,cans_14:$tcans14,wans_14:$twans14,
+						chuyende_15:$tenchuyende15,cans_15:$tcans15,wans_15:$twans15,
+						chuyende_16:$tenchuyende16,cans_16:$tcans16,wans_16:$twans16,
+						chuyende_17:$tenchuyende17,cans_17:$tcans17,wans_17:$twans17,
+						chuyende_18:$tenchuyende18,cans_18:$tcans18,wans_18:$twans18,
+						chuyende_19:$tenchuyende19,cans_19:$tcans19,wans_19:$twans19,
+						chuyende_20:$tenchuyende20,cans_20:$tcans20,wans_20:$twans20,
+						chuyende_21:$tenchuyende21,cans_21:$tcans21,wans_21:$twans21,
+						chuyende_22:$tenchuyende22,cans_22:$tcans22,wans_22:$twans22,
+						chuyende_23:$tenchuyende23,cans_23:$tcans23,wans_23:$twans23,
+						chuyende_24:$tenchuyende24,cans_24:$tcans24,wans_24:$twans24,
+						chuyende_25:$tenchuyende25,cans_25:$tcans25,wans_25:$twans25,
+						chuyende_26:$tenchuyende26,cans_26:$tcans26,wans_26:$twans26,
+						chuyende_27:$tenchuyende27,cans_27:$tcans27,wans_27:$twans27,
+						chuyende_28:$tenchuyende28,cans_28:$tcans28,wans_28:$twans28,
+						chuyende_29:$tenchuyende29,cans_29:$tcans29,wans_29:$twans29,
+						chuyende_30:$tenchuyende30,cans_30:$tcans30,wans_30:$twans30,
+						examtime:$examtime,hm:hm,hm2:hm2,email:email},
+						success: function(data){
+				
+						$('#error_msg').html(""); 
+						$('#msg').html(data);
+						}
+					});
+		} 
+		else {
+			alert("Bạn vẫn chưa hoàn thành bài kiểm tra, vui lòng kiểm tra lại !!!");
+		}
+ }
+ 
+ ///////////////////////////////////////////////////////
+  function results_temp()
+ {
+	$tcans	=	cresult1;
+	$twans	=	wresult1;
+	$tenchuyende1 = tenchuyende1;
+	
+	$tcans2	=	cresult2;
+	$twans2	=	wresult2;
+	$tenchuyende2 = tenchuyende2;
+	
+	$tcans3	=	cresult3;
+	$twans3	=	wresult3;
+	$tenchuyende3 = tenchuyende3;
+	
+	$tcans4	=	cresult4;
+	$twans4	=	wresult4;
+	$tenchuyende4 = tenchuyende4;
+	
+	$tcans5	=	cresult5;
+	$twans5	=	wresult5;
+	$tenchuyende5 = tenchuyende5;
+	
+	$tcans6	=	cresult6;
+	$twans6	=	wresult6;
+	$tenchuyende6 = tenchuyende6;
+	
+	$tcans7	=	cresult7;
+	$twans7	=	wresult7;
+	$tenchuyende7 = tenchuyende7;
+	
+	$tcans8	=	cresult8;
+	$twans8	=	wresult8;
+	$tenchuyende8 = tenchuyende8;
+	
+	$tcans9	=	cresult9;
+	$twans9	=	wresult9;
+	$tenchuyende9 = tenchuyende9;
+	
+	$tcans10	=	cresult10;
+	$twans10	=	wresult10;
+	$tenchuyende10 = tenchuyende10;
+	
+	$tcans11	=	cresult11;
+	$twans11	=	wresult11;
+	$tenchuyende11 = tenchuyende11;
+	
+	$tcans12	=	cresult12;
+	$twans12	=	wresult12;
+	$tenchuyende12 = tenchuyende12;
+	
+	$tcans13	=	cresult13;
+	$twans13	=	wresult13;
+	$tenchuyende13 = tenchuyende13;
+	
+	$tcans14	=	cresult14;
+	$twans14	=	wresult14;
+	$tenchuyende14 = tenchuyende14;
+	
+	$tcans15	=	cresult15;
+	$twans15	=	wresult15;
+	$tenchuyende15 = tenchuyende15;
+	
+	$tcans16	=	cresult16;
+	$twans16	=	wresult16;
+	$tenchuyende16 = tenchuyende16;
+	
+	$tcans17	=	cresult17;
+	$twans17	=	wresult17;
+	$tenchuyende17 = tenchuyende17;
+	
+	$tcans18	=	cresult18;
+	$twans18	=	wresult18;
+	$tenchuyende18 = tenchuyende18;
+	
+	$tcans19	=	cresult19;
+	$twans19	=	wresult19;
+	$tenchuyende19 = tenchuyende19;
+	
+	$tcans20	=	cresult20;
+	$twans20	=	wresult20;
+	$tenchuyende20 = tenchuyende20;
+	
+	$tcans21	=	cresult21;
+	$twans21	=	wresult21;
+	$tenchuyende21 = tenchuyende21;
+	
+	$tcans22	=	cresult22;
+	$twans22	=	wresult22;
+	$tenchuyende22 = tenchuyende22;
+	
+	$tcans23	=	cresult23;
+	$twans23	=	wresult23;
+	$tenchuyende23 = tenchuyende23;
+	
+	$tcans24	=	cresult24;
+	$twans24	=	wresult24;
+	$tenchuyende24 = tenchuyende24;
+	
+	$tcans25	=	cresult25;
+	$twans25	=	wresult25;
+	$tenchuyende25 = tenchuyende25;
+	
+	$tcans26	=	cresult26;
+	$twans26	=	wresult26;
+	$tenchuyende26 = tenchuyende26;
+	
+	$tcans27	=	cresult27;
+	$twans27	=	wresult27;
+	$tenchuyende27 = tenchuyende27;
+	
+	$tcans28	=	cresult28;
+	$twans28	=	wresult28;
+	$tenchuyende28 = tenchuyende28;
+	
+	$tcans29	=	cresult29;
+	$twans29	=	wresult29;
+	$tenchuyende29 = tenchuyende29;
+	
+	$tcans30	=	cresult30;
+	$twans30	=	wresult30;
+	$tenchuyende30 = tenchuyende30;
+
+			$examtime=$('#hms').html();
+			$('#cans').html($tcans);
+			$('#wans').html($twans);
+			$('#marks').html(cresult1);
+			$('#res_id').css('display','none');
+			$('#results').css('display','block');
+		   $.ajax({//Make the Ajax Request
+						type: "POST",
+						url: hm2+"/add-results.php",
+						data:{name:uname,catid:cat_id,catid_2:cat_id_2,catid_3:cat_id_3,catid_4:cat_id_4,
+						chuyende_1:$tenchuyende1,cans:$tcans,wans:$twans,
+						chuyende_2:$tenchuyende2,cans_2:$tcans2,wans_2:$twans2,
+						chuyende_3:$tenchuyende3,cans_3:$tcans3,wans_3:$twans3,
+						chuyende_4:$tenchuyende4,cans_4:$tcans4,wans_4:$twans4,
+						chuyende_5:$tenchuyende5,cans_5:$tcans5,wans_5:$twans5,
+						chuyende_6:$tenchuyende6,cans_6:$tcans6,wans_6:$twans6,
+						chuyende_7:$tenchuyende7,cans_7:$tcans7,wans_7:$twans7,
+						chuyende_8:$tenchuyende8,cans_8:$tcans8,wans_8:$twans8,
+						chuyende_9:$tenchuyende9,cans_9:$tcans9,wans_9:$twans9,
+						chuyende_10:$tenchuyende10,cans_10:$tcans10,wans_10:$twans10,
+						chuyende_11:$tenchuyende11,cans_11:$tcans11,wans_11:$twans11,
+						chuyende_12:$tenchuyende12,cans_12:$tcans12,wans_12:$twans12,
+						chuyende_13:$tenchuyende13,cans_13:$tcans13,wans_13:$twans13,
+						chuyende_14:$tenchuyende14,cans_14:$tcans14,wans_14:$twans14,
+						chuyende_15:$tenchuyende15,cans_15:$tcans15,wans_15:$twans15,
+						chuyende_16:$tenchuyende16,cans_16:$tcans16,wans_16:$twans16,
+						chuyende_17:$tenchuyende17,cans_17:$tcans17,wans_17:$twans17,
+						chuyende_18:$tenchuyende18,cans_18:$tcans18,wans_18:$twans18,
+						chuyende_19:$tenchuyende19,cans_19:$tcans19,wans_19:$twans19,
+						chuyende_20:$tenchuyende20,cans_20:$tcans20,wans_20:$twans20,
+						chuyende_21:$tenchuyende21,cans_21:$tcans21,wans_21:$twans21,
+						chuyende_22:$tenchuyende22,cans_22:$tcans22,wans_22:$twans22,
+						chuyende_23:$tenchuyende23,cans_23:$tcans23,wans_23:$twans23,
+						chuyende_24:$tenchuyende24,cans_24:$tcans24,wans_24:$twans24,
+						chuyende_25:$tenchuyende25,cans_25:$tcans25,wans_25:$twans25,
+						chuyende_26:$tenchuyende26,cans_26:$tcans26,wans_26:$twans26,
+						chuyende_27:$tenchuyende27,cans_27:$tcans27,wans_27:$twans27,
+						chuyende_28:$tenchuyende28,cans_28:$tcans28,wans_28:$twans28,
+						chuyende_29:$tenchuyende29,cans_29:$tcans29,wans_29:$twans29,
+						chuyende_30:$tenchuyende30,cans_30:$tcans30,wans_30:$twans30,
+						examtime:$examtime,hm:hm,hm2:hm2,email:email},
+						success: function(data){
+				
+						$('#error_msg').html(""); 
+						$('#msg').html(data);
+						}
+					});
+ }
+ //////////////////////////////////////////////////
+function count(i) {
+
+	if (i == 1)  {
+    	//cookie doesnt exists then you landed on this page
+    	//SOME CODE
+		var startTime = getCookie("Timer");
+		setCookie("Timer", startTime, 1);
+   		var pieces = startTime.split(":");
+    	var time = new Date();
+ 	} else if (i == 2)  {
+    	//cookie doesnt exists then you landed on this page
+    	//SOME CODE
+		var startTime = '<?php echo $time ;?>';
+		setCookie("Timer", startTime, 1);
+   		var pieces = startTime.split(":");
+    	var time = new Date();
+ 	} else {
+		var startTime = document.getElementById('hms').innerHTML;
+		setCookie("Timer", startTime, 1);
+   		var pieces = startTime.split(":");
+    	var time = new Date();
+	}
+
     time.setHours(pieces[0]);
     time.setMinutes(pieces[1]);
     time.setSeconds(pieces[2]);
@@ -961,12 +1345,14 @@ else
 	cstatus=1;
 	$('#prev').css('display','none');
 	 $('#top_prev').css('display','none');
-	results();
+	results_temp();
 	 
     }
     time_out= setTimeout(count, 1000);
 }
-count();
+
+
+
 /////////////////////////////////////////////////////
 
     function setCookie(c_name, value, exdays) {
@@ -996,17 +1382,24 @@ count();
 $(window).load(function () {
  //if IsRefresh cookie exists
  var IsRefresh = getCookie("IsRefresh");
- if (IsRefresh != null && IsRefresh != "") {
-    //cookie exists then you refreshed this page(F5, reload button or right click and reload)
-    //SOME CODE
-    DeleteCookie("IsRefresh");
-	//alert("Hello! I am an alert box 1!!");
- }
- else {
-    //cookie doesnt exists then you landed on this page
-    //SOME CODE
-    setCookie("IsRefresh", "true", 1);
-	//alert("Hello! I am an alert box 2!!");
+ var first_time = 1;
+ if (first_time == '<?php echo $_SESSION['FirstVisit'] ;?>'){
+	 count(2);
+ } else {
+	 if (IsRefresh != null && IsRefresh != "") {
+		//cookie exists then you refreshed this page(F5, reload button or right click and reload)
+		//SOME CODE
+		DeleteCookie("IsRefresh");
+		count(1);
+		//alert("Hello! I am an alert box 1!!");
+	 }
+	 else {
+		//cookie doesnt exists then you landed on this page
+		//SOME CODE
+		setCookie("IsRefresh", "true", 1);
+		count(1);
+		//alert("Hello! I am an alert box 2!!");
+	 }
  }
 })
 </script>
@@ -1055,7 +1448,7 @@ $(window).load(function () {
 		      }
 		   }
 		  echo "</select>
-		  <input type='submit' value='Bắt đầu'>
+		  <input type='submit' value='Bắt đầu' >
 		 </form>
         </div>";
     }
