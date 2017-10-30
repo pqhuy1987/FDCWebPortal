@@ -289,7 +289,7 @@ $start = ($page)*10;
 			//----------------------chuyende_18----------------------------//
 			$chuyende_18 = $line['chuyende_18'];
 			$res_chuyende_18 = mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_18'");
-			$crow_chuyende_18 =mysqli_fetch_assoc($res_chuyende_28);
+			$crow_chuyende_18 =mysqli_fetch_assoc($res_chuyende_18);
 			$cat_name18=$crow_chuyende_18['name_sub'];
 			
 			$cans_18 = $line['correct_ans_18'];
