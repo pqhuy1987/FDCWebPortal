@@ -13,7 +13,6 @@
 		{
 			fatal_error("Failed to set LDAP Protocol version to 3, TLS not supported.");
 		}
-		
 	
 		if(@ldap_bind($ldap_con, $ldap_dn.'@'.$domain, $ldap_password))
 		{

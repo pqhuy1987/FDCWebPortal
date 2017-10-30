@@ -68,25 +68,27 @@ $start = ($page)*100;
 			$cat_name				= $crow['exam_name'];
 			
 			//----------------------chuyende_1----------------------------//
-			$chuyende_1 			= $line['chuyende_1'];
-			$res_chuyende_1 		= mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_1'");
-			$crow_chuyende_1 		= mysqli_fetch_assoc($res_chuyende_1);
+			$chuyende_1 = $line['chuyende_1'];
+			$res_chuyende_1 = mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_1'");
+			$crow_chuyende_1 = mysqli_fetch_assoc($res_chuyende_1);
 			$cat_name1=$crow_chuyende_1['name_sub'];
 			
 			$cans = $line['correct_ans'];
 			$wans = $line['wrong_ans'];
 			$total_1 = $cans + $wans;
+			$diem_1 = round(($cans/($total_1))*5);
 			//----------------------chuyende_1----------------------------//
 			
 			//----------------------chuyende_2----------------------------//
-			$chuyende_2 			= $line['chuyende_2'];
-			$res_chuyende_2 		= mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_2'");
-			$crow_chuyende_2 		= mysqli_fetch_assoc($res_chuyende_2);
+			$chuyende_2 = $line['chuyende_2'];
+			$res_chuyende_2 = mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_2'");
+			$crow_chuyende_2 =mysqli_fetch_assoc($res_chuyende_2);
 			$cat_name2=$crow_chuyende_2['name_sub'];
 			
 			$cans_2 = $line['correct_ans_2'];
 			$wans_2 = $line['wrong_ans_2'];
 			$total_2 = $cans_2 + $wans_2;
+			$diem_2 = round(($cans_2/($total_2))*5);
 			//----------------------chuyende_2----------------------------//
 			
 			//----------------------chuyende_3----------------------------//
@@ -98,6 +100,7 @@ $start = ($page)*100;
 			$cans_3 = $line['correct_ans_3'];
 			$wans_3 = $line['wrong_ans_3'];
 			$total_3 = $cans_3 + $wans_3;
+			$diem_3 = round(($cans_3/($total_3))*5);
 			//----------------------chuyende_3----------------------------//
 			
 			//----------------------chuyende_4----------------------------//
@@ -109,6 +112,7 @@ $start = ($page)*100;
 			$cans_4 = $line['correct_ans_4'];
 			$wans_4 = $line['wrong_ans_4'];
 			$total_4 = $cans_4 + $wans_4;
+			$diem_4 = round(($cans_4/($total_4))*5);
 			//----------------------chuyende_4----------------------------//
 			
 			//----------------------chuyende_5----------------------------//
@@ -120,6 +124,7 @@ $start = ($page)*100;
 			$cans_5 = $line['correct_ans_5'];
 			$wans_5 = $line['wrong_ans_5'];
 			$total_5 = $cans_5 + $wans_5;
+			$diem_5 = round(($cans_5/($total_5))*5);
 			//----------------------chuyende_5----------------------------//
 			
 			//----------------------chuyende_6----------------------------//
@@ -131,6 +136,7 @@ $start = ($page)*100;
 			$cans_6 = $line['correct_ans_6'];
 			$wans_6 = $line['wrong_ans_6'];
 			$total_6 = $cans_6 + $wans_6;
+			$diem_6 = round(($cans_6/($total_6))*5);
 			//----------------------chuyende_6----------------------------//
 
 			//----------------------chuyende_7----------------------------//
@@ -142,6 +148,7 @@ $start = ($page)*100;
 			$cans_7 = $line['correct_ans_7'];
 			$wans_7 = $line['wrong_ans_7'];
 			$total_7 = $cans_7 + $wans_7;
+			$diem_7 = round(($cans_7/($total_7))*5);
 			//----------------------chuyende_7----------------------------//
 			
 			//----------------------chuyende_8----------------------------//
@@ -153,6 +160,7 @@ $start = ($page)*100;
 			$cans_8 = $line['correct_ans_8'];
 			$wans_8 = $line['wrong_ans_8'];
 			$total_8 = $cans_8 + $wans_8;
+			$diem_8 = round(($cans_8/($total_8))*5);
 			//----------------------chuyende_8----------------------------//
 			
 			//----------------------chuyende_9----------------------------//
@@ -164,6 +172,7 @@ $start = ($page)*100;
 			$cans_9 = $line['correct_ans_9'];
 			$wans_9 = $line['wrong_ans_9'];
 			$total_9 = $cans_9 + $wans_9;
+			$diem_9 = round(($cans_9/($total_9))*5);
 			//----------------------chuyende_9----------------------------//
 			
 			//----------------------chuyende_10----------------------------//
@@ -175,6 +184,7 @@ $start = ($page)*100;
 			$cans_10 = $line['correct_ans_10'];
 			$wans_10 = $line['wrong_ans_10'];
 			$total_10 = $cans_10 + $wans_10;
+			$diem_10 = round(($cans_10/($total_10))*5);
 			//----------------------chuyende_10----------------------------//
 			
 			//----------------------chuyende_11----------------------------//
@@ -186,6 +196,7 @@ $start = ($page)*100;
 			$cans_11 = $line['correct_ans_11'];
 			$wans_11 = $line['wrong_ans_11'];
 			$total_11 = $cans_11 + $wans_11;
+			$diem_11 = round(($cans_11/($total_11))*5);
 			//----------------------chuyende_11----------------------------//
 			
 			//----------------------chuyende_12----------------------------//
@@ -197,6 +208,7 @@ $start = ($page)*100;
 			$cans_12 = $line['correct_ans_12'];
 			$wans_12 = $line['wrong_ans_12'];
 			$total_12 = $cans_12 + $wans_12;
+			$diem_12 = round(($cans_12/($total_12))*5);
 			//----------------------chuyende_12----------------------------//
 			
 			//----------------------chuyende_13----------------------------//
@@ -208,6 +220,7 @@ $start = ($page)*100;
 			$cans_13 = $line['correct_ans_13'];
 			$wans_13 = $line['wrong_ans_13'];
 			$total_13 = $cans_13 + $wans_13;
+			$diem_13 = round(($cans_13/($total_13))*5);
 			//----------------------chuyende_13----------------------------//
 			
 			//----------------------chuyende_14----------------------------//
@@ -219,6 +232,7 @@ $start = ($page)*100;
 			$cans_14 = $line['correct_ans_14'];
 			$wans_14 = $line['wrong_ans_14'];
 			$total_14 = $cans_14 + $wans_14;
+			$diem_14 = round(($cans_14/($total_14))*5);
 			//----------------------chuyende_14----------------------------//
 			
 			//----------------------chuyende_15----------------------------//
@@ -230,6 +244,7 @@ $start = ($page)*100;
 			$cans_15 = $line['correct_ans_15'];
 			$wans_15 = $line['wrong_ans_15'];
 			$total_15 = $cans_15 + $wans_15;
+			$diem_15 = round(($cans_15/($total_15))*5);
 			//----------------------chuyende_15----------------------------//
 			
 			//----------------------chuyende_16----------------------------//
@@ -241,6 +256,7 @@ $start = ($page)*100;
 			$cans_16 = $line['correct_ans_16'];
 			$wans_16 = $line['wrong_ans_16'];
 			$total_16 = $cans_16 + $wans_16;
+			$diem_16 = round(($cans_16/($total_16))*5);
 			//----------------------chuyende_16----------------------------//
 			
 			//----------------------chuyende_17----------------------------//
@@ -252,6 +268,7 @@ $start = ($page)*100;
 			$cans_17 = $line['correct_ans_17'];
 			$wans_17 = $line['wrong_ans_17'];
 			$total_17 = $cans_17 + $wans_17;
+			$diem_17 = round(($cans_17/($total_17))*5);
 			//----------------------chuyende_17----------------------------//
 			
 			//----------------------chuyende_18----------------------------//
@@ -263,6 +280,7 @@ $start = ($page)*100;
 			$cans_18 = $line['correct_ans_18'];
 			$wans_18 = $line['wrong_ans_18'];
 			$total_18 = $cans_18 + $wans_18;
+			$diem_18 = round(($cans_18/($total_18))*5);
 			//----------------------chuyende_18----------------------------//
 			
 			//----------------------chuyende_19----------------------------//
@@ -274,6 +292,7 @@ $start = ($page)*100;
 			$cans_19 = $line['correct_ans_19'];
 			$wans_19 = $line['wrong_ans_19'];
 			$total_19 = $cans_19 + $wans_19;
+			$diem_19 = round(($cans_19/($total_19))*5);
 			//----------------------chuyende_19----------------------------//
 			
 			//----------------------chuyende_20----------------------------//
@@ -285,6 +304,7 @@ $start = ($page)*100;
 			$cans_20 = $line['correct_ans_20'];
 			$wans_20 = $line['wrong_ans_20'];
 			$total_20 = $cans_20 + $wans_20;
+			$diem_20 = round(($cans_20/($total_20))*5);
 			//----------------------chuyende_20----------------------------//
 			
 			//----------------------chuyende_21----------------------------//
@@ -296,6 +316,7 @@ $start = ($page)*100;
 			$cans_21 = $line['correct_ans_21'];
 			$wans_21 = $line['wrong_ans_21'];
 			$total_21 = $cans_21 + $wans_21;
+			$diem_21 = round(($cans_21/($total_21))*5);
 			//----------------------chuyende_21----------------------------//
 			
 			//----------------------chuyende_22---------------------------//
@@ -307,6 +328,7 @@ $start = ($page)*100;
 			$cans_22 = $line['correct_ans_22'];
 			$wans_22 = $line['wrong_ans_22'];
 			$total_22 = $cans_22 + $wans_22;
+			$diem_22 = round(($cans_22/($total_22))*5);
 			//----------------------chuyende_22----------------------------//
 			
 			//----------------------chuyende_23----------------------------//
@@ -318,6 +340,7 @@ $start = ($page)*100;
 			$cans_23 = $line['correct_ans_23'];
 			$wans_23 = $line['wrong_ans_23'];
 			$total_23 = $cans_23 + $wans_23;
+			$diem_23 = round(($cans_23/($total_23))*5);
 			//----------------------chuyende_23----------------------------//
 			
 			//----------------------chuyende_24----------------------------//
@@ -329,6 +352,7 @@ $start = ($page)*100;
 			$cans_24 = $line['correct_ans_24'];
 			$wans_24 = $line['wrong_ans_24'];
 			$total_24 = $cans_24 + $wans_24;
+			$diem_24 = round(($cans_24/($total_24))*5);
 			//----------------------chuyende_24----------------------------//
 			
 			//----------------------chuyende_25----------------------------//
@@ -340,6 +364,7 @@ $start = ($page)*100;
 			$cans_25 = $line['correct_ans_25'];
 			$wans_25 = $line['wrong_ans_25'];
 			$total_25 = $cans_25 + $wans_25;
+			$diem_25 = round(($cans_25/($total_25))*5);
 			//----------------------chuyende_25----------------------------//
 			
 			//----------------------chuyende_26----------------------------//
@@ -351,6 +376,7 @@ $start = ($page)*100;
 			$cans_26 = $line['correct_ans_26'];
 			$wans_26 = $line['wrong_ans_26'];
 			$total_26 = $cans_26 + $wans_26;
+			$diem_26 = round(($cans_26/($total_26))*5);
 			//----------------------chuyende_26----------------------------//
 			
 			//----------------------chuyende_27----------------------------//
@@ -362,6 +388,7 @@ $start = ($page)*100;
 			$cans_27 = $line['correct_ans_27'];
 			$wans_27 = $line['wrong_ans_27'];
 			$total_27 = $cans_27 + $wans_27;
+			$diem_27 = round(($cans_27/($total_27))*5);
 			//----------------------chuyende_27----------------------------//
 			
 			//----------------------chuyende_28----------------------------//
@@ -373,6 +400,7 @@ $start = ($page)*100;
 			$cans_28 = $line['correct_ans_28'];
 			$wans_28 = $line['wrong_ans_28'];
 			$total_28 = $cans_28 + $wans_28;
+			$diem_28 = round(($cans_28/($total_28))*5);
 			//----------------------chuyende_28----------------------------//
 			
 			//----------------------chuyende_29----------------------------//
@@ -384,6 +412,7 @@ $start = ($page)*100;
 			$cans_29 = $line['correct_ans_29'];
 			$wans_29 = $line['wrong_ans_29'];
 			$total_29 = $cans_29 + $wans_29;
+			$diem_29 = round(($cans_29/($total_29))*5);
 			//----------------------chuyende_29----------------------------//
 			
 			//----------------------chuyende_30----------------------------//
@@ -395,6 +424,7 @@ $start = ($page)*100;
 			$cans_30 = $line['correct_ans_30'];
 			$wans_30 = $line['wrong_ans_30'];
 			$total_30 = $cans_30 + $wans_30;
+			$diem_30 = round(($cans_30/($total_30))*5);
 			//----------------------chuyende_30----------------------------//
 			
 			$marks = $line['marks'];
@@ -414,36 +444,36 @@ $start = ($page)*100;
        	<td>'.$cat_name.'</td>  
        	<td>'.$line["examtime"].'</td>  
        	<td>'.$line["datee"].'</td>
-       	<td>'.$cat_name1.': ( Đúng '.$cans.' \ '.$total_1.' câu )</td>  
-       	<td>'.$cat_name2.': ( Đúng '.$cans_2.' \ '.$total_2.' câu )</td>  
-	   	<td>'.$cat_name3.': ( Đúng '.$cans_3.' \ '.$total_3.' câu )</td>  
-	   	<td>'.$cat_name4.': ( Đúng '.$cans_4.' \ '.$total_4.' câu )</td>  
-	   	<td>'.$cat_name5.': ( Đúng '.$cans_5.' \ '.$total_5.' câu )</td>  
-	   	<td>'.$cat_name6.': ( Đúng '.$cans_6.' \ '.$total_6.' câu )</td>  
-  	   	<td>'.$cat_name7.': ( Đúng '.$cans_7.' \ '.$total_7.' câu )</td>  
-	   	<td>'.$cat_name8.': ( Đúng '.$cans_8.' \ '.$total_8.' câu )</td>  
-		<td>'.$cat_name9.': ( Đúng '.$cans_9.' \ '.$total_9.' câu )</td>  
-		<td>'.$cat_name10.': ( Đúng '.$cans_10.' \ '.$total_10.' câu )</td>  
-		<td>'.$cat_name11.': ( Đúng '.$cans_11.' \ '.$total_11.' câu )</td>  
-		<td>'.$cat_name12.': ( Đúng '.$cans_12.' \ '.$total_12.' câu )</td>  
-		<td>'.$cat_name13.': ( Đúng '.$cans_13.' \ '.$total_13.' câu )</td>  
-		<td>'.$cat_name14.': ( Đúng '.$cans_14.' \ '.$total_14.' câu )</td>  
-		<td>'.$cat_name15.': ( Đúng '.$cans_15.' \ '.$total_15.' câu )</td>  
-		<td>'.$cat_name16.': ( Đúng '.$cans_16.' \ '.$total_16.' câu )</td>  
-		<td>'.$cat_name17.': ( Đúng '.$cans_17.' \ '.$total_17.' câu )</td>  
-		<td>'.$cat_name18.': ( Đúng '.$cans_18.' \ '.$total_18.' câu )</td>  
-		<td>'.$cat_name19.': ( Đúng '.$cans_19.' \ '.$total_19.' câu )</td>  
-		<td>'.$cat_name20.': ( Đúng '.$cans_20.' \ '.$total_20.' câu )</td>  
-		<td>'.$cat_name21.': ( Đúng '.$cans_21.' \ '.$total_21.' câu )</td>  
-		<td>'.$cat_name22.': ( Đúng '.$cans_22.' \ '.$total_22.' câu )</td>  
-		<td>'.$cat_name23.': ( Đúng '.$cans_23.' \ '.$total_23.' câu )</td>  
-		<td>'.$cat_name24.': ( Đúng '.$cans_24.' \ '.$total_24.' câu )</td>  
-		<td>'.$cat_name25.': ( Đúng '.$cans_25.' \ '.$total_25.' câu )</td>  
-		<td>'.$cat_name26.': ( Đúng '.$cans_26.' \ '.$total_26.' câu )</td>  
-		<td>'.$cat_name27.': ( Đúng '.$cans_27.' \ '.$total_27.' câu )</td>  
-		<td>'.$cat_name28.': ( Đúng '.$cans_28.' \ '.$total_28.' câu )</td>  
-		<td>'.$cat_name29.': ( Đúng '.$cans_29.' \ '.$total_29.' câu )</td>  
-		<td>'.$cat_name30.': ( Đúng '.$cans_30.' \ '.$total_30.' câu )</td>  														
+       	<td>'.$cat_name1.': '.$diem_1.' Điểm ( Đúng '.$cans.'/'.$total_1.' câu )</td>  
+       	<td>'.$cat_name2.': '.$diem_2.' Điểm ( Đúng '.$cans_2.'/'.$total_2.' câu )</td>  
+	   	<td>'.$cat_name3.': '.$diem_3.' Điểm ( Đúng '.$cans_3.'/'.$total_3.' câu )</td>  
+	   	<td>'.$cat_name4.': '.$diem_4.' Điểm ( Đúng '.$cans_4.'/'.$total_4.' câu )</td>  
+	   	<td>'.$cat_name5.': '.$diem_5.' Điểm ( Đúng '.$cans_5.'/'.$total_5.' câu )</td>  
+	   	<td>'.$cat_name6.': '.$diem_6.' Điểm ( Đúng '.$cans_6.'/'.$total_6.' câu )</td>  
+  	   	<td>'.$cat_name7.': '.$diem_7.' Điểm ( Đúng '.$cans_7.'/'.$total_7.' câu )</td>  
+	   	<td>'.$cat_name8.': '.$diem_8.' Điểm ( Đúng '.$cans_8.'/'.$total_8.' câu )</td>  
+		<td>'.$cat_name9.': '.$diem_9.' Điểm ( Đúng '.$cans_9.'/'.$total_9.' câu )</td>  
+		<td>'.$cat_name10.': '.$diem_10.' Điểm ( Đúng '.$cans_10.'/'.$total_10.' câu )</td>  
+		<td>'.$cat_name11.': '.$diem_11.' Điểm ( Đúng '.$cans_11.'/'.$total_11.' câu )</td>  
+		<td>'.$cat_name12.': '.$diem_12.' Điểm ( Đúng '.$cans_12.'/'.$total_12.' câu )</td>  
+		<td>'.$cat_name13.': '.$diem_13.' Điểm ( Đúng '.$cans_13.'/'.$total_13.' câu )</td>  
+		<td>'.$cat_name14.': '.$diem_14.' Điểm ( Đúng '.$cans_14.'/'.$total_14.' câu )</td>  
+		<td>'.$cat_name15.': '.$diem_15.' Điểm ( Đúng '.$cans_15.'/'.$total_15.' câu )</td>  
+		<td>'.$cat_name16.': '.$diem_16.' Điểm ( Đúng '.$cans_16.'/'.$total_16.' câu )</td>  
+		<td>'.$cat_name17.': '.$diem_17.' Điểm ( Đúng '.$cans_17.'/'.$total_17.' câu )</td>  
+		<td>'.$cat_name18.': '.$diem_18.' Điểm ( Đúng '.$cans_18.'/'.$total_18.' câu )</td>  
+		<td>'.$cat_name19.': '.$diem_19.' Điểm ( Đúng '.$cans_19.'/'.$total_19.' câu )</td>  
+		<td>'.$cat_name20.': '.$diem_20.' Điểm ( Đúng '.$cans_20.'/'.$total_20.' câu )</td>  
+		<td>'.$cat_name21.': '.$diem_21.' Điểm ( Đúng '.$cans_21.'/'.$total_21.' câu )</td>  
+		<td>'.$cat_name22.': '.$diem_22.' Điểm ( Đúng '.$cans_22.'/'.$total_22.' câu )</td>  
+		<td>'.$cat_name23.': '.$diem_23.' Điểm ( Đúng '.$cans_23.'/'.$total_23.' câu )</td>  
+		<td>'.$cat_name24.': '.$diem_24.' Điểm ( Đúng '.$cans_24.'/'.$total_24.' câu )</td>  
+		<td>'.$cat_name25.': '.$diem_25.' Điểm ( Đúng '.$cans_25.'/'.$total_25.' câu )</td>  
+		<td>'.$cat_name26.': '.$diem_26.' Điểm ( Đúng '.$cans_26.'/'.$total_26.' câu )</td>  
+		<td>'.$cat_name27.': '.$diem_27.' Điểm ( Đúng '.$cans_27.'/'.$total_27.' câu )</td>  
+		<td>'.$cat_name28.': '.$diem_28.' Điểm ( Đúng '.$cans_28.'/'.$total_28.' câu )</td>  
+		<td>'.$cat_name29.': '.$diem_29.' Điểm ( Đúng '.$cans_29.'/'.$total_29.' câu )</td>  
+		<td>'.$cat_name30.': '.$diem_30.' Điểm ( Đúng '.$cans_30.'/'.$total_30.' câu )</td>  														
     </tr>
    ';
   }
