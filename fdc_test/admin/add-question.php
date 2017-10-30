@@ -20,14 +20,23 @@ function CKupdate(){
 }
 
 var pp=1;
+
 $(document).ready(function(){
  $('#m2').html("<span class='curr_mnu'>Thêm Câu Hỏi</span>")
  
+ $("#cat").change(function(){
+		 var id	= $(this).val();
+		 $.get("ajx-chuyen-de.php", {idTL:id}, function(data){
+			$("#test1").html(data);
+		 });
+	 });
+
  });
 function submit_quiz()
 {
 	$ques=$('#ques').val();
 	$catid=$('#cat').val();
+	$id_sub=$('#cat_sub').val();
 	$opt1=$('#opt1').val();
 	$opt2=$('#opt2').val();
 	$opt3=$('#opt3').val();
@@ -35,6 +44,8 @@ function submit_quiz()
 	$ans=$('#ans').val();
 	$imptid=$('#imptid').val();
 	$dokho=$('#dokho').val();
+	
+	console.log($id_sub);
 	
 	if ($ques=="") {
 		$('#error_msg').html("Enter your question..")
@@ -50,7 +61,7 @@ function submit_quiz()
 		     $.ajax({//Make the Ajax Request
                     type: "POST",
                     url: "./ajx-addquiz.php",
-                    data:{ques:$ques,catid:$catid,opt1:$opt1,opt2:$opt2,opt3:$opt3,opt4:$opt4,ans:$ans,imptid:$imptid,dokho:$dokho},
+                    data:{ques:$ques,catid:$catid,opt1:$opt1,opt2:$opt2,opt3:$opt3,opt4:$opt4,ans:$ans,imptid:$imptid,dokho:$dokho,id_sub:$id_sub},
                     success: function(data){
 			
                        $('#error_msg').html(""); 
@@ -76,22 +87,29 @@ $dat = date('y-m-d');
 $eid=$_GET['eid'];
 if($eid!="")
 {
+	$edit_res 	= 	mysqli_query($connect_2,"SELECT * FROM quiz where id='$eid'");
+	$row		=	mysqli_fetch_assoc($edit_res);
+	$ques		=	trim($row['question']);
+	$opt1		=	trim($row['opt1']);
+	$opt2		=	trim($row['opt2']);
+	$opt3		=	trim($row['opt3']);
+	$opt4		=	trim($row['opt4']);
+	$answer		=	trim($row['answer']);
+	$catidd		=	$row['catid'];
+	$dokho		=	$row['dokho'];
+	$id_sub		=	$row['id_sub'];
 	
-$edit_res = mysqli_query($connect_2,"SELECT * FROM quiz where id='$eid'");
-$row=mysqli_fetch_assoc($edit_res);
-$ques=trim($row['question']);
-$opt1=trim($row['opt1']);
-$opt2=trim($row['opt2']);
-$opt3=trim($row['opt3']);
-$opt4=trim($row['opt4']);
-$answer=trim($row['answer']);
-$catidd=$row['catid'];
-$dokho=$row['dokho'];
-$edit_cat_name = mysqli_query($connect_2,"SELECT * FROM category where id='$catidd'");
-$cat_row=mysqli_fetch_assoc($edit_cat_name);
-$edit_cat_name=$cat_row['category'];
+	$edit_cat_name = mysqli_query($connect_2,"SELECT * FROM category where id='$catidd'");
+	$cat_row=mysqli_fetch_assoc($edit_cat_name);
+	$edit_cat_name=$cat_row['category'];
 }
-$res = mysqli_query($connect_2,"SELECT * FROM category where status='release' order by id  ");
+$res = mysqli_query($connect_2,"SELECT * FROM category where status='release' order by id");
+if($eid!="")
+{ 
+	$res2 = mysqli_query($connect_2,"SELECT * FROM category_sub where id='$catidd' order by id_sub");
+} else {
+	$res2 = mysqli_query($connect_2,"SELECT * FROM category_sub where id='$catidd' order by id_sub");
+}
    
 				echo '<div class="form"><div id="error_msg" class="errortext"></div><div id="msg"></div>';
 			
@@ -120,8 +138,11 @@ var editor = CKEDITOR.replace( 'ques',{
 </script>
 
 <?php
-			 echo "<div class='form_con'> <div class='form_element lable'>Chọn chuyên mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>";
-
+			 echo "<div class='form_con'> <div class='form_element lable'>Chọn Chuyên Mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>
+			";
+?>
+			 <option  value=""> -- Chọn Chuyên Mục -- </option>
+<?php 
 			 while($line = mysqli_fetch_assoc($res))
 		     {
 				 $catid=$line['id'];
@@ -131,12 +152,25 @@ var editor = CKEDITOR.replace( 'ques',{
 <?php 	
 			 }
 ?>			 
-
+			</select></div></div>
 <?php
-			 echo "<div class='form_con'> <div class='form_element lable'>Chọn chuyên mục : </div><div class='form_element'><select style='height: 35px;' name='cat' id='cat' class='selectbox'>";
+			 echo "<div id='test1' class='form_con'> <div class='form_element lable'>Chọn Chuyên Đề : </div><div class='form_element'><select style='height: 35px;' name='cat_sub' id='cat_sub' class='selectbox'>";
 ?>
-
-			</select></div></div><div class='form_con'> <div class='form_element lable'>Lựa chọn 1 : </div><div class='form_element'><input type=textarea name=opt1 id='opt1' value='<?php echo $opt1 ?>'  class='textbox'></div></div>
+			 <option  value=""> -- Chọn Chuyên Đề -- </option>
+<?php 
+			 
+			 while($line = mysqli_fetch_assoc($res2))
+		     {
+				 $catid_sub=$line['id_sub'];
+				 $catname_sub=$line['name_sub'];
+?>
+				<option value='<?php echo $catid_sub ?>' <?php if ($id_sub == $catid_sub ) echo "selected='selected'" ?> ><?php echo $catname_sub ?> </option>
+<?php 	
+			 }
+?>			 
+			</select></div></div>
+            
+            <div class='form_con'> <div class='form_element lable'>Lựa chọn 1 : </div><div class='form_element'><input type=textarea name=opt1 id='opt1' value='<?php echo $opt1 ?>'  class='textbox'></div></div>
             <div class='form_con'> <div class='form_element lable'>Lựa chọn 2 : </div><div class='form_element'><input type=textarea name=opt2 id='opt2' value='<?php echo $opt2 ?>' class='textbox'></div></div>
             <div class='form_con'> <div class='form_element lable'>Lựa chọn 3 : </div><div class='form_element'><input type=textarea name=opt3 id='opt3' value='<?php echo $opt3 ?>'  class='textbox'></div></div>
             <div class='form_con'> <div class='form_element lable'>Lựa chọn 4 : </div><div class='form_element'><input type=textarea name=opt4 id='opt4' value='<?php echo $opt4 ?>'  class='textbox'></div></div>

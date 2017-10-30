@@ -205,6 +205,7 @@ border: none;
     padding-top: 5px;
     font: 1em/1.3em Tahoma,Geneva,sans-serif;
 }
+
 .frms
 {
 	margin:15px auto;
@@ -238,6 +239,53 @@ border: none;
 }
 
 .frms select
+{
+	width:99%;
+	background:#fff;
+	border:#ddd 1px solid;
+	border-radius:.35em;
+	-moz-border-radius:.35em;
+	-webkit-border-radius:.35em;
+	-o-border-radius:.35em;
+	padding:0 .5%;
+	margin-top:5px;
+	margin-bottom:15px;
+	height:35px;
+}
+
+.frms_sub1
+{
+	margin:15px auto;
+	padding:10px;
+	border:#dcdcdc 1px solid;
+	background:#135194;
+	border-radius:.3em;
+	-moz-border-radius:.3em;
+	-webkit-border-radius:.3em;
+	-o-border-radius:.3em;
+	font-family:Tahoma, Geneva, sans-serif;
+	color:#333;
+	font-size:.9em;
+	line-height:1.2em;
+}
+
+.frms_sub1 input[type="text"],[type="password"],[type="file"],textarea
+{
+	width:99%;
+	background:#fff;
+	border:#ddd 1px solid;
+	border-radius:.35em;
+	-moz-border-radius:.35em;
+	-webkit-border-radius:.35em;
+	-o-border-radius:.35em;
+	padding:0 .5%;
+	color: black;
+	margin-top:5px;
+	margin-bottom:15px;
+	height:35px;
+}
+
+.frms_sub1 select
 {
 	width:99%;
 	background:#fff;
@@ -344,6 +392,14 @@ input[type="button"],button,.blue_button
 {
 	color: white;
 	font-size:1.3em;
+}
+.sub_title
+{
+	text-align: center;
+	padding:45px;
+	font-weight:bold;
+	color: white;
+	font-size:2.3em;
 }
 .btn_style a
 {

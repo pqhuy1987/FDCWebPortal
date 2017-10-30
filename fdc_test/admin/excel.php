@@ -1,86 +1,71 @@
 <?php
 error_reporting(0);
 require_once "./auth/config.php";
+?>
+<?php
+
 $connect_2 = mysqli_connect("$hostname","$username","$password");
 if($connect_2)
 {
 	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
-$uidd  = $_SERVER['REQUEST_URI'];
-    $host1 = $_SERVER['SERVER_NAME'];
-    $uidd = "http://$host1$uidd";
-   // echo $uidd;
-
-
 $page = $_REQUEST['page'];
 
-$start = ($page)*10;
+$start = ($page)*100;
 
-		$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit $start,500");
-		echo "<div id='maindiv'>";
-
-//echo $start;
-
-       	 $delcnt1=mysqli_num_rows($res2);
-	     $tcount=$delcnt1;
-	     echo "<input type='hidden' value='$tcount' id='tcount'>";
-                    
-		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
-        <tr>
-          	<th>Tên</th>
-			<th>Email</th>
-			<th>Phòng Ban/Công Trường</th>
-			<th>Vị Trí</th>
-			<th>Bậc Hợp Đồng</th>
-          	<th>Bộ Đề</th>
-	  		<th>Thời gian sử dụng</th>
-	  		<th>Ngày</th>
-          	<th>Chuyên Đề 1</th>
-	  		<th>Chuyên Đề 2</th>
-			<th>Chuyên Đề 3</th>
-	  		<th>Chuyên Đề 4</th>
-			<th>Chuyên Đề 5</th>
-	  		<th>Chuyên Đề 6</th>
-			<th>Chuyên Đề 7</th>
-	  		<th>Chuyên Đề 8</th>
-			<th>Chuyên Đề 9</th>
-	  		<th>Chuyên Đề 10</th>
-			<th>Chuyên Đề 11</th>
-	  		<th>Chuyên Đề 12</th>
-			<th>Chuyên Đề 13</th>
-	  		<th>Chuyên Đề 14</th>
-			<th>Chuyên Đề 15</th>
-	  		<th>Chuyên Đề 16</th>
-			<th>Chuyên Đề 17</th>
-	  		<th>Chuyên Đề 18</th>
-			<th>Chuyên Đề 19</th>
-	  		<th>Chuyên Đề 20</th>
-			<th>Chuyên Đề 21</th>
-	  		<th>Chuyên Đề 22</th>
-			<th>Chuyên Đề 23</th>
-	  		<th>Chuyên Đề 24</th>
-			<th>Chuyên Đề 25</th>
-	  		<th>Chuyên Đề 26</th>
-			<th>Chuyên Đề 27</th>
-	  		<th>Chuyên Đề 28</th>
-			<th>Chuyên Đề 29</th>
-	  		<th>Chuyên Đề 30</th>
-			<th>Xuất Excel File</th>
-			<th>Xóa</th>
-        </tr>';
-	$xx=0;
-		$d=0;
-		
-		 while($line = mysqli_fetch_assoc($res2))
-		 {
-			$id = $line['id'];
-			
-			$name = $line['name'];
-			$catid = $line['cat_id'];
-			$res3 			= mysqli_query($connect_2,"SELECT exam_name FROM settings where id='$catid'");
-			$crow			= mysqli_fetch_assoc($res3);
-			$cat_name		= $crow['exam_name'];
-			
+   $output = '';
+   $output .= '
+   <table class="table" bordered="1">  
+                    <tr>  
+						<th>Tên</th>
+						<th>Email</th>
+						<th>Phòng Ban/Công Trường</th>
+						<th>Vị Trí</th>
+						<th>Bậc Hợp Đồng</th>
+						<th>Bộ Đề</th>
+						<th>Thời gian sử dụng</th>
+						<th>Ngày</th>
+						<th>Chuyên Đề 1</th>
+						<th>Chuyên Đề 2</th>
+						<th>Chuyên Đề 3</th>
+						<th>Chuyên Đề 4</th>
+						<th>Chuyên Đề 5</th>
+						<th>Chuyên Đề 6</th>
+						<th>Chuyên Đề 7</th>
+						<th>Chuyên Đề 8</th>
+						<th>Chuyên Đề 9</th>
+						<th>Chuyên Đề 10</th>
+						<th>Chuyên Đề 11</th>
+						<th>Chuyên Đề 12</th>
+						<th>Chuyên Đề 13</th>
+						<th>Chuyên Đề 14</th>
+						<th>Chuyên Đề 15</th>
+						<th>Chuyên Đề 16</th>
+						<th>Chuyên Đề 17</th>
+						<th>Chuyên Đề 18</th>
+						<th>Chuyên Đề 19</th>
+						<th>Chuyên Đề 20</th>
+						<th>Chuyên Đề 21</th>
+						<th>Chuyên Đề 22</th>
+						<th>Chuyên Đề 23</th>
+						<th>Chuyên Đề 24</th>
+						<th>Chuyên Đề 25</th>
+						<th>Chuyên Đề 26</th>
+						<th>Chuyên Đề 27</th>
+						<th>Chuyên Đề 28</th>
+						<th>Chuyên Đề 29</th>
+						<th>Chuyên Đề 30</th>
+                    </tr>
+  ';
+  $res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit $start,500");
+  while($line = mysqli_fetch_assoc($res2))
+  {
+			$id 					= $line['id'];
+			$name 					= $line['name'];
+			$catid 					= $line['cat_id'];
+			$res3 					= mysqli_query($connect_2,"SELECT exam_name FROM settings where id='$catid'");
+			$crow					= mysqli_fetch_assoc($res3);
+			$cat_name				= $crow['exam_name'];
 			
 			//----------------------chuyende_1----------------------------//
 			$chuyende_1 = $line['chuyende_1'];
@@ -289,7 +274,7 @@ $start = ($page)*10;
 			//----------------------chuyende_18----------------------------//
 			$chuyende_18 = $line['chuyende_18'];
 			$res_chuyende_18 = mysqli_query($connect_2,"SELECT name_sub FROM category_sub where id_sub='$chuyende_18'");
-			$crow_chuyende_18 =mysqli_fetch_assoc($res_chuyende_18);
+			$crow_chuyende_18 =mysqli_fetch_assoc($res_chuyende_28);
 			$cat_name18=$crow_chuyende_18['name_sub'];
 			
 			$cans_18 = $line['correct_ans_18'];
@@ -449,63 +434,51 @@ $start = ($page)*10;
 			$workplace=$line['workplace'];
 			$title=$line['title'];
 			$contact=$line['contact'];
-			
-					echo "<tr id='row_$id'>";
-			
-			
-			echo 
-			"<td>$name</td><td>$email</td>
-			<td>$workplace</td>
-            <td>$title</td>
-            <td>$contact</td>
-			<td>$cat_name</td>
-			<td>$examtime</td>
-			<td>$date</td>
-			<td>$cat_name1: $diem_1 điểm (đúng $cans/$total_1 câu)</td>
-			<td>$cat_name2: $diem_2 điểm (đúng $cans_2/$total_2 câu)</td>
-			<td>$cat_name3: $diem_3 điểm (đúng $cans_3/$total_3 câu)</td>
-			<td>$cat_name4: $diem_4 điểm (đúng $cans_4/$total_4 câu)</td>
-			<td>$cat_name5: $diem_5 điểm (đúng $cans_5/$total_5 câu)</td>
-			<td>$cat_name6: $diem_6 điểm (đúng $cans_6/$total_6 câu)</td>
-			<td>$cat_name7: $diem_7 điểm (đúng $cans_7/$total_7 câu)</td>
-			<td>$cat_name8: $diem_8 điểm (đúng $cans_8/$total_8 câu)</td>
-			<td>$cat_name9: $diem_9 điểm (đúng $cans_9/$total_9 câu)</td>
-			
-			<td>$cat_name10: $diem_10 điểm (đúng $cans_10/$total_10 câu)</td>
-			<td>$cat_name11: $diem_11 điểm (đúng $cans_11/$total_11 câu)</td>
-			<td>$cat_name12: $diem_12 điểm (đúng $cans_12/$total_12 câu)</td>
-			<td>$cat_name13: $diem_13 điểm (đúng $cans_13/$total_13 câu)</td>
-			<td>$cat_name14: $diem_14 điểm (đúng $cans_14/$total_14 câu)</td>
-			<td>$cat_name15: $diem_15 điểm (đúng $cans_15/$total_15 câu)</td>
-			<td>$cat_name16: $diem_16 điểm (đúng $cans_16/$total_16 câu)</td>
-			<td>$cat_name17: $diem_17 điểm (đúng $cans_17/$total_17 câu)</td>
-			<td>$cat_name18: $diem_18 điểm (đúng $cans_18/$total_18 câu)</td>
-			<td>$cat_name19: $diem_19 điểm (đúng $cans_19/$total_19 câu)</td>
-			<td>$cat_name20: $diem_20 điểm (đúng $cans_20/$total_20 câu)</td>
-			
-			<td>$cat_name21: $diem_21 điểm (đúng $cans_21/$total_21 câu)</td>
-			<td>$cat_name22: $diem_22 điểm (đúng $cans_22/$total_22 câu)</td>
-			<td>$cat_name23: $diem_23 điểm (đúng $cans_23/$total_23 câu)</td>
-			<td>$cat_name24: $diem_24 điểm (đúng $cans_24/$total_24 câu)</td>
-			<td>$cat_name25: $diem_25 điểm (đúng $cans_25/$total_25 câu)</td>
-			<td>$cat_name26: $diem_26 điểm (đúng $cans_26/$total_26 câu)</td>
-			<td>$cat_name27: $diem_27 điểm (đúng $cans_27/$total_27 câu)</td>
-			<td>$cat_name28: $diem_28 điểm (đúng $cans_28/$total_28 câu)</td>
-			<td>$cat_name29: $diem_29 điểm (đúng $cans_29/$total_29 câu)</td>
-			<td>$cat_name30: $diem_30 điểm (đúng $cans_30/$total_30 câu)</td>
-
-			<td><a href='./excel.php?eid=$id'>Xuất File</a></td>
-			<td><a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
-			
-			
-			</tr>";
-			$xx++;
-			$d++;
-		}
-	       
-		
-		
-		echo "</table></div>";
-		
-	?>
-
+    $output .= '
+    <tr>  
+       	<td>'.$line["name"].'</td>  
+       	<td>'.$line["email"].'</td>  
+       	<td>'.$line["workplace"].'</td>  
+       	<td>'.$line["title"].'</td>  
+       	<td>'.$line["contact"].'</td>
+       	<td>'.$cat_name.'</td>  
+       	<td>'.$line["examtime"].'</td>  
+       	<td>'.$line["datee"].'</td>
+       	<td>'.$cat_name1.': '.$diem_1.' Điểm ( Đúng '.$cans.'/'.$total_1.' câu )</td>  
+       	<td>'.$cat_name2.': '.$diem_2.' Điểm ( Đúng '.$cans_2.'/'.$total_2.' câu )</td>  
+	   	<td>'.$cat_name3.': '.$diem_3.' Điểm ( Đúng '.$cans_3.'/'.$total_3.' câu )</td>  
+	   	<td>'.$cat_name4.': '.$diem_4.' Điểm ( Đúng '.$cans_4.'/'.$total_4.' câu )</td>  
+	   	<td>'.$cat_name5.': '.$diem_5.' Điểm ( Đúng '.$cans_5.'/'.$total_5.' câu )</td>  
+	   	<td>'.$cat_name6.': '.$diem_6.' Điểm ( Đúng '.$cans_6.'/'.$total_6.' câu )</td>  
+  	   	<td>'.$cat_name7.': '.$diem_7.' Điểm ( Đúng '.$cans_7.'/'.$total_7.' câu )</td>  
+	   	<td>'.$cat_name8.': '.$diem_8.' Điểm ( Đúng '.$cans_8.'/'.$total_8.' câu )</td>  
+		<td>'.$cat_name9.': '.$diem_9.' Điểm ( Đúng '.$cans_9.'/'.$total_9.' câu )</td>  
+		<td>'.$cat_name10.': '.$diem_10.' Điểm ( Đúng '.$cans_10.'/'.$total_10.' câu )</td>  
+		<td>'.$cat_name11.': '.$diem_11.' Điểm ( Đúng '.$cans_11.'/'.$total_11.' câu )</td>  
+		<td>'.$cat_name12.': '.$diem_12.' Điểm ( Đúng '.$cans_12.'/'.$total_12.' câu )</td>  
+		<td>'.$cat_name13.': '.$diem_13.' Điểm ( Đúng '.$cans_13.'/'.$total_13.' câu )</td>  
+		<td>'.$cat_name14.': '.$diem_14.' Điểm ( Đúng '.$cans_14.'/'.$total_14.' câu )</td>  
+		<td>'.$cat_name15.': '.$diem_15.' Điểm ( Đúng '.$cans_15.'/'.$total_15.' câu )</td>  
+		<td>'.$cat_name16.': '.$diem_16.' Điểm ( Đúng '.$cans_16.'/'.$total_16.' câu )</td>  
+		<td>'.$cat_name17.': '.$diem_17.' Điểm ( Đúng '.$cans_17.'/'.$total_17.' câu )</td>  
+		<td>'.$cat_name18.': '.$diem_18.' Điểm ( Đúng '.$cans_18.'/'.$total_18.' câu )</td>  
+		<td>'.$cat_name19.': '.$diem_19.' Điểm ( Đúng '.$cans_19.'/'.$total_19.' câu )</td>  
+		<td>'.$cat_name20.': '.$diem_20.' Điểm ( Đúng '.$cans_20.'/'.$total_20.' câu )</td>  
+		<td>'.$cat_name21.': '.$diem_21.' Điểm ( Đúng '.$cans_21.'/'.$total_21.' câu )</td>  
+		<td>'.$cat_name22.': '.$diem_22.' Điểm ( Đúng '.$cans_22.'/'.$total_22.' câu )</td>  
+		<td>'.$cat_name23.': '.$diem_23.' Điểm ( Đúng '.$cans_23.'/'.$total_23.' câu )</td>  
+		<td>'.$cat_name24.': '.$diem_24.' Điểm ( Đúng '.$cans_24.'/'.$total_24.' câu )</td>  
+		<td>'.$cat_name25.': '.$diem_25.' Điểm ( Đúng '.$cans_25.'/'.$total_25.' câu )</td>  
+		<td>'.$cat_name26.': '.$diem_26.' Điểm ( Đúng '.$cans_26.'/'.$total_26.' câu )</td>  
+		<td>'.$cat_name27.': '.$diem_27.' Điểm ( Đúng '.$cans_27.'/'.$total_27.' câu )</td>  
+		<td>'.$cat_name28.': '.$diem_28.' Điểm ( Đúng '.$cans_28.'/'.$total_28.' câu )</td>  
+		<td>'.$cat_name29.': '.$diem_29.' Điểm ( Đúng '.$cans_29.'/'.$total_29.' câu )</td>  
+		<td>'.$cat_name30.': '.$diem_30.' Điểm ( Đúng '.$cans_30.'/'.$total_30.' câu )</td>  														
+    </tr>
+   ';
+  }
+  $output .= '</table>';
+  header('Content-Type: application/xls');
+  header('Content-Disposition: attachment; filename=download.xls');
+  print chr(255) . chr(254) . mb_convert_encoding($output, 'UTF-16LE', 'UTF-8');
+?>

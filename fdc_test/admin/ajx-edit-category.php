@@ -43,7 +43,7 @@ echo "<div id='maindiv'>";
 		 {
 			$id = $line['id'];
 			
-			$catname = $line['category'];
+			$catname = $line['category'];	
 			$catstatus = $line['status'];
 			
 	

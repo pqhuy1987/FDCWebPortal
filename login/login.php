@@ -13,7 +13,6 @@
 		{
 			fatal_error("Failed to set LDAP Protocol version to 3, TLS not supported.");
 		}
-		
 	
 		if(@ldap_bind($ldap_con, $ldap_dn.'@'.$domain, $ldap_password))
 		{
@@ -23,14 +22,20 @@
 			
 			$samaccountname = $ldap_dn;
 			$filter = "(samaccountname=$samaccountname)";
-			$dn = "OU=FDC Department,DC=FDC,DC=LOCAL";
+			$dn1 = "OU=FDC Department,DC=FDC,DC=LOCAL";
+			$dn2 = "OU=FDC Main Project,DC=FDC,DC=LOCAL";
 			$attributes = array("memberof","cn","mail");
 
-			$res = ldap_search($ldap_con, $dn, $filter, $attributes);
+			$res = ldap_search($ldap_con, $dn2, $filter, $attributes);
+			
+			$first = ldap_get_entries($ldap_con, $res);
+			
+			if ($first["count"] == 0)  $res = ldap_search($ldap_con, $dn1, $filter, $attributes);
+			
 			$first = ldap_get_entries($ldap_con, $res);
 			
 			print "<pre>";
-			print_r ($first);
+			print_r($first);
 			print "</pre>";
 			
 			for ($i=0; $i < $first[0]["memberof"]["count"]; $i++)
@@ -44,6 +49,10 @@
 			$_SESSION['nameuser'] = $first[0]["cn"][0];
 			$_SESSION['mail'] = $first[0]["mail"][0];
 
+			print "<pre>";
+			print_r($first[0]["dn"]);
+			print "</pre>";
+			
          	header('Location: ../index.php');
 		}
 		else

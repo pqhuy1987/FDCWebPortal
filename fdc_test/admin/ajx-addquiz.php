@@ -15,16 +15,18 @@ $opt4=trim($_POST['opt4']);
 $ans=trim($_POST['ans']);
 $imptid=trim($_POST['imptid']);
 $dokho=trim($_POST['dokho']);
+$id_sub=trim($_POST['id_sub']);
+
 if($imptid=="add")
 {
 $dat=date('Y-m-d');
 if($ques!="" && $opt1!="" && $opt2!="" && $ans!="" && $catid!="")
 {
-    $query =  mysqli_query($connect_2,"INSERT into quiz set catid='$catid' , question='$ques',opt1='$opt1',opt2='$opt2',opt3='$opt3',opt4='$opt4',answer='$ans',datee='$dat',status='release',dokho='$dokho'");
+    $query =  mysqli_query($connect_2,"INSERT into quiz set catid='$catid', question='$ques', opt1='$opt1', opt2='$opt2', opt3='$opt3', opt4='$opt4', answer='$ans' , datee='$dat', status='release', dokho='$dokho', id_sub='$id_sub'");
    // echo "INSERT into quiz set catid='$catid' , question='$ques',opt1='$opt1',opt2='$opt2',opt3='$opt3',opt4='$opt4',ans='$ans',date='$dat'";
     if($query)
     {
-       echo "<font color='green'>Your question added sucessfully..</font>";    
+       	echo "<font color='green'>Your question added sucessfully..</font>";    
     }
     else
      {
@@ -42,7 +44,7 @@ else
 	$dat=date('Y-m-d');
     if($imptid!="")
     {
-        $query =  mysqli_query($connect_2,"update quiz set catid='$catid' , question='$ques',opt1='$opt1',opt2='$opt2',opt3='$opt3',opt4='$opt4',answer='$ans',datee='$dat',dokho='$dokho' where id='$imptid'");
+        $query =  mysqli_query($connect_2,"update quiz set catid='$catid' , question='$ques',opt1='$opt1',opt2='$opt2',opt3='$opt3',opt4='$opt4',answer='$ans',dokho='$dokho', id_sub='$id_sub' where id='$imptid'");
 	if($query)
 	    echo "<font color='green'>Your question updated sucessfully..</font>";
 	else

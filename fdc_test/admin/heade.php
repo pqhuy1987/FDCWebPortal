@@ -71,10 +71,12 @@ $hr_admin =mysqli_query($connect_2,"select username from hioxpm");
     <li id='m1'><a href="index.php">Ngân Hàng Câu Hỏi</a></li>
     <li id='m2'><a href="add-question.php">Thêm Câu Hỏi</a></li>
     <li id='m3'><a href="add-category.php">Thêm Chuyên Mục</a></li>
-    <li id='m4'><a href="edit-category.php">Sửa Chuyên Mục</a></li>
-    <li id='m5'><a href="settings.php">Cài Đặt</a></li>
-    <li id='m6'><a href="code.php">Lấy Mã</a></li>
-	  <li id='m7'><a href="quiz-results.php">Kết Quả Kiểm Tra</a></li>
+    <li id='m5'><a href="edit-category.php">Sửa Chuyên Mục</a></li>  
+    <li id='m4'><a href="add-category-sub.php">Thêm Chuyên Đề</a></li>
+    <li id='m6'><a href="edit-category-sub.php">Sửa Chuyên Đề</a></li>
+    <li id='m7'><a href="settings.php">Xây Dựng Bộ Đề</a></li>
+    <li id='m8'><a href="code.php">Danh Sách Bộ Đề Đã Được Tạo</a></li>
+	<li id='m9'><a href="quiz-results.php">Kết Quả Kiểm Tra</a></li>
    
     </ul>
     </div>
