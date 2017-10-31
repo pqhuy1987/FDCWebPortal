@@ -24,6 +24,7 @@
 			$filter = "(samaccountname=$samaccountname)";
 			$dn1 = "OU=FDC Department,DC=FDC,DC=LOCAL";
 			$dn2 = "OU=FDC Main Project,DC=FDC,DC=LOCAL";
+			$dn3 = "OU=SITES,DC=FDC,DC=LOCAL";
 			$attributes = array("memberof","cn","mail");
 
 			$res = ldap_search($ldap_con, $dn2, $filter, $attributes);
@@ -31,6 +32,10 @@
 			$first = ldap_get_entries($ldap_con, $res);
 			
 			if ($first["count"] == 0)  $res = ldap_search($ldap_con, $dn1, $filter, $attributes);
+			
+			$first = ldap_get_entries($ldap_con, $res);
+			
+			if ($first["count"] == 0)  $res = ldap_search($ldap_con, $dn3, $filter, $attributes);
 			
 			$first = ldap_get_entries($ldap_con, $res);
 			

@@ -69,6 +69,12 @@ ddsmoothmenu.init({
   		<li><a href="./fdc_test/admin" target="_blank">Quản trị nội dung trắc nghiệm</a></li>
   </ul>
 </li>
+<li><a href="./">Quản lý Nhân Công</a>
+  <ul>
+  		<li><a href="./fdc_emp/" target="_blank">Tính lương công nhân</a></li>
+  		<li><a href="./fdc_emp/admin" target="_blank">Quản trị User </a></li>
+  </ul>
+</li>
 <li><a href="./">Chào bạn: <?php echo $_SESSION['nameuser'];?></a>
   <ul>
   		<li><a href="./admin/index.php" target="_blank">Trang Quản Trị</a></li>

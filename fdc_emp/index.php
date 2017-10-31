@@ -45,15 +45,15 @@ else
     </div>
     <div>
     	<!--block/menu.php-->
-        <?php require "blocks/menu.php"; ?>
+        <?php //require "blocks/menu.php"; ?>
     </div>
     <div id="menu-2">
     	<!--block/menu.php-->
-        <?php require "blocks/menu2.php"; ?>
+        <?php //require "blocks/menu2.php"; ?>
     </div>
     <div id="midheader-vp">
     	<div id="left">
-            <?php require "blocks/thongtinchung.php"; ?>
+            <?php //require "blocks/thongtinchung.php"; ?>
 			<!--blocks/thongtinchung.php-->
         </div>
         <div id="right">
