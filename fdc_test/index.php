@@ -103,7 +103,7 @@ else
         <div class="top_con_2">
             <div class="top_con_ul_pos1_2"> 
             	<h1>
-                	<span style="color:#135194;">F</span><span style="color:#ec2229;">D</span><span style="color:#135194;">C</span>
+                	<span style="color:#135194;"></span><span style="color:#ec2229;"></span><span style="color:#135194;"></span>
                 </h1>            
             </div>
             <div class="top_con_ul_pos2_2">
@@ -229,13 +229,13 @@ else
 					echo "<div class='news_poling disp_$pn'  $disp >";
 					echo "<input type='hidden' id='ans_$id' value='$ans'>";
 					if ($dokho == 1) {
-						echo "<div class='news_poling_top'><b>Câu $lt (Trung Bình)</b>: $qns </div>";
+						echo "<div class='news_poling_top'><b>Câu $lt </b>: $qns </div>";
 					} else if ($dokho == 2) {
-						echo "<div class='news_poling_top'><b>Câu $lt (Khá Khó)</b>: $qns </div>";
+						echo "<div class='news_poling_top'><b>Câu $lt </b>: $qns </div>";
 					} else if ($dokho == 3) {
-						echo "<div class='news_poling_top'><b>Câu $lt (Khó)</b>: $qns </div>";
+						echo "<div class='news_poling_top'><b>Câu $lt </b>: $qns </div>";
 					} else if ($dokho == 4) {
-						echo "<div class='news_poling_top'><b>Câu $lt (Rất Khó)</b>: $qns </div>";
+						echo "<div class='news_poling_top'><b>Câu $lt </b>: $qns </div>";
 					}
 					echo "<div class='news_poling_sele-ct'><form id='polingForm' method='post' action='survey-script/polling-result.php'>";
 					echo "<div>
@@ -1223,9 +1223,9 @@ $(window).load(function () {
        	  echo "<div class='frms'>
           <form name='quiz' action='' method='post'>
 		  <label> Họ và Tên : </label>
-		  <input type='text' name='uname' readonly value=' ";?> <?php echo $_SESSION['nameuser']; ?> <?php echo"' maxlength='20'> 
+		  <input type='text' name='uname'  value=' ";?> <?php echo $_SESSION['nameuser']; ?> <?php echo"' maxlength='20'> 
 		  <label>E-mail : </label>
-		  <input type='text' name='uemail' readonly value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
+		  <input type='text' name='uemail'  value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
 		   </div>
 		   <div class='frms_sub1'>
 		  <label>Tên Công Trường/Phòng Ban : </label>
