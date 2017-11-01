@@ -51,7 +51,6 @@ else
     <div id="midheader-vp">
     	<div id="left">
             <?php require "blocks/thongtinchung.php"; ?>
-			<!--blocks/thongtinchung.php-->
         </div>
         <div id="right">
         </div>
