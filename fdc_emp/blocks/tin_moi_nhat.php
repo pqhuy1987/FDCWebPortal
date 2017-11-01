@@ -1,34 +1,51 @@
-<!-- box cat -->
-<?php
-    $idLT = 1;
-?>
-<div class="box-cat">
-	<div class="cat">
-    	<div class="main-cat">
-        	<a href="#">Tin Tức Và Sự Kiện Mới Nhất</a>
-        </div>
-       
-        <div class="clear"></div>
-        <div class="cat-content">
-        <?php 
-            $tinmoinhat= TinMoiNhat_MotTin($connect);
-            $row_tinmoinhat = mysqli_fetch_array($tinmoinhat);
-        ?>
-            <?php 
-                $tinmoinhat_bontin = TinMoiNhat_BonTin($connect, $idLT);
-            while ($row_tinmoinhat_bontin = mysqli_fetch_array($tinmoinhat_bontin)){    
-            ?>
-            <div class="col2">
-            <h3 class="tlq"><a href="index.php?p=chitiettin&idTin=<?php echo $row_tinmoinhat_bontin['idTin'] ?>">[<?php echo $row_tinmoinhat_bontin['Ngay']?>] <?php echo $row_tinmoinhat_bontin['TieuDe']?></a></h3>
-            </div> 
-            <?php 
-                }
-            ?>
-           
-        </div>
-    
-    </div>
+<html>
+<head>
+<title>Insert Data Form</title>
+</head>
 
-</div>
-<div class="clear"></div>
-<!-- //box cat -->
+<body>
+<h2>Insert Data Form</h2>
+
+<table>
+<!--- begin html form; 
+put action page in the "action" attribute of the form tag --->
+<form action="insert_action.cfm" method="post">
+<tr>
+  <td>Employee ID:</td>
+  <td><input type="text" name="Emp_ID" size="4" maxlength="4"></td>
+</tr>
+<tr>
+  <td>First Name:</td>
+  <td><input type="Text" name="FirstName" size="35" maxlength="50"></td>
+</tr>
+<tr>
+  <td>Last Name:</td>
+  <td><input type="Text" name="LastName" size="35" maxlength="50"></td>
+</tr>
+<tr>
+  <td>Department Number:</td>
+  <td><input type="Text" name="Dept_ID" size="4" maxlength="4"></td>
+</tr>
+<tr>
+  <td>Start Date:</td>
+  <td><input type="Text" name="StartDate" size="16" maxlength="16"></td>
+</tr>
+<tr>
+  <td>Salary:</td>
+  <td><input type="Text" name="Salary" size="10" maxlength="10"></td>
+</tr>
+<tr>
+  <td>Contractor:</td>
+  <td><input type="checkbox" name="Contract" value="Yes" checked>Yes</td>
+</tr>
+<tr>
+  <td>&nbsp;</td>
+  <td><input type="Submit" value="Submit">&nbsp;<input type="Reset"
+value="Clear Form"></td>
+</tr>
+</form>
+<!--- end html form --->
+</table>
+
+</body>
+</html>
