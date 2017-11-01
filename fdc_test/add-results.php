@@ -44,8 +44,8 @@ $wans_10=$_POST['wans_10'];
 $cans_10=$_POST['cans_10'];
 
 $chuyende_11=$_POST['chuyende_11'];
-$wans_11=$_POST['wans_2'];
-$cans_11=$_POST['cans_2'];
+$wans_11=$_POST['wans_11'];
+$cans_11=$_POST['cans_11'];
 
 $chuyende_12=$_POST['chuyende_12'];
 $wans_12=$_POST['wans_12'];

@@ -197,8 +197,10 @@ else
 				
 				if ($row_setting_temp['filter'] == 1) {
 					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id asc limit $limit_num " );
+					$limit_num_2 = $limit_num;
 				} else if($row_setting_temp['filter'] == 2) {
 					$query = mysqli_query($connect_2,"SELECT * FROM quiz WHERE status='release' and id_sub=$temp order by id desc limit $limit_num " );
+					$limit_num_2 = $limit_num;
 				} else {
 					if ($limit_num <=2){
 						$limit_num_temp = ceil($limit_num/2);
@@ -207,6 +209,7 @@ else
 						$limit_num_temp = ceil($limit_num/3);
 						$query = mysqli_query($connect_2,"(SELECT * FROM quiz WHERE status='release' and id_sub=$temp and dokho=1 order by RAND() limit $limit_num_temp) union (SELECT * FROM quiz WHERE status='release' and id_sub=$temp and dokho=2 order by RAND() limit $limit_num_temp) union (SELECT * FROM quiz WHERE status='release' and id_sub=$temp and (dokho=3 or dokho=4) order by RAND() limit $limit_num_temp)" );						
 					}
+					$limit_num_2 = mysqli_num_rows($query);
 				}
 				$pcount = $pcount + mysqli_num_rows($query);
 				$pages = ceil($pcount/$limit);
@@ -241,15 +244,15 @@ else
 					echo "<div>
 						  <input type='hidden' value='151' name='Qid'>
 						  <fieldset class='radios' id='$id'>
-						  <input type='radio' value='opt1' name='options_$id'  onclick=chkans(1,$id,$lt2,$temp) >$opt1 $limit_tag
-						  <input type='radio' value='opt2' name='options_$id' onclick=chkans(2,$id,$lt2,$temp) >$opt2 $limit_tag";
+						  <input type='radio' value='opt1' name='options_$id'  onclick=chkans(1,$id,$lt2,$temp,$limit_num_2) >$opt1 $limit_tag
+						  <input type='radio' value='opt2' name='options_$id' onclick=chkans(2,$id,$lt2,$temp,$limit_num_2) >$opt2 $limit_tag";
 					if($opt3!='')
 					{
-						echo "<input type='radio' value='opt3' name='options_$id' onclick=chkans(3,$id,$lt2,$temp)>$opt3 $limit_tag ";
+						echo "<input type='radio' value='opt3' name='options_$id' onclick=chkans(3,$id,$lt2,$temp,$limit_num_2)>$opt3 $limit_tag ";
 					}
 					if($opt4!='')
 					{
-						echo "<input type='radio' value='opt4' name='options_$id' onclick=chkans(4,$id,$lt2,$temp)>$opt4 $limit_tag ";
+						echo "<input type='radio' value='opt4' name='options_$id' onclick=chkans(4,$id,$lt2,$temp,$limit_num_2)>$opt4 $limit_tag ";
 					}
 								
 					 echo "</fieldset>
@@ -257,8 +260,8 @@ else
 					 echo "</div>";           
 					 echo "</div>";
 				  
-					//if($lt%$limit==0)
-						//$pn++;
+					if($lt%$limit==0)
+						$pn++;
 					$lt++;       
 				 }
 				 $lt2++;
@@ -283,122 +286,152 @@ else
 <script type="text/javascript">
 		     var cresult1=0;
 		     var wresult1=0;
+			 var tresult1=0;
 			 var tenchuyende1=0;
 			 
 			 var cresult2=0;
 		     var wresult2=0;
+			 var tresult2=0;
 			 var tenchuyende2=0;
 			 
 			 var cresult3=0;
 		     var wresult3=0;
+			 var tresult3=0;
 			 var tenchuyende3=0;
 			 
 			 var cresult4=0;
 		     var wresult4=0;
+			 var tresult4=0;
 			 var tenchuyende4=0;
 			 
 			 var cresult5=0;
 		     var wresult5=0;
+			 var tresult5=0;
 			 var tenchuyende5=0;
 			 
 			 var cresult6=0;
 		     var wresult6=0;
+			 var tresult6=0;
 			 var tenchuyende6=0;
 			 
 			 var cresult7=0;
 		     var wresult7=0;
+			 var tresult7=0;
 			 var tenchuyende7=0;
 			 
 			 var cresult8=0;
 		     var wresult8=0;
+			 var tresult8=0;
 			 var tenchuyende8=0;
 			 
 			 var cresult9=0;
 		     var wresult9=0;
+			 var tresult9=0;
 			 var tenchuyende9=0;
 			 
 			 var cresult10=0;
 		     var wresult10=0;
+			 var tresult10=0;
 			 var tenchuyende10=0;
 			 
 			 var cresult11=0;
 		     var wresult11=0;
+			 var tresult11=0;
 			 var tenchuyende11=0;
 			 
 			 var cresult12=0;
 		     var wresult12=0;
+			 var tresult12=0;
 			 var tenchuyende12=0;
 			 
 			 var cresult13=0;
 		     var wresult13=0;
+			 var tresult13=0;
 			 var tenchuyende13=0;
 			 
 			 var cresult14=0;
 		     var wresult14=0;
+			 var tresult14=0;
 			 var tenchuyende14=0;
 			 
 			 var cresult15=0;
 		     var wresult15=0;
+			 var tresult15=0;
 			 var tenchuyende15=0;
 			 
 			 var cresult16=0;
 		     var wresult16=0;
+			 var tresult16=0;
 			 var tenchuyende16=0;
 			 
 			 var cresult17=0;
 		     var wresult17=0;
+			 var tresult17=0;
 			 var tenchuyende17=0;
 			 
 			 var cresult18=0;
 		     var wresult18=0;
+			 var tresult18=0;
 			 var tenchuyende18=0;
 			 
 			 var cresult19=0;
 		     var wresult19=0;
+			 var tresult19=0;
 			 var tenchuyende19=0;
 			 
 			 var cresult20=0;
 		     var wresult20=0;
+			 var tresult20=0;
 			 var tenchuyende20=0;
 			 
 			 var cresult21=0;
 		     var wresult21=0;
+			 var tresult21=0;
 			 var tenchuyende21=0;
 			 
 			 var cresult22=0;
 		     var wresult22=0;
+			 var tresult22=0;
 			 var tenchuyende22=0;
 			 
 			 var cresult23=0;
 		     var wresult23=0;
+			 var tresult23=0;
 			 var tenchuyende23=0;
 			 
 			 var cresult24=0;
 		     var wresult24=0;
+			 var tresult24=0;
 			 var tenchuyende24=0;
 			 
 			 var cresult25=0;
 		     var wresult25=0;
+			 var tresult25=0;
 			 var tenchuyende25=0;
 			 
 			 var cresult26=0;
 		     var wresult26=0;
+			 var tresult26=0;
 			 var tenchuyende26=0;
 			 
 			 var cresult27=0;
 		     var wresult27=0;
+			 var tresult27=0;
 			 var tenchuyende27=0;
 			 
 			 var cresult28=0;
 		     var wresult28=0;
+			 var tresult28=0;
 			 var tenchuyende28=0;
 			 
 			 var cresult29=0;
 		     var wresult29=0;
+			 var tresult29=0;
 			 var tenchuyende29=0;
 			 
 			 var cresult30=0;
 		     var wresult30=0;
+			 var tresult30=0;
 			 var tenchuyende30=0;
 			 
 			 var $pcount_check = 0;			 
@@ -418,13 +451,14 @@ else
 		     total_pages=total_pages-1;
 		     var total_ques = "<?php echo $pcount;?>";
 			 
- function chkans(opt,ansid,chuyende,tenchuyende)
+ function chkans(opt,ansid,chuyende,tenchuyende,tongcau)
  {
 	 $pcount_check = $pcount_check + 1;
 	 if (chuyende == 1 )
 	 {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende1=parseInt(tenchuyende);
+		 tresult1=tongcau;
 		 if ($ans==opt) {
 			  cresult1=parseInt(cresult1)+1;
 		 }
@@ -435,6 +469,7 @@ else
 	 } else if (chuyende == 2 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende2=parseInt(tenchuyende);
+		 tresult2=tongcau;
 		 if ($ans==opt) {
 			  cresult2=parseInt(cresult2)+1;
 		 }
@@ -445,6 +480,7 @@ else
 	 } else if (chuyende == 3 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende3=parseInt(tenchuyende);
+		 tresult3=tongcau;
 		 if ($ans==opt) {
 			  cresult3=parseInt(cresult3)+1;
 		 }
@@ -455,6 +491,7 @@ else
 	 } else if (chuyende == 4 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende4=parseInt(tenchuyende);
+		 tresult4=tongcau;
 		 if ($ans==opt) {
 			  cresult4=parseInt(cresult4)+1;
 		 }
@@ -465,6 +502,7 @@ else
 	 } else if (chuyende == 5 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende5=parseInt(tenchuyende);
+		 tresult5=tongcau;
 		 if ($ans==opt) {
 			  cresult5=parseInt(cresult5)+1;
 		 }
@@ -475,6 +513,7 @@ else
 	 } else if (chuyende == 6 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende6=parseInt(tenchuyende);
+		 tresult6=tongcau;
 		 if ($ans==opt) {
 			  cresult6=parseInt(cresult6)+1;
 		 }
@@ -485,6 +524,7 @@ else
 	 } else if (chuyende == 7 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende7=parseInt(tenchuyende);
+		 tresult7=tongcau;
 		 if ($ans==opt) {
 			  cresult7=parseInt(cresult7)+1;
 		 }
@@ -495,6 +535,7 @@ else
 	 } else if (chuyende == 8 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende8=parseInt(tenchuyende);
+		 tresult8=tongcau;
 		 if ($ans==opt) {
 			  cresult8=parseInt(cresult8)+1;
 		 }
@@ -505,6 +546,7 @@ else
 	 } else if (chuyende == 9 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende9=parseInt(tenchuyende);
+		 tresult9=tongcau;
 		 if ($ans==opt) {
 			  cresult9=parseInt(cresult9)+1;
 		 }
@@ -515,6 +557,7 @@ else
 	 } else if (chuyende == 10 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende10=parseInt(tenchuyende);
+		 tresult10=tongcau;
 		 if ($ans==opt) {
 			  cresult10=parseInt(cresult10)+1;
 		 }
@@ -525,6 +568,7 @@ else
 	 } else if (chuyende == 11 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende11=parseInt(tenchuyende);
+		 tresult11 = tongcau;
 		 if ($ans==opt) {
 			  cresult11=parseInt(cresult11)+1;
 		 }
@@ -535,6 +579,7 @@ else
 	 } else if (chuyende == 12 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende12=parseInt(tenchuyende);
+		 tresult12=tongcau;
 		 if ($ans==opt) {
 			  cresult12=parseInt(cresult12)+1;
 		 }
@@ -545,6 +590,7 @@ else
 	 } else if (chuyende == 13 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende13=parseInt(tenchuyende);
+		 tresult13=tongcau;
 		 if ($ans==opt) {
 			  cresult13=parseInt(cresult13)+1;
 		 }
@@ -555,6 +601,7 @@ else
 	 } else if (chuyende == 14 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende14=parseInt(tenchuyende);
+		 tresult14=tongcau;
 		 if ($ans==opt) {
 			  cresult14=parseInt(cresult14)+1;
 		 }
@@ -565,6 +612,7 @@ else
 	 } else if (chuyende == 15 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende15=parseInt(tenchuyende);
+		 tresult15=tongcau;
 		 if ($ans==opt) {
 			  cresult15=parseInt(cresult15)+1;
 		 }
@@ -575,6 +623,7 @@ else
 	 } else if (chuyende == 16 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende16=parseInt(tenchuyende);
+		 tresult16=tongcau;
 		 if ($ans==opt) {
 			  cresult16=parseInt(cresult16)+1;
 		 }
@@ -585,6 +634,7 @@ else
 	 } else if (chuyende == 17 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende17=parseInt(tenchuyende);
+		 tresult17=tongcau;
 		 if ($ans==opt) {
 			  cresult17=parseInt(cresult17)+1;
 		 }
@@ -595,6 +645,7 @@ else
 	 } else if (chuyende == 18 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende18=parseInt(tenchuyende);
+		 tresult18=tongcau;
 		 if ($ans==opt) {
 			  cresult18=parseInt(cresult18)+1;
 		 }
@@ -605,6 +656,7 @@ else
 	 } else if (chuyende == 19 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende19=parseInt(tenchuyende);
+		 tresult19=tongcau;
 		 if ($ans==opt) {
 			  cresult19=parseInt(cresult19)+1;
 		 }
@@ -615,6 +667,7 @@ else
 	 } else if (chuyende == 20 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende20=parseInt(tenchuyende);
+		 tresult20=tongcau;
 		 if ($ans==opt) {
 			  cresult20=parseInt(cresult20)+1;
 		 }
@@ -625,6 +678,7 @@ else
 	 } else if (chuyende == 21 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende21=parseInt(tenchuyende);
+		 tresult21=tongcau;
 		 if ($ans==opt) {
 			  cresult21=parseInt(cresult21)+1;
 		 }
@@ -635,6 +689,7 @@ else
 	 } else if (chuyende == 22 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende22=parseInt(tenchuyende);
+		 tresult22=tongcau;
 		 if ($ans==opt) {
 			  cresult22=parseInt(cresult22)+1;
 		 }
@@ -645,6 +700,7 @@ else
 	 } else if (chuyende == 23 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende23=parseInt(tenchuyende);
+		 tresult23=tongcau;
 		 if ($ans==opt) {
 			  cresult23=parseInt(cresult23)+1;
 		 }
@@ -655,6 +711,7 @@ else
 	 } else if (chuyende == 24 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende24=parseInt(tenchuyende);
+		 tresult24=tongcau;
 		 if ($ans==opt) {
 			  cresult24=parseInt(cresult24)+1;
 		 }
@@ -665,6 +722,7 @@ else
 	 } else if (chuyende == 25 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende25=parseInt(tenchuyende);
+		 tresult25=tongcau;
 		 if ($ans==opt) {
 			  cresult25=parseInt(cresult25)+1;
 		 }
@@ -675,6 +733,7 @@ else
 	 } else if (chuyende == 26 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende26=parseInt(tenchuyende);
+		 tresult26=tongcau;
 		 if ($ans==opt) {
 			  cresult26=parseInt(cresult26)+1;
 		 }
@@ -685,6 +744,7 @@ else
 	 } else if (chuyende == 27 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende27=parseInt(tenchuyende);
+		 tresult27=tongcau;
 		 if ($ans==opt) {
 			  cresult27=parseInt(cresult27)+1;
 		 }
@@ -695,6 +755,7 @@ else
 	 } else if (chuyende == 28 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende28=parseInt(tenchuyende);
+		 tresult28=tongcau;
 		 if ($ans==opt) {
 			  cresult28=parseInt(cresult28)+1;
 		 }
@@ -705,6 +766,7 @@ else
 	 } else if (chuyende == 29 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende29=parseInt(tenchuyende);
+		 tresult29=tongcau;
 		 if ($ans==opt) {
 			  cresult29=parseInt(cresult29)+1;
 		 }
@@ -715,6 +777,7 @@ else
 	 } else if (chuyende == 30 ) {
 		 $ans=$('#ans_'+ansid).val()
 		 tenchuyende30=parseInt(tenchuyende);
+		 tresult30=tongcau;
 		 if ($ans==opt) {
 			  cresult30=parseInt(cresult30)+1;
 		 }
@@ -770,127 +833,125 @@ else
  function results()
  {
 	$tcans	=	cresult1;
-	$twans	=	wresult1;
+	$twans	=	tresult1;
 	$tenchuyende1 = tenchuyende1;
 	
 	$tcans2	=	cresult2;
-	$twans2	=	wresult2;
+	$twans2	=	tresult2;
 	$tenchuyende2 = tenchuyende2;
 	
 	$tcans3	=	cresult3;
-	$twans3	=	wresult3;
+	$twans3	=	tresult3;
 	$tenchuyende3 = tenchuyende3;
 	
 	$tcans4	=	cresult4;
-	$twans4	=	wresult4;
+	$twans4	=	tresult4;
 	$tenchuyende4 = tenchuyende4;
 	
 	$tcans5	=	cresult5;
-	$twans5	=	wresult5;
+	$twans5	=	tresult5;
 	$tenchuyende5 = tenchuyende5;
 	
 	$tcans6	=	cresult6;
-	$twans6	=	wresult6;
+	$twans6	=	tresult6;
 	$tenchuyende6 = tenchuyende6;
 	
 	$tcans7	=	cresult7;
-	$twans7	=	wresult7;
+	$twans7	=	tresult7;
 	$tenchuyende7 = tenchuyende7;
 	
 	$tcans8	=	cresult8;
-	$twans8	=	wresult8;
+	$twans8	=	tresult8;
 	$tenchuyende8 = tenchuyende8;
 	
 	$tcans9	=	cresult9;
-	$twans9	=	wresult9;
+	$twans9	=	tresult9;
 	$tenchuyende9 = tenchuyende9;
 	
 	$tcans10	=	cresult10;
-	$twans10	=	wresult10;
+	$twans10	=	tresult10;
 	$tenchuyende10 = tenchuyende10;
 	
 	$tcans11	=	cresult11;
-	$twans11	=	wresult11;
+	$twans11	=	tresult11;
 	$tenchuyende11 = tenchuyende11;
 	
 	$tcans12	=	cresult12;
-	$twans12	=	wresult12;
+	$twans12	=	tresult12;
 	$tenchuyende12 = tenchuyende12;
 	
 	$tcans13	=	cresult13;
-	$twans13	=	wresult13;
+	$twans13	=	tresult13;
 	$tenchuyende13 = tenchuyende13;
 	
 	$tcans14	=	cresult14;
-	$twans14	=	wresult14;
+	$twans14	=	tresult14;
 	$tenchuyende14 = tenchuyende14;
 	
 	$tcans15	=	cresult15;
-	$twans15	=	wresult15;
+	$twans15	=	tresult15;
 	$tenchuyende15 = tenchuyende15;
 	
 	$tcans16	=	cresult16;
-	$twans16	=	wresult16;
+	$twans16	=	tresult16;
 	$tenchuyende16 = tenchuyende16;
 	
 	$tcans17	=	cresult17;
-	$twans17	=	wresult17;
+	$twans17	=	tresult17;
 	$tenchuyende17 = tenchuyende17;
 	
 	$tcans18	=	cresult18;
-	$twans18	=	wresult18;
+	$twans18	=	tresult18;
 	$tenchuyende18 = tenchuyende18;
 	
 	$tcans19	=	cresult19;
-	$twans19	=	wresult19;
+	$twans19	=	tresult19;
 	$tenchuyende19 = tenchuyende19;
 	
 	$tcans20	=	cresult20;
-	$twans20	=	wresult20;
+	$twans20	=	tresult20;
 	$tenchuyende20 = tenchuyende20;
 	
 	$tcans21	=	cresult21;
-	$twans21	=	wresult21;
+	$twans21	=	tresult21;
 	$tenchuyende21 = tenchuyende21;
 	
 	$tcans22	=	cresult22;
-	$twans22	=	wresult22;
+	$twans22	=	tresult22;
 	$tenchuyende22 = tenchuyende22;
 	
 	$tcans23	=	cresult23;
-	$twans23	=	wresult23;
+	$twans23	=	tresult23;
 	$tenchuyende23 = tenchuyende23;
 	
 	$tcans24	=	cresult24;
-	$twans24	=	wresult24;
+	$twans24	=	tresult24;
 	$tenchuyende24 = tenchuyende24;
 	
 	$tcans25	=	cresult25;
-	$twans25	=	wresult25;
+	$twans25	=	tresult25;
 	$tenchuyende25 = tenchuyende25;
 	
 	$tcans26	=	cresult26;
-	$twans26	=	wresult26;
+	$twans26	=	tresult26;
 	$tenchuyende26 = tenchuyende26;
 	
 	$tcans27	=	cresult27;
-	$twans27	=	wresult27;
+	$twans27	=	tresult27;
 	$tenchuyende27 = tenchuyende27;
 	
 	$tcans28	=	cresult28;
-	$twans28	=	wresult28;
+	$twans28	=	tresult28;
 	$tenchuyende28 = tenchuyende28;
 	
 	$tcans29	=	cresult29;
-	$twans29	=	wresult29;
+	$twans29	=	tresult29;
 	$tenchuyende29 = tenchuyende29;
 	
 	$tcans30	=	cresult30;
-	$twans30	=	wresult30;
+	$twans30	=	tresult30;
 	$tenchuyende30 = tenchuyende30;
 
-		if ($pcount_check == total_ques)
-		{
 			$examtime=$('#hms').html();
 			$('#cans').html($tcans);
 			$('#wans').html($twans);
@@ -938,133 +999,129 @@ else
 						$('#msg').html(data);
 						}
 					});
-		} 
-		else {
-			alert("Bạn vẫn chưa hoàn thành bài kiểm tra, vui lòng kiểm tra lại !!!");
-		}
  }
  
  ///////////////////////////////////////////////////////
   function results_temp()
  {
 	$tcans	=	cresult1;
-	$twans	=	wresult1;
+	$twans	=	tresult1;
 	$tenchuyende1 = tenchuyende1;
 	
 	$tcans2	=	cresult2;
-	$twans2	=	wresult2;
+	$twans2	=	tresult2;
 	$tenchuyende2 = tenchuyende2;
 	
 	$tcans3	=	cresult3;
-	$twans3	=	wresult3;
+	$twans3	=	tresult3;
 	$tenchuyende3 = tenchuyende3;
 	
 	$tcans4	=	cresult4;
-	$twans4	=	wresult4;
+	$twans4	=	tresult4;
 	$tenchuyende4 = tenchuyende4;
 	
 	$tcans5	=	cresult5;
-	$twans5	=	wresult5;
+	$twans5	=	tresult5;
 	$tenchuyende5 = tenchuyende5;
 	
 	$tcans6	=	cresult6;
-	$twans6	=	wresult6;
+	$twans6	=	tresult6;
 	$tenchuyende6 = tenchuyende6;
 	
 	$tcans7	=	cresult7;
-	$twans7	=	wresult7;
+	$twans7	=	tresult7;
 	$tenchuyende7 = tenchuyende7;
 	
 	$tcans8	=	cresult8;
-	$twans8	=	wresult8;
+	$twans8	=	tresult8;
 	$tenchuyende8 = tenchuyende8;
 	
 	$tcans9	=	cresult9;
-	$twans9	=	wresult9;
+	$twans9	=	tresult9;
 	$tenchuyende9 = tenchuyende9;
 	
 	$tcans10	=	cresult10;
-	$twans10	=	wresult10;
+	$twans10	=	tresult10;
 	$tenchuyende10 = tenchuyende10;
 	
 	$tcans11	=	cresult11;
-	$twans11	=	wresult11;
+	$twans11	=	tresult11;
 	$tenchuyende11 = tenchuyende11;
 	
 	$tcans12	=	cresult12;
-	$twans12	=	wresult12;
+	$twans12	=	tresult12;
 	$tenchuyende12 = tenchuyende12;
 	
 	$tcans13	=	cresult13;
-	$twans13	=	wresult13;
+	$twans13	=	tresult13;
 	$tenchuyende13 = tenchuyende13;
 	
 	$tcans14	=	cresult14;
-	$twans14	=	wresult14;
+	$twans14	=	tresult14;
 	$tenchuyende14 = tenchuyende14;
 	
 	$tcans15	=	cresult15;
-	$twans15	=	wresult15;
+	$twans15	=	tresult15;
 	$tenchuyende15 = tenchuyende15;
 	
 	$tcans16	=	cresult16;
-	$twans16	=	wresult16;
+	$twans16	=	tresult16;
 	$tenchuyende16 = tenchuyende16;
 	
 	$tcans17	=	cresult17;
-	$twans17	=	wresult17;
+	$twans17	=	tresult17;
 	$tenchuyende17 = tenchuyende17;
 	
 	$tcans18	=	cresult18;
-	$twans18	=	wresult18;
+	$twans18	=	tresult18;
 	$tenchuyende18 = tenchuyende18;
 	
 	$tcans19	=	cresult19;
-	$twans19	=	wresult19;
+	$twans19	=	tresult19;
 	$tenchuyende19 = tenchuyende19;
 	
 	$tcans20	=	cresult20;
-	$twans20	=	wresult20;
+	$twans20	=	tresult20;
 	$tenchuyende20 = tenchuyende20;
 	
 	$tcans21	=	cresult21;
-	$twans21	=	wresult21;
+	$twans21	=	tresult21;
 	$tenchuyende21 = tenchuyende21;
 	
 	$tcans22	=	cresult22;
-	$twans22	=	wresult22;
+	$twans22	=	tresult22;
 	$tenchuyende22 = tenchuyende22;
 	
 	$tcans23	=	cresult23;
-	$twans23	=	wresult23;
+	$twans23	=	tresult23;
 	$tenchuyende23 = tenchuyende23;
 	
 	$tcans24	=	cresult24;
-	$twans24	=	wresult24;
+	$twans24	=	tresult24;
 	$tenchuyende24 = tenchuyende24;
 	
 	$tcans25	=	cresult25;
-	$twans25	=	wresult25;
+	$twans25	=	tresult25;
 	$tenchuyende25 = tenchuyende25;
 	
 	$tcans26	=	cresult26;
-	$twans26	=	wresult26;
+	$twans26	=	tresult26;
 	$tenchuyende26 = tenchuyende26;
 	
 	$tcans27	=	cresult27;
-	$twans27	=	wresult27;
+	$twans27	=	tresult27;
 	$tenchuyende27 = tenchuyende27;
 	
 	$tcans28	=	cresult28;
-	$twans28	=	wresult28;
+	$twans28	=	tresult28;
 	$tenchuyende28 = tenchuyende28;
 	
 	$tcans29	=	cresult29;
-	$twans29	=	wresult29;
+	$twans29	=	tresult29;
 	$tenchuyende29 = tenchuyende29;
 	
 	$tcans30	=	cresult30;
-	$twans30	=	wresult30;
+	$twans30	=	tresult30;
 	$tenchuyende30 = tenchuyende30;
 
 			$examtime=$('#hms').html();
