@@ -41,19 +41,16 @@ else
 
 <body>
 <div id="wrap-vp">
-	<div id="header-vp">
-    </div>
     <div>
     	<!--block/menu.php-->
-        <?php //require "blocks/menu.php"; ?>
+        <?php require "blocks/menu.php"; ?>
     </div>
     <div id="menu-2">
     	<!--block/menu.php-->
-        <?php //require "blocks/menu2.php"; ?>
     </div>
     <div id="midheader-vp">
     	<div id="left">
-            <?php //require "blocks/thongtinchung.php"; ?>
+            <?php require "blocks/thongtinchung.php"; ?>
 			<!--blocks/thongtinchung.php-->
         </div>
         <div id="right">
@@ -70,27 +67,13 @@ else
 					<?php require "blocks/tin_moi_nhat.php"; ?>     
                 </div>
                 <div id="right">	
-					<?php require "gallery/index.php"; ?> 
+					<?php require "blocks/tin_moi_nhat.php"; ?>   
                 </div>  
 
         	</div>
             <div id="content-main-2">
 			<!--PAGES-->
-				<?php
-                    switch ($p) {
-                        case 'tintrongloai':        require 'pages/tintrongloai.php'; 
-                            break;
-                         case 'chitiettin':         require 'pages/chitiettin.php'; 
-                            break;             
-                         case 'timkiem':            require 'pages/timkiem.php'; 
-                            break;
-                         case 'theloai':            require 'pages/theloai.php'; 
-                            break;    
-                        default:                    require 'pages/trangchu.php'; 
-                            
-                            break;
-                    }
-                ?>
+					<?php require "blocks/tin_moi_nhat.php"; ?>  
              </div>
             
         </div>
@@ -132,18 +115,15 @@ else
         	</div>
         </div>
         	 <div id="content-file">
-        		<?php require "filebrowser.php"; ?>
+        		<?php require "blocks/tin_moi_nhat.php"; ?>  
              </div>
         </div>
         <div id="content-right-general">    
 		<!--blocks/cot_phai.php-->
-        <?php require "blocks/cot_phai.php"; ?>
+       <?php require "blocks/tin_moi_nhat.php"; ?>  
         </div>
 
     <div class="clear"></div>  	
-    </div>
-    
-    <div id="ft-bot">
     </div>
     
 </div>

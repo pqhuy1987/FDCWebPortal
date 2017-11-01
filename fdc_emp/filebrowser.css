@@ -1,0 +1,29 @@
+body {
+	margin:10px;
+	background:#ffffff;
+	font-family:arial,sans-serif;
+	font-size:10pt;
+	color:#000000;
+}
+
+p {
+	font-family:arial,sans-serif;
+	font-size:10pt;
+	text-align:justify;
+	margin-top:6pt;
+	margin-bottom:6pt;
+}
+
+h1 {
+	font-family:arial,sans-serif;
+	font-size:16pt;
+	font-weight:bold;
+	color:#000000;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+a:link {color:#004488; text-decoration:none;}
+a:active {color:#cc0000; text-decoration:underline;}
+a:visited {color:#004488; text-decoration:none;}
+a:hover {color:#cc0000; text-decoration:underline;}
