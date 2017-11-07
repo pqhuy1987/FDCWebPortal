@@ -41,47 +41,9 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1" class="ddsmoothmenu">
 <ul>
-<li><a href="./">Trang Chủ</a></li>
-<?php 
-	$danhsachtheloai = DanhSachTheLoai($connect);
-	while ($row_danhsachtheloai = mysqli_fetch_array($danhsachtheloai)) {
-		$idTL = $row_danhsachtheloai['idTL'];
-?>
-<li><a href="index.php?p=theloai&idTL=<?php echo $row_danhsachtheloai['idTL'] ?>"><?php echo $row_danhsachtheloai['TenTL']?></a>
-  <ul>
-  	<?php 
-		$danhsachtheloaitin = LocTenLoaiTin_Theo_DanhSachTheLoai($connect, $idTL);
-		while ($row_danhsachtheloaitin = mysqli_fetch_array($danhsachtheloaitin)) {
-	?>
-  		<li><a href="index.php?p=tintrongloai&idLT=<?php echo $row_danhsachtheloaitin['idLT'] ?>"><?php echo $row_danhsachtheloaitin['Ten']?></a></li>
-  	<?php 
-		}
-	?>
+<li><a href="./">Lương</a></li>
+<li><a href="./">Công Nhân</a></li>
 
-  </ul>
-</li>
-<?php 
-	}
-?>
-<li><a href="./">Đánh Giá Năng Lực Giám Sát</a>
-  <ul>
-  		<li><a href="./fdc_test/" target="_blank">Làm trắc nghiệm</a></li>
-  		<li><a href="./fdc_test/admin" target="_blank">Quản trị nội dung trắc nghiệm</a></li>
-  </ul>
-</li>
-<li><a href="./">Quản lý Nhân Công</a>
-  <ul>
-  		<li><a href="./fdc_emp/" target="_blank">Tính lương công nhân</a></li>
-  		<li><a href="./fdc_emp/admin" target="_blank">Quản trị User </a></li>
-  </ul>
-</li>
-<li><a href="./">Chào bạn: <?php echo $_SESSION['nameuser'];?></a>
-  <ul>
-  		<li><a href="./admin/index.php" target="_blank">Trang Quản Trị</a></li>
-  		<li><a href="#" onClick="MyWindow=window.open('../cms/upload/Document/','MyWindow',width=1000,height=100); return false;">File/Tài Liệu Ban Hành</a></li>
-  		<li><form id="btnThoat" action = "" method = "post"><a href="#" onClick="document.getElementById('btnThoat').submit();"> <input type="hidden" name="btnThoat"> Thoát </input></a></form></li>
-  </ul>
-</li>
 </ul>
 <br style="clear: left" />
 </div>

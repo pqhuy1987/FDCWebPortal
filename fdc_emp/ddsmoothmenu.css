@@ -1,6 +1,6 @@
 .ddsmoothmenu{
 font: bold 12px Verdana;
-background: #135194; /*background of menu bar (default state)*/
+background: #bababa; /*background of menu bar (default state)*/
 width: 100%;
 display: none;
 }
@@ -22,7 +22,7 @@ float: left;
 /*Top level menu link items style*/
 .ddsmoothmenu ul li a{
 display: block;
-background: #135194; /*background of menu items (default state)*/
+background: #bababa; /*background of menu items (default state)*/
 color: white;
 padding: 8px 10px;
 border-right: 1px solid #778;
@@ -35,7 +35,7 @@ display: inline-block;
 }
 
 .ddsmoothmenu ul li a:link, .ddsmoothmenu ul li a:visited{
-color: white;
+color: black;
 }
 
 .ddsmoothmenu ul li a.selected { /*CSS class that's dynamically added to the currently active menu items' LI A element*/

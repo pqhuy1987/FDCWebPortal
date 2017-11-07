@@ -48,14 +48,6 @@ else
     <div id="menu-2">
     	<!--block/menu.php-->
     </div>
-    <div id="midheader-vp">
-    	<div id="left">
-            <?php require "blocks/thongtinchung.php"; ?>
-        </div>
-        <div id="right">
-        </div>
-   
-    </div>
     
     <div class="clear"></div>
 
@@ -64,29 +56,20 @@ else
         	<div id="content-main-1">	
             	<div id="left">	
 					<?php require "blocks/listdoithicong.php"; ?>     
-                </div>
-                <div id="right">	
-					<?php require "blocks/listbangluongcongnhan.php"; ?>   
-                </div>  
-
+                </div> 
         	</div>
             <div id="content-main-2">
 			<!--PAGES-->
 					<?php require "blocks/thongtinbangchamcong.php"; ?>  
-             </div>
-            
+             </div>    
         </div>
         <div id="content-right-files">    
 		<!--blocks/cot_phai.php-->     
         <div class="box-cat">
         </div>
         	 <div id="content-file">
-        		<?php require "blocks/tin_moi_nhat.php"; ?>  
+        		<?php require "blocks/listbangluongcongnhan.php"; ?>  
              </div>
-        </div>
-        <div id="content-right-general">    
-		<!--blocks/cot_phai.php-->
-       <?php require "blocks/tin_moi_nhat.php"; ?>  
         </div>
 
     <div class="clear"></div>  	

@@ -29,7 +29,25 @@ $start = ($page)*10;
         <tr>
           	<th>Tên</th>
 			<th>Email</th>
-			<th>Phòng Ban/Công Trường</th>
+			<th>
+		  <select name="catid_ajx">
+		  <option value="">Tên Công Trường/Phòng Ban</option>
+		  <option value="Công trường Hoà Phát – Dung Quất">Công trường Hoà Phát – Dung Quất</option>
+		  <option value="Dự án Văn phòng Red Ruby">Dự án Văn phòng Red Ruby </option>
+		  <option value="Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn">Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn </option>
+		  <option value="Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort ">Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort </option>
+		  <option value="Công trường Nhà xưởng Paihong">Công trường Nhà xưởng Paihong</option>
+		  <option value="Công trường Nhà máy sản xuất sợi màu Brotex">Công trường Nhà máy sản xuất sợi màu Brotex</option>
+		  <option value="Công trường Dự án TBS Logistic – Kho số 6">Công trường Dự án TBS Logistic – Kho số 6</option>
+		  <option value="Công trường Nam Hội An – Giai đoạn 1">Công trường Nam Hội An – Giai đoạn 1</option>
+		  <option value="Công trường City Garden Phase 2">Công trường City Garden Phase 2</option>
+		  <option value="Công trường Khu dân cư Lucasta">Công trường Khu dân cư Lucasta </option>
+		  <option value="Công trường Diamond Island giai đoạn 2">Công trường Diamond Island giai đoạn 2</option>
+		  <option value="Công trường Masteri Villas Nam An Khánh">Công trường Masteri Villas Nam An Khánh</option>
+		  <option value="Công trường Vinhomes Golden River">Công trường Vinhomes Golden River </option>
+		  <option value="Công trường The LandMark 81">Công trường The LandMark 81</option>
+		  <option value="Công trường Starcity Center – Tháp A">Công trường Starcity Center – Tháp A </option>
+		  </select> </th>
 			<th>Vị Trí</th>
 			<th>Bậc Hợp Đồng</th>
           	<th>Bộ Đề</th>
