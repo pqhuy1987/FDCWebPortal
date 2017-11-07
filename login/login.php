@@ -39,9 +39,9 @@
 			
 			$first = ldap_get_entries($ldap_con, $res);
 			
-			print "<pre>";
-			print_r($first);
-			print "</pre>";
+			//print "<pre>";
+			//print_r($first);
+			//print "</pre>";
 			
 			for ($i=0; $i < $first[0]["memberof"]["count"]; $i++)
     		{
@@ -54,9 +54,9 @@
 			$_SESSION['nameuser'] = $first[0]["cn"][0];
 			$_SESSION['mail'] = $first[0]["mail"][0];
 
-			print "<pre>";
-			print_r($first[0]["dn"]);
-			print "</pre>";
+			//print "<pre>";
+			//print_r($first[0]["dn"]);
+			//print "</pre>";
 			
          	header('Location: ../index.php');
 		}

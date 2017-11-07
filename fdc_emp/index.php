@@ -63,55 +63,22 @@ else
         <div id="content-main">
         	<div id="content-main-1">	
             	<div id="left">	
-					<?php require "blocks/tin_moi_nhat.php"; ?>     
+					<?php require "blocks/listdoithicong.php"; ?>     
                 </div>
                 <div id="right">	
-					<?php require "blocks/tin_moi_nhat.php"; ?>   
+					<?php require "blocks/listbangluongcongnhan.php"; ?>   
                 </div>  
 
         	</div>
             <div id="content-main-2">
 			<!--PAGES-->
-					<?php require "blocks/tin_moi_nhat.php"; ?>  
+					<?php require "blocks/thongtinbangchamcong.php"; ?>  
              </div>
             
         </div>
         <div id="content-right-files">    
-		<!--blocks/cot_phai.php-->
-        <?php
-			$agent = '';
-			$browser = '';
-			if(isset($_SERVER['HTTP_USER_AGENT'])){
-				 $agent = $_SERVER['HTTP_USER_AGENT'];
-			}
-			
-			if(strlen(strstr($agent,'coc_coc_browser')) > 0 ){
-				$browser = 'coc_coc_browser';
-			} else if (strlen(strstr($agent,'Chrome')) > 0 ) {
-				$browser = 'Chrome';
-			} else if (strlen(strstr($agent,'Firefox')) > 0 ) {
-				$browser = 'Firefox';
-			}
-			
-			if($browser=='Firefox'){
-				//echo 'Firefox';
-			} else if($browser=='Chrome'){
-				//echo 'Chrome';
-			} else if($browser=='coc_coc_browser'){
-				//echo 'coc_coc_browser';
-			} else if($browser=='Safari'){
-				//echo 'Safari';
-			}
-		?>       
+		<!--blocks/cot_phai.php-->     
         <div class="box-cat">
-			<div class="cat">
-    			<div class="main-cat">
-                    <a href="https://chrome.google.com/webstore/detail/office-editing-for-docs-s/gbkeegbaiigmenfmjfclcdgdpimamgkj?hl=en" target="_blank"><img src="images/Logo_Extension.jpg" width="40" height="15" /> Add-On Đọc File Word, Excel, PPT Online</a>
-                 </div>
-        		<div class="child-cat">
-					<a href="#" onClick="MyWindow=window.open('../cms/images/guide/','MyWindow',width=1000,height=100); return false;">(Hướng Dẫn)</a>
-        		</div>   
-        	</div>
         </div>
         	 <div id="content-file">
         		<?php require "blocks/tin_moi_nhat.php"; ?>  

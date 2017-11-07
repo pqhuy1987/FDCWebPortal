@@ -33,7 +33,7 @@ $start = ($page)*10;
 			<th>Vị Trí</th>
 			<th>Bậc Hợp Đồng</th>
           	<th>Bộ Đề</th>
-	  		<th>Thời gian sử dụng</th>
+	  		<th>Thời gian còn lại</th>
 	  		<th>Ngày</th>
           	<th>Chuyên Đề 1</th>
 	  		<th>Chuyên Đề 2</th>

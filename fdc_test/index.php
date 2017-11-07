@@ -1282,7 +1282,7 @@ $(window).load(function () {
 		  <label> Họ và Tên : </label>
 		  <input type='text' name='uname'  value=' ";?> <?php echo $_SESSION['nameuser']; ?> <?php echo"' maxlength='20'> 
 		  <label>E-mail : </label>
-		  <input type='text' name='uemail'  value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
+		  <input type='text' name='uemail' readonly value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
 		   </div>
 		   <div class='frms_sub1'>
 		   
