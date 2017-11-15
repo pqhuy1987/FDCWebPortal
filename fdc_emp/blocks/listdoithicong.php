@@ -10,8 +10,8 @@
 	<div id="outerDiv">
 		<div id="innerDiv">
 			<table>
-				<tr>
-					<th>    </th>
+				<tr >
+					<th width="50px" ></th>
 					<th>Công Trường</th>
 					<th>Đội</th>
 					<th>Từ Ngày</th>
@@ -19,7 +19,7 @@
 					<th>Người Dùng</th>
 				</tr>
 				<tr>
-					<th>    </th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -27,7 +27,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>    </th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -35,7 +35,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>    </th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -43,7 +43,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 4</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -51,7 +51,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 5</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -59,7 +59,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 6</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -67,7 +67,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 7</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -75,7 +75,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 8</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -83,7 +83,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 9</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -91,7 +91,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 10</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -99,7 +99,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 11</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -107,7 +107,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 12</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -115,7 +115,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 13</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -123,7 +123,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 14</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -131,7 +131,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 15</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -139,7 +139,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 16</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -147,7 +147,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 17</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -155,7 +155,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 18</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -163,7 +163,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 19</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
@@ -171,7 +171,7 @@
 					<td>Value 5</td>
 				</tr>
 				<tr>
-					<th>Row 20</th>
+					<th>            </th>
 					<td>Value 1</td>
 					<td>Value 2</td>
 					<td>Value 3</td>
