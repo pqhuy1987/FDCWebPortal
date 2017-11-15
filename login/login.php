@@ -50,10 +50,10 @@
 					$_SESSION['admin'] = $samaccountname;
 				}
     		}
-			phpinfo();
+			//phpinfo();
 			
-			//$_SESSION['nameuser'] = $first[0]["cn"][0];
-			//$_SESSION['mail'] = $first[0]["mail"][0];
+			$_SESSION['nameuser'] = $first[0]["cn"][0];
+			$_SESSION['mail'] = $first[0]["mail"][0];
 
 			//print "<pre>";
 			//print_r($first[0]["dn"]);
