@@ -38,11 +38,11 @@ ul{ list-style:none}
 	#content-vp #content-main #content-main-1{width:100%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; }
 	#content-vp #content-main #content-main-1 #left{border-right:solid 1px #E2E2E3; width:100%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 0px; overflow:auto }
 	
-	#content-vp #content-main #content-main-2{width:100%; float:left; padding: 5px; min-height:300px; margin: 0 0 0 5px; }
+	#content-vp #content-main #content-main-2{width:100%; float:left; padding: 5px; max-height:300px; max-width:800px; margin: 0 0 0 5px; overflow:auto}
 	#content-vp #content-right {width:50%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
 	#content-vp #content-right-files{width:50%; float:left; padding: 9.5px 5px 5px 5px}
-	#content-vp #content-right-files #content-file {width:100%; float:left; padding: 5px; min-height:200px; max-height:350px; overflow:auto}
-	#content-vp #content-right-general{width:38%; float:left; padding: 15px 5px 5px 5px; min-height:200px; max-height:300px; margin: 0 0 0 1px; overflow:auto}
+	#content-vp #content-right-files #content-file {width:100%; float:left; padding: 5px; min-height:350px; max-height:350px; overflow:auto}
+	#content-vp #content-right-general{width:50%; float:left; padding: 15px 5px 5px 5px; min-height:200px; max-height:300px; margin: 0 0 0 1px; overflow:auto}
 	
 	#content-vp #content-main .chitiet{ line-height:150%; margin:0 0 40px 0}
 	#content-vp #content-main .btn_quantam{ background:url(../images/btn_quantam.gif) no-repeat; width:75px; height:20px; float:left}

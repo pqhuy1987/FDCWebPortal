@@ -1,6 +1,6 @@
 <?php
-require "lib/dbConMSSQL.php";
-require "lib/dbCon.php";
+require "../lib/dbConMSSQL.php";
+require "../lib/dbCon.php";
 
    
 

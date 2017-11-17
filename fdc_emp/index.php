@@ -11,11 +11,15 @@ if (!isset($_SESSION['ldap_dn']))
     exit();
 }
 
-
 if (isset($_GET["p"]))
     $p = $_GET["p"];
 else
     $p = "";
+	
+	if (isset($_POST['TimeSheet']))  
+		$_POST['TimeSheet'] = $_POST['TimeSheet'];
+	else 
+		$_POST['TimeSheet'] = 'HO1';
 ?>
 
 <?php 
@@ -62,15 +66,19 @@ else
             <div id="content-main-2">
 			<!--PAGES-->
 					<?php require "blocks/thongtinbangchamcong.php"; ?>  
-             </div>    
+            </div>    
         </div>
         <div id="content-right-files">    
 		<!--blocks/cot_phai.php-->     
         <div class="box-cat">
         </div>
         	 <div id="content-file">
-        		<?php require "blocks/listbangluongcongnhan.php"; ?>  
+        			<?php require "blocks/listbangluongcongnhan.php"; ?>  
              </div>
+        </div>
+        <div id="content-right-general">    
+					<!--blocks/cot_phai.php-->
+        			<?php require "blocks/bangdieukhien.php"; ?>  
         </div>
 
     <div class="clear"></div>  	

@@ -1,10 +1,10 @@
 <?php
 	$serverName = "TECHNICAL02\SQL2012"; //serverName\instanceName, portNumber (1433 by default)
-	$connectionInfo = array( "Database"=>"HRISWORKERSPCC", "UID"=>"sa", "PWD"=>"P@ssw0rd");
+	$connectionInfo = array( "Database"=>"HRISWORKERSPCC", "UID"=>"sa", "PWD"=>"P@ssw0rd", "CharacterSet" => "UTF-8");
 	$conn_mssql = sqlsrv_connect( $serverName, $connectionInfo);
 
 	if( $conn_mssql ) {
-     echo "Successfuly connected.<br />";
+     //echo "Successfuly connected.<br />";
 	}else{
      echo "Connection error.<br />";
      die( print_r( sqlsrv_errors(), true));
