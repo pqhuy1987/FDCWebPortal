@@ -56,7 +56,7 @@ else
     $p = "";
 	
 $tsql= "SELECT top 100 *
-  FROM [HRISWORKERSPCC].[dbo].[PR_tblTimeSheet] order by [PR_tblTimeSheet].Todate desc, [PR_tblTimeSheet].FromDate desc, [PR_tblTimeSheet].TimeSheetCode desc;";
+  FROM [HRISWORKERSPCC].[dbo].[PR_tblTimeSheet] order by [PR_tblTimeSheet].FromDate desc, [PR_tblTimeSheet].TimeSheetID desc, [PR_tblTimeSheet].Todate desc;";
 $getResults= sqlsrv_query($conn_mssql, $tsql);
 	
 ?>

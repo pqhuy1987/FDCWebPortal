@@ -19,7 +19,7 @@ else
 	if (isset($_POST['TimeSheet']))  
 		$_POST['TimeSheet'] = $_POST['TimeSheet'];
 	else 
-		$_POST['TimeSheet'] = 'HO1';
+		$_POST['TimeSheet'] = 'HO7682';
 ?>
 
 <?php 

@@ -55,6 +55,21 @@ while($data = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
       <td><input type="text" name="Emp_ID" size="38" maxlength="38" value="<?php echo $total_1 ?>"></td>
     </tr>
     </table>
+
+    <table class="table1">
+    <!--- begin html form; 
+    put action page in the "action" attribute of the form tag --->
+    <form action="insert_action.cfm" method="post">
+    <tr>
+      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/index_chitiet.php','MyWindow','resizable,height=360,width=770')">Chi Tiết ...</button> </td>
+    </tr>
+    <tr>
+      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/add-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Thêm Mới</button> </td>
+      <td> <button type="button" style=" width:124px" onClick="alert('Hello world!')">   Xóa  </button> </td>
+      <td> <button type="button" style=" width:124px" onClick="MyWindow=window.open('blocks/edit-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Sửa</button> </td>
+    </tr>
+
+    </table>
     </form>
 
 </body>

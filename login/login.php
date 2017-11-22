@@ -50,7 +50,6 @@
 					$_SESSION['admin'] = $samaccountname;
 				}
     		}
-			//phpinfo();
 			
 			$_SESSION['nameuser'] = $first[0]["cn"][0];
 			$_SESSION['mail'] = $first[0]["mail"][0];
