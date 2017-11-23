@@ -61,7 +61,7 @@ while($data = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     put action page in the "action" attribute of the form tag --->
     <form action="insert_action.cfm" method="post">
     <tr>
-      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/index_chitiet.php','MyWindow','resizable,height=360,width=770')">Chi Tiết ...</button> </td>
+      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/index_chitiet.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=500,width=1270')">Chi Tiết ...</button> </td>
     </tr>
     <tr>
       <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/add-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Thêm Mới</button> </td>

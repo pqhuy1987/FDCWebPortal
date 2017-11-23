@@ -61,12 +61,12 @@ while($data = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     put action page in the "action" attribute of the form tag --->
     <form action="insert_action.cfm" method="post">
     <tr>
-      <td> <button type="button" style=" width:125px" onclick="alert('Hello world!')">Chi Tiết ...</button> </td>
+      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/index_chitiet.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=500,width=1270')">Chi Tiết ...</button> </td>
     </tr>
     <tr>
-      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/add-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow',width=700,height=500)">Thêm Mới</button> </td>
-      <td> <button type="button" style=" width:124px" onclick="alert('Hello world!')">   Xóa  </button> </td>
-      <td> <button type="button" style=" width:124px" onClick="MyWindow=window.open('blocks/edit-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow',width=700,height=500)">Sửa</button> </td>
+      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/add-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Thêm Mới</button> </td>
+      <td> <button type="button" style=" width:124px" onClick="alert('Hello world!')">   Xóa  </button> </td>
+      <td> <button type="button" style=" width:124px" onClick="MyWindow=window.open('blocks/edit-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Sửa</button> </td>
     </tr>
 
     </table>

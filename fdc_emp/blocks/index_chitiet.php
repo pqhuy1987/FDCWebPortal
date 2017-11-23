@@ -2,9 +2,15 @@
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
 
+
+$TimeSheet = $_GET['TimeSheet'];
+
 $tsql= "SELECT top 100 *
   FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] order by [HR_tblEmpCV].VFirstName ASC, [HR_tblEmpCV].CreateTime desc;";
 $getResults= sqlsrv_query($conn_mssql, $tsql);
+
+$tsql_2= "SELECT * FROM [HRISWORKERSPCC].[dbo].[PR_tblEmpSalary] where [PR_tblEmpSalary].TimeSheetID =  '$TimeSheet' ;";
+$getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
 
 ?>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -73,6 +79,18 @@ $getResults= sqlsrv_query($conn_mssql, $tsql);
                         <th>Số Tiền</th>
                         <th>Thuế Tạm</th>
                         <th>VuotCamKet</th>
+					<?php while ($row = sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_ASSOC)) { ?>
+                                    <tr>
+                                        <td><input type="checkbox" name="check-tab2" value="<?php echo $row['EmpID'] ?>" /></td>
+                                        <td><?php echo $row['Seq'] ?></td>
+                                        <td><?php echo $row['EmpID'] ?></td>
+                                        <td><?php echo $row['EmpID'] ?></td>
+                                        <td><input type="text" name="Emp_Salary" size="9" maxlength="9" value='<?php echo "$row[Salary]"?>'> </td>
+                                        <td><input type="text" name="Emp_TT" size="12" maxlength="12" value='<?php echo "$row[ThueTT]" ?>'> </td>
+                                        <td><input type="text" name="Emp_TT" size="16" maxlength="12" value='0'> </td>
+                                        
+                                    </tr>
+                    <?php } ?>
 
                     </tr>
                 </table>   
@@ -82,7 +100,11 @@ $getResults= sqlsrv_query($conn_mssql, $tsql);
    </div> 
         
         <script>
-            var j = 1;
+		
+			checkboxes_3 = document.getElementsByName("check-tab2");
+			
+            var j = checkboxes_3.length + 1;
+			
             function tab1_To_tab2()
             {
                 var table1 = document.getElementById("table1"),
@@ -111,12 +133,10 @@ $getResults= sqlsrv_query($conn_mssql, $tsql);
 							}
                             cell3.innerHTML = table1.rows[i+1].cells[1].innerHTML;
 							
-
-							
                             cell4.innerHTML = table1.rows[i+1].cells[2].innerHTML;
 							cell5.innerHTML = '<input type="text" name="Emp_Salary" size="9" maxlength="9" value="0">'
 							cell6.innerHTML = '<input type="text" name="Emp_TT" size="12" maxlength="9" value="0">'
-							cell7.innerHTML = '<input type="text" name="Emp_TT" size="12" maxlength="9" value="0">'
+							cell7.innerHTML = '<input type="text" name="Emp_TT" size="16" maxlength="12" value="0">'
 
                            
                             // remove the transfered rows from the first table [table1]
@@ -129,7 +149,6 @@ $getResults= sqlsrv_query($conn_mssql, $tsql);
                         }
 				 }
             }
-            
             
             function tab2_To_tab1()
             {
