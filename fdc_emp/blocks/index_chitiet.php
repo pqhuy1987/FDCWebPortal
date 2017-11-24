@@ -19,8 +19,6 @@ $getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
 <script>
 $(document).ready(function(){
 
- load_data();
-
  function load_data(query)
  {
   $.ajax({
@@ -29,7 +27,7 @@ $(document).ready(function(){
    data:{query:query},
    success:function(data)
    {
-    $('#table1-main').html(data);
+    $('#test1').html(data);
    }
   });
   
@@ -37,14 +35,14 @@ $(document).ready(function(){
  }
  $('#search_text').keyup(function(){
   var search = $(this).val();
-  console.log(search);
+  
   if(search != '')
   {
    load_data(search);
   }
   else
   {
-   load_data();
+   //load_data();
   }
  });
 });
@@ -79,14 +77,11 @@ $(document).ready(function(){
         <div class="container">
            <div id="content-main-1">	 
             <div class="tab">
-            	
-                    <table id="table1" border="1">
-                        <tr>
-                        <th>Tìm Kiếm</th>
-                        <th><input type="text" name="search_text" id="search_text" placeholder="" class="form-control"/></th>
-                        </tr>
+            		<table id="table3" border="1">
+                    	<th>Tìm Kiếm</th> 
+                    	<td><input type="text" name="search_text" id="search_text" placeholder="" class="form-control"/></td>
                     </table>
-                    <div id="table1-main">    
+                    <div id="test1">
                         <table id="table1" border="1"> 
                             <tr>
                                 <th>Chọn</th>
@@ -102,7 +97,7 @@ $(document).ready(function(){
                             <?php } ?>
                             
                         </table>
-             		</div>
+                     </div>
             </div>
        </div>
        <div id="content-main-3"> 
@@ -161,7 +156,7 @@ $(document).ready(function(){
                     table2 = document.getElementById("table2"),
                     checkboxes = document.getElementsByName("check-tab1");
 					checkboxes_2 = document.getElementsByName("check-tab2");
-            		console.log("Val1 = " + checkboxes.length);
+            		console.log("Val_1_to_2 = " + checkboxes.length);
 					
                  for(var i = 0; i < checkboxes.length; i++){
                      if(checkboxes[i].checked)
@@ -181,16 +176,17 @@ $(document).ready(function(){
 								cell2.innerHTML = j;
 								j++;
 							}
-                            cell3.innerHTML = table1.rows[i+2].cells[1].innerHTML;
+							console.log(i);
+                            cell3.innerHTML = table1.rows[i+1].cells[1].innerHTML;
 							
-                            cell4.innerHTML = table1.rows[i+2].cells[2].innerHTML;
+                            cell4.innerHTML = table1.rows[i+1].cells[2].innerHTML;
 							cell5.innerHTML = '<input type="text" name="Emp_Salary" size="9" maxlength="9" value="0">'
 							cell6.innerHTML = '<input type="text" name="Emp_TT" size="12" maxlength="9" value="0">'
 							cell7.innerHTML = '<input type="text" name="Emp_TT" size="16" maxlength="12" value="0">'
 
                            
                             // remove the transfered rows from the first table [table1]
-                            var index = table1.rows[i+2].rowIndex;
+                            var index = table1.rows[i+1].rowIndex;
                             table1.deleteRow(index);
                             // we have deleted some rows so the checkboxes.length have changed
                             // so we have to decrement the value of i
@@ -205,7 +201,7 @@ $(document).ready(function(){
                 var table1 = document.getElementById("table1"),
                     table2 = document.getElementById("table2"),
                     checkboxes = document.getElementsByName("check-tab2");
-            console.log("Val1 = " + checkboxes.length);
+            		console.log("Val_2_to_1 = " + checkboxes.length);
                  for(var i = 0; i < checkboxes.length; i++){
                      if(checkboxes[i].checked)
                         {
