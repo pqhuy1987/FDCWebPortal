@@ -2,7 +2,6 @@
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
 
-
 $TimeSheet = $_GET['TimeSheet'];
 
 $tsql= "SELECT top 100 *
@@ -16,6 +15,40 @@ $getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 
 <script type="text/javascript" src="jquery.js"></script> 
+
+<script>
+$(document).ready(function(){
+
+ load_data();
+
+ function load_data(query)
+ {
+  $.ajax({
+   type:"POST",
+   url:"fetch.php",
+   data:{query:query},
+   success:function(data)
+   {
+    $('#table1-main').html(data);
+   }
+  });
+  
+						
+ }
+ $('#search_text').keyup(function(){
+  var search = $(this).val();
+  console.log(search);
+  if(search != '')
+  {
+   load_data(search);
+  }
+  else
+  {
+   load_data();
+  }
+ });
+});
+</script>
 
 <!DOCTYPE html>
 <html>
@@ -40,24 +73,36 @@ $getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
             
         </style>    
     <body>
-     <div id="content-main">    
+     <div id="result"> 
+     </div>   
+     <div id="content-main"> 
         <div class="container">
            <div id="content-main-1">	 
             <div class="tab">
-                <table id="table1" border="1">
-                    <tr>
-                        <th>Chọn</th>
-                        <th>Số CMND</th>
-                        <th>Họ và Tên</th>
-                    </tr>
-					<?php while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <tr>
-                                        <td><input type="checkbox" name="check-tab1" value="<?php echo $row['EmpID'] ?>" /></td>
-                                        <td><?php echo $row['EmpID'] ?></td>
-                                        <td><?php echo $row['VFirstName'] ?></td>
-                                    </tr>
-                    <?php } ?>
-                </table>
+            	
+                    <table id="table1" border="1">
+                        <tr>
+                        <th>Tìm Kiếm</th>
+                        <th><input type="text" name="search_text" id="search_text" placeholder="" class="form-control"/></th>
+                        </tr>
+                    </table>
+                    <div id="table1-main">    
+                        <table id="table1" border="1"> 
+                            <tr>
+                                <th>Chọn</th>
+                                <th>Số CMND</th>
+                                <th>Họ và Tên</th>
+                            </tr>
+                            <?php while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) { ?>
+                                            <tr>
+                                                <td><input type="checkbox" name="check-tab1" value="<?php echo $row['EmpID'] ?>" /></td>
+                                                <td><?php echo $row['EmpID'] ?></td>
+                                                <td><?php echo $row['VFirstName'] ?></td>
+                                            </tr>
+                            <?php } ?>
+                            
+                        </table>
+             		</div>
             </div>
        </div>
        <div id="content-main-3"> 
@@ -84,7 +129,12 @@ $getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
                                         <td><input type="checkbox" name="check-tab2" value="<?php echo $row['EmpID'] ?>" /></td>
                                         <td><?php echo $row['Seq'] ?></td>
                                         <td><?php echo $row['EmpID'] ?></td>
-                                        <td><?php echo $row['EmpID'] ?></td>
+                                        <?php 
+										$tsql_3= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] where [HR_tblEmpCV].EmpID =  '$row[EmpID]' ;";
+										$getResults_3= sqlsrv_query($conn_mssql, $tsql_3);
+										$row_2 = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC)
+										 ?>
+                                        <td><?php echo $row_2['VFirstName'] ?></td>
                                         <td><input type="text" name="Emp_Salary" size="9" maxlength="9" value='<?php echo "$row[Salary]"?>'> </td>
                                         <td><input type="text" name="Emp_TT" size="12" maxlength="12" value='<?php echo "$row[ThueTT]" ?>'> </td>
                                         <td><input type="text" name="Emp_TT" size="16" maxlength="12" value='0'> </td>
@@ -131,16 +181,16 @@ $getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
 								cell2.innerHTML = j;
 								j++;
 							}
-                            cell3.innerHTML = table1.rows[i+1].cells[1].innerHTML;
+                            cell3.innerHTML = table1.rows[i+2].cells[1].innerHTML;
 							
-                            cell4.innerHTML = table1.rows[i+1].cells[2].innerHTML;
+                            cell4.innerHTML = table1.rows[i+2].cells[2].innerHTML;
 							cell5.innerHTML = '<input type="text" name="Emp_Salary" size="9" maxlength="9" value="0">'
 							cell6.innerHTML = '<input type="text" name="Emp_TT" size="12" maxlength="9" value="0">'
 							cell7.innerHTML = '<input type="text" name="Emp_TT" size="16" maxlength="12" value="0">'
 
                            
                             // remove the transfered rows from the first table [table1]
-                            var index = table1.rows[i+1].rowIndex;
+                            var index = table1.rows[i+2].rowIndex;
                             table1.deleteRow(index);
                             // we have deleted some rows so the checkboxes.length have changed
                             // so we have to decrement the value of i
