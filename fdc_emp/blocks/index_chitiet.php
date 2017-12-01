@@ -19,33 +19,61 @@ $getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
 <script>
 $(document).ready(function(){
 
- function load_data(query)
- {
-  $.ajax({
-   type:"POST",
-   url:"fetch.php",
-   data:{query:query},
-   success:function(data)
-   {
-    $('#test1').html(data);
-   }
-  });
-  
-						
- }
- $('#search_text').keyup(function(){
-  var search = $(this).val();
-  
-  if(search != '')
-  {
-   load_data(search);
-  }
-  else
-  {
-   //load_data();
-  }
- });
+	 function load_data(query)
+	 {
+		  $.ajax({
+			   type:"POST",
+			   url:"fetch.php",
+			   data:{query:query},
+			   success:function(data)
+			   {
+					$('#test1').html(data);
+			   }
+		  });
+	 }
+ 
+	 $('#search_text').keyup(function(){
+			var search = $(this).val();
+			if(search != '')
+			{
+				load_data(search);
+			}
+			else
+			{
+				//load_data();
+			}
+	 });
+
+	 var TimeSheet = "<?php echo $TimeSheet?>";
+	 var seq = [];
+	 var EmpID = [];
+	 var Salary = [];
+	 var ThueTT = [];
+	 var i = 0;
+	 $('#SingleClick').click(function () {
+		$('#table2 tr').each(function() {
+			EmpID[i] 	= 	$(this).find("td").eq(2).html();  
+			seq[i] 		= 	$(this).find("td").eq(1).html();  
+			Salary[i] 	= 	$(this).find("td:eq(4) input[type='text']").val();  
+			ThueTT[i] 	= 	$(this).find("td:eq(5) input[type='text']").val();       
+			i++;
+		 });
+		 console.log(TimeSheet);
+		  $.ajax({
+			   type:"POST",
+			   url:"ajax-save-chitiet.php",
+			   data:{EmpID:EmpID, i:i, seq:seq, Salary:Salary, ThueTT:ThueTT, TimeSheet:TimeSheet},
+			   success:function(data)
+			   {
+					alert("Update Susccessfully");
+			   }
+		  });
+    });
+	 
 });
+
+
+	 
 </script>
 
 <!DOCTYPE html>
@@ -68,15 +96,14 @@ $(document).ready(function(){
 			#content-main #content-main-1 {border-right:solid 1px #E2E2E3; width:30%; float:left; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
 			#content-main #content-main-2 {border-right:solid 1px #E2E2E3; width:50%; float:right; display: inline-block; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
 			#content-main #content-main-3 {border-right:solid 1px #E2E2E3; width:17%; float:left; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
+			#content-main #content-main-4 {border-right:solid 1px #E2E2E3; width:50%; float:right; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
             
         </style>    
     <body>
-     <div id="result"> 
-     </div>   
      <div id="content-main"> 
         <div class="container">
            <div id="content-main-1">	 
-            <div class="tab">
+             <div class="tab">
             		<table id="table3" border="1">
                     	<th>Tìm Kiếm</th> 
                     	<td><input type="text" name="search_text" id="search_text" placeholder="" class="form-control"/></td>
@@ -97,7 +124,7 @@ $(document).ready(function(){
                             <?php } ?>
                             
                         </table>
-                     </div>
+                   </div>
             </div>
        </div>
        <div id="content-main-3"> 
@@ -121,13 +148,13 @@ $(document).ready(function(){
                         <th>VuotCamKet</th>
 					<?php while ($row = sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_ASSOC)) { ?>
                                     <tr>
-                                        <td><input type="checkbox" name="check-tab2" value="<?php echo $row['EmpID'] ?>" /></td>
+                                        <td><input type="checkbox" name="check-tab2" value="<?php echo $row['EmpID'] ?>"/></td>
                                         <td><?php echo $row['Seq'] ?></td>
                                         <td><?php echo $row['EmpID'] ?></td>
                                         <?php 
-										$tsql_3= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] where [HR_tblEmpCV].EmpID =  '$row[EmpID]' ;";
-										$getResults_3= sqlsrv_query($conn_mssql, $tsql_3);
-										$row_2 = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC)
+											$tsql_3= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] where [HR_tblEmpCV].EmpID =  '$row[EmpID]' ;";
+											$getResults_3= sqlsrv_query($conn_mssql, $tsql_3);
+											$row_2 = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC);
 										 ?>
                                         <td><?php echo $row_2['VFirstName'] ?></td>
                                         <td><input type="text" name="Emp_Salary" size="9" maxlength="9" value='<?php echo "$row[Salary]"?>'> </td>
@@ -138,9 +165,17 @@ $(document).ready(function(){
                     <?php } ?>
 
                     </tr>
-                </table>   
+                </table>  
             </div>
        </div> 
+       <div id="content-main-4"> 
+       <div class="tab"> 
+            <div class="tab tab-btn">
+                <button style="margin-right: 10px; float:left; width:80px" id="SingleClick" > Lưu </button>
+                <button style="margin-left: 10px; float:left; width:140px" onclick=""> Nhập từ Excel </button>
+            </div>
+      </div>
+      </div>
      </div>
    </div> 
         
@@ -183,7 +218,6 @@ $(document).ready(function(){
 							cell5.innerHTML = '<input type="text" name="Emp_Salary" size="9" maxlength="9" value="0">'
 							cell6.innerHTML = '<input type="text" name="Emp_TT" size="12" maxlength="9" value="0">'
 							cell7.innerHTML = '<input type="text" name="Emp_TT" size="16" maxlength="12" value="0">'
-
                            
                             // remove the transfered rows from the first table [table1]
                             var index = table1.rows[i+1].rowIndex;
@@ -230,8 +264,6 @@ $(document).ready(function(){
 					table2.rows[k].cells[1].innerHTML = k; 
 				 }
             }
-            
         </script>    
-        
     </body>
 </html>

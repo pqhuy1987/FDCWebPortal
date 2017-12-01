@@ -64,9 +64,9 @@ while($data = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
       <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/index_chitiet.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=500,width=1270')">Chi Tiết ...</button> </td>
     </tr>
     <tr>
-      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/add-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Thêm Mới</button> </td>
-      <td> <button type="button" style=" width:124px" onClick="alert('Hello world!')">   Xóa  </button> </td>
-      <td> <button type="button" style=" width:124px" onClick="MyWindow=window.open('blocks/edit-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Sửa</button> </td>
+      <td> <button type="button" style=" width:125px" onClick="MyWindow=window.open('blocks/add-thongtinbangchamcong.php','MyWindow','resizable,height=360,width=770')">Thêm Mới</button> </td>
+      <td> <button type="button" style=" width:124px" onClick="MyWindow=window.open('blocks/ajax-delete-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">   Xóa  </button> </td>
+      <td> <button type="button" style=" width:124px" onClick="MyWindow=window.open('blocks/ajax-edit-thongtinbangchamcong.php?TimeSheet=<?php echo $TimeSheet ?>','MyWindow','resizable,height=360,width=770')">Sửa</button> </td>
     </tr>
 
     </table>

@@ -6,8 +6,6 @@
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
 
-   
-
 if (isset($_GET["p"]))
     $p = $_GET["p"];
 else

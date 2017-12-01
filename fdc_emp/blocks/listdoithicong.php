@@ -42,13 +42,11 @@ $(document).ready(function(){
 </script>
 <?php
 
-
 if (!isset($_SESSION['ldap_dn']))
 {
     header('Location: login/login.php');
     exit();
 }
-
 
 if (isset($_GET["p"]))
     $p = $_GET["p"];
@@ -56,7 +54,7 @@ else
     $p = "";
 	
 $tsql= "SELECT top 100 *
-  FROM [HRISWORKERSPCC].[dbo].[PR_tblTimeSheet] order by [PR_tblTimeSheet].FromDate desc, [PR_tblTimeSheet].TimeSheetID desc, [PR_tblTimeSheet].Todate desc;";
+  FROM [HRISWORKERSPCC].[dbo].[PR_tblTimeSheet] ORDER BY FromDate desc, Todate desc, Len(TimeSheetID) desc, TimeSheetID desc;";
 $getResults= sqlsrv_query($conn_mssql, $tsql);
 	
 ?>
@@ -76,8 +74,8 @@ $getResults= sqlsrv_query($conn_mssql, $tsql);
 	<div id="outerDiv">
 		<div id="innerDiv">
 			<table class="table2">
-				<tr >
-					<th width="50px" ></th>
+            	<tr >
+					<th width="50px" >  </th>
 					<th>Công Trường</th>
 					<th>Đội</th>
 					<th>Từ Ngày</th>
