@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
 ?>
@@ -82,7 +85,7 @@ $getResults_3= sqlsrv_query($conn_mssql, $tsql_3);
       <th>Mã Bảng C.Công :</th>
       <td><input type="text" name="Emp_ID" size="40" maxlength="40" value=""></td>
       <th>Người Dùng:</th>
-      <td><input type="Text" name="Dept_ID" size="4" maxlength="8" value=""></td>
+      <td><input type="Text" name="User_ID" size="4" maxlength="8" value="<?php echo $_SESSION['nameuser'] ?>"></td>
     </tr>
     </table>
     <table class="table1">

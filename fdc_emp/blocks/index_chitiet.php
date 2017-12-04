@@ -65,6 +65,7 @@ $(document).ready(function(){
 			   data:{EmpID:EmpID, i:i, seq:seq, Salary:Salary, ThueTT:ThueTT, TimeSheet:TimeSheet},
 			   success:function(data)
 			   {
+				   location.reload();
 					alert("Update Susccessfully");
 			   }
 		  });
@@ -177,6 +178,32 @@ $(document).ready(function(){
       </div>
       </div>
      </div>
+     
+<?php
+
+  //Had to change this path to point to IOFactory.php.
+  //Do not change the contents of the PHPExcel-1.8 folder at all.
+  require_once "../excel/Classes/PHPExcel.php";
+
+  //Use whatever path to an Excel file you need.
+  
+
+			$tmpfname = "BL.xlsx";
+			$excelReader = PHPExcel_IOFactory::createReaderForFile($tmpfname);
+			$excelObj = $excelReader->load($tmpfname);
+			$worksheet = $excelObj->getSheet(0);
+			$lastRow = $worksheet->getHighestRow();
+			
+			echo "<table>";
+			for ($row = 1; $row <= $lastRow; $row++) {
+				 echo "<tr><td>";
+				 echo $worksheet->getCell('A'.$row)->getValue();
+				 echo "</td><td>";
+				 echo $worksheet->getCell('B'.$row)->getValue();
+				 echo "</td><tr>";
+			}
+			echo "</table>";
+?>
    </div> 
         
         <script>

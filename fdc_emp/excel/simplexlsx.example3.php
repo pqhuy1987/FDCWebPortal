@@ -13,7 +13,7 @@ if (isset($_FILES['file'])) {
 		list( $cols, ) = $xlsx->dimension();
 
 		foreach ( $xlsx->rows() as $k => $r ) {
-			//		if ($k == 0) continue; // skip first row
+
 			echo '<tr>';
 			for ( $i = 0; $i < $cols; $i ++ ) {
 				echo '<td>' . ( ( isset( $r[ $i ] ) ) ? $r[ $i ] : '&nbsp;' ) . '</td>';

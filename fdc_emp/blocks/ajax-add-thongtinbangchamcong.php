@@ -1,6 +1,7 @@
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="Script.js"></script>
 
 <?php
 	require "../lib/dbConMSSQL.php";
@@ -14,22 +15,26 @@
 	$TimeSheetID_Num = floatval($row['']);
 	
 	$TimeSheetID = "HO".($TimeSheetID_Num + 1);
-	
-	$TimeSheetID		=		$_POST['TimeSheetID'];
 	$LSCompanyID		=		$_POST['LSCompanyID'];
 	$LSLevel1ID			=		$_POST['LSLevel1ID'];
 	$FromDate			=		$_POST['FromDate'];
 	$Todate				=		$_POST['Todate'];
 	
-	$TimeSheetCode = $LSCompanyID.".".$LSLevel1ID.".".$FromDate.$Todate;
-	
 	$MonthNL			=		$_POST['MonthNL'];
 	$YearNL				=		$_POST['YearNL'];
 	$MonthTL			=		$_POST['MonthTL'];
 	$YearTL				=		$_POST['YearTL'];
-		
-	$query = "INSERT INTO [HRISWORKERSPCC].[dbo].[PR_tblTimeSheet] (EmpSalaryID, EmpID, Salary, TimeSheetID, Seq, ThueTT) VALUES(?, ?, ?, ?, ?, ?)";
-	$getResults= sqlsrv_query($conn_mssql, $query, array("$EmpSalaryID", "$EmpID[$j]", "$Salary[$j]", "$TimeSheet", "$seq[$j]", "$ThueTT[$j]"));
+	
+	$FromDate_Temp = new DateTime($FromDate);
+	$FromDate_Temp = $FromDate_Temp->format('Ydm');
+	
+	$Todate_Temp = new DateTime($Todate);
+	$Todate_Temp = $Todate_Temp->format('Ydm');
+	
+	$TimeSheetCode = $LSCompanyID.".".$LSLevel1ID.".".$FromDate_Temp.$Todate_Temp;
+					
+	$query = "INSERT INTO [HRISWORKERSPCC].[dbo].[PR_tblTimeSheet] (TimeSheetID, TimeSheetCode, LSCompanyID, LSLevel1ID, FromDate, Todate, MonthNL, YearNL, MonthTL, YearTL) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$getResults= sqlsrv_query($conn_mssql, $query, array("$TimeSheetID", "$TimeSheetCode", "$LSCompanyID", "$LSLevel1ID", "$FromDate", "$Todate", "$MonthNL", "$YearNL", "$MonthTL", "$YearTL"));
 
 	
 	if($getResults)
