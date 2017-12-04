@@ -53,8 +53,8 @@ function changestatus(statuss,idd)
 		 $catname=$('#catname_'+idd).val();
 		 $catstatus=$('#catstatus_'+idd).val();
 		 doIt=confirm('Are you Sure want to '+statuss+' this?');
-	if(doIt)
-	{
+	{	if(doIt)
+
 				 $.ajax({//Make the Ajax Request
 						type: "POST",
 						url: "./ajx-quiz-results-status.php",
@@ -76,7 +76,7 @@ function changestatus(statuss,idd)
   	
 <?php
 
-$per_page = 10;  //Display Images or Content
+$per_page = 1000;  //Display Images or Content
 $count=mysqli_query($connect_2,"select count(*) from quizresults");
 while ($row2 = mysqli_fetch_row($count)) 
 {

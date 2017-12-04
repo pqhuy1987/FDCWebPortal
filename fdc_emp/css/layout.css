@@ -1,0 +1,112 @@
+@charset "utf-8";
+/* CSS Document */
+*{ margin:0; padding:0}
+body{ font-family:Arial, sans-serif; font-size:12px}
+a{ text-decoration:none}
+ul{ list-style:none}
+.left{ float:left; margin:0 2px}
+.right{ float:right}
+.clear{ clear:both; height:5px; margin:5px 0}
+.title{ margin:5px 0 5px 0; overflow:auto}
+.des{ color:#333; margin-top:3px; line-height:140%} 
+.images_news{ width:120px; margin:0 7px 7px 0}
+.tlq{ background:url(../images/bg_dot_gray_3x3.gif) no-repeat left 5px; padding-left:10px; height:auto}
+.tlq a{ color:#999; font-size:11px; font-weight:bold; line-height:140%}
+.tlq a:hover{ color:#EC2229;}
+.xemthem{ color:#666; font-size:11px;}
+.xemthem:hover{ color:#069;}
+.hit{ background:url(../images/icon_title.png) -22px 0 no-repeat; width:2px; height:10px; float:right; color:#900; margin:0 8px 0 0; padding:0 0 0 18px; font-weight:normal; font-size:11px}
+
+
+#wrap-vp{margin:0 5px 5px 5px}
+#header-vp{ height:65px; background: url('../images/logo2.png') repeat; background-size: contain; background-clip: border-box;}
+
+#wrap-vp #menu-2 {padding:1px 0 0 0}
+
+#ft-bot{ height:30px; background: url('../images/footer.jpg') repeat; background-size: contain; background-clip: border-box;}
+	
+#menu-vp{ border-bottom:3px solid #CCC; padding:0 0 3px 0px}
+	#menu-vp ul{ }
+	#menu-vp ul li{ display:inline;border-right: solid 1px #CCCCCC;}
+	#menu-vp ul li a{ color:#333; font-weight:bold; font-size:12px; padding:0 3px 0 3px }
+	#menu-vp ul li:last-child{ border-right:none}	
+	#menu-vp ul li a:hover{ color:#900}
+	
+#content-vp{margin-top:2px }
+	
+	#content-vp #content-main {border-right:solid 2px #E2E2E3; width:45%; float:left; padding: 0px 15px 15px 0px; min-height:500px; margin: 0 0 0 5px; }
+	#content-vp #content-main #content-main-1{width:100%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 5px; }
+	#content-vp #content-main #content-main-1 #left{border-right:solid 1px #E2E2E3; width:100%; float:left; padding: 5px; max-height:200px; margin: 0 0 0 0px; overflow:auto }
+	
+	#content-vp #content-main #content-main-2{width:100%; float:left; padding: 5px; max-height:300px; max-width:800px; margin: 0 0 0 5px; overflow:auto}
+	#content-vp #content-right {width:50%; float:left; padding: 5px; min-height:200px; max-height:250px; overflow:auto}
+	#content-vp #content-right-files{width:50%; float:left; padding: 9.5px 5px 5px 5px}
+	#content-vp #content-right-files #content-file {width:100%; float:left; padding: 5px; min-height:350px; max-height:350px; overflow:auto}
+	#content-vp #content-right-general{width:50%; float:left; padding: 15px 5px 5px 5px; min-height:200px; max-height:300px; margin: 0 0 0 1px; overflow:auto}
+	
+	#content-vp #content-main .chitiet{ line-height:150%; margin:0 0 40px 0}
+	#content-vp #content-main .btn_quantam{ background:url(../images/btn_quantam.gif) no-repeat; width:75px; height:20px; float:left}
+	#content-vp #content-main .number_count span{float: left;height: 20px;display: block;background: #f5f5f5;color: #656565;padding: 0 5px 0 3px;
+}
+	#content-vp #content-main #tincungloai{ margin:10px 0 0 0}
+	#content-vp #content-main #tincungloai ul li{ display:inline; width:32%; float: left; margin:10px 7px 0 0}
+	#content-vp #content-main #tincungloai .title a{ color:#900}
+	#content-vp #content-main #tincungloai .title a:hover{ color:#069}
+	#content-vp #content-main #tincungloai ul li a{ color:#333; font-weight:bold}
+	#content-vp #content-main #tincungloai ul li a:hover{ color:#900}
+	#content-vp #content-main #tincungloai ul li img{ width:170px; margin:0 0 5px 0}
+	#content-vp #content-main #tincungloai .title{ font-size:12px; margin-top:10px}
+
+
+#content-vp	#content-right .cat .cat-content .title a{ color:#135194}	
+#content-vp #content-right .cat .cat-content .title a:hover{ color:#EC2229}	
+#content-vp #content-right .cat .cat-content .col2{ float:left; clear:both;}	
+
+#content-vp	#content-right-files .cat .cat-content .title a{ color:#135194; font-size:12px;}	
+#content-vp #content-right-files .cat .cat-content .title a:hover{ color:#EC2229}	
+#content-vp #content-right-files .cat .cat-content .col2{ float:left; clear:both}	
+#content-vp #content-right-files .child-cat{ width:20%; margin: 11px 0 0 5px; float:left}
+#content-vp #content-right-files .child-cat a{ font-weight:bold; height:30px;  font-size:12px; color:#333; border-right:1px solid #E2E2E3; font-size:11px; padding: 0 3px 0 3px}
+#content-vp #content-right-files .child-cat a:hover{ color:#EC2229}
+
+#content-vp	#content-right-general .cat .cat-content .title a{ color:#135194}	
+#content-vp #content-right-general .cat .cat-content .title a:hover{ color:#EC2229}	
+#content-vp #content-right-general .cat .cat-content .col2{ float:left; clear:both; padding: 0 0 0 30px}	
+
+
+	
+	
+	#content-vp #content-main .box-cat{ margin-right:5px}
+	#content-vp .cat{ background:url(../images/bg_1x28.gif) repeat-x; height:30px; padding:0 0 0 10px; margin:7px 0 10px 0}
+	#content-vp .main-cat{ width:auto; float:left }
+	#content-vp .main-cat a{ border-top:solid 3px #EC2229; color:#135194; font-weight:bold; display:block; height:30px; padding:3px 0 0 10px; font-size:12px}
+	#content-vp .main-cat a:hover{ color:#EC2229}
+	#content-vp #content-main .main-cat{ max-width:29%;}
+	#content-vp #content-main .child-cat{ width:70%; margin:6px 0 0 5px; float:left}
+	#content-vp #content-main .child-cat a{ font-weight:bold; height:30px;  font-size:12px; color:#333; border-right:1px solid #E2E2E3; font-size:11px; }
+	#content-vp #content-main .child-cat a:hover{ color:#EC2229}
+	
+	#content-vp #content-main .cat-content .col1{ width:75%; float:left}
+	#content-vp #content-main .cat-content .col0{ width:100%}
+	#content-vp #content-main .cat-content .col1 .title a{ color:#135194;}
+	#content-vp #content-main .cat-content .col1 .title a:hover{ color:#EC2229;}
+	#content-vp #content-main .cat-content .col2{ width:24%; float:left}
+	
+	#content-vp	#content-main #content-main-1 #left .cat .cat-content .title a{ color:#135194}	
+	#content-vp #content-main #content-main-1 #left .cat .cat-content .title a:hover{ color:#EC2229}	
+	#content-vp #content-main #content-main-1 #left .cat .cat-content .col2{ width:100%; float:left; clear:both; padding: 0 0 0 15px}
+	#content-vp #content-main #content-main-1 #left .main-cat{ max-width:60%;}
+	
+	#content-vp	#content-main #content-main-1 #right .cat .cat-content .title a{ color:#135194}	
+	#content-vp #content-main #content-main-1 #right .cat .cat-content .title a:hover{ color:#EC2229}	
+	#content-vp #content-main #content-main-1 #right .cat .cat-content .col2{ width:100%; float:left; clear:both}
+	#content-vp #content-main #content-main-1 #right .main-cat{ max-width:60%;}
+	
+	#content-vp #content-right img{ margin:0 5px 5 0}
+	
+	
+	
+	
+	
+	
+	

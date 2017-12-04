@@ -1,7 +1,7 @@
 <?php
 
  $username = "root";
- $password = "P@ssw0rd";
+ $password = "";
  $hostname = "localhost";
 		
  $dbname = "quiz";
