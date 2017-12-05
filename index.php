@@ -17,6 +17,7 @@ else
     $p = "";
 ?>
 
+
 <?php 
    if (isset($_POST["btnThoat"])){
         session_destroy();
@@ -28,6 +29,13 @@ else
         header('Location: admin/index.php');
         //exit();
    }
+   
+   if ($_SESSION['mail'] == 'interview@FDCC.COM.VN') {
+		$interview = 1;
+   } else {
+		$interview = 0;
+   }
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -49,7 +57,12 @@ else
     </div>
     <div id="menu-2">
     	<!--block/menu.php-->
-        <?php require "blocks/menu2.php"; ?>
+        <?php 
+		if ($interview == 1)
+			; 
+		else 
+			require "blocks/menu2.php"; 
+		?>
     </div>
     <div id="midheader-vp">
     	<div id="left">
