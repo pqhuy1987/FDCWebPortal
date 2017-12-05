@@ -12,6 +12,12 @@ require "../lib/trangchu.php";
 error_reporting(0);
 session_start();
 
+if ($_SESSION['mail'] == 'interview@FDCC.COM.VN') {
+	$interview = 1;
+} else {
+	$interview = 0;
+}
+
 if (!isset($_SESSION['ldap_dn']))
 {
     header('Location: ../login/login.php');
@@ -1277,48 +1283,77 @@ $(window).load(function () {
     else
     {
 		  $cquery = mysqli_query($connect_2,"SELECT * FROM settings order by id desc" );
-       	  echo "<div class='frms'>
-          <form name='quiz' action='' method='post'>
-		  <label> Họ và Tên : </label>
-		  <input type='text' name='uname'  value=' ";?> <?php echo $_SESSION['nameuser']; ?> <?php echo"' maxlength='20'> 
-		  <label>E-mail : </label>
-		  <input type='text' name='uemail' readonly value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
-		   </div>
-		   <div class='frms_sub1'>
-		   
-		  <label>Tên Công Trường/Phòng Ban : </label>
-		  <select name='catid_2'>
-		  <option value='Công trường Hoà Phát – Dung Quất'>Công trường Hoà Phát – Dung Quất</option>
-		  <option value='Dự án Văn phòng Red Ruby'>Dự án Văn phòng Red Ruby </option>
-		  <option value='Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn'>Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn </option>
-		  <option value='Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort '>Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort </option>
-		  <option value='Công trường Nhà xưởng Paihong'>Công trường Nhà xưởng Paihong</option>
-		  <option value='Công trường Nhà máy sản xuất sợi màu Brotex'>Công trường Nhà máy sản xuất sợi màu Brotex</option>
-		  <option value='Công trường Dự án TBS Logistic – Kho số 6'>Công trường Dự án TBS Logistic – Kho số 6</option>
-		  <option value='Công trường Nam Hội An – Giai đoạn 1'>Công trường Nam Hội An – Giai đoạn 1</option>
-		  <option value='Công trường City Garden Phase 2'>Công trường City Garden Phase 2</option>
-		  <option value='Công trường Khu dân cư Lucasta'>Công trường Khu dân cư Lucasta </option>
-		  <option value='Công trường Diamond Island giai đoạn 2'>Công trường Diamond Island giai đoạn 2</option>
-		  <option value='Công trường Masteri Villas Nam An Khánh'>Công trường Masteri Villas Nam An Khánh</option>
-		  <option value='Công trường Vinhomes Golden River'>Công trường Vinhomes Golden River </option>
-		  <option value='Công trường The LandMark 81'>Công trường The LandMark 81</option>
-		  <option value='Công trường Starcity Center – Tháp A'>Công trường Starcity Center – Tháp A </option>
-		  </select> 
-		  <label>Vị trí/Chức Vụ : </label>
-		  <select name='catid_3'>";
-
-		  echo "<option value='Giám Sát'>Giám Sát</option>";
-		  echo "<option value='Nhân Viên'>Nhân Viên</option>";
-
-		  echo "</select>
-		  <label>Loại Hợp Đồng : </label>
-		  <select name='catid_4'>";
-
-		  echo "<option value='Hợp Đồng Thử Việc'>Hợp Đồng Thử Việc</option>";
-		  echo "<option value='Hợp Đồng Bậc 4'>Hợp Đồng Bậc 4</option>";
-		  echo "<option value='Hợp Đồng Bậc 3'>Hợp Đồng Bậc 3</option>";
-		  echo "<option value='Hợp Đồng Bậc 2'>Hợp Đồng Bậc 2</option>";
-		  echo "<option value='Hợp Đồng Bậc 1'>Hợp Đồng Bậc 1</option>";
+		  if ($interview == 0) {
+			  echo "<div class='frms'>
+			  <form name='quiz' action='' method='post'>
+			  <label> Họ và Tên : </label>
+			  <input type='text' name='uname'  value=' ";?> <?php echo $_SESSION['nameuser']; ?> <?php echo"' maxlength='20'> 
+			  <label>E-mail : </label>
+			  <input type='text' name='uemail' readonly value=' ";?> <?php echo $_SESSION['mail']; ?> <?php echo"' maxlength='20'> 
+			   </div>
+			   <div class='frms_sub1'>
+			   
+			  <label>Tên Công Trường/Phòng Ban : </label>
+			  <select name='catid_2'>
+			  <option value='Công trường Hoà Phát – Dung Quất'>Công trường Hoà Phát – Dung Quất</option>
+			  <option value='Dự án Văn phòng Red Ruby'>Dự án Văn phòng Red Ruby </option>
+			  <option value='Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn'>Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn </option>
+			  <option value='Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort '>Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort </option>
+			  <option value='Công trường Nhà xưởng Paihong'>Công trường Nhà xưởng Paihong</option>
+			  <option value='Công trường Nhà máy sản xuất sợi màu Brotex'>Công trường Nhà máy sản xuất sợi màu Brotex</option>
+			  <option value='Công trường Dự án TBS Logistic – Kho số 6'>Công trường Dự án TBS Logistic – Kho số 6</option>
+			  <option value='Công trường Nam Hội An – Giai đoạn 1'>Công trường Nam Hội An – Giai đoạn 1</option>
+			  <option value='Công trường City Garden Phase 2'>Công trường City Garden Phase 2</option>
+			  <option value='Công trường Khu dân cư Lucasta'>Công trường Khu dân cư Lucasta </option>
+			  <option value='Công trường Diamond Island giai đoạn 2'>Công trường Diamond Island giai đoạn 2</option>
+			  <option value='Công trường Masteri Villas Nam An Khánh'>Công trường Masteri Villas Nam An Khánh</option>
+			  <option value='Công trường Vinhomes Golden River'>Công trường Vinhomes Golden River </option>
+			  <option value='Công trường The LandMark 81'>Công trường The LandMark 81</option>
+			  <option value='Công trường Starcity Center – Tháp A'>Công trường Starcity Center – Tháp A </option>
+			  </select> 
+			  <label>Vị trí/Chức Vụ : </label>
+			  <select name='catid_3'>";
+	
+			  echo "<option value='Giám Sát'>Giám Sát</option>";
+			  echo "<option value='Nhân Viên'>Nhân Viên</option>";
+	
+			  echo "</select>
+			  <label>Loại Hợp Đồng : </label>
+			  <select name='catid_4'>";
+	
+			  echo "<option value='Hợp Đồng Thử Việc'>Hợp Đồng Thử Việc</option>";
+			  echo "<option value='Hợp Đồng Bậc 4'>Hợp Đồng Bậc 4</option>";
+			  echo "<option value='Hợp Đồng Bậc 3'>Hợp Đồng Bậc 3</option>";
+			  echo "<option value='Hợp Đồng Bậc 2'>Hợp Đồng Bậc 2</option>";
+			  echo "<option value='Hợp Đồng Bậc 1'>Hợp Đồng Bậc 1</option>";
+			  
+		  } else {
+			  echo "<div class='frms'>
+			  <form name='quiz' action='' method='post'>
+			  <label> Họ và Tên : </label>
+			  <input type='text' name='uname'  value='' maxlength='100'> 
+			  <label>E-mail : </label>
+			  <input type='text' name='uemail' value='' maxlength='100'> 
+			   </div>
+			   <div class='frms_sub1'>
+			   
+			  <label>Tên Công Trường/Phòng Ban : </label>
+			  <select name='catid_2'>
+			  <option value='Phỏng Vấn Đầu Vào'>Kiểm Tra Đầu Vào Xây Dựng</option>
+			  <option value='Phỏng Vấn Đầu Vào'>Kiểm Tra Đầu Vào Cơ Điện</option>
+			  </select> 
+			  <label>Vị trí/Chức Vụ : </label>
+			  <select name='catid_3'>";
+	
+			  echo "<option value='Giám Sát'>Giám Sát</option>";
+			  echo "<option value='Nhân Viên'>Nhân Viên</option>";
+	
+			  echo "</select>
+			  <label>Loại Hợp Đồng : </label>
+			  <select name='catid_4'>";
+	
+			  echo "<option value='Hợp Đồng Thử Việc'>Phỏng Vấn Đầu Vào</option>";			  
+		  }
 
 		  echo "</select>
 		  <label>Chọn chuyên mục đánh giá : </label>

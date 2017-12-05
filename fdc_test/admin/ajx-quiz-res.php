@@ -11,10 +11,38 @@ $uidd  = $_SERVER['REQUEST_URI'];
     $uidd = "http://$host1$uidd";
    // echo $uidd;
 
+?>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+
+<script type="text/javascript" src="./jquery.js"></script>
+<script type='text/javascript'>
+
+$(document).ready(function(){
+ $("#catid_ajx").change(function(){
+		 var workplace	= $(this).val();
+		 console.log(workplace)
+			$.ajax({//Make the Ajax Request
+					type: "POST",
+					url: "./ajx-quiz-res-2.php",
+					data:{workplace:workplace},
+					success: function(data){
+							//alert(data);
+							//$('#error_msg').html(""); 
+							$('#maindiv').html(data);
+						}
+					});
+	 });
+
+ });
+</script>
+
+<?php
 
 $page = $_REQUEST['page'];
 
 $start = ($page)*10;
+
+		$workplace_temp = mysqli_query($connect_2,"SELECT workplace FROM quizresults");
 
 		$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit 500");
 		echo "<div id='maindiv'>";
@@ -24,30 +52,26 @@ $start = ($page)*10;
        	 $delcnt1=mysqli_num_rows($res2);
 	     $tcount=$delcnt1;
 	     echo "<input type='hidden' value='$tcount' id='tcount'>";
-                    
-		echo '<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
+?>                    
+		<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
         <tr>
           	<th>Tên</th>
 			<th>Email</th>
 			<th>
-		  <select name="catid_ajx">
-		  <option value="">Tên Công Trường/Phòng Ban</option>
-		  <option value="Công trường Hoà Phát – Dung Quất">Công trường Hoà Phát – Dung Quất</option>
-		  <option value="Dự án Văn phòng Red Ruby">Dự án Văn phòng Red Ruby </option>
-		  <option value="Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn">Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn </option>
-		  <option value="Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort ">Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort </option>
-		  <option value="Công trường Nhà xưởng Paihong">Công trường Nhà xưởng Paihong</option>
-		  <option value="Công trường Nhà máy sản xuất sợi màu Brotex">Công trường Nhà máy sản xuất sợi màu Brotex</option>
-		  <option value="Công trường Dự án TBS Logistic – Kho số 6">Công trường Dự án TBS Logistic – Kho số 6</option>
-		  <option value="Công trường Nam Hội An – Giai đoạn 1">Công trường Nam Hội An – Giai đoạn 1</option>
-		  <option value="Công trường City Garden Phase 2">Công trường City Garden Phase 2</option>
-		  <option value="Công trường Khu dân cư Lucasta">Công trường Khu dân cư Lucasta </option>
-		  <option value="Công trường Diamond Island giai đoạn 2">Công trường Diamond Island giai đoạn 2</option>
-		  <option value="Công trường Masteri Villas Nam An Khánh">Công trường Masteri Villas Nam An Khánh</option>
-		  <option value="Công trường Vinhomes Golden River">Công trường Vinhomes Golden River </option>
-		  <option value="Công trường The LandMark 81">Công trường The LandMark 81</option>
-		  <option value="Công trường Starcity Center – Tháp A">Công trường Starcity Center – Tháp A </option>
+		  <select name="catid_ajx" id="catid_ajx">
+		  <option value="1">Tên Công Trường/Phòng Ban</option>
+<?php
+			 while($line = mysqli_fetch_assoc($workplace_temp))
+		     {
+				 $workplace_2 =$line['workplace'];
+?>
+				<option value='<?php echo $workplace_2 ?>' <?php if ($workplace == $workplace_2 ) echo "selected='selected'" ?> ><?php echo $workplace_2 ?> </option>
+<?php 	
+			 }
+?>	
 		  </select> </th>
+<?php
+		 echo '
 			<th>Vị Trí</th>
 			<th>Bậc Hợp Đồng</th>
           	<th>Bộ Đề</th>

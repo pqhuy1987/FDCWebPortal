@@ -1,79 +1,136 @@
 <?php
 error_reporting(0);
 require_once "./auth/config.php";
-?>
-<?php
-
 $connect_2 = mysqli_connect("$hostname","$username","$password");
 if($connect_2)
 {
 	$dbcon = mysqli_select_db($connect_2, "$dbname");
 }
+$uidd  = $_SERVER['REQUEST_URI'];
+    $host1 = $_SERVER['SERVER_NAME'];
+    $uidd = "http://$host1$uidd";
+   // echo $uidd;
+
+?>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+
+<script type="text/javascript" src="./jquery.js"></script>
+<script type='text/javascript'>
+
+$(document).ready(function(){
+ $("#catid_ajx").change(function(){
+		 var workplace	= $(this).val();
+		 console.log(workplace);
+			$.ajax({//Make the Ajax Request
+					type: "POST",
+					url: "./ajx-quiz-res-2.php",
+					data:{workplace:workplace},
+					success: function(data){
+							//alert(data);
+							//$('#error_msg').html(""); 
+							$('#maindiv').html(data);
+						}
+					});
+	 });
+
+ });
+</script>
+
+<?php
+
+$workplace = $_POST['workplace'];
+
 $page = $_REQUEST['page'];
 
-$workplace = $_GET["workplace"];
+$start = ($page)*10;
 
-$start = ($page)*100;
-
-   $output = '';
-   $output .= '
-   <table class="table" bordered="1">  
-                    <tr>  
-						<th>Tên</th>
-						<th>Email</th>
-						<th>Phòng Ban/Công Trường</th>
-						<th>Vị Trí</th>
-						<th>Bậc Hợp Đồng</th>
-						<th>Bộ Đề</th>
-						<th>Thời gian sử dụng</th>
-						<th>Ngày</th>
-						<th>Chuyên Đề 1</th>
-						<th>Chuyên Đề 2</th>
-						<th>Chuyên Đề 3</th>
-						<th>Chuyên Đề 4</th>
-						<th>Chuyên Đề 5</th>
-						<th>Chuyên Đề 6</th>
-						<th>Chuyên Đề 7</th>
-						<th>Chuyên Đề 8</th>
-						<th>Chuyên Đề 9</th>
-						<th>Chuyên Đề 10</th>
-						<th>Chuyên Đề 11</th>
-						<th>Chuyên Đề 12</th>
-						<th>Chuyên Đề 13</th>
-						<th>Chuyên Đề 14</th>
-						<th>Chuyên Đề 15</th>
-						<th>Chuyên Đề 16</th>
-						<th>Chuyên Đề 17</th>
-						<th>Chuyên Đề 18</th>
-						<th>Chuyên Đề 19</th>
-						<th>Chuyên Đề 20</th>
-						<th>Chuyên Đề 21</th>
-						<th>Chuyên Đề 22</th>
-						<th>Chuyên Đề 23</th>
-						<th>Chuyên Đề 24</th>
-						<th>Chuyên Đề 25</th>
-						<th>Chuyên Đề 26</th>
-						<th>Chuyên Đề 27</th>
-						<th>Chuyên Đề 28</th>
-						<th>Chuyên Đề 29</th>
-						<th>Chuyên Đề 30</th>
-						<th>Tổng Hợp</th>
-						</tr>';
-			if ($workplace == ""){
-				$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit 500");
-			}
-			else {
-				$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults where workplace='$workplace' order by id desc limit 500");
-			}
+		$workplace_temp = mysqli_query($connect_2,"SELECT workplace FROM quizresults");
 		
-  while($line = mysqli_fetch_assoc($res2))
-  {
-			$id 					= $line['id'];
-			$name 					= $line['name'];
-			$catid 					= $line['cat_id'];
-			$res3 					= mysqli_query($connect_2,"SELECT exam_name FROM settings where id='$catid'");
-			$crow					= mysqli_fetch_assoc($res3);
-			$cat_name				= $crow['exam_name'];
+		if ($workplace == 1){
+			$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit 500");
+		} else {
+			$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults where workplace ='$workplace' order by id desc limit 500");
+		}
+		
+		echo "<div id='maindiv'>";
+
+//echo $start;
+
+       	 $delcnt1=mysqli_num_rows($res2);
+	     $tcount=$delcnt1;
+	     echo "<input type='hidden' value='$tcount' id='tcount'>";
+?>                    
+		<div class="admin_table"><table border="0" cellspacing="0" cellpadding="0" >
+        <tr>
+          	<th>Tên</th>
+			<th>Email</th>
+			<th>
+		  <select name="catid_ajx" id="catid_ajx">
+		  <option value="1">Tên Công Trường/Phòng Ban</option>
+<?php
+			 while($line = mysqli_fetch_assoc($workplace_temp))
+		     {
+				 $workplace_2 =$line['workplace'];
+?>
+				<option value='<?php echo $workplace_2 ?>' <?php if ($workplace == $workplace_2 ) echo "selected='selected'" ?> ><?php echo $workplace_2 ?> </option>
+<?php 	
+			 }
+?>	
+		  </select> </th>
+<?php
+		 echo '
+			<th>Vị Trí</th>
+			<th>Bậc Hợp Đồng</th>
+          	<th>Bộ Đề</th>
+	  		<th>Thời gian còn lại</th>
+	  		<th>Ngày</th>
+          	<th>Chuyên Đề 1</th>
+	  		<th>Chuyên Đề 2</th>
+			<th>Chuyên Đề 3</th>
+	  		<th>Chuyên Đề 4</th>
+			<th>Chuyên Đề 5</th>
+	  		<th>Chuyên Đề 6</th>
+			<th>Chuyên Đề 7</th>
+	  		<th>Chuyên Đề 8</th>
+			<th>Chuyên Đề 9</th>
+	  		<th>Chuyên Đề 10</th>
+			<th>Chuyên Đề 11</th>
+	  		<th>Chuyên Đề 12</th>
+			<th>Chuyên Đề 13</th>
+	  		<th>Chuyên Đề 14</th>
+			<th>Chuyên Đề 15</th>
+	  		<th>Chuyên Đề 16</th>
+			<th>Chuyên Đề 17</th>
+	  		<th>Chuyên Đề 18</th>
+			<th>Chuyên Đề 19</th>
+	  		<th>Chuyên Đề 20</th>
+			<th>Chuyên Đề 21</th>
+	  		<th>Chuyên Đề 22</th>
+			<th>Chuyên Đề 23</th>
+	  		<th>Chuyên Đề 24</th>
+			<th>Chuyên Đề 25</th>
+	  		<th>Chuyên Đề 26</th>
+			<th>Chuyên Đề 27</th>
+	  		<th>Chuyên Đề 28</th>
+			<th>Chuyên Đề 29</th>
+	  		<th>Chuyên Đề 30</th>
+			<th>Tổng Hợp</th>
+			<th>Xuất Excel File</th>
+			<th>Xóa</th>
+        </tr>';
+	$xx=0;
+		$d=0;
+		
+		 while($line = mysqli_fetch_assoc($res2))
+		 {
+			$id = $line['id'];
+			
+			$name = $line['name'];
+			$catid = $line['cat_id'];
+			$res3 			= mysqli_query($connect_2,"SELECT exam_name FROM settings where id='$catid'");
+			$crow			= mysqli_fetch_assoc($res3);
+			$cat_name		= $crow['exam_name'];
+			
 			
 			//----------------------chuyende_1----------------------------//
 			$chuyende_1 = $line['chuyende_1'];
@@ -452,52 +509,64 @@ $start = ($page)*100;
 			$workplace=$line['workplace'];
 			$title=$line['title'];
 			$contact=$line['contact'];
-    $output .= '
-    <tr>  
-       	<td>'.$line["name"].'</td>  
-       	<td>'.$line["email"].'</td>  
-       	<td>'.$line["workplace"].'</td>  
-       	<td>'.$line["title"].'</td>  
-       	<td>'.$line["contact"].'</td>
-       	<td>'.$cat_name.'</td>  
-       	<td>'.$line["examtime"].'</td>  
-       	<td>'.$line["datee"].'</td>
-       	<td>'.$cat_name1.': '.$diem_1.'/5 Điểm ( Đúng '.$cans.'/'.$total_1.' câu )</td>  
-       	<td>'.$cat_name2.': '.$diem_2.'/5 Điểm ( Đúng '.$cans_2.'/'.$total_2.' câu )</td>  
-	   	<td>'.$cat_name3.': '.$diem_3.'/5 Điểm ( Đúng '.$cans_3.'/'.$total_3.' câu )</td>  
-	   	<td>'.$cat_name4.': '.$diem_4.'/5 Điểm ( Đúng '.$cans_4.'/'.$total_4.' câu )</td>  
-	   	<td>'.$cat_name5.': '.$diem_5.'/5 Điểm ( Đúng '.$cans_5.'/'.$total_5.' câu )</td>  
-	   	<td>'.$cat_name6.': '.$diem_6.'/5 Điểm ( Đúng '.$cans_6.'/'.$total_6.' câu )</td>  
-  	   	<td>'.$cat_name7.': '.$diem_7.'/5 Điểm ( Đúng '.$cans_7.'/'.$total_7.' câu )</td>  
-	   	<td>'.$cat_name8.': '.$diem_8.'/5 Điểm ( Đúng '.$cans_8.'/'.$total_8.' câu )</td>  
-		<td>'.$cat_name9.': '.$diem_9.'/5 Điểm ( Đúng '.$cans_9.'/'.$total_9.' câu )</td>  
-		<td>'.$cat_name10.': '.$diem_10.'/5 Điểm ( Đúng '.$cans_10.'/'.$total_10.' câu )</td>  
-		<td>'.$cat_name11.': '.$diem_11.'/5 Điểm ( Đúng '.$cans_11.'/'.$total_11.' câu )</td>  
-		<td>'.$cat_name12.': '.$diem_12.'/5 Điểm ( Đúng '.$cans_12.'/'.$total_12.' câu )</td>  
-		<td>'.$cat_name13.': '.$diem_13.'/5 Điểm ( Đúng '.$cans_13.'/'.$total_13.' câu )</td>  
-		<td>'.$cat_name14.': '.$diem_14.'/5 Điểm ( Đúng '.$cans_14.'/'.$total_14.' câu )</td>  
-		<td>'.$cat_name15.': '.$diem_15.'/5 Điểm ( Đúng '.$cans_15.'/'.$total_15.' câu )</td>  
-		<td>'.$cat_name16.': '.$diem_16.'/5 Điểm ( Đúng '.$cans_16.'/'.$total_16.' câu )</td>  
-		<td>'.$cat_name17.': '.$diem_17.'/5 Điểm ( Đúng '.$cans_17.'/'.$total_17.' câu )</td>  
-		<td>'.$cat_name18.': '.$diem_18.'/5 Điểm ( Đúng '.$cans_18.'/'.$total_18.' câu )</td>  
-		<td>'.$cat_name19.': '.$diem_19.'/5 Điểm ( Đúng '.$cans_19.'/'.$total_19.' câu )</td>  
-		<td>'.$cat_name20.': '.$diem_20.'/5 Điểm ( Đúng '.$cans_20.'/'.$total_20.' câu )</td>  
-		<td>'.$cat_name21.': '.$diem_21.'/5 Điểm ( Đúng '.$cans_21.'/'.$total_21.' câu )</td>  
-		<td>'.$cat_name22.': '.$diem_22.'/5 Điểm ( Đúng '.$cans_22.'/'.$total_22.' câu )</td>  
-		<td>'.$cat_name23.': '.$diem_23.'/5 Điểm ( Đúng '.$cans_23.'/'.$total_23.' câu )</td>  
-		<td>'.$cat_name24.': '.$diem_24.'/5 Điểm ( Đúng '.$cans_24.'/'.$total_24.' câu )</td>  
-		<td>'.$cat_name25.': '.$diem_25.'/5 Điểm ( Đúng '.$cans_25.'/'.$total_25.' câu )</td>  
-		<td>'.$cat_name26.': '.$diem_26.'/5 Điểm ( Đúng '.$cans_26.'/'.$total_26.' câu )</td>  
-		<td>'.$cat_name27.': '.$diem_27.'/5 Điểm ( Đúng '.$cans_27.'/'.$total_27.' câu )</td>  
-		<td>'.$cat_name28.': '.$diem_28.'/5 Điểm ( Đúng '.$cans_28.'/'.$total_28.' câu )</td>  
-		<td>'.$cat_name29.': '.$diem_29.'/5 Điểm ( Đúng '.$cans_29.'/'.$total_29.' câu )</td>  
-		<td>'.$cat_name30.': '.$diem_30.'/5 Điểm ( Đúng '.$cans_30.'/'.$total_30.' câu )</td>  
-		<td>'.$diem_tong_hop.'/5 Điểm ( Đúng '.$tong_cau_dung.'/'.$tong_cau.' câu )</td>														
-    </tr>
-   ';
-  }
-  $output .= '</table>';
-  header('Content-Type: application/xls');
-  header('Content-Disposition: attachment; filename=download.xls');
-  print chr(255) . chr(254) . mb_convert_encoding($output, 'UTF-16LE', 'UTF-8');
-?>
+			
+					echo "<tr id='row_$id'>";
+			
+			
+			echo 
+			"<td>$name</td><td>$email</td>
+			<td>$workplace</td>
+            <td>$title</td>
+            <td>$contact</td>
+			<td>$cat_name</td>
+			<td>$examtime</td>
+			<td>$date</td>
+			<td>$cat_name1: $diem_1/5 điểm (đúng $cans/$total_1 câu)</td>
+			<td>$cat_name2: $diem_2/5 điểm (đúng $cans_2/$total_2 câu)</td>
+			<td>$cat_name3: $diem_3/5 điểm (đúng $cans_3/$total_3 câu)</td>
+			<td>$cat_name4: $diem_4/5 điểm (đúng $cans_4/$total_4 câu)</td>
+			<td>$cat_name5: $diem_5/5 điểm (đúng $cans_5/$total_5 câu)</td>
+			<td>$cat_name6: $diem_6/5 điểm (đúng $cans_6/$total_6 câu)</td>
+			<td>$cat_name7: $diem_7/5 điểm (đúng $cans_7/$total_7 câu)</td>
+			<td>$cat_name8: $diem_8/5 điểm (đúng $cans_8/$total_8 câu)</td>
+			<td>$cat_name9: $diem_9/5 điểm (đúng $cans_9/$total_9 câu)</td>
+			
+			<td>$cat_name10: $diem_10/5 điểm (đúng $cans_10/$total_10 câu)</td>
+			<td>$cat_name11: $diem_11/5 điểm (đúng $cans_11/$total_11 câu)</td>
+			<td>$cat_name12: $diem_12/5 điểm (đúng $cans_12/$total_12 câu)</td>
+			<td>$cat_name13: $diem_13/5 điểm (đúng $cans_13/$total_13 câu)</td>
+			<td>$cat_name14: $diem_14/5 điểm (đúng $cans_14/$total_14 câu)</td>
+			<td>$cat_name15: $diem_15/5 điểm (đúng $cans_15/$total_15 câu)</td>
+			<td>$cat_name16: $diem_16/5 điểm (đúng $cans_16/$total_16 câu)</td>
+			<td>$cat_name17: $diem_17/5 điểm (đúng $cans_17/$total_17 câu)</td>
+			<td>$cat_name18: $diem_18/5 điểm (đúng $cans_18/$total_18 câu)</td>
+			<td>$cat_name19: $diem_19/5 điểm (đúng $cans_19/$total_19 câu)</td>
+			<td>$cat_name20: $diem_20/5 điểm (đúng $cans_20/$total_20 câu)</td>
+			
+			<td>$cat_name21: $diem_21/5 điểm (đúng $cans_21/$total_21 câu)</td>
+			<td>$cat_name22: $diem_22/5 điểm (đúng $cans_22/$total_22 câu)</td>
+			<td>$cat_name23: $diem_23/5 điểm (đúng $cans_23/$total_23 câu)</td>
+			<td>$cat_name24: $diem_24/5 điểm (đúng $cans_24/$total_24 câu)</td>
+			<td>$cat_name25: $diem_25/5 điểm (đúng $cans_25/$total_25 câu)</td>
+			<td>$cat_name26: $diem_26/5 điểm (đúng $cans_26/$total_26 câu)</td>
+			<td>$cat_name27: $diem_27/5 điểm (đúng $cans_27/$total_27 câu)</td>
+			<td>$cat_name28: $diem_28/5 điểm (đúng $cans_28/$total_28 câu)</td>
+			<td>$cat_name29: $diem_29/5 điểm (đúng $cans_29/$total_29 câu)</td>
+			<td>$cat_name30: $diem_30/5 điểm (đúng $cans_30/$total_30 câu)</td>
+			<td>$diem_tong_hop/5 điểm (đúng $tong_cau_dung / $tong_cau) câu</td>
+
+			<td><a href='./excel.php?workplace=$workplace'>Xuất File</a></td>
+			<td><a href='javascript:changestatus(\"delete\",$id);'>delete</a></td>
+			
+			
+			</tr>";
+			$xx++;
+			$d++;
+		}
+	       
+		
+		
+		echo "</table></div>";
+		
+	?>
+
