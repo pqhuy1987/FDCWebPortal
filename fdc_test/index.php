@@ -1339,8 +1339,8 @@ $(window).load(function () {
 			   
 			  <label>Tên Công Trường/Phòng Ban : </label>
 			  <select name='catid_2'>
-			  <option value='Phỏng Vấn Đầu Vào'>Kiểm Tra Đầu Vào Xây Dựng</option>
-			  <option value='Phỏng Vấn Đầu Vào'>Kiểm Tra Đầu Vào Cơ Điện</option>
+			  <option value='Kiểm Tra Đầu Vào Xây Dựng'>Kiểm Tra Đầu Vào Xây Dựng</option>
+			  <option value='Kiểm Tra Đầu Vào Cơ Điện'>Kiểm Tra Đầu Vào Cơ Điện</option>
 			  </select> 
 			  <label>Vị trí/Chức Vụ : </label>
 			  <select name='catid_3'>";
@@ -1352,7 +1352,7 @@ $(window).load(function () {
 			  <label>Loại Hợp Đồng : </label>
 			  <select name='catid_4'>";
 	
-			  echo "<option value='Hợp Đồng Thử Việc'>Phỏng Vấn Đầu Vào</option>";			  
+			  echo "<option value='Phỏng Vấn Đầu Vào'>Phỏng Vấn Đầu Vào</option>";			  
 		  }
 
 		  echo "</select>

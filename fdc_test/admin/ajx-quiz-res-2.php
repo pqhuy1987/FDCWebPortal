@@ -44,7 +44,6 @@ $page = $_REQUEST['page'];
 
 $start = ($page)*10;
 
-		$workplace_temp = mysqli_query($connect_2,"SELECT workplace FROM quizresults");
 		
 		if ($workplace == 1){
 			$res2 = mysqli_query($connect_2,"SELECT * FROM quizresults order by id desc limit 500");
@@ -67,16 +66,23 @@ $start = ($page)*10;
 			<th>
 		  <select name="catid_ajx" id="catid_ajx">
 		  <option value="1">Tên Công Trường/Phòng Ban</option>
-<?php
-			 while($line = mysqli_fetch_assoc($workplace_temp))
-		     {
-				 $workplace_2 =$line['workplace'];
-?>
-				<option value='<?php echo $workplace_2 ?>' <?php if ($workplace == $workplace_2 ) echo "selected='selected'" ?> ><?php echo $workplace_2 ?> </option>
-<?php 	
-			 }
-?>	
-		  </select> </th>
+		  <option value='Công trường Hoà Phát – Dung Quất' <?php if ($workplace == 'Công trường Hoà Phát – Dung Quất' ) echo "selected='selected'" ?> >Công trường Hoà Phát – Dung Quất</option>
+		  <option value='Dự án Văn phòng Red Ruby' <?php if ($workplace == 'Dự án Văn phòng Red Ruby' ) echo "selected='selected'" ?> >Dự án Văn phòng Red Ruby </option>
+		  <option value='Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn' <?php if ($workplace == 'Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn' ) echo "selected='selected'" ?> >Khu thương mại dịch vụ nhà ở cao tầng - Mỹ Sơn </option>
+		  <option value='Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort ' <?php if ($workplace == 'Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort ' )  echo "selected='selected'" ?> >Công trường Khu du lịch Sinh thái Flamingo Đại Lải Resort </option>
+		  <option value='Công trường Nhà xưởng Paihong' <?php if ($workplace == 'Công trường Nhà xưởng Paihong' ) echo "selected='selected'" ?> >Công trường Nhà xưởng Paihong</option>
+		  <option value='Công trường Nhà máy sản xuất sợi màu Brotex' <?php if ($workplace == 'Công trường Nhà máy sản xuất sợi màu Brotex')echo "selected='selected'" ?> >Công trường Nhà máy sản xuất sợi màu Brotex</option>
+		  <option value='Công trường Dự án TBS Logistic – Kho số 6' <?php if ($workplace == 'Công trường Dự án TBS Logistic – Kho số 6' ) echo "selected='selected'" ?>>Công trường Dự án TBS Logistic – Kho số 6</option>
+		  <option value='Công trường Nam Hội An – Giai đoạn 1' <?php if ($workplace == 'Công trường Nam Hội An – Giai đoạn 1' ) echo "selected='selected'" ?>>Công trường Nam Hội An – Giai đoạn 1</option>
+		  <option value='Công trường City Garden Phase 2' <?php if ($workplace == 'Công trường City Garden Phase 2' ) echo "selected='selected'" ?>>Công trường City Garden Phase 2</option>
+		  <option value='Công trường Khu dân cư Lucasta' <?php if ($workplace == 'Công trường Khu dân cư Lucasta' ) echo "selected='selected'" ?>>Công trường Khu dân cư Lucasta </option>
+		  <option value='Công trường Diamond Island giai đoạn 2' <?php if ($workplace == 'Công trường Diamond Island giai đoạn 2' ) echo "selected='selected'" ?>>Công trường Diamond Island giai đoạn 2</option>
+		  <option value='Công trường Masteri Villas Nam An Khánh' <?php if ($workplace == 'Công trường Masteri Villas Nam An Khánh' ) echo "selected='selected'" ?>>Công trường Masteri Villas Nam An Khánh</option>
+		  <option value='Công trường Vinhomes Golden River' <?php if ($workplace == 'Công trường Vinhomes Golden River' ) echo "selected='selected'" ?>>Công trường Vinhomes Golden River </option>
+		  <option value='Công trường The LandMark 81' <?php if ($workplace == 'Công trường The LandMark 81' ) echo "selected='selected'" ?>>Công trường The LandMark 81</option>
+		  <option value='Công trường Starcity Center – Tháp A' <?php if ($workplace == 'Công trường Starcity Center – Tháp A' ) echo "selected='selected'" ?>>Công trường Starcity Center – Tháp A </option>
+		  <option value='Kiểm Tra Đầu Vào Xây Dựng'  <?php if ($workplace == 'Kiểm Tra Đầu Vào Xây Dựng' ) echo "selected='selected'" ?> >Kiểm Tra Đầu Vào Xây Dựng</option>
+		  <option value='Kiểm Tra Đầu Vào Cơ Điện'  <?php if ($workplace == 'Kiểm Tra Đầu Vào Cơ Điện' ) echo "selected='selected'" ?> >Kiểm Tra Đầu Vào Cơ Điện</option>		  </select> </th>
 <?php
 		 echo '
 			<th>Vị Trí</th>
