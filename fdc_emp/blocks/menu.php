@@ -42,8 +42,11 @@ ddsmoothmenu.init({
 <div id="smoothmenu1" class="ddsmoothmenu">
 <ul>
 <li><a href="./">Lương</a></li>
-<li><a href="./">Công Nhân</a></li>
-
+<li><a href="./">Công Nhân</a>
+<ul>
+<li><a href="./admin/index.php" target="_blank">DS Công Nhân</a></li>
+</ul>
+</li>
 </ul>
 <br style="clear: left" />
 </div>
