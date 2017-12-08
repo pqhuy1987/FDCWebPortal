@@ -189,37 +189,37 @@ $(document).ready(function(){
       </div>
       <div id="content-main-2">      
             <div class="tab">
-            <div id="test2">
-                <table id="table2" border="1">
-                    <tr>
-                        <th>Chọn</th>
-                        <th>STT</th>
-                        <th>Số CMND</th>
-                        <th>Họ và Tên</th>
-                        <th>Số Tiền</th>
-                        <th>Thuế Tạm</th>
-                        <th>VuotCamKet</th>
-					<?php while ($row = sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <tr>
-                                        <td><input type="checkbox" name="check-tab2" value="<?php echo $row['EmpID'] ?>"/></td>
-                                        <td><?php echo $row['Seq'] ?></td>
-                                        <td><?php echo $row['EmpID'] ?></td>
-                                        <?php 
-											$tsql_3= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] where [HR_tblEmpCV].EmpID =  '$row[EmpID]' ;";
-											$getResults_3= sqlsrv_query($conn_mssql, $tsql_3);
-											$row_2 = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC);
-										 ?>
-                                        <td><?php echo $row_2['VFirstName'] ?></td>
-                                        <td><input type="text" name="Emp_Salary" size="9" maxlength="9" value='<?php echo "$row[Salary]"?>'> </td>
-                                        <td><input type="text" name="Emp_TT" size="12" maxlength="12" value='<?php echo "$row[ThueTT]" ?>'> </td>
-                                        <td><input type="text" name="Emp_TT" size="16" maxlength="12" value='0'> </td>
-                                        
-                                    </tr>
-                    <?php } ?>
-
-                    </tr>
-                </table>
-            </div>  
+            	<div id="test2">
+                    <table id="table2" border="1">
+                        <tr>
+                            <th>Chọn</th>
+                            <th>STT</th>
+                            <th>Số CMND</th>
+                            <th>Họ và Tên</th>
+                            <th>Số Tiền</th>
+                            <th>Thuế Tạm</th>
+                            <th>VuotCamKet</th>
+                        <?php while ($row = sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_ASSOC)) { ?>
+                                        <tr>
+                                            <td><input type="checkbox" name="check-tab2" value="<?php echo $row['EmpID'] ?>"/></td>
+                                            <td><?php echo $row['Seq'] ?></td>
+                                            <td><?php echo $row['EmpID'] ?></td>
+                                            <?php 
+                                                $tsql_3= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] where [HR_tblEmpCV].EmpID =  '$row[EmpID]' ;";
+                                                $getResults_3= sqlsrv_query($conn_mssql, $tsql_3);
+                                                $row_2 = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC);
+                                             ?>
+                                            <td><?php echo $row_2['VFirstName'] ?></td>
+                                            <td><input type="text" name="Emp_Salary" size="9" maxlength="9" value='<?php echo "$row[Salary]"?>'> </td>
+                                            <td><input type="text" name="Emp_TT" size="12" maxlength="12" value='<?php echo "$row[ThueTT]" ?>'> </td>
+                                            <td><input type="text" name="Emp_TT" size="16" maxlength="12" value='0'> </td>
+                                            
+                                        </tr>
+                        <?php } ?>
+    
+                        </tr>
+                    </table>
+            	</div>  
             </div>
        </div> 
        <div id="content-main-4"> 

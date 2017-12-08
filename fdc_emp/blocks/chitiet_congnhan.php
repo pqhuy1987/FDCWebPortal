@@ -2,14 +2,9 @@
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
 
-$TimeSheet = $_GET['TimeSheet'];
-
 $tsql= "SELECT top 100 *
   FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] order by [HR_tblEmpCV].VFirstName ASC, [HR_tblEmpCV].CreateTime desc;";
 $getResults= sqlsrv_query($conn_mssql, $tsql);
-
-$tsql_2= "SELECT * FROM [HRISWORKERSPCC].[dbo].[PR_tblEmpSalary] where [PR_tblEmpSalary].TimeSheetID =  '$TimeSheet' ;";
-$getResults_2= sqlsrv_query($conn_mssql, $tsql_2);
 
 ?> 
 
@@ -76,51 +71,6 @@ $(document).ready(function(){
 				//load_data();
 			}
 	 });
-
-	 var TimeSheet = "<?php echo $TimeSheet?>";
-	 var seq = [];
-	 var EmpID = [];
-	 var Salary = [];
-	 var ThueTT = [];
-	 var i = 0;
-	 $('#SingleClick').click(function () {
-		$('#table2 tr').each(function() {
-			EmpID[i] 	= 	$(this).find("td").eq(2).html();  
-			seq[i] 		= 	$(this).find("td").eq(1).html();  
-			Salary[i] 	= 	$(this).find("td:eq(4) input[type='text']").val();  
-			ThueTT[i] 	= 	$(this).find("td:eq(5) input[type='text']").val();       
-			i++;
-		 });
-		 //console.log(TimeSheet);
-		  $.ajax({
-			   type:"POST",
-			   url:"ajax-save-chitiet.php",
-			   data:{EmpID:EmpID, i:i, seq:seq, Salary:Salary, ThueTT:ThueTT, TimeSheet:TimeSheet},
-			   success:function(data)
-			   {
-				   location.reload();
-					alert("Update Susccessfully");
-			   }
-		  });
-    });
-	
-	 
-	 $('#SingleClick_2').click(function () {
-		 var Check_h = "<?php echo $h_temp ?>";	
-		 var arrayFromPHP = <?php echo json_encode($data); ?>;
-		 console.log(Check_h);
-		 console.log(arrayFromPHP);
-		  $.ajax({
-			   type:"POST",
-			   url:"ajax-save-chitiet-2.php",
-			   data:{Check_h:Check_h, arrayFromPHP:arrayFromPHP},
-			   success:function(data)
-			   {
-				    //location.reload();
-					$('#test2').html(data);
-			   }
-		  });
-    });
 	 
 });
 
@@ -145,8 +95,8 @@ $(document).ready(function(){
             tr{transition:all .25s ease-in-out}
             tr:hover{background-color: #ddd;}
 			
-			#content-main #content-main-1 {border-right:solid 1px #E2E2E3; width:30%; float:left; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
-			#content-main #content-main-2 {border-right:solid 1px #E2E2E3; width:50%; float:right; display: inline-block; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
+			#content-main #content-main-1 {border-right:solid 1px #E2E2E3; width:35%; float:left; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
+			#content-main #content-main-2 {border-right:solid 1px #E2E2E3; width:60%; float:right; display: inline-block; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
 			#content-main #content-main-3 {border-right:solid 1px #E2E2E3; width:17%; float:left; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
 			#content-main #content-main-4 {border-right:solid 1px #E2E2E3; width:50%; float:right; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
             
@@ -179,150 +129,143 @@ $(document).ready(function(){
                    </div>
             </div>
        </div>
-       <div id="content-main-3"> 
-       <div class="tab"> 
-            <div class="tab tab-btn">
-                <button style=" width:80px" onclick="tab1_To_tab2();"> Thêm Vào </button>
-                <button style=" width:80px" onclick="tab2_To_tab1();"> Bỏ ra </button>
-            </div>
-      </div>
-      </div>
+
       <div id="content-main-2">      
             <div class="tab">
-            <div id="test2">
-                <table id="table2" border="1">
-                    <tr>
-                        <th>Chọn</th>
-                        <th>STT</th>
-                        <th>Số CMND</th>
-                        <th>Họ và Tên</th>
-                        <th>Số Tiền</th>
-                        <th>Thuế Tạm</th>
-                        <th>VuotCamKet</th>
-					<?php while ($row = sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <tr>
-                                        <td><input type="checkbox" name="check-tab2" value="<?php echo $row['EmpID'] ?>"/></td>
-                                        <td><?php echo $row['Seq'] ?></td>
-                                        <td><?php echo $row['EmpID'] ?></td>
-                                        <?php 
-											$tsql_3= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] where [HR_tblEmpCV].EmpID =  '$row[EmpID]' ;";
-											$getResults_3= sqlsrv_query($conn_mssql, $tsql_3);
-											$row_2 = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC);
-										 ?>
-                                        <td><?php echo $row_2['VFirstName'] ?></td>
-                                        <td><input type="text" name="Emp_Salary" size="9" maxlength="9" value='<?php echo "$row[Salary]"?>'> </td>
-                                        <td><input type="text" name="Emp_TT" size="12" maxlength="12" value='<?php echo "$row[ThueTT]" ?>'> </td>
-                                        <td><input type="text" name="Emp_TT" size="16" maxlength="12" value='0'> </td>
-                                        
-                                    </tr>
-                    <?php } ?>
+                <div id="test2">
+                    <h2>Thông Tin Bảng Chấm Công</h2>
+                    
+                        <table class="table1">
+                        <!--- begin html form; 
+                        put action page in the "action" attribute of the form tag --->
+                        <form action="insert_action.cfm" method="post">
+                        <tr>
+                          <th>Mã Bảng C.Công :</th>
+                          <td><input type="text" name="Emp_ID" size="40" maxlength="40" value=""></td>
+                          <th>Người Dùng:</th>
+                          <td><input type="Text" name="User_ID" size="4" maxlength="8" value="<?php echo $_SESSION['nameuser'] ?>"></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Công Trường</th>
+                          <td>
+                              <select id="LSCompanyID">
+                              <option value="" >----Chọn Tên Công Trường----</option>
+                              <?php while ($row = sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_ASSOC)) { ?>
+                                    <option value="<?php echo $row['LSCompanyID'] ?>" ><?php echo $row['LSCompanyID']; echo ' : '; echo $row['Name'];?></option>
+                              <?php } ?>
+                              </select>
+                              
+                          </td>
+                        </tr>
+                        </table>
+                       <table class="table1">
+                        <tr>
+                          <th>Đội Quản Lý</th>
+                          <td>
+                              <select id="LSLevel1ID">
+                              <option value="" >----Chọn Tên Đội Quản Lý----</option>
+                              <?php while ($row = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC)) { ?>
+                                    <option value="<?php echo $row['LSLevel1ID'] ?>"  ><?php echo $row['LSLevel1ID']; echo ' : '; echo $row['Name'];?></option>
+                              <?php } ?>
+                              </select>
+                              
+                          </td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Từ Ngày:</th>
+                          <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                          <th>Đến Ngày:</th>
+                          <td><input id="Todate" type="date" name="Dept_ID" size="8" maxlength="8" value=""></td>
+                        </tr>
+                         </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Tháng Nhập Liệu</th>
+                          <td>
+                              <select id="MonthNL" >
+                                   <option value=""  >--Chọn Tháng--</option>
+                                   <option value="1"  >Tháng 01</option>
+                                   <option value="2"  >Tháng 02</option>
+                                   <option value="3"  >Tháng 03</option>
+                                   <option value="4"  >Tháng 04</option>
+                                   <option value="5"  >Tháng 05</option>
+                                   <option value="6"  >Tháng 06</option>
+                                   <option value="7"  >Tháng 07</option>
+                                   <option value="8"  >Tháng 08</option>
+                                   <option value="9"  >Tháng 09</option>
+                                   <option value="10" >Tháng 10</option>
+                                   <option value="11" >Tháng 11</option>
+                                   <option value="12" >Tháng 12</option>
+                              </select>
+                          </td>
+                          <th>Năm</th>
+                          <td>
+                              <select id="YearNL">
+                                   <option value="" >--Chọn Năm--</option>
+                                   <option value="2015" >Năm 2015</option>
+                                   <option value="2016" >Năm 2016</option>
+                                   <option value="2017" >Năm 2017</option>
+                                   <option value="2018" >Năm 2018</option>
+                                   <option value="2019" >Năm 2019</option>
+                                   <option value="2020" >Năm 2020</option>
+                              </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Tháng T.Lương</th>
+                          <td>
+                              <select id="MonthTL">
+                                   <option value=""  >--Chọn Tháng--</option>
+                                   <option value="1"  >Tháng 01</option>
+                                   <option value="2"  >Tháng 02</option>
+                                   <option value="3"  >Tháng 03</option>
+                                   <option value="4"  >Tháng 04</option>
+                                   <option value="5"  >Tháng 05</option>
+                                   <option value="6"  >Tháng 06</option>
+                                   <option value="7"  >Tháng 07</option>
+                                   <option value="8"  >Tháng 08</option>
+                                   <option value="9"  >Tháng 09</option>
+                                   <option value="10" >Tháng 10</option>
+                                   <option value="11" >Tháng 11</option>
+                                   <option value="12" >Tháng 12</option>
+                              </select>
+                          </td>
+                          <th>Năm</th>
+                          <td>
+                              <select id="YearTL">
+                                   <option value="" >--Chọn Năm--</option>
+                                   <option value="2015" >Năm 2015</option>
+                                   <option value="2016" >Năm 2016</option>
+                                   <option value="2017" >Năm 2017</option>
+                                   <option value="2018" >Năm 2018</option>
+                                   <option value="2019" >Năm 2019</option>
+                                   <option value="2020" >Năm 2020</option>
+                              </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>Số Phiếu Kế Tóan</th>
+                          <td><input type="text" name="Dept_ID" size="12" maxlength="8"></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <td> <button type="button" style=" width:125px" onClick="submit_change()">Tạo Mới </button> </td>
+                          <td> <button type="button" style=" width:125px" onClick="alert('Hello world!')">Thoát</button> </td>
+                        </tr>
+                    
+                        <!--- end html form --->
+                        </table>
+                        </form>
 
-                    </tr>
-                </table>
-            </div>  
+                </div>  
             </div>
        </div> 
-       <div id="content-main-4"> 
-       <div class="tab"> 
-            <div class="tab tab-btn">
-                <button style="margin-right: 10px; float:left; width:80px" id="SingleClick" > Lưu </button>
-                <form method="post" enctype="multipart/form-data"> <input type="file" name="file"  onchange="this.form.submit()"> <input id="SingleClick_2" type="button" value="Parse" />  </form> 
-            </div>
-      </div>
-      </div>
      </div>
    </div>      
-        <script>
-		
-			//checkboxes_3 = document.getElementsByName("check-tab2");
-			
-            //var j = checkboxes_3.length + 1;
-			
-            function tab1_To_tab2()
-            {
-				checkboxes_3 = document.getElementsByName("check-tab2");
-            	var j = checkboxes_3.length + 1;
-				
-                var table1 = document.getElementById("table1"),
-                    table2 = document.getElementById("table2"),
-                    checkboxes = document.getElementsByName("check-tab1");
-					checkboxes_2 = document.getElementsByName("check-tab2");
-            		console.log("Val_1_to_2 = " + checkboxes.length);
-					
-                 for(var i = 0; i < checkboxes.length; i++){
-                     if(checkboxes[i].checked)
-                        {
-                            // create new row and cells
-                            var newRow = table2.insertRow(table2.length),
-                                cell1 = newRow.insertCell(0),
-                                cell2 = newRow.insertCell(1),
-                                cell3 = newRow.insertCell(2),
-                                cell4 = newRow.insertCell(3);
-								cell5 = newRow.insertCell(4);
-								cell6 = newRow.insertCell(5);
-								cell7 = newRow.insertCell(6);
-                            // add values to the cells
-                            cell1.innerHTML = "<input type='checkbox' name='check-tab2'>";
-							if (j <= checkboxes_2.length){ 
-								cell2.innerHTML = j;
-								j++;
-							}
-							console.log(i);
-                            cell3.innerHTML = table1.rows[i+1].cells[1].innerHTML;
-							
-                            cell4.innerHTML = table1.rows[i+1].cells[2].innerHTML;
-							cell5.innerHTML = '<input type="text" name="Emp_Salary" size="9" maxlength="9" value="0">'
-							cell6.innerHTML = '<input type="text" name="Emp_TT" size="12" maxlength="9" value="0">'
-							cell7.innerHTML = '<input type="text" name="Emp_TT" size="16" maxlength="12" value="0">'
-                           
-                            // remove the transfered rows from the first table [table1]
-                            var index = table1.rows[i+1].rowIndex;
-                            table1.deleteRow(index);
-                            // we have deleted some rows so the checkboxes.length have changed
-                            // so we have to decrement the value of i
-                            i--;
-                           console.log(checkboxes.length);
-                        }
-				 }
-            }
-            
-            function tab2_To_tab1()
-            {
-				checkboxes_3 = document.getElementsByName("check-tab2");
-            	var j = checkboxes_3.length + 1;
-				
-                var table1 = document.getElementById("table1"),
-                    table2 = document.getElementById("table2"),
-                    checkboxes = document.getElementsByName("check-tab2");
-            		console.log("Val_2_to_1 = " + checkboxes.length);
-                 for(var i = 0; i < checkboxes.length; i++){
-                     if(checkboxes[i].checked)
-                        {
-                            // create new row and cells
-                            var newRow = table1.insertRow(table1.length),
-                                cell1 = newRow.insertCell(0),
-                                cell2 = newRow.insertCell(1),
-                                cell3 = newRow.insertCell(2);
-                            // add values to the cells
-                            cell1.innerHTML = "<input type='checkbox' name='check-tab1'>";
-                            cell2.innerHTML = table2.rows[i+1].cells[2].innerHTML;
-                            cell3.innerHTML = table2.rows[i+1].cells[3].innerHTML;
-                           
-                            // remove the transfered rows from the second table [table2]
-                            var index = table2.rows[i+1].rowIndex;
-                            table2.deleteRow(index);
-                            // we have deleted some rows so the checkboxes.length have changed
-                            // so we have to decrement the value of i
-                            i--;
-							j--;
-                           console.log(checkboxes.length);
-                        }
-				 }
-				 
-				 for(var k = 1; k <= j; k++){
-					table2.rows[k].cells[1].innerHTML = k; 
-				 }
-            }
-        </script>    
     </body>
 </html>
