@@ -1,3 +1,22 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type='text/javascript'>
+$(document).ready(function(){
+	 
+	$('input[type="checkbox"]').on('change', function() {
+	   $('input[type="checkbox"]').not(this).prop('checked', false);
+	   	var checked = $(this).val();
+			   	$.ajax({//Make the Ajax Request
+					type: 'POST',
+					url: 'ajx_chitiet_congnhan.php',
+					data: { EmpID: checked},
+					success: function(data){
+						$('#content-main-2').html(data);
+					}
+				});
+	});  
+
+});
+</script>
 <?php
 	require "../lib/dbConMSSQL.php";
 	require "../lib/dbCon.php";

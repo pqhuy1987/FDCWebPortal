@@ -169,7 +169,7 @@ $(document).ready(function(){
                             </tr>
                             <?php while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) { ?>
                                             <tr>
-                                                <td><input type="checkbox" name="check-tab1" value="<?php echo $row['EmpID'] ?>" /></td>
+                                                <td><input type="checkbox" class="radio" name="check-tab1" value="<?php echo $row['EmpID'] ?>" /></td>
                                                 <td><?php echo $row['EmpID'] ?></td>
                                                 <td><?php echo $row['VFirstName'] ?></td>
                                             </tr>

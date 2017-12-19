@@ -40,22 +40,19 @@ if (isset($_FILES['file'])) {
 }
 ?>  
 
-<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-
-<script type="text/javascript" src="jquery.js"></script> 
-
-<script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type='text/javascript'>
 $(document).ready(function(){
-
+	
 	 function load_data(query)
 	 {
 		  $.ajax({
 			   type:"POST",
-			   url:"fetch.php",
+			   url:"fetch2.php",
 			   data:{query:query},
 			   success:function(data)
 			   {
-					$('#test1').html(data);
+					$('#test1').html(data);	
 			   }
 		  });
 	 }
@@ -72,10 +69,25 @@ $(document).ready(function(){
 			}
 	 });
 	 
+	$('input[type="checkbox"]').on('change', function() {
+	   $('input[type="checkbox"]').not(this).prop('checked', false);
+	   	var checked = $(this).val();
+			   	$.ajax({//Make the Ajax Request
+					type: 'POST',
+					url: 'ajx_chitiet_congnhan.php',
+					data: { EmpID: checked},
+					success: function(data){
+						$('#content-main-2').html(data);
+					}
+				});
+	});  
+	 
 });
 
+</script>
 
-	 
+<script type='text/javascript'>
+
 </script>
 
 <!DOCTYPE html>
@@ -95,10 +107,10 @@ $(document).ready(function(){
             tr{transition:all .25s ease-in-out}
             tr:hover{background-color: #ddd;}
 			
-			#content-main #content-main-1 {border-right:solid 1px #E2E2E3; width:35%; float:left; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
-			#content-main #content-main-2 {border-right:solid 1px #E2E2E3; width:60%; float:right; display: inline-block; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
-			#content-main #content-main-3 {border-right:solid 1px #E2E2E3; width:17%; float:left; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
-			#content-main #content-main-4 {border-right:solid 1px #E2E2E3; width:50%; float:right; padding: 5px; max-height:600px; margin: 0 0 0 0px; overflow:auto }
+			#content-main #content-main-1 {border-right:solid 1px #E2E2E3; width:35%; float:left; padding: 5px; max-height:800px; margin: 0 0 0 0px; overflow:auto }
+			#content-main #content-main-2 {border-right:solid 1px #E2E2E3; width:60%; float:right; display: inline-block; padding: 5px; max-height:1200px; margin: 0 0 0 0px; overflow:auto }
+			#content-main #content-main-3 {border-right:solid 1px #E2E2E3; width:17%; float:left; padding: 5px; max-height:800px; margin: 0 0 0 0px; overflow:auto }
+			#content-main #content-main-4 {border-right:solid 1px #E2E2E3; width:50%; float:right; padding: 5px; max-height:800px; margin: 0 0 0 0px; overflow:auto }
             
         </style>    
     <body>
@@ -119,7 +131,7 @@ $(document).ready(function(){
                             </tr>
                             <?php while ($row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) { ?>
                                             <tr>
-                                                <td><input type="checkbox" name="check-tab1" value="<?php echo $row['EmpID'] ?>" /></td>
+                                                <th><input type="checkbox" name="check-tab1" value="<?php echo $row['EmpID'] ?>" /></th>
                                                 <td><?php echo $row['EmpID'] ?></td>
                                                 <td><?php echo $row['VFirstName'] ?></td>
                                             </tr>
@@ -133,134 +145,220 @@ $(document).ready(function(){
       <div id="content-main-2">      
             <div class="tab">
                 <div id="test2">
-                    <h2>Thông Tin Bảng Chấm Công</h2>
+                	<!––----------------------//THÔNG TIN CÔNG NHÂN-------------------------––>
+                	<!––--------------------------------------------------------------------––>
+                        <h2>Thông Tin Công Nhân</h2>
+                        
+                            <table class="table1">
+                            <!--- begin html form; 
+                            put action page in the "action" attribute of the form tag --->
+                            <form action="insert_action.cfm" method="post">
+                            <tr>
+                              <th>Số CMND :</th>
+                              <td><input type="text" name="Emp_ID" size="16" maxlength="12" value=""></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Họ và Tên:</th>
+                              <td><input type="Text" name="User_ID" size="40" maxlength="40" value=""></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Địa Chỉ:</th>
+                              <td><input type="Text" name="User_ID" size="64" maxlength="64" value=""></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                                <tr>
+                                  <th>Ngày Sinh</th>
+                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                                  <th>Tháng/Năm Sinh</th>
+                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                </tr>
+                            </table>
+                            <table class="table1">
+                                <tr>
+                                  <th>Ngày Cấp CMND</th>
+                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                                  <th>Tháng/Năm Cấp CMND</th>
+                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Nơi Cấp CMND</th>
+                              <td><input type="text" name="Dept_ID" size="12" maxlength="20"></td>
+                              <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Tạo Mới </button> </td>
+                              <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Thoát</button> </td>
+                            </tr>
+                            </table>
+                            </form>
+                	<!––--------------------------------------------------------------------––>
+                	<!––--------------------------------------------------------------------––>
+                    
+                    
+                	<!––----------------------//THÔNG TIN HỢP ĐỒNG--------------------------––>
+                	<!––--------------------------------------------------------------------––>
+                    <h2>Thông Tin Hợp Đồng</h2>
                     
                         <table class="table1">
                         <!--- begin html form; 
                         put action page in the "action" attribute of the form tag --->
                         <form action="insert_action.cfm" method="post">
                         <tr>
-                          <th>Mã Bảng C.Công :</th>
-                          <td><input type="text" name="Emp_ID" size="40" maxlength="40" value=""></td>
-                          <th>Người Dùng:</th>
-                          <td><input type="Text" name="User_ID" size="4" maxlength="8" value="<?php echo $_SESSION['nameuser'] ?>"></td>
+                          <th>Số CMND :</th>
+                          <td><input type="text" name="Emp_ID" size="16" maxlength="12" value=""></td>
                         </tr>
                         </table>
                         <table class="table1">
                         <tr>
-                          <th>Công Trường</th>
-                          <td>
-                              <select id="LSCompanyID">
-                              <option value="" >----Chọn Tên Công Trường----</option>
-                              <?php while ($row = sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <option value="<?php echo $row['LSCompanyID'] ?>" ><?php echo $row['LSCompanyID']; echo ' : '; echo $row['Name'];?></option>
-                              <?php } ?>
-                              </select>
-                              
-                          </td>
-                        </tr>
-                        </table>
-                       <table class="table1">
-                        <tr>
-                          <th>Đội Quản Lý</th>
-                          <td>
-                              <select id="LSLevel1ID">
-                              <option value="" >----Chọn Tên Đội Quản Lý----</option>
-                              <?php while ($row = sqlsrv_fetch_array($getResults_3, SQLSRV_FETCH_ASSOC)) { ?>
-                                    <option value="<?php echo $row['LSLevel1ID'] ?>"  ><?php echo $row['LSLevel1ID']; echo ' : '; echo $row['Name'];?></option>
-                              <?php } ?>
-                              </select>
-                              
-                          </td>
+                          <th>Họ và Tên:</th>
+                          <td><input type="Text" name="User_ID" size="40" maxlength="40" value=""></td>
                         </tr>
                         </table>
                         <table class="table1">
                         <tr>
-                          <th>Từ Ngày:</th>
-                          <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
-                          <th>Đến Ngày:</th>
-                          <td><input id="Todate" type="date" name="Dept_ID" size="8" maxlength="8" value=""></td>
-                        </tr>
-                         </table>
-                        <table class="table1">
-                        <tr>
-                          <th>Tháng Nhập Liệu</th>
-                          <td>
-                              <select id="MonthNL" >
-                                   <option value=""  >--Chọn Tháng--</option>
-                                   <option value="1"  >Tháng 01</option>
-                                   <option value="2"  >Tháng 02</option>
-                                   <option value="3"  >Tháng 03</option>
-                                   <option value="4"  >Tháng 04</option>
-                                   <option value="5"  >Tháng 05</option>
-                                   <option value="6"  >Tháng 06</option>
-                                   <option value="7"  >Tháng 07</option>
-                                   <option value="8"  >Tháng 08</option>
-                                   <option value="9"  >Tháng 09</option>
-                                   <option value="10" >Tháng 10</option>
-                                   <option value="11" >Tháng 11</option>
-                                   <option value="12" >Tháng 12</option>
-                              </select>
-                          </td>
-                          <th>Năm</th>
-                          <td>
-                              <select id="YearNL">
-                                   <option value="" >--Chọn Năm--</option>
-                                   <option value="2015" >Năm 2015</option>
-                                   <option value="2016" >Năm 2016</option>
-                                   <option value="2017" >Năm 2017</option>
-                                   <option value="2018" >Năm 2018</option>
-                                   <option value="2019" >Năm 2019</option>
-                                   <option value="2020" >Năm 2020</option>
-                              </select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Tháng T.Lương</th>
-                          <td>
-                              <select id="MonthTL">
-                                   <option value=""  >--Chọn Tháng--</option>
-                                   <option value="1"  >Tháng 01</option>
-                                   <option value="2"  >Tháng 02</option>
-                                   <option value="3"  >Tháng 03</option>
-                                   <option value="4"  >Tháng 04</option>
-                                   <option value="5"  >Tháng 05</option>
-                                   <option value="6"  >Tháng 06</option>
-                                   <option value="7"  >Tháng 07</option>
-                                   <option value="8"  >Tháng 08</option>
-                                   <option value="9"  >Tháng 09</option>
-                                   <option value="10" >Tháng 10</option>
-                                   <option value="11" >Tháng 11</option>
-                                   <option value="12" >Tháng 12</option>
-                              </select>
-                          </td>
-                          <th>Năm</th>
-                          <td>
-                              <select id="YearTL">
-                                   <option value="" >--Chọn Năm--</option>
-                                   <option value="2015" >Năm 2015</option>
-                                   <option value="2016" >Năm 2016</option>
-                                   <option value="2017" >Năm 2017</option>
-                                   <option value="2018" >Năm 2018</option>
-                                   <option value="2019" >Năm 2019</option>
-                                   <option value="2020" >Năm 2020</option>
-                              </select>
-                          </td>
-                        </tr>
-                        <tr>
-                          <th>Số Phiếu Kế Tóan</th>
-                          <td><input type="text" name="Dept_ID" size="12" maxlength="8"></td>
+                          <th>Địa Chỉ:</th>
+                          <td><input type="Text" name="User_ID" size="64" maxlength="64" value=""></td>
                         </tr>
                         </table>
                         <table class="table1">
+                            <tr>
+                              <th>Ngày Sinh</th>
+                              <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                              <th>Tháng/Năm Sinh</th>
+                              <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                            </tr>
+                        </table>
+                        <table class="table1">
+                            <tr>
+                              <th>Ngày Cấp CMND</th>
+                              <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                              <th>Tháng/Năm Cấp CMND</th>
+                              <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                            </tr>
+                        </table>
+                        <table class="table1">
                         <tr>
-                          <td> <button type="button" style=" width:125px" onClick="submit_change()">Tạo Mới </button> </td>
-                          <td> <button type="button" style=" width:125px" onClick="alert('Hello world!')">Thoát</button> </td>
+                          <th>Nơi Cấp CMND</th>
+                          <td><input type="text" name="Dept_ID" size="12" maxlength="20"></td>
+                          <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Tạo Mới </button> </td>
+                          <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Thoát</button> </td>
                         </tr>
-                    
-                        <!--- end html form --->
                         </table>
                         </form>
+                	<!––--------------------------------------------------------------------––>
+                	<!––--------------------------------------------------------------------––>
+                    
+                	<!––----------------------//THÔNG TIN BẢNG CAM KẾT------------------------>
+                	<!––--------------------------------------------------------------------––>
+
+                    <h2>Thông Tin Bảng Cam Kết</h2>
+                    
+                        <table class="table1">
+                        <!--- begin html form; 
+                        put action page in the "action" attribute of the form tag --->
+                        <form action="insert_action.cfm" method="post">
+                        <tr>
+                          <th>Số CMND :</th>
+                          <td><input type="text" name="Emp_ID" size="16" maxlength="12" value=""></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Họ và Tên:</th>
+                          <td><input type="Text" name="User_ID" size="40" maxlength="40" value=""></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Địa Chỉ:</th>
+                          <td><input type="Text" name="User_ID" size="64" maxlength="64" value=""></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                            <tr>
+                              <th>Ngày Sinh</th>
+                              <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                              <th>Tháng/Năm Sinh</th>
+                              <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                            </tr>
+                        </table>
+                        <table class="table1">
+                            <tr>
+                              <th>Ngày Cấp CMND</th>
+                              <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                              <th>Tháng/Năm Cấp CMND</th>
+                              <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                            </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Nơi Cấp CMND</th>
+                          <td><input type="text" name="Dept_ID" size="12" maxlength="20"></td>
+                          <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Tạo Mới </button> </td>
+                          <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Thoát</button> </td>
+                        </tr>
+                        </table>
+                        </form>
+                	<!––--------------------------------------------------------------------––>
+                	<!––--------------------------------------------------------------------––>
+
+                	<!––----------------------//THÔNG TIN BẢNG CAM KẾT------------------------>
+                	<!––--------------------------------------------------------------------––>
+
+                    <h2>Mã Số Thuế Và Người Phụ Thuộc</h2>
+                    
+                        <table class="table1">
+                        <!--- begin html form; 
+                        put action page in the "action" attribute of the form tag --->
+                        <form action="insert_action.cfm" method="post">
+                        <tr>
+                          <th>Số CMND :</th>
+                          <td><input type="text" name="Emp_ID" size="16" maxlength="12" value=""></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Họ và Tên:</th>
+                          <td><input type="Text" name="User_ID" size="40" maxlength="40" value=""></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Địa Chỉ:</th>
+                          <td><input type="Text" name="User_ID" size="64" maxlength="64" value=""></td>
+                        </tr>
+                        </table>
+                        <table class="table1">
+                            <tr>
+                              <th>Ngày Sinh</th>
+                              <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                              <th>Tháng/Năm Sinh</th>
+                              <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                            </tr>
+                        </table>
+                        <table class="table1">
+                            <tr>
+                              <th>Ngày Cấp CMND</th>
+                              <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                              <th>Tháng/Năm Cấp CMND</th>
+                              <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                            </tr>
+                        </table>
+                        <table class="table1">
+                        <tr>
+                          <th>Nơi Cấp CMND</th>
+                          <td><input type="text" name="Dept_ID" size="12" maxlength="20"></td>
+                          <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Tạo Mới </button> </td>
+                          <td><button type="button" style="width:125px" onClick="alert('Hello world!')">Thoát</button> </td>
+                        </tr>
+                        </table>
+                        </form>
+                	<!––--------------------------------------------------------------------––>
+                	<!––--------------------------------------------------------------------––>
 
                 </div>  
             </div>
