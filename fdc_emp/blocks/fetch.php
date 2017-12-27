@@ -10,8 +10,7 @@
 	}
 	else
 	{
-	 	$tsql = "SELECT top 300 *
-  FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] order by [HR_tblEmpCV].VFirstName ASC, [HR_tblEmpCV].CreateTime desc;";
+	 	$tsql = "SELECT top 300 * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] order by [HR_tblEmpCV].VFirstName ASC, [HR_tblEmpCV].CreateTime desc;";
 		$getResults= sqlsrv_query($conn_mssql, $tsql, array(), array( "Scrollable" => 'static' ));
 	}
 	$output = "";

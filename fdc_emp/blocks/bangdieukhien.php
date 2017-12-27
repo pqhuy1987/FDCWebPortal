@@ -34,7 +34,6 @@ while($data = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_ASSOC)) {
     <link type="text/css" href="blocks/Style.css" rel="stylesheet" />
     <script type="text/javascript" src="blocks/Script.js"></script>
 </head>
-
 <body>
 <h2>Công Cụ Thao Tác</h2>
 

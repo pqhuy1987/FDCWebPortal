@@ -1,13 +1,9 @@
 <?php
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
-   
-if (isset($_GET["p"]))
-    $p = $_GET["p"];
-else
-    $p = "";
-	
-$EmpID = $_POST['EmpID'];
+
+$Var_ratio = $_POST['Var_ratio'];
+$EmpID = $_POST['Emp_ID'];
 
 //––------------------------------------THÔNG TIN CÔNG NHÂN--------------------------------––---––//
 $tsql= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] where [HR_tblEmpCV].EmpID = '$EmpID' ;";
@@ -50,162 +46,11 @@ $getResults_2_6 	= sqlsrv_query($conn_mssql, $tsql_2_6, array(), array( "Scrolla
 $row_2_6 			= sqlsrv_fetch_array($getResults_2_6, SQLSRV_FETCH_BOTH);
 
 //––-------------------------------------------------------------------------------------------––-//
-?> 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type='text/javascript'>
-$(document).ready(function(){
-	//$("input[@name='update1']").change(function(){
-	$('#myForm1 input').on('change', function() {
-	   var Var_ratio = $('input[name=update1]:checked', '#myForm1').val();
-	   var Emp_ID = $("#Emp_ID").val();
-	   
-	   if (Var_ratio == 'add'){
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan.php",
-				data:{Var_ratio:1},
-				success:function(data)
-				{
-					$('#FormRatio1').html(data);	
-				}
-			}); 
-	   } else if ((Var_ratio == 'view') || (Var_ratio == 'edit'))
-	   {
-		   //alert(1);
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan_edit.php",
-				data:{Var_ratio:1, Emp_ID:Emp_ID},
-				success:function(data)
-				{
-					$('#FormRatio1').html(data);	
-				}
-			}); 		   
-	   }
-	});
-	
-	$('#myForm2 input').on('change', function() {
-	   var Var_ratio = $('input[name=update2]:checked', '#myForm2').val(); 
-	   var Emp_ID = $("#Emp_ID").val();
-	   if (Var_ratio == 'add'){
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan.php",
-				data:{Var_ratio:2},
-				success:function(data)
-				{
-					$('#FormRatio2').html(data);	
-				}
-			}); 
-	   } else if ((Var_ratio == 'view') || (Var_ratio == 'edit'))
-	   {
-		   //alert(2);
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan_edit.php",
-				data:{Var_ratio:2, Emp_ID:Emp_ID},
-				success:function(data)
-				{
-					$('#FormRatio2').html(data);	
-				}
-			}); 		   
-	   }
-	});
-	
-	$('#myForm3 input').on('change', function() {
-	   var Var_ratio = $('input[name=update3]:checked', '#myForm3').val();
-	   var Emp_ID = $("#Emp_ID").val(); 
-	   if (Var_ratio == 'add'){
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan.php",
-				data:{Var_ratio:3},
-				success:function(data)
-				{
-					$('#FormRatio3').html(data);	
-				}
-			}); 
-	   } else if ((Var_ratio == 'view') || (Var_ratio == 'edit'))
-	   {
-		   //alert(3);
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan_edit.php",
-				data:{Var_ratio:3, Emp_ID:Emp_ID},
-				success:function(data)
-				{
-					$('#FormRatio3').html(data);	
-				}
-		 	}); 		   
-	   }
-	});
+?>
 
-});
-
-</script>
-  
-            <div class="tab">
-                <div id="test2">
-                	<!––----------------------//THÔNG TIN CÔNG NHÂN-------------------------––>
-                	<!––--------------------------------------------------------------------––>
-                            <h2>THÔNG TIN CÔNG NHÂN</h2>
-                            
-                                <table class="table1">
-                                <!--- begin html form; 
-                                put action page in the "action" attribute of the form tag --->
-                                <form action="insert_action.cfm" method="post">
-                                <tr>
-                                  <th>Số CMND :</th>
-                                  <td><input type="text" name="Emp_ID" id="Emp_ID" size="16" maxlength="12" value="<?php echo $row['EmpID'] ?>" ></td>
-                                </tr>
-                                </table>
-                                <table class="table1">
-                                <tr>
-                                  <th>Họ và Tên:</th>
-                                  <td><input type="Text" name="User_ID" size="40" maxlength="40" value="<?php echo $row['VFirstName'] ?>" ></td>
-                                </tr>
-                                </table>
-                                <table class="table1">
-                                <tr>
-                                  <th>Địa Chỉ:</th>
-                                  <td><input type="Text" name="User_ID" size="64" maxlength="64" value="<?php echo $row['P_Address'] ?>"></td>
-                                </tr>
-                                </table>
-                                <table class="table1">
-                                    <tr>
-                                      <th>Ngày Sinh</th>
-                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row['DOB'] != NULL)  echo $row['DOB']->format('Y-m-d')?>"> </td>
-                                      <th>Tháng/Năm Sinh</th>
-                                      <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
-                                    </tr>
-                                </table>
-                                <table class="table1">
-                                    <tr>
-                                      <th>Ngày Cấp CMND</th>
-                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row['IDIssuedDate'] != NULL) echo  $row['IDIssuedDate']->format('Y-m-d')?>"> </td>
-                                      <th>Tháng/Năm Cấp CMND</th>
-                                      <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
-                                    </tr>
-                                </table>
-                                <table class="table1">
-                                <tr>
-                                  <th>Nơi Cấp CMND</th>
-                                  <td><input type="text" name="Dept_ID" size="12" maxlength="20" value="<?php echo $row['IDIssuedPlace'] ?>"></td>
-                                </tr>
-                                </table>
-                                </form>  
-                	<!––--------------------------------------------------------------------––>
-                	<!––--------------------------------------------------------------------––>
-                    
-                	<!––----------------------//THÔNG TIN HỢP ĐỒNG--------------------------––>
-                	<!––--------------------------------------------------------------------––>
-                        <h2>THÔNG TIN HỢP ĐỒNG</h2>
-                        <form id="myForm1">
-                            <input type="radio" name="update1" value="view" checked="checked"> Xem 
-                            <input type="radio" name="update1" value="add"> Thêm
-                            <input type="radio" name="update1" value="edit"> Sửa
-                        </form>
-                    <div id="FormRatio1">
+<?php
+	if ($Var_ratio == 1)
+	{ ?>
                         <table class="table1">
                             <tr>
                               <th>Công Trường</th>
@@ -250,19 +95,8 @@ $(document).ready(function(){
                                 <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2['ToDate'] != NULL)  echo $row_2['ToDate']->format('Y-m-d')?>"> </td>
                              </tr>
                         </table>
-                    </div> 
-                	<!––--------------------------------------------------------------------––>
-                	<!––--------------------------------------------------------------------––>
-                    
-                	<!––----------------------//THÔNG TIN BẢNG CAM KẾT----------------------––>
-                	<!––--------------------------------------------------------------------––>
-                        <h2>THÔNG TIN BẢNG CAM KẾT</h2>
-                        <form id="myForm2">
-                            <input type="radio" name="update2" value="view" checked="checked"> Xem 
-                            <input type="radio" name="update2" value="add"> Thêm
-                            <input type="radio" name="update2" value="edit"> Sửa
-                        </form>
-                    <div id="FormRatio2">
+<?php
+	} else if ($Var_ratio == 2) { ?>
                         <table class="table1">
                             <tr>
                               <th>Công Trường</th>
@@ -313,20 +147,9 @@ $(document).ready(function(){
                               <th>Ghi Chú:</th>
                               <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_5['Note'] ?>" ></td>
                             </tr>
-                       	</table>
-                    </div> 
-                	<!––--------------------------------------------------------------------––>
-                	<!––--------------------------------------------------------------------––>     
-                    
-                	<!––----------------------//MÃ SỐ THUẾ VÀ NGƯỜI PHỤ THUỘC---------------––>
-                	<!––--------------------------------------------------------------------––>
-                        <h2>MÃ SỐ THUẾ VÀ NGƯỜI PHỤ THUỘC</h2>
-                        <form id="myForm3">
-                        	<input type="radio" name="update3" value="view" checked="checked"> Xem 
-                        	<input type="radio" name="update3" value="add"> Thêm
-                        	<input type="radio" name="update3" value="edit"> Sửa
-                        </form>
-                    <div id="FormRatio3">
+                       	</table>	
+<?php	
+	} else if ($Var_ratio == 3) { ?>
                       	<table class="table1">
                             <tr>
                               <th>Mã Số Thuế:</th>
@@ -343,19 +166,9 @@ $(document).ready(function(){
                               	<td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_6['Note'] ?>" ></td>
                              </tr>
                         </table>
-                  </div> 
-                	<!––--------------------------------------------------------------------––>
-                	<!––--------------------------------------------------------------------––> 
-                    
-                	<!––----------------------//CÔNG CỤ-------------------------------------––>
-                	<!––--------------------------------------------------------------------––>
-                        <h2>CÔNG CỤ</h2>
-                        <span style="display: inline;">
-                          <input type="submit" value="THÊM"/> <input type="button" value="LƯU"/> <input type="button" value="XÓA"/>
-                        </span>
+		
+<?php
+	}
+?>
 
-                	<!––--------------------------------------------------------------------––>
-                	<!––--------------------------------------------------------------------––>                                         
-                    
-                </div>  
-            </div>
+

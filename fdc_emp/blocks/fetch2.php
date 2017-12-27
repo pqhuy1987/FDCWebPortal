@@ -29,8 +29,7 @@ $(document).ready(function(){
 	}
 	else
 	{
-	 	$tsql = "SELECT top 300 *
-  FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] order by [HR_tblEmpCV].VFirstName ASC, [HR_tblEmpCV].CreateTime desc;";
+	 	$tsql = "SELECT top 300 * FROM [HRISWORKERSPCC].[dbo].[HR_tblEmpCV] order by [HR_tblEmpCV].VFirstName ASC, [HR_tblEmpCV].CreateTime desc;";
 		$getResults= sqlsrv_query($conn_mssql, $tsql, array(), array( "Scrollable" => 'static' ));
 	}
 	$output = "";
@@ -48,7 +47,7 @@ $(document).ready(function(){
 	 {
 	  $output .= '
 	   <tr>
-		<th>'.'<input type="checkbox" name="check-tab1" value='.$row["EmpID"].'"/>'.'</th>
+		<th>'.'<input type="checkbox" name="check-tab1" value="'.$row["EmpID"].'"</th>
 		<td>'.$row["EmpID"].'</td>
 		<td>'.$row["VFirstName"].'</td>
 	   </tr>
