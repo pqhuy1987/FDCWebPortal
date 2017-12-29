@@ -209,6 +209,17 @@ $(document).ready(function(){
 		 	}); 		   
 	   }
 	});  
+	
+	$( "#button_add" ).click(function() {
+		$.ajax({//Make the Ajax Request
+			type: 'POST',
+			url: 'ajx_chitiet_congnhan_2.php',
+			data: { EmpID: 1},
+					success: function(data){
+					$('#content-main-2').html(data);
+				}
+		});
+	});		
 	 
 });
 
@@ -279,7 +290,7 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
                     
                         <h2>THÔNG TIN CÔNG NHÂN</h2>
-                        
+						<div id="FormRatio4">
                             <table class="table1">
                             <!--- begin html form; 
                             put action page in the "action" attribute of the form tag --->
@@ -324,6 +335,7 @@ $(document).ready(function(){
                             </tr>
                             </table>
                             </form>
+                       	</div>
                 	<!––--------------------------------------------------------------------––>
                 	<!––--------------------------------------------------------------------––>
                     
@@ -331,12 +343,13 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
 
                         <h2>THÔNG TIN HỢP ĐỒNG</h2>
+
                         <form id="myForm1">
                             <input type="radio" name="update1" value="view" checked="checked"> Xem 
                             <input type="radio" name="update1" value="add"> Thêm
                             <input type="radio" name="update1" value="edit"> Sửa
                         </form>
-                    <div id="FormRatio1">
+                        <div id="FormRatio1">                   
                         <table class="table1">
                             <tr>
                               <th>Công Trường</th>
@@ -482,7 +495,7 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
                         <h2>CÔNG CỤ</h2>
                         <span style="display: inline;">
-                          <input type="submit" value="THÊM"/> <input type="button" value="LƯU"/> <input type="button" value="XÓA"/>
+                          <input type="button" id="button_add" value="THÊM"/> <input type="button" value="LƯU"/> <input type="button" value="XÓA"/>
                         </span>
 
                 	<!––--------------------------------------------------------------------––>

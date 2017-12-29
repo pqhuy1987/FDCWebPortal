@@ -1,3 +1,4 @@
+
 <?php
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
@@ -134,7 +135,52 @@ $getResults_2_5_2   = sqlsrv_query($conn_mssql, $tsql_2_5_2);
                              </tr>
                         </table>		
 <?php
-	}
-?>
+	} else if ($Var_ratio == 4) { ?>
+                            <table class="table1">
+                            <!--- begin html form; 
+                            put action page in the "action" attribute of the form tag --->
+                            <form action="insert_action.cfm" method="post">
+                            <tr>
+                              <th>Số CMND :</th>
+                              <td><input type="text" name="Emp_ID" id="Emp_ID" size="16" maxlength="12" value="" ></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Họ và Tên:</th>
+                              <td><input type="Text" name="User_ID" size="40" maxlength="40" value="" ></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Địa Chỉ:</th>
+                              <td><input type="Text" name="User_ID" size="64" maxlength="64" value=""></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                                <tr>
+                                  <th>Ngày Sinh</th>
+                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                                  <th>Tháng/Năm Sinh</th>
+                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                </tr>
+                            </table>
+                            <table class="table1">
+                                <tr>
+                                  <th>Ngày Cấp CMND</th>
+                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                                  <th>Tháng/Năm Cấp CMND</th>
+                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Nơi Cấp CMND</th>
+                              <td><input type="text" name="Dept_ID" size="12" maxlength="20" value=""></td>
+                            </tr>
+                            </table>
+                            </form>
+
+<?php } ?>
 
 

@@ -141,25 +141,50 @@ $(document).ready(function(){
 	});
 	
 	$( "#button_add" ).click(function() {
-		$.ajax({//Make the Ajax Request
-			type: 'POST',
-			url: 'ajx_chitiet_congnhan_2.php',
-			data: { EmpID: 1},
-					success: function(data){
-					$('#content-main-2').html(data);
+		   $.ajax({
+				type:"POST",
+				url:"ajx_detail_chitiet_congnhan.php",
+				data:{Var_ratio:1},
+				success:function(data)
+				{
+					$('#FormRatio1').html(data);	
 				}
-		});
+			}); 
+		   $.ajax({
+				type:"POST",
+				url:"ajx_detail_chitiet_congnhan.php",
+				data:{Var_ratio:2},
+				success:function(data)
+				{
+					$('#FormRatio2').html(data);	
+				}
+			}); 
+		   $.ajax({
+				type:"POST",
+				url:"ajx_detail_chitiet_congnhan.php",
+				data:{Var_ratio:3},
+				success:function(data)
+				{
+					$('#FormRatio3').html(data);	
+				}
+			}); 
+		   $.ajax({
+				type:"POST",
+				url:"ajx_detail_chitiet_congnhan.php",
+				data:{Var_ratio:4},
+				success:function(data)
+				{
+					$('#FormRatio4').html(data);	
+				}
+			}); 
 	});	
 	
 	$( "#button_save" ).click(function() {
 		
 	});	
 
-
 });
-
 </script>
-  
             <div class="tab">
                 <div id="test2">
                 	<!––----------------------//THÔNG TIN CÔNG NHÂN-------------------------––>
@@ -172,25 +197,25 @@ $(document).ready(function(){
                                 <form action="insert_action.cfm" method="post">
                                 <tr>
                                   <th>Số CMND :</th>
-                                  <td><input type="text" name="Emp_ID" id="Emp_ID" size="16" maxlength="12" value="<?php echo $row['EmpID'] ?>" ></td>
+                                  <td><input type="text" name="Emp_ID" id="Emp_ID" size="16" maxlength="12" value="" ></td>
                                 </tr>
                                 </table>
                                 <table class="table1">
                                 <tr>
                                   <th>Họ và Tên:</th>
-                                  <td><input type="Text" name="User_ID" size="40" maxlength="40" value="<?php echo $row['VFirstName'] ?>" ></td>
+                                  <td><input type="Text" name="User_ID" size="40" maxlength="40" value="" ></td>
                                 </tr>
                                 </table>
                                 <table class="table1">
                                 <tr>
                                   <th>Địa Chỉ:</th>
-                                  <td><input type="Text" name="User_ID" size="64" maxlength="64" value="<?php echo $row['P_Address'] ?>"></td>
+                                  <td><input type="Text" name="User_ID" size="64" maxlength="64" value=""></td>
                                 </tr>
                                 </table>
                                 <table class="table1">
                                     <tr>
                                       <th>Ngày Sinh</th>
-                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row['DOB'] != NULL)  echo $row['DOB']->format('Y-m-d')?>"> </td>
+                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
                                       <th>Tháng/Năm Sinh</th>
                                       <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
                                     </tr>
@@ -198,7 +223,7 @@ $(document).ready(function(){
                                 <table class="table1">
                                     <tr>
                                       <th>Ngày Cấp CMND</th>
-                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row['IDIssuedDate'] != NULL) echo  $row['IDIssuedDate']->format('Y-m-d')?>"> </td>
+                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
                                       <th>Tháng/Năm Cấp CMND</th>
                                       <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
                                     </tr>
@@ -206,7 +231,7 @@ $(document).ready(function(){
                                 <table class="table1">
                                 <tr>
                                   <th>Nơi Cấp CMND</th>
-                                  <td><input type="text" name="Dept_ID" size="12" maxlength="20" value="<?php echo $row['IDIssuedPlace'] ?>"></td>
+                                  <td><input type="text" name="Dept_ID" size="12" maxlength="20" value=""></td>
                                 </tr>
                                 </table>
                                 </form>
@@ -218,55 +243,55 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
                         <h2>THÔNG TIN HỢP ĐỒNG</h2>
                         <form id="myForm1">
-                            <input type="radio" name="update1" value="view" checked="checked"> Xem 
-                            <input type="radio" name="update1" value="add"> Thêm
-                            <input type="radio" name="update1" value="edit"> Sửa
+                            <input type="radio" name="update1" value="view" disabled > Xem 
+                            <input type="radio" name="update1" value="add" checked="checked"> Thêm
+                            <input type="radio" name="update1" value="edit" disabled > Sửa
                         </form>
                     <div id="FormRatio1">
-                        <table class="table1">
-                            <tr>
-                              <th>Công Trường</th>
-                              <td>
-                                  <select>
-                                      <option value="" >----Chọn Tên Công Trường----</option>
-                                      <?php while ($row_2_1 = sqlsrv_fetch_array($getResults_2_1, SQLSRV_FETCH_ASSOC)) { ?>
-                                            <option value="<?php echo $row_2_1['LSCompanyID'] ?>" <?php  if ($row_2_1['LSCompanyID'] == $row_2['LSCompanyID']) echo "selected='selected'" ?> ><?php echo $row_2_1['LSCompanyID']; echo ' : '; echo $row_2_1['Name'];?></option>
-                                      <?php } ?>
-                                  </select>
-                              </td>
-                            </tr>
-                        </table>
-                        <table class="table1">
-                            <tr>
-                              <th>Đội Quản Lý</th>
-                              <td>
-                                  <select>
-                                  	  <option value="" >----Chọn Tên Đội Quản Lý----</option>
-                                      <?php while ($row_2_2 = sqlsrv_fetch_array($getResults_2_2, SQLSRV_FETCH_ASSOC)) { ?>
-                                            <option value="<?php echo $row_2_2['LSLevel1ID'] ?>" <?php   if ($row_2_2['LSLevel1ID'] == $row_2['LSLevel1ID']) echo "selected='selected'" ?> ><?php echo $row_2_2['LSLevel1ID']; echo ' : '; echo $row_2_2['Name'];?></option>
-                                      <?php } ?>
-                                  </select>
-                              </td>
-                            </tr>
-                      	</table>
-                      	<table class="table1">
-                            <tr>
-                              <th>Mã Hợp Đồng:</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2['ContractNo'] ?>" ></td>
-                              <th>Đã Ký:</th>
-                              <td><input type="Text" name="User_ID" size="4" maxlength="4" value="<?php echo $rownum_2_4 ?>" ></td>
-                              <th>Hợp Đồng:</th>
-                              <td><input type="Text" name="User_ID" size="4" maxlength="4" value="..." ></td>
-                            </tr>
-                       	</table>
-                        <table class="table1">
-                             <tr>
-                                <th>Ngày bắt đầu</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2['EffectiveDate'] != NULL)  echo $row_2['EffectiveDate']->format('Y-m-d')?>"> </td>
-                                <th>Ngày kết thúc</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2['ToDate'] != NULL)  echo $row_2['ToDate']->format('Y-m-d')?>"> </td>
-                             </tr>
-                        </table>
+							<table class="table1">
+								<tr>
+								  <th>Công Trường</th>
+								  <td>
+									  <select>
+										  <option value="" >----Chọn Tên Công Trường----</option>
+										  <?php while ($row_2_1 = sqlsrv_fetch_array($getResults_2_1, SQLSRV_FETCH_ASSOC)) { ?>
+												<option value="<?php echo $row_2_1[LSCompanyID] ?>" ><?php echo $row_2_1['LSCompanyID']; echo ' : '; echo $row_2_1['Name'];?></option>
+										  <?php } ?>
+									  </select>
+								  </td>
+								</tr>
+							</table>
+							<table class="table1">
+								<tr>
+								  <th>Đội Quản Lý</th>
+								  <td>
+									  <select>
+										  <option value="" >----Chọn Tên Đội Quản Lý----</option>
+										  <?php while ($row_2_2 = sqlsrv_fetch_array($getResults_2_2, SQLSRV_FETCH_ASSOC)) { ?>
+												<option value="<?php echo $row_2_2['LSLevel1ID'] ?>" ><?php echo $row_2_2['LSLevel1ID']; echo ' : '; echo $row_2_2['Name'];?></option>
+										  <?php } ?>
+									  </select>
+								  </td>
+								</tr>
+							</table>
+							<table class="table1">
+								<tr>
+								  <th>Mã Hợp Đồng:</th>
+								  <td><input type="Text" name="User_ID" size="10" maxlength="10" value="" ></td>
+								  <th>Đã Ký:</th>
+								  <td><input type="Text" name="User_ID" size="4" maxlength="4" value="" ></td>
+								  <th>Hợp Đồng:</th>
+								  <td><input type="Text" name="User_ID" size="4" maxlength="4" value="..." ></td>
+								</tr>
+							</table>
+							<table class="table1">
+								 <tr>
+									<th>Ngày bắt đầu</th>
+									<td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+									<th>Ngày kết thúc</th>
+									<td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+								 </tr>
+							</table>
                     </div> 
                 	<!––--------------------------------------------------------------------––>
                 	<!––--------------------------------------------------------------------––>
@@ -275,19 +300,19 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
                         <h2>THÔNG TIN BẢNG CAM KẾT</h2>
                         <form id="myForm2">
-                            <input type="radio" name="update2" value="view" checked="checked"> Xem 
-                            <input type="radio" name="update2" value="add"> Thêm
-                            <input type="radio" name="update2" value="edit"> Sửa
+                            <input type="radio" name="update2" value="view" disabled > Xem 
+                            <input type="radio" name="update2" value="add" checked="checked"> Thêm
+                            <input type="radio" name="update2" value="edit" disabled > Sửa
                         </form>
                     <div id="FormRatio2">
-                        <table class="table1">
+                       <table class="table1">
                             <tr>
                               <th>Công Trường</th>
                               <td>
                                   <select>
                                       <option value="" >----Chọn Tên Công Trường----</option>
                                       <?php while ($row_2_5_1 = sqlsrv_fetch_array($getResults_2_5_1, SQLSRV_FETCH_ASSOC)) { ?>
-                                            <option value="<?php echo $row_2_5_1['LSCompanyID'] ?>" <?php  if ($row_2_5_1['LSCompanyID'] == $row_2_5['LScompanyID']) echo "selected='selected'" ?> ><?php echo $row_2_5_1['LSCompanyID']; echo ' : '; echo $row_2_5_1['Name'];?></option>
+                                            <option value="<?php echo $row_2_5_1['LSCompanyID'] ?>" ><?php echo $row_2_5_1['LSCompanyID']; echo ' : '; echo $row_2_5_1['Name'];?></option>
                                       <?php } ?>
                                   </select>
                               </td>
@@ -300,7 +325,7 @@ $(document).ready(function(){
                                   <select>
                                   	  <option value="" >----Chọn Tên Đội Quản Lý----</option>
                                       <?php while ($row_2_5_2 = sqlsrv_fetch_array($getResults_2_5_2, SQLSRV_FETCH_ASSOC)) { ?>
-                                            <option value="<?php echo $row_2_5_2['LSLevel1ID'] ?>" <?php   if ($row_2_5_2['LSLevel1ID'] == $row_2_5['LSlevel1ID']) echo "selected='selected'" ?> ><?php echo $row_2_5_2['LSLevel1ID']; echo ' : '; echo $row_2_5_2['Name'];?></option>
+                                            <option value="<?php echo $row_2_5_2['LSLevel1ID'] ?>" ><?php echo $row_2_5_2['LSLevel1ID']; echo ' : '; echo $row_2_5_2['Name'];?></option>
                                       <?php } ?>
                                   </select>
                               </td>
@@ -309,16 +334,16 @@ $(document).ready(function(){
                         <table class="table1">
                              <tr>
                                 <th>Ngày bắt đầu:</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2_5['StartDate'] != NULL)  echo $row_2_5['StartDate']->format('Y-m-d')?>"> </td>
+                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
                                 <th>Năm Cam Kết:</th>
                                 <td>
                                     <select id="YearTL">
-                                           <option value="2015" <?php  if ($row_2_5['ComYear'] == 2015) echo "selected='selected'" ?> >Năm 2015</option>
-                                           <option value="2016" <?php  if ($row_2_5['ComYear'] == 2016) echo "selected='selected'" ?> >Năm 2016</option>
-                                           <option value="2017" <?php  if ($row_2_5['ComYear'] == 2017) echo "selected='selected'" ?> >Năm 2017</option>
-                                           <option value="2018" <?php  if ($row_2_5['ComYear'] == 2018) echo "selected='selected'" ?> >Năm 2018</option>
-                                           <option value="2019" <?php  if ($row_2_5['ComYear'] == 2019) echo "selected='selected'" ?> >Năm 2019</option>
-                                           <option value="2020" <?php  if ($row_2_5['ComYear'] == 2020) echo "selected='selected'" ?> >Năm 2020</option>
+                                           <option value="2015" >Năm 2015</option>
+                                           <option value="2016" >Năm 2016</option>
+                                           <option value="2017" >Năm 2017</option>
+                                           <option value="2018" >Năm 2018</option>
+                                           <option value="2019" >Năm 2019</option>
+                                           <option value="2020" >Năm 2020</option>
                                     </select> 
                                 </td>
                              </tr>
@@ -326,9 +351,9 @@ $(document).ready(function(){
                       	<table class="table1">
                             <tr>
                               <th>Số Tiền:</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_5['ComMoney'] ?>" ></td>
+                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="" ></td>
                               <th>Ghi Chú:</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_5['Note'] ?>" ></td>
+                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="" ></td>
                             </tr>
                        	</table>
                     </div> 
@@ -339,25 +364,25 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
                         <h2>MÃ SỐ THUẾ VÀ NGƯỜI PHỤ THUỘC</h2>
                         <form id="myForm3">
-                        	<input type="radio" name="update3" value="view" checked="checked"> Xem 
-                        	<input type="radio" name="update3" value="add"> Thêm
-                        	<input type="radio" name="update3" value="edit"> Sửa
+                        	<input type="radio" name="update3" value="view" disabled> Xem 
+                        	<input type="radio" name="update3" value="add" checked="checked"> Thêm
+                        	<input type="radio" name="update3" value="edit" disabled> Sửa
                         </form>
                        	<div id="FormRatio3">
                       	<table class="table1">
                             <tr>
                               <th>Mã Số Thuế:</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_6['TaxCode'] ?>" ></td>
+                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="" ></td>
                               <th>Số ng Phụ Thuộc:</th>
-                              <td><input type="Text" name="User_ID" size="3" maxlength="3" value="<?php echo $row_2_6['Person'] ?>" ></td>
+                              <td><input type="Text" name="User_ID" size="3" maxlength="3" value="" ></td>
                             </tr>
                        	</table>
                         <table class="table1">
                              <tr>
                                 <th>Ngày bắt đầu:</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2_6['FromDate'] != NULL)  echo $row_2_6['FromDate']->format('Y-m-d')?>"> </td>
+                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
                               	<th>Ghi Chú:</th>
-                              	<td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_6['Note'] ?>" ></td>
+                              	<td><input type="Text" name="User_ID" size="10" maxlength="10" value="" ></td>
                              </tr>
                         </table>
                   </div> 

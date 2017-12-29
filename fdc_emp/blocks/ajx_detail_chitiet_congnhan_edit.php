@@ -1,3 +1,4 @@
+
 <?php
 require "../lib/dbConMSSQL.php";
 require "../lib/dbCon.php";
@@ -166,9 +167,53 @@ $row_2_6 			= sqlsrv_fetch_array($getResults_2_6, SQLSRV_FETCH_BOTH);
                               	<td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_6['Note'] ?>" ></td>
                              </tr>
                         </table>
-		
 <?php
-	}
-?>
+	} else if ($Var_ratio == 4) { ?>
+                            <table class="table1">
+                            <!--- begin html form; 
+                            put action page in the "action" attribute of the form tag --->
+                            <form action="insert_action.cfm" method="post">
+                            <tr>
+                              <th>Số CMND :</th>
+                              <td><input type="text" name="Emp_ID" id="Emp_ID" size="16" maxlength="12" value="<?php echo $row_temp['EmpID'] ?>" ></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Họ và Tên:</th>
+                              <td><input type="Text" name="User_ID" size="40" maxlength="40" value="<?php echo $row_temp['VFirstName'] ?>" ></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Địa Chỉ:</th>
+                              <td><input type="Text" name="User_ID" size="64" maxlength="64" value="<?php echo $row_temp['P_Address'] ?>"></td>
+                            </tr>
+                            </table>
+                            <table class="table1">
+                                <tr>
+                                  <th>Ngày Sinh</th>
+                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_temp['DOB'] != NULL)  echo $row_temp['DOB']->format('Y-m-d')?>"> </td>
+                                  <th>Tháng/Năm Sinh</th>
+                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                </tr>
+                            </table>
+                            <table class="table1">
+                                <tr>
+                                  <th>Ngày Cấp CMND</th>
+                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_temp['IDIssuedDate'] != NULL) echo  $row_temp['IDIssuedDate']->format('Y-m-d')?>"> </td>
+                                  <th>Tháng/Năm Cấp CMND</th>
+                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                </tr>
+                            </table>
+                            <table class="table1">
+                            <tr>
+                              <th>Nơi Cấp CMND</th>
+                              <td><input type="text" name="Dept_ID" size="12" maxlength="20" value="<?php echo $row_temp['IDIssuedPlace'] ?>"></td>
+                            </tr>
+                            </table>
+                            </form>
+
+<?php } ?>
 
 

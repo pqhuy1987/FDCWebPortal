@@ -1,12 +1,12 @@
 ﻿body, td, p
 {
 	font-family: Verdana;
-	font-size: 10pt;
+	font-size: 8pt;
 }
 h1
 {
 	font-family: Verdana;
-	font-size: 14pt;
+	font-size: 10pt;
 }
 table
 {
@@ -20,6 +20,7 @@ table
 	padding-left: 0px;
 	padding-right: 0px;
 	text-align: left;
+	font-size: 8pt;
 }
 
 .table2 td, th
@@ -30,6 +31,7 @@ table
 	padding-left: 15px;
 	padding-right: 15px;
 	text-align: left;
+	font-size: 8pt;
 }
 th
 {
