@@ -1,5 +1,5 @@
 <?php
-	$serverName = "TECHNICAL02\SQL2012"; //serverName\instanceName, portNumber (1433 by default)
+	$serverName = "TECHNICAL02"; //serverName\instanceName, portNumber (1433 by default)
 	$connectionInfo = array( "Database"=>"HRISWORKERSPCC", "UID"=>"sa", "PWD"=>"P@ssw0rd", "CharacterSet" => "UTF-8");
 	$conn_mssql = sqlsrv_connect( $serverName, $connectionInfo);
 

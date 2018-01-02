@@ -149,11 +149,11 @@ $(document).ready(function(){
 					$('#content-main-2').html(data);
 				}
 		});
-	});	
+	});		
 	
 	$( "#button_save" ).click(function() {
-		
-	});	
+		alert(1);
+	});		
 
 
 });
@@ -220,7 +220,7 @@ $(document).ready(function(){
                         <form id="myForm1">
                             <input type="radio" name="update1" value="view" checked="checked"> Xem 
                             <input type="radio" name="update1" value="add"> Thêm
-                            <input type="radio" name="update1" value="edit"> Sửa
+                            <input type="radio" name="update1" value="edit" <?php if ($row_2['ContractID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                     <div id="FormRatio1">
                         <table class="table1">
@@ -277,7 +277,7 @@ $(document).ready(function(){
                         <form id="myForm2">
                             <input type="radio" name="update2" value="view" checked="checked"> Xem 
                             <input type="radio" name="update2" value="add"> Thêm
-                            <input type="radio" name="update2" value="edit"> Sửa
+                            <input type="radio" name="update2" value="edit" <?php if ($row_2_5['CommitmentID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                     <div id="FormRatio2">
                         <table class="table1">
@@ -341,7 +341,7 @@ $(document).ready(function(){
                         <form id="myForm3">
                         	<input type="radio" name="update3" value="view" checked="checked"> Xem 
                         	<input type="radio" name="update3" value="add"> Thêm
-                        	<input type="radio" name="update3" value="edit"> Sửa
+                        	<input type="radio" name="update3" value="edit" <?php if ($row_2_6['DependPersonID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                        	<div id="FormRatio3">
                       	<table class="table1">

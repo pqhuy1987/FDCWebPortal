@@ -141,46 +141,18 @@ $(document).ready(function(){
 	});
 	
 	$( "#button_add" ).click(function() {
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan.php",
-				data:{Var_ratio:1},
-				success:function(data)
-				{
-					$('#FormRatio1').html(data);	
+		$.ajax({//Make the Ajax Request
+			type: 'POST',
+			url: 'ajx_chitiet_congnhan_2.php',
+			data: { EmpID: 1},
+					success: function(data){
+					$('#content-main-2').html(data);
 				}
-			}); 
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan.php",
-				data:{Var_ratio:2},
-				success:function(data)
-				{
-					$('#FormRatio2').html(data);	
-				}
-			}); 
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan.php",
-				data:{Var_ratio:3},
-				success:function(data)
-				{
-					$('#FormRatio3').html(data);	
-				}
-			}); 
-		   $.ajax({
-				type:"POST",
-				url:"ajx_detail_chitiet_congnhan.php",
-				data:{Var_ratio:4},
-				success:function(data)
-				{
-					$('#FormRatio4').html(data);	
-				}
-			}); 
-	});	
+		});
+	});		
 	
 	$( "#button_save" ).click(function() {
-		
+		alert(2);
 	});	
 
 });

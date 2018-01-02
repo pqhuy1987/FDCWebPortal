@@ -219,7 +219,23 @@ $(document).ready(function(){
 					$('#content-main-2').html(data);
 				}
 		});
-	});		
+	});
+	
+	$( "#button_save" ).click(function() {
+		
+		var Var_ratio_1 = $('input[name=update1]:checked', '#myForm1').val(); 
+		var Var_ratio_2 = $('input[name=update2]:checked', '#myForm2').val(); 
+		var Var_ratio_3 = $('input[name=update3]:checked', '#myForm3').val();
+		 
+		$.ajax({//Make the Ajax Request
+			type: 'POST',
+			url: 'chitiet_congnhan_add_edit.php',
+			data: { Var_ratio_1: Var_ratio_1, Var_ratio_2:Var_ratio_2, Var_ratio_3:Var_ratio_3 },
+					success: function(data){
+					alert(data);
+			}
+		});
+	});			
 	 
 });
 
@@ -347,7 +363,7 @@ $(document).ready(function(){
                         <form id="myForm1">
                             <input type="radio" name="update1" value="view" checked="checked"> Xem 
                             <input type="radio" name="update1" value="add"> Thêm
-                            <input type="radio" name="update1" value="edit"> Sửa
+                            <input type="radio" name="update1" value="edit" <?php if ($row_2['ContractID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                         <div id="FormRatio1">                   
                         <table class="table1">
@@ -404,7 +420,7 @@ $(document).ready(function(){
                         <form id="myForm2">
                             <input type="radio" name="update2" value="view" checked="checked"> Xem 
                             <input type="radio" name="update2" value="add"> Thêm
-                            <input type="radio" name="update2" value="edit"> Sửa
+                            <input type="radio" name="update2" value="edit" <?php if ($row_2_5['CommitmentID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                     <div id="FormRatio2">
                        <table class="table1">
@@ -468,7 +484,7 @@ $(document).ready(function(){
                         <form id="myForm3">
                             <input type="radio" name="update3" value="view" checked="checked"> Xem 
                             <input type="radio" name="update3" value="add"> Thêm
-                            <input type="radio" name="update3" value="edit"> Sửa
+                            <input type="radio" name="update3" value="edit" <?php if ($row_2_6['DependPersonID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                     <div id="FormRatio3">
                       	<table class="table1">
@@ -495,7 +511,7 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
                         <h2>CÔNG CỤ</h2>
                         <span style="display: inline;">
-                          <input type="button" id="button_add" value="THÊM"/> <input type="button" value="LƯU"/> <input type="button" value="XÓA"/>
+                          <input type="button" id="button_add" value="THÊM"/> <input type="button" id="button_save" value="LƯU"/> <input type="button" value="XÓA"/>
                         </span>
 
                 	<!––--------------------------------------------------------------------––>
