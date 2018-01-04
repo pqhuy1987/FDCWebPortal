@@ -14,7 +14,7 @@
 	
 	$TimeSheetID_Num = floatval($row['']);
 	
-	$TimeSheetID = "HO".($TimeSheetID_Num + 1);
+	$TimeSheetID 		= 		"HO".($TimeSheetID_Num + 1);
 	$LSCompanyID		=		$_POST['LSCompanyID'];
 	$LSLevel1ID			=		$_POST['LSLevel1ID'];
 	$FromDate			=		$_POST['FromDate'];

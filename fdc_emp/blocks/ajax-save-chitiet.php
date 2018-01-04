@@ -22,6 +22,14 @@
 	$i				=		$_POST['i'];
 	$TimeSheet		=		$_POST['TimeSheet'];
 	
+	//for ($j = 1; $j < $i; $j++ )
+	//{
+	//	$EmpSalaryID = "HO".($EmpSalaryID_Num + $j);
+		
+	//	$query = "INSERT INTO [HRISWORKERSPCC].[dbo].[PR_tblEmpSalary] (EmpSalaryID, EmpID, Salary, TimeSheetID, Seq, ThueTT) VALUES(?, ?, ?, ?, ?, ?)";
+	//	$getResults= sqlsrv_query($conn_mssql, $query, array("$EmpSalaryID", "$EmpID[$j]", "$Salary[$j]", "$TimeSheet", "$seq[$j]", "$ThueTT[$j]"));
+	//}
+	
 	$sql = "DELETE FROM [HRISWORKERSPCC].[dbo].[PR_tblEmpSalary] WHERE TimeSheetID = '$TimeSheet'; ";
   	$res = sqlsrv_query($conn_mssql, $sql);
   

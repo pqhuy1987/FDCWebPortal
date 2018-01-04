@@ -14,7 +14,7 @@ $row_temp = sqlsrv_fetch_array($getResults_temp, SQLSRV_FETCH_ASSOC);
 $EmpID = $row_temp['EmpID'];
 
 //––------------------------------------THÔNG TIN HỢP ĐỒNG--------------------------------––---––-//
-$tsql_2 			= "SELECT TOP 1 * FROM [HRISWORKERSPCC].[dbo].[HR_tblContract] where [HR_tblContract].EmpID = '$EmpID' order by [HR_tblContract].CreateTime desc ;";
+$tsql_2 			= "SELECT TOP 1 * FROM [HRISWORKERSPCC].[dbo].[HR_tblContract] where [HR_tblContract].EmpID = '$EmpID' AND [HR_tblContract].Used = '1' order by [HR_tblContract].CreateTime desc ;";
 $getResults_2 		= sqlsrv_query($conn_mssql, $tsql_2);
 $row_2 				= sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_BOTH);
 
@@ -31,7 +31,7 @@ $tsql_2_4 			= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblContract] where [HR_
 $getResults_2_4 	= sqlsrv_query($conn_mssql, $tsql_2_4, array(), array( "Scrollable" => 'static' ));
 $rownum_2_4 		= sqlsrv_num_rows($getResults_2_4);
 
-$tsql_2_5 			= "SELECT TOP 1 * FROM [HRISWORKERSPCC].[dbo].[HR_tblCommitment] where [HR_tblCommitment].EmpID = '$EmpID' order by [HR_tblCommitment].ComYear desc ;";
+$tsql_2_5 			= "SELECT TOP 1 * FROM [HRISWORKERSPCC].[dbo].[HR_tblCommitment] where [HR_tblCommitment].EmpID = '$EmpID' order by [HR_tblCommitment].ComYear desc, [HR_tblCommitment].CommitmentID desc ;";
 $getResults_2_5 	= sqlsrv_query($conn_mssql, $tsql_2_5);
 $row_2_5 			= sqlsrv_fetch_array($getResults_2_5, SQLSRV_FETCH_BOTH);
 
@@ -127,7 +127,7 @@ $(document).ready(function(){
 	
 	$('#myForm1 input').on('change', function() {
 	   var Var_ratio = $('input[name=update1]:checked', '#myForm1').val();
-	   var Emp_ID = $("#Emp_ID").val();
+	   var Emp_ID = $("#Emp_ID_0").val();
 	   
 	   if (Var_ratio == 'add'){
 		   $.ajax({
@@ -156,7 +156,7 @@ $(document).ready(function(){
 	
 	$('#myForm2 input').on('change', function() {
 	   var Var_ratio = $('input[name=update2]:checked', '#myForm2').val(); 
-	   var Emp_ID = $("#Emp_ID").val();
+	   var Emp_ID = $("#Emp_ID_0").val();
 	   if (Var_ratio == 'add'){
 		   $.ajax({
 				type:"POST",
@@ -184,7 +184,7 @@ $(document).ready(function(){
 	
 	$('#myForm3 input').on('change', function() {
 	   var Var_ratio = $('input[name=update3]:checked', '#myForm3').val(); 
-	   var Emp_ID = $("#Emp_ID").val();
+	   var Emp_ID = $("#Emp_ID_0").val();
 	   if (Var_ratio == 'add'){
 		   $.ajax({
 				type:"POST",
@@ -222,19 +222,71 @@ $(document).ready(function(){
 	});
 	
 	$( "#button_save" ).click(function() {
-		
+
+		var Var_ratio_0 = $('input[name=update0]:checked', '#myForm0').val(); 		
 		var Var_ratio_1 = $('input[name=update1]:checked', '#myForm1').val(); 
 		var Var_ratio_2 = $('input[name=update2]:checked', '#myForm2').val(); 
 		var Var_ratio_3 = $('input[name=update3]:checked', '#myForm3').val();
-		 
-		$.ajax({//Make the Ajax Request
-			type: 'POST',
-			url: 'chitiet_congnhan_add_edit.php',
-			data: { Var_ratio_1: Var_ratio_1, Var_ratio_2:Var_ratio_2, Var_ratio_3:Var_ratio_3 },
-					success: function(data){
-					alert(data);
-			}
-		});
+		
+		//Thông tin công nhân.
+		var Emp_ID_0 			= 	$("#Emp_ID_0").val();
+		var User_ID_0 			= 	$("#User_ID_0").val();
+		var Address_ID_0 		= 	$("#Address_ID_0").val();
+		var FromDate_0 			= 	$("#FromDate_0").val();
+		var FromMonth_0 		= 	$("#FromMonth_0").val();
+		var FromDate_Issues_0 	= 	$("#FromDate_Issues_0").val();
+		var FromMonth_Issues_0 	= 	$("#FromMonth_Issues_0").val();
+		var Where_Issues_0 		= 	$("#Where_Issues_0").val();
+		var Emp_ID_0_Length 	= 	$.trim($("#Emp_ID_0").val()).length;
+		
+		//Thông tin hợp đồng.
+		var ContractID_1 		= 	$("#Emp_Hidden").val();
+		var Emp_ID_1 			= 	$("#Emp_ID_1").val();
+		var User_ID_1 			= 	$("#User_ID_1").val();
+		var Contract_ID_1 		= 	$("#Contract_ID_1").val();
+		var FromDate_ID_1 		= 	$("#FromDate_ID_1").val();
+		var ToDate_ID_1 		= 	$("#ToDate_ID_1").val();
+		
+		//Thông tin bảng cam kết.
+		var CommitmentID 		= 	$("#Emp_Hidden_2").val();
+		var LScompanyID 		= 	$("#Emp_ID_2").val();
+		var LSlevel1ID 			= 	$("#User_ID_2").val();
+		var StartDate 			= 	$("#FromDate_2").val();
+		var ComYear 			= 	$("#YearTL_2").val();
+		var ComMoney 			= 	$("#User_ComMoney_2").val();		
+		var Note 				= 	$("#User_Note_2").val();
+		
+		//Mã số thuế và người phụ thuộc
+		var DependPersonID 		= 	$("#Emp_Hidden_3").val();
+		var TaxCode 			= 	$("#Tax_ID_3").val();
+		var Person 				= 	$("#Person_ID_3").val();
+		var FromDate 			= 	$("#FromDate_3").val();
+		var Note_3 				= 	$("#Note_3").val();
+				
+		if ((Emp_ID_0_Length == 9) || (Emp_ID_0_Length == 12))
+		{	 
+			$.ajax({//Make the Ajax Request
+				type: 'POST',
+				url: 'chitiet_congnhan_add_edit.php',
+				data: { Var_ratio_0: Var_ratio_0, Var_ratio_1: Var_ratio_1, Var_ratio_2: Var_ratio_2, Var_ratio_3: Var_ratio_3,
+				
+						Emp_ID_0: Emp_ID_0, User_ID_0: User_ID_0, Address_ID_0: Address_ID_0, FromDate_0: FromDate_0,
+						FromMonth_0: FromMonth_0, FromDate_Issues_0: FromDate_Issues_0, FromMonth_Issues_0: FromMonth_Issues_0, Where_Issues_0:Where_Issues_0,
+						
+						ContractID_1: ContractID_1, Emp_ID_1: Emp_ID_1, User_ID_1: User_ID_1, Contract_ID_1: Contract_ID_1, FromDate_ID_1: FromDate_ID_1, ToDate_ID_1: ToDate_ID_1,
+						
+						CommitmentID: CommitmentID, LScompanyID: LScompanyID, LSlevel1ID: LSlevel1ID, StartDate: StartDate, ComYear: ComYear, ComMoney: ComMoney, Note: Note,
+						
+						DependPersonID: DependPersonID, TaxCode: TaxCode, Person: Person, FromDate: FromDate, Note_3: Note_3
+						
+						 },
+						success: function(data){
+						alert(data);
+				}
+			});
+		} else {
+			alert("Số CMND không đúng, bạn hãy nhập lại");
+		}
 	});			
 	 
 });
@@ -306,6 +358,10 @@ $(document).ready(function(){
                 	<!––--------------------------------------------------------------------––>
                     
                         <h2>THÔNG TIN CÔNG NHÂN</h2>
+                        <form id="myForm0">
+                            <input type="radio" name="update0" value="edit" checked="checked"> Sửa
+                            <input type="radio" name="update0" value="add" disabled> Thêm
+                        </form>
 						<div id="FormRatio4">
                             <table class="table1">
                             <!--- begin html form; 
@@ -313,41 +369,41 @@ $(document).ready(function(){
                             <form action="insert_action.cfm" method="post">
                             <tr>
                               <th>Số CMND :</th>
-                              <td><input type="text" name="Emp_ID" id="Emp_ID" size="16" maxlength="12" value="<?php echo $row_temp['EmpID'] ?>" ></td>
+                              <td><input type="text" name="Emp_ID" id="Emp_ID_0" size="16" maxlength="12" value="<?php echo $row_temp['EmpID'] ?>" ></td>
                             </tr>
                             </table>
                             <table class="table1">
                             <tr>
                               <th>Họ và Tên:</th>
-                              <td><input type="Text" name="User_ID" size="40" maxlength="40" value="<?php echo $row_temp['VFirstName'] ?>" ></td>
+                              <td><input type="Text" name="User_ID_0" id="User_ID_0" size="40" maxlength="40" value="<?php echo $row_temp['VFirstName'] ?>" ></td>
                             </tr>
                             </table>
                             <table class="table1">
                             <tr>
                               <th>Địa Chỉ:</th>
-                              <td><input type="Text" name="User_ID" size="64" maxlength="64" value="<?php echo $row_temp['P_Address'] ?>"></td>
+                              <td><input type="Text" name="Address_ID_0" id="Address_ID_0" size="64" maxlength="64" value="<?php echo $row_temp['P_Address'] ?>"></td>
                             </tr>
                             </table>
                             <table class="table1">
                                 <tr>
                                   <th>Ngày Sinh</th>
-                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_temp['DOB'] != NULL)  echo $row_temp['DOB']->format('Y-m-d')?>"> </td>
+                                  <td><input id="FromDate_0" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_temp['DOB'] != NULL)  echo $row_temp['DOB']->format('Y-m-d')?>"> </td>
                                   <th>Tháng/Năm Sinh</th>
-                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                  <td><input id="FromMonth_0" type="Text" name="User_ID" size="16" maxlength="16" value="<?php echo $row_temp['DOBText']?>"></td>
                                 </tr>
                             </table>
                             <table class="table1">
                                 <tr>
                                   <th>Ngày Cấp CMND</th>
-                                  <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_temp['IDIssuedDate'] != NULL) echo  $row_temp['IDIssuedDate']->format('Y-m-d')?>"> </td>
+                                  <td><input id="FromDate_Issues_0" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_temp['IDIssuedDate'] != NULL) echo  $row_temp['IDIssuedDate']->format('Y-m-d')?>"> </td>
                                   <th>Tháng/Năm Cấp CMND</th>
-                                  <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                  <td><input id="FromMonth_Issues_0" type="Text" name="User_ID" size="16" maxlength="16" value="<?php echo $row_temp['IDIssuedDateText']?>"></td>
                                 </tr>
                             </table>
                             <table class="table1">
                             <tr>
                               <th>Nơi Cấp CMND</th>
-                              <td><input type="text" name="Dept_ID" size="12" maxlength="20" value="<?php echo $row_temp['IDIssuedPlace'] ?>"></td>
+                              <td><input id="Where_Issues_0" type="text" name="Dept_ID" size="12" maxlength="20" value="<?php echo $row_temp['IDIssuedPlace'] ?>"></td>
                             </tr>
                             </table>
                             </form>
@@ -365,12 +421,13 @@ $(document).ready(function(){
                             <input type="radio" name="update1" value="add"> Thêm
                             <input type="radio" name="update1" value="edit" <?php if ($row_2['ContractID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
-                        <div id="FormRatio1">                   
+                        <div id="FormRatio1">
+                        <input type="hidden" id="Emp_Hidden" name="update_hidden" value="<?php echo $row_2['ContractID']?>">                   
                         <table class="table1">
                             <tr>
                               <th>Công Trường</th>
                               <td>
-                                  <select>
+                                  <select id="Emp_ID_1">
                                       <option value="" >----Chọn Tên Công Trường----</option>
                                       <?php while ($row_2_1 = sqlsrv_fetch_array($getResults_2_1, SQLSRV_FETCH_ASSOC)) { ?>
                                             <option value="<?php echo $row_2_1['LSCompanyID'] ?>" <?php  if ($row_2_1['LSCompanyID'] == $row_2['LSCompanyID']) echo "selected='selected'" ?> ><?php echo $row_2_1['LSCompanyID']; echo ' : '; echo $row_2_1['Name'];?></option>
@@ -383,7 +440,7 @@ $(document).ready(function(){
                             <tr>
                               <th>Đội Quản Lý</th>
                               <td>
-                                  <select>
+                                  <select id="User_ID_1">
                                   	  <option value="" >----Chọn Tên Đội Quản Lý----</option>
                                       <?php while ($row_2_2 = sqlsrv_fetch_array($getResults_2_2, SQLSRV_FETCH_ASSOC)) { ?>
                                             <option value="<?php echo $row_2_2['LSLevel1ID'] ?>" <?php   if ($row_2_2['LSLevel1ID'] == $row_2['LSLevel1ID']) echo "selected='selected'" ?> ><?php echo $row_2_2['LSLevel1ID']; echo ' : '; echo $row_2_2['Name'];?></option>
@@ -395,19 +452,19 @@ $(document).ready(function(){
                       	<table class="table1">
                             <tr>
                               <th>Mã Hợp Đồng:</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2['ContractNo'] ?>" ></td>
+                              <td><input id="Contract_ID_1" type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2['ContractNo'] ?>" ></td>
                               <th>Đã Ký:</th>
                               <td><input type="Text" name="User_ID" size="4" maxlength="4" value="<?php echo $rownum_2_4 ?>" ></td>
                               <th>Hợp Đồng:</th>
-                              <td><input type="Text" name="User_ID" size="4" maxlength="4" value="..." ></td>
+                              <td><input type="button" name="User_ID" size="4" maxlength="4" value="..." ></td>
                             </tr>
                        	</table>
                         <table class="table1">
                              <tr>
                                 <th>Ngày bắt đầu</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2['EffectiveDate'] != NULL)  echo $row_2['EffectiveDate']->format('Y-m-d')?>"> </td>
+                                <td><input id="FromDate_ID_1" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2['EffectiveDate'] != NULL)  echo $row_2['EffectiveDate']->format('Y-m-d')?>"> </td>
                                 <th>Ngày kết thúc</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2['ToDate'] != NULL)  echo $row_2['ToDate']->format('Y-m-d')?>"> </td>
+                                <td><input id="ToDate_ID_1" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2['ToDate'] != NULL)  echo $row_2['ToDate']->format('Y-m-d')?>"> </td>
                              </tr>
                         </table>
 					</div>
@@ -423,11 +480,12 @@ $(document).ready(function(){
                             <input type="radio" name="update2" value="edit" <?php if ($row_2_5['CommitmentID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                     <div id="FormRatio2">
+                       <input type="hidden" id="Emp_Hidden_2" name="update_hidden" value="<?php echo $row_2_5['CommitmentID']?>"> 
                        <table class="table1">
                             <tr>
                               <th>Công Trường</th>
                               <td>
-                                  <select>
+                                  <select id="Emp_ID_2">
                                       <option value="" >----Chọn Tên Công Trường----</option>
                                       <?php while ($row_2_5_1 = sqlsrv_fetch_array($getResults_2_5_1, SQLSRV_FETCH_ASSOC)) { ?>
                                             <option value="<?php echo $row_2_5_1['LSCompanyID'] ?>" <?php  if ($row_2_5_1['LSCompanyID'] == $row_2_5['LScompanyID']) echo "selected='selected'" ?> ><?php echo $row_2_5_1['LSCompanyID']; echo ' : '; echo $row_2_5_1['Name'];?></option>
@@ -440,7 +498,7 @@ $(document).ready(function(){
                             <tr>
                               <th>Đội Quản Lý</th>
                               <td>
-                                  <select>
+                                  <select id="User_ID_2">
                                   	  <option value="" >----Chọn Tên Đội Quản Lý----</option>
                                       <?php while ($row_2_5_2 = sqlsrv_fetch_array($getResults_2_5_2, SQLSRV_FETCH_ASSOC)) { ?>
                                             <option value="<?php echo $row_2_5_2['LSLevel1ID'] ?>" <?php   if ($row_2_5_2['LSLevel1ID'] == $row_2_5['LSlevel1ID']) echo "selected='selected'" ?> ><?php echo $row_2_5_2['LSLevel1ID']; echo ' : '; echo $row_2_5_2['Name'];?></option>
@@ -452,10 +510,10 @@ $(document).ready(function(){
                         <table class="table1">
                              <tr>
                                 <th>Ngày bắt đầu:</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2_5['StartDate'] != NULL)  echo $row_2_5['StartDate']->format('Y-m-d')?>"> </td>
+                                <td><input id="FromDate_2" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2_5['StartDate'] != NULL)  echo $row_2_5['StartDate']->format('Y-m-d')?>"> </td>
                                 <th>Năm Cam Kết:</th>
                                 <td>
-                                    <select id="YearTL">
+                                    <select id="YearTL_2">
                                            <option value="2015" <?php  if ($row_2_5['ComYear'] == 2015) echo "selected='selected'" ?> >Năm 2015</option>
                                            <option value="2016" <?php  if ($row_2_5['ComYear'] == 2016) echo "selected='selected'" ?> >Năm 2016</option>
                                            <option value="2017" <?php  if ($row_2_5['ComYear'] == 2017) echo "selected='selected'" ?> >Năm 2017</option>
@@ -469,9 +527,9 @@ $(document).ready(function(){
                       	<table class="table1">
                             <tr>
                               <th>Số Tiền</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_5['ComMoney'] ?>" ></td>
+                              <td><input id="User_ComMoney_2" type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_5['ComMoney'] ?>" ></td>
                               <th>Ghi Chú:</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_5['Note'] ?>" ></td>
+                              <td><input id="User_Note_2" type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_5['Note'] ?>" ></td>
                             </tr>
                        	</table>
                     </div>
@@ -487,20 +545,21 @@ $(document).ready(function(){
                             <input type="radio" name="update3" value="edit" <?php if ($row_2_6['DependPersonID'] == NULL) echo "disabled" ?> > Sửa
                         </form>
                     <div id="FormRatio3">
+                        <input type="hidden" id="Emp_Hidden_3" name="update_hidden" value="<?php echo $row_2_6['DependPersonID']?>"> 
                       	<table class="table1">
                             <tr>
                               <th>Mã Số Thuế:</th>
-                              <td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_6['TaxCode'] ?>" ></td>
+                              <td><input type="Text" id="Tax_ID_3" name="Tax_ID_3" size="10" maxlength="10" value="<?php echo $row_2_6['TaxCode'] ?>" ></td>
                               <th>Số ng Phụ Thuộc:</th>
-                              <td><input type="Text" name="User_ID" size="3" maxlength="3" value="<?php echo $row_2_6['Person'] ?>" ></td>
+                              <td><input type="Text" id="Person_ID_3" name="Person_ID_3" size="3" maxlength="3" value="<?php echo $row_2_6['Person'] ?>" ></td>
                             </tr>
                        	</table>
                         <table class="table1">
                              <tr>
                                 <th>Ngày bắt đầu:</th>
-                                <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2_6['FromDate'] != NULL)  echo $row_2_6['FromDate']->format('Y-m-d')?>"> </td>
+                                <td><input id="FromDate_3" type="date" name="FromDate" size="8" maxlength="8" value="<?php if ($row_2_6['FromDate'] != NULL)  echo $row_2_6['FromDate']->format('Y-m-d')?>"> </td>
                               	<th>Ghi Chú:</th>
-                              	<td><input type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_6['Note'] ?>" ></td>
+                              	<td><input id="Note_3" type="Text" name="User_ID" size="10" maxlength="10" value="<?php echo $row_2_6['Note'] ?>" ></td>
                              </tr>
                         </table>
                     </div>

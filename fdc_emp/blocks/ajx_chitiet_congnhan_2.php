@@ -16,7 +16,7 @@ $row = sqlsrv_fetch_array($getResults, SQLSRV_FETCH_BOTH);
 //––-------------------------------------------------------------------------------------------––-//
 
 //––------------------------------------THÔNG TIN HỢP ĐỒNG--------------------------------––---––-//
-$tsql_2 			= "SELECT TOP 1 * FROM [HRISWORKERSPCC].[dbo].[HR_tblContract] where [HR_tblContract].EmpID = '$EmpID' order by [HR_tblContract].CreateTime desc ;";
+$tsql_2 			= "SELECT TOP 1 * FROM [HRISWORKERSPCC].[dbo].[HR_tblContract] where [HR_tblContract].EmpID = '$EmpID'  AND [HR_tblContract].Used = '1' order by [HR_tblContract].CreateTime desc ;";
 $getResults_2 		= sqlsrv_query($conn_mssql, $tsql_2);
 $row_2 				= sqlsrv_fetch_array($getResults_2, SQLSRV_FETCH_BOTH);
 
@@ -152,8 +152,53 @@ $(document).ready(function(){
 	});		
 	
 	$( "#button_save" ).click(function() {
-		alert(2);
-	});	
+
+		var Var_ratio_0 = $('input[name=update0]:checked', '#myForm0').val(); 		
+		var Var_ratio_1 = $('input[name=update1]:checked', '#myForm1').val(); 
+		var Var_ratio_2 = $('input[name=update2]:checked', '#myForm2').val(); 
+		var Var_ratio_3 = $('input[name=update3]:checked', '#myForm3').val();
+		
+		//Thông tin công nhân.
+		var Emp_ID_0 		= 	$("#Emp_ID_0").val();
+		var User_ID_0 		= 	$("#User_ID_0").val();
+		var Address_ID_0 	= 	$("#Address_ID_0").val();
+		var FromDate_0 		= 	$("#FromDate_0").val();
+		var FromMonth_0 	= 	$("#FromMonth_0").val();
+		var FromDate_Issues_0 	= 	$("#FromDate_Issues_0").val();
+		var FromMonth_Issues_0 	= 	$("#FromMonth_Issues_0").val();
+		var Where_Issues_0 		= 	$("#Where_Issues_0").val();
+		
+		var Emp_ID_0_Length = $.trim($("#Emp_ID_0").val()).length;
+		
+		if ((Emp_ID_0_Length == 9) || (Emp_ID_0_Length == 12))
+		{
+			console.log(Emp_ID_0);
+			console.log(User_ID_0);
+			console.log(Address_ID_0);
+			console.log(FromDate_0);
+			console.log(FromMonth_0);
+			console.log(FromDate_Issues_0);
+			console.log(FromMonth_Issues_0);
+			console.log(Where_Issues_0);
+			 
+			$.ajax({//Make the Ajax Request
+				type: 'POST',
+				url: 'chitiet_congnhan_add_edit.php',
+				data: { Var_ratio_0: Var_ratio_0, Var_ratio_1: Var_ratio_1, Var_ratio_2: Var_ratio_2, Var_ratio_3: Var_ratio_3,
+				
+						Emp_ID_0: Emp_ID_0, User_ID_0: User_ID_0, Address_ID_0: Address_ID_0, FromDate_0: FromDate_0,
+						FromMonth_0: FromMonth_0, FromDate_Issues_0: FromDate_Issues_0, FromMonth_Issues_0: FromMonth_Issues_0, Where_Issues_0:Where_Issues_0
+						
+						 },
+						success: function(data){
+						alert(data);
+				}
+			});
+		} else {
+			alert("Số CMND không đúng, bạn hãy nhập lại");
+		}
+	});			
+	
 
 });
 </script>
@@ -162,6 +207,10 @@ $(document).ready(function(){
                 	<!––----------------------//THÔNG TIN CÔNG NHÂN-------------------------––>
                 	<!––--------------------------------------------------------------------––>
                             <h2>THÔNG TIN CÔNG NHÂN</h2>
+                            <form id="myForm0">
+                                <input type="radio" name="update0" value="edit" disabled > Sửa
+                                <input type="radio" name="update0" value="add" checked="checked"> Thêm
+                            </form>
                             <div id="FormRatio4">
                                 <table class="table1">
                                 <!--- begin html form; 
@@ -169,41 +218,41 @@ $(document).ready(function(){
                                 <form action="insert_action.cfm" method="post">
                                 <tr>
                                   <th>Số CMND :</th>
-                                  <td><input type="text" name="Emp_ID" id="Emp_ID" size="16" maxlength="12" value="" ></td>
+                                  <td><input type="text" name="Emp_ID" id="Emp_ID_0" size="16" maxlength="12" value="" ></td>
                                 </tr>
                                 </table>
                                 <table class="table1">
                                 <tr>
                                   <th>Họ và Tên:</th>
-                                  <td><input type="Text" name="User_ID" size="40" maxlength="40" value="" ></td>
+                                  <td><input type="Text" name="User_ID" id="User_ID_0" size="40" maxlength="40" value="" ></td>
                                 </tr>
                                 </table>
                                 <table class="table1">
                                 <tr>
                                   <th>Địa Chỉ:</th>
-                                  <td><input type="Text" name="User_ID" size="64" maxlength="64" value=""></td>
+                                  <td><input type="Text" name="User_ID" id="Address_ID_0" size="64" maxlength="64" value=""></td>
                                 </tr>
                                 </table>
                                 <table class="table1">
                                     <tr>
                                       <th>Ngày Sinh</th>
-                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                                      <td><input id="FromDate_0" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
                                       <th>Tháng/Năm Sinh</th>
-                                      <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                      <td><input id="FromMonth_0" type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
                                     </tr>
                                 </table>
                                 <table class="table1">
                                     <tr>
                                       <th>Ngày Cấp CMND</th>
-                                      <td><input id="FromDate" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
+                                      <td><input id="FromDate_Issues_0" type="date" name="FromDate" size="8" maxlength="8" value=""> </td>
                                       <th>Tháng/Năm Cấp CMND</th>
-                                      <td><input type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
+                                      <td><input id="FromMonth_Issues_0" type="Text" name="User_ID" size="16" maxlength="16" value=""></td>
                                     </tr>
                                 </table>
                                 <table class="table1">
                                 <tr>
                                   <th>Nơi Cấp CMND</th>
-                                  <td><input type="text" name="Dept_ID" size="12" maxlength="20" value=""></td>
+                                  <td><input id="Where_Issues_0" type="text" name="Dept_ID" size="12" maxlength="20" value=""></td>
                                 </tr>
                                 </table>
                                 </form>
