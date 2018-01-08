@@ -8,7 +8,8 @@
 	$Var_ratio_2		=		$_POST['Var_ratio_2'];
 	$Var_ratio_3		=		$_POST['Var_ratio_3'];
 
-	//--------------Thông tin công nhân------------------------------------------------------	
+	//--------------Thông tin công nhân------------------------------------------------------
+		
 	$Emp_ID_0			=		$_POST['Emp_ID_0'];
 	$User_ID_0			=		$_POST['User_ID_0'];
 	$Address_ID_0		=		$_POST['Address_ID_0'];
@@ -28,7 +29,7 @@
 	$FromDate_ID_1 		= 	$_POST['FromDate_ID_1'];
 	$ToDate_ID_1 		= 	$_POST['ToDate_ID_1'];
 	
-	//--------------Thông tin bảng cam kết-------------------------------------------------------
+	//--------------Thông tin bảng cam kết----------------------------------------------------
 	
 	$CommitmentID 		= 	$_POST['CommitmentID'];
 	
@@ -39,7 +40,7 @@
 	$ComMoney 			= 	$_POST['ComMoney'];
 	$Note 				= 	$_POST['Note'];
 	
-	//--------------Thông tin bảng cam kết-------------------------------------------------------
+	//--------------Thông tin bảng cam kết----------------------------------------------------
 	
 	$DependPersonID 	= 	$_POST['DependPersonID'];
 	$TaxCode 			= 	$_POST['TaxCode'];

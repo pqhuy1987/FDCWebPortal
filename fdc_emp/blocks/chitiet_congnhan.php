@@ -36,11 +36,13 @@ $getResults_2_5 	= sqlsrv_query($conn_mssql, $tsql_2_5);
 $row_2_5 			= sqlsrv_fetch_array($getResults_2_5, SQLSRV_FETCH_BOTH);
 
 /*----------------SUB----------------------------*/
+
 $tsql_2_5_1			= "SELECT * FROM [HRISWORKERSPCC].[dbo].[LS_tblCompany] order by  [LS_tblCompany].LSCompanyID desc ;";
 $getResults_2_5_1 	= sqlsrv_query($conn_mssql, $tsql_2_5_1);
 	
 $tsql_2_5_2 		= "SELECT * FROM [HRISWORKERSPCC].[dbo].[LS_tblLevel1] order by  [LS_tblLevel1].LSLevel1ID desc ;";
 $getResults_2_5_2   = sqlsrv_query($conn_mssql, $tsql_2_5_2);
+
 /*----------------SUB----------------------------*/
 
 $tsql_2_6 			= "SELECT * FROM [HRISWORKERSPCC].[dbo].[HR_tblDependPerson] where [HR_tblDependPerson].EmpID = '$EmpID';";

@@ -1,3 +1,14 @@
+<?php
+require "./lib/dbConMSSQL.php";
+require "./lib/dbCon.php";
+
+if (isset($_POST["btnThoat"])){
+    session_destroy();
+    header('Location: ../login/login.php');
+}
+
+?>
+
 <link rel="stylesheet" type="text/css" href="ddsmoothmenu.css" />
 <link rel="stylesheet" type="text/css" href="ddsmoothmenu-v.css" />
 
@@ -41,10 +52,16 @@ ddsmoothmenu.init({
 
 <div id="smoothmenu1" class="ddsmoothmenu">
 <ul>
-<li><a href="./">Bảng Chấm Công</a></li>
-<li><a href="./">Công Nhân</a>
+
+<li><a >Bảng Chấm Công</a></li>
+<li><a >Công Nhân</a>
 <ul>
 <li><a href="./blocks/chitiet_congnhan.php" target="_blank">DS Công Nhân</a></li>
+</ul>
+</li>
+<li><a>Chào bạn: <?php echo  $_SESSION['user_ketoan'] ?></a>
+<ul>
+<li><form id="btnThoat" action = "" method = "post"><a href="#" onClick="document.getElementById('btnThoat').submit();"> <input type="hidden" name="btnThoat"> Thoát </input></a></form></li>
 </ul>
 </li>
 </ul>

@@ -11,6 +11,12 @@ if (!isset($_SESSION['ldap_dn']))
     exit();
 }
 
+if (!isset($_SESSION['user_ketoan']))
+{
+    header('Location: login.php');
+    exit();
+}
+
 if (isset($_GET["p"]))
     $p = $_GET["p"];
 else
