@@ -7,7 +7,7 @@ session_start();
 
 if (!isset($_SESSION['ldap_dn']))
 {
-    header('Location: login/login.php');
+    header('Location: login.php');
     exit();
 }
 

@@ -28,15 +28,19 @@ function mssql_escape($str)
       
 	  $tsql = "SELECT UserID FROM [HRISWORKERSPCC].[dbo].[SYS_List_User] where UserID = '$myusername' and Password='$mypassword'";
 	  
+	  echo $tsql;
+	  
 	  $getResults= sqlsrv_query($conn_mssql, $tsql, array(), array( "Scrollable" => 'static' ));
 	  $rownum = sqlsrv_num_rows($getResults);
 		
       if($rownum == 1) 
 	  {
+		 echo "Đang nhập OK";
          $_SESSION['user_ketoan'] = $myusername;
          header("location: index.php");
       }else
 	  {
+		 echo $rownum;
          $error = "Bạn đã đăng nhập sai, vui lòng liên hệ phòng kế toán để xin cấp ID và Password";
       }
    }

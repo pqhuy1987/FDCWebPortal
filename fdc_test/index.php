@@ -1310,8 +1310,9 @@ $(window).load(function () {
 			  <option value='Công trường Vinhomes Golden River'>Công trường Vinhomes Golden River </option>
 			  <option value='Công trường The LandMark 81'>Công trường The LandMark 81</option>
 			  <option value='Công trường Starcity Center – Tháp A'>Công trường Starcity Center – Tháp A </option>
-			  </select> 
-			  <label>Vị trí/Chức Vụ : </label>
+			  </select>
+			   
+			  <label> Vị trí/Chức Vụ : </label>
 			  <select name='catid_3'>";
 	
 			  echo "<option value='Giám Sát'>Giám Sát</option>";

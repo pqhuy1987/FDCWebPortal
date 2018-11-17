@@ -7,7 +7,7 @@
 		$ldap_dn = $_POST["username"];
 		$ldap_password = $_POST["password"];
 		
-		$ldap_con = ldap_connect("SRBDC-02.FDC.LOCAL", 389) or die('Could not connect to LDAP server.');
+		$ldap_con = ldap_connect("192.168.20.11", 389) or die('Could not connect to LDAP server.');
 		
 		if (!ldap_set_option($ldap_con, LDAP_OPT_PROTOCOL_VERSION, 3)) 
 		{
@@ -39,10 +39,6 @@
 			
 			$first = ldap_get_entries($ldap_con, $res);
 			
-			//print "<pre>";
-			//print_r($first);
-			//print "</pre>";
-			
 			for ($i=0; $i < $first[0]["memberof"]["count"]; $i++)
     		{
 				if ($first[0]["memberof"][$i]==$admin_group)
@@ -53,10 +49,6 @@
 			
 			$_SESSION['nameuser'] = $first[0]["cn"][0];
 			$_SESSION['mail'] = $first[0]["mail"][0];
-
-			//print "<pre>";
-			//print_r($first[0]["dn"]);
-			//print "</pre>";
 			
          	header('Location: ../index.php');
 		}
