@@ -9,6 +9,7 @@
     <?php echo $gallery->getColorboxStyles(1); ?>
 
     <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    
     <?php echo $gallery->getColorboxScripts(); ?>
 
     <?php file_exists('googleAnalytics.inc') ? include('googleAnalytics.inc') : false; ?>

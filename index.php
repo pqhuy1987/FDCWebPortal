@@ -83,7 +83,22 @@ else
 					<?php require "blocks/tin_moi_nhat.php"; ?>     
                 </div>
                 <div id="right">	
-					<?php require "gallery/index.php"; ?> 
+                	<div class="box-cat">
+                        <div class="cat">
+                            <div class="main-cat">
+                                <a href="#">Gallery Hình Ảnh Công Ty</a>
+                            </div>
+                            
+                            <div class="child-cat">
+                                <a href="#" onClick="MyWindow=window.open('test/filemanager2.php','MyWindow'); return false;">(Phóng To)</a>
+                            </div>  
+                           
+                            <div class="clear"></div>
+                         </div>
+                    </div>
+                    <div id="content-file">
+						<?php require "test/filemanager.php"; ?> 
+                    </div>
                 </div>  
 
         	</div>
@@ -150,7 +165,7 @@ else
         </div>
         <div id="content-right-general">    
 		<!--blocks/cot_phai.php-->
-        <?php require "blocks/cot_phai.php"; ?>
+        <?php require "Event_4/wdCalendar/sample.php"; ?>
         </div>
 
     <div class="clear"></div>  	

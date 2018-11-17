@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+        <script src="js/daypilot/daypilot-all.min.js" type="text/javascript"></script>
+
+        <link type="text/css" rel="stylesheet" href="media/modal.css" />
+    </head>
+    <body>
+        <div ng-app="main" ng-controller="EditCtrl">
+
+            <h2>Edit Event</h2>
+
+            <div class="space">
+            <button ng-click="delete()">Delete</button>
+            </div>
+
+            <div class="space">
+                <label for="name">Name</label>
+                <input id="name" type="text" ng-model="event.text" />
+            </div>
+            <div class="space">
+                <label for="start">Start</label>
+                <input id="start" type="text" ng-model="event.start" disabled />
+            </div>
+            <div class="space">
+                <label for="end">End</label>
+                <input id="end" type="text" ng-model="event.end" disabled />
+            </div>
+            <div class="space">
+                <label for="person">Person</label>
+                <select id="person" ng-model="event.resource" ng-options="option.id as option.name for option in resources"></select>
+            </div>
+            <div class="form-group">
+                <label for="project">Project</label>
+                <select id="project" ng-model="event.project" ng-options="option.id as option.name for option in projects"></select>
+            </div>
+
+            <div class="space">
+            <button ng-click="save()">OK</button>
+            <button ng-click="cancel()">Cancel</button>
+            </div>
+
+        </div>
+
+        <script>
+            var app = angular.module('main', []).controller('EditCtrl', function($scope, $timeout, $http, $location) {
+            $scope.delete = function() {
+                $http.post("backend_delete.php", $scope.event).then(function(response) {
+                    DayPilot.Modal.close(response.data);
+                });
+            };
+            $scope.save = function() {
+                $http.post("backend_update.php", $scope.event).then(function(response) {
+                    DayPilot.Modal.close(response.data);
+                });
+            };
+            $scope.cancel = function() {
+                DayPilot.Modal.close();
+            };
+
+            $http.post("backend_projects.php").then(function(response) {
+                $scope.projects = response.data;
+            });
+
+            $http.post("backend_resources.php").then(function(response) {
+                $scope.resources = response.data;
+            });
+
+            $http.post("backend_event.php", {id: $location.search().id}).then(function(response) {
+                $scope.event = response.data;
+            });
+
+            $("#name").focus();
+        });
+
+        </script>
+    </body>
+</html>
