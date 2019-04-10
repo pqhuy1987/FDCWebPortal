@@ -43,6 +43,11 @@ $(document).ready(function(){
 			$(':checkbox:checked').each(function(i){
           		val[i] = $(this).val();
         	});
+
+        	$("input[type=text]").each(function(i){
+          		val_text[i] = $(this).val();
+          		console.log($val_text[i]);
+        	});
 			
 			$pnum=$('#num').val();
 			$etime=$('#etime').val();
@@ -97,7 +102,7 @@ $(document).ready(function(){
 					$row_quiz_with_temp_sub = mysqli_query($connect_2,"SELECT * FROM quiz where id_sub = $row_category_temp_sub[id_sub] order by id desc");
 					$rowcount=mysqli_num_rows($row_quiz_with_temp_sub);
  			?>        
-					<li><input type="checkbox" name="check_list[]" id="" value="<?php echo $row_category_temp_sub["id_sub"]?>"/> <?php echo $row_category_temp_sub["name_sub"]; echo " (".$rowcount." câu)" ?> <br /></li>
+					<li><input type="checkbox" name="check_list[]" id="" value="<?php echo $row_category_temp_sub["id_sub"]?>"/> <?php echo $row_category_temp_sub["name_sub"]; echo " (".$rowcount." câu)" ?>  <input type=text size="3" disabled> <br /></li>
 			<?php 
                 }
             ?> 
@@ -123,6 +128,7 @@ $(document).ready(function(){
 			{
 				echo "<option value='$i'>$i</option>";
 			}
+				echo "<option value='-1'>Tự chọn</option>";
 			echo "</select></div>  <div class='clear'></div><br><div class='form_element lable'> Chọn thời gian kiểm tra : </div><div class='form_element'><select name='etime' id='etime' class='selectbox'>";
 			echo "<option value=''>-- Chọn Thời Gian Làm Bài --</option>";
 
